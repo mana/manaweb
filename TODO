@@ -1,0 +1,6 @@
+2008-07-23   Andreas Habel   <mail@exceptionfault.de>
+    * refactor library Membershipprovider: move user specific functions
+      into user model
+    * refactor ShowPage function in each controller: 
+      implement the function in the parent class or write a helper class
+      to do this
