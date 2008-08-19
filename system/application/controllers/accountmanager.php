@@ -49,7 +49,7 @@ class Accountmanager extends Controller {
             $this->menuprovider->getStaticMenu();        
             
         // check if the user is currently logged in
-        if (!$this->membershipprovider->isAuthenticated())
+        if (!$this->user->isAuthenticated())
         {
             $params = array( 'has_errors' => false ); 
             $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
@@ -62,10 +62,63 @@ class Accountmanager extends Controller {
      * homepage of the user account, depending of the login status of the 
      * current user.
      */
-    function index()
+    public function index()
     {
         $this->_show_user_account();
     }
+    
+    
+    /** 
+     * This function is called from the user menu if the users requests to 
+     * show his account settings.
+     */
+    public function settings()
+    {
+        $params = array( 'user' => $this->user->getUser() );
+        $this->showPage( 'Account Settings', 'tmwweb/settings', $params );
+    }
+    
+    
+    /**
+     * This function is called from the settings view if the user requests to 
+     * to delete its account. The function shows a view where the user has to
+     * validate its request to delete everything.
+     */
+    public function delete_account()
+    {
+        $this->showPage( 'Account Settings', 'tmwweb/delete_account' );
+    }
+    
+    
+    public function execute_delete()
+    {
+        if ( strlen($this->input->post('TMWcancel')) > 0)
+        {
+            // don`t delete account
+            $this->settings();
+            return;
+        }
+        
+        $this->user->deleteCurrentUser();
+        
+        $this->showPage( 'Account Settings', 'tmwweb/delete_account_done' );
+    }
+    
+    
+    /**
+     * This function is called from the character overview page and 
+     * leeds to the character details with a given character id.
+     * The function checks wheter the current user may see this details
+     * and forwards to the details view.
+     *
+     * @param int Unique id of the character
+     */ 
+    public function character($id)
+    {
+    	//todo: check if user may see char details and build a 
+    	//character details view
+    	$this->_show_user_account();
+	}
     
     
     /**
@@ -77,7 +130,6 @@ class Accountmanager extends Controller {
             $this->user->getHomepageData() );
     }
     
-
         
     /**
      * Use this function to show a view with the given parameters

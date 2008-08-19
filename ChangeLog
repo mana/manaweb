@@ -1,4 +1,23 @@
+#
+# annotations: the path sa/ is used as shortcut to system/application for
+# readability
+#
+2008-08-18  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/controllers/accountmanager.php, sa/libraries/menuprovider.php, 
+    sa/views/tmwweb/settings.php: added functions to display account settings
+    * sa/controllers/myaccount.php: fixed typos
+    * sa/models/user.php: added functions to delete user accounts
+    * system/logs/log-*: deleted logfiles from svn repository
+    * system/database/drivers/pdo/pdo_driver.sql: added functions for 
+    transaction handling
+        
+2008-07-24  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/models/user.php, sa/views/user_home.php: added functionality to 
+    translate levelvalue into human readable string
+
 2008-07-23  Andreas Habel  <mail@exceptionfault.de>
 
-	* all Files: Initial release.
+    * all Files: Initial release.
 

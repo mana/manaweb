@@ -71,8 +71,21 @@ CREATE TABLE tmw_inventories (
     amount   INTEGER  NOT NULL,
     FOREIGN KEY (owner_id) REFERENCES tmw_characters(id));
     
-CREATE TABLE tmw_guilds (id      INTEGER     PRIMARY KEY,name    TEXT        NOT NULL UNIQUE,FOREIGN KEY (name) REFERENCES tmw_characters(name));
-CREATE TABLE tmw_guild_members (guild_id       INTEGER     NOT NULL,member_name    TEXT        NOT NULL,FOREIGN KEY (guild_id)    REFERENCES tmw_guilds(id),
-FOREIGN KEY (member_name) REFERENCES tmw_characters(name));
-CREATE TABLE tmw_quests (owner_id INTEGER NOT NULL,name     TEXT    NOT NULL,value    TEXT    NOT NULL,FOREIGN KEY (owner_id) REFERENCES tmw_characters(id))
-;
+CREATE TABLE tmw_guilds (
+    id      INTEGER     PRIMARY KEY,
+    name    TEXT        NOT NULL UNIQUE
+);
+
+CREATE TABLE tmw_guild_members (
+    guild_id       INTEGER     NOT NULL,
+    member_name    TEXT        NOT NULL,
+    FOREIGN KEY (guild_id)    REFERENCES tmw_guilds(id),
+    FOREIGN KEY (member_name) REFERENCES tmw_characters(name)
+);
+
+CREATE TABLE tmw_quests (
+    owner_id INTEGER NOT NULL,
+    name     TEXT    NOT NULL,
+    value    TEXT    NOT NULL,
+    FOREIGN KEY (owner_id) REFERENCES tmw_characters(id)
+);

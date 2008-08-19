@@ -23,9 +23,9 @@
 
 
 /**
- * Main controller of the homepage.
+ * Controller for displaying server statistics.
  */ 
-class Home extends Controller {
+class Statistics extends Controller {
 
     /**
      * Array to store data needed by the header view.
@@ -48,55 +48,23 @@ class Home extends Controller {
      */
     function index()
     {
-        $this->_show_static( 'News', 'static/news' );
+        $this->load->model('server_statistics');
+        $this->showPage( 'Server Statistics', 'tmwweb/server_statistics',
+            array('stats' => $this->server_statistics->getGlobalStats()));
     }
     
    
-    /** 
-     * Shows the static "About The Mana World" page.
+    /**
+     * Use this function to show a view with the given parameters
      */
-    function about()
-    {
-        $this->_show_static( 'About The Mana World', 'static/about' );
-    }
-    
-    
-    /** 
-     * Shows the static download page.
-     */
-    function downloads()
-    {
-        $this->_show_static( 'Downloads', 'static/downloads' );
-    }
-    
-    
-    /** 
-     * Shows the static links page.
-     */
-    function links()
-    {
-        $this->_show_static( 'Links', 'static/links' );
-    }
-    
-    
-        
-    /** 
-     * Shows a static page.
-     *
-     * A static view can`t contain any dynamic content.
-     * 
-     * @param String Title of the page used as header.
-     * @param String Filename of the view.
-     */
-    private function _show_static( $title, $filename )
+    private function showPage( $title, $filename, $params=array() )
     {
         $this->header_data['page_title'] = $title;
-        $this->header_data['user_menu']  = $this->menuprovider->getUserMenu();
+        $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
         $this->load->view('layout/header', $this->header_data);
-        $this->load->view($filename);
+        $this->load->view($filename, $params);
         $this->load->view('layout/footer');
     }
     
-    
 }
-?>
+?>

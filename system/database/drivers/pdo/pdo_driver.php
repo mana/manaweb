@@ -533,6 +533,58 @@ class CI_DB_pdo_driver extends CI_DB
         return TRUE;
     }
     
+    /**
+     * Begin Transaction
+     *
+     * @access  public
+     * @return  bool        
+     */ 
+    function trans_begin($test_mode = FALSE)
+    {
+        if ( ! $this->trans_enabled)
+        {
+            return TRUE;
+        }
+        
+        // When transactions are nested we only begin/commit/rollback the outermost ones
+        if ($this->_trans_depth > 0)
+        {
+            return TRUE;
+        }
+
+        // Reset the transaction failure flag.
+        // If the $test_mode flag is set to TRUE transactions will be rolled back
+        // even if the queries produce a successful result.
+        $this->_trans_failure = ($test_mode === TRUE) ? TRUE : FALSE;
+
+        $this->simple_query('BEGIN TRANSACTION');
+        return TRUE;
+    }
+    
+    /**
+     * Commit Transaction
+     *
+     * @access  public
+     * @return  bool        
+     */ 
+    function trans_commit()
+    {
+        if ( ! $this->trans_enabled)
+        {
+            return TRUE;
+        }
+
+        // When transactions are nested we only begin/commit/rollback the outermost ones
+        if ($this->_trans_depth > 0)
+        {
+            return TRUE;
+        }
+
+        $this->simple_query('COMMIT');
+        return TRUE;
+    }
+
+    
     // --------------------------------------------------------------------
 
     /**

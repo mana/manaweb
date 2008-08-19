@@ -11,8 +11,7 @@
 |   http://example.com/
 |
 */
-(remove this line!!!, it should only point you to the config file)
-$config['base_url'] = "";
+$config['base_url'] = "http://int-pc1419/tmwweb";
 
 /*
 |--------------------------------------------------------------------------

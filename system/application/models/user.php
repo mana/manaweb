@@ -1,7 +1,7 @@
 <?php
 /*
  *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -20,6 +20,7 @@
  *
  *  $Id: $
  */
+require_once('system/application/models/character.php');
 
 
 /**
@@ -137,6 +138,55 @@ class User extends Model {
     } // function authenticate
     
     
+    
+    /**
+     * This function is used to delete the current logged in user and logs him
+     * out automatically.
+     */
+    public function deleteCurrentUser()
+    {
+        $this->deleteUser($this->current_user->id); 
+        $this->logout();
+    }
+    
+    
+    /**
+     * This function is used to delete all data of a user with the given 
+     * userid.
+     */
+    public function deleteUser($userid)
+    {
+        // begin transaction
+        $this->db->trans_start();
+        
+        // delete data from all tables containing user data
+        
+        // first delete records from child tables via subselects
+        
+        // delete guild memberships
+        $this->db->query( 'delete from tmw_guild_members ' .
+            'where member_name in ( ' .
+            '   select name from tmw_characters where user_id = ' . $userid 
+            . ' )' );
+            
+        // delete inventory of characters
+        $this->db->query( 'delete from tmw_inventories ' .
+            'where owner_id in ( ' .
+            '   select id from tmw_characters where user_id = ' . $userid 
+            . ' )' );
+            
+        // delete characters
+        $this->db->delete('tmw_characters', array('user_id' => $userid));     
+        
+        // lastly delete account
+        $this->db->delete('tmw_accounts', array('id' => $userid)); 
+        
+        // commit
+        $this->db->trans_complete();
+    }
+    
+    
+    
     /**
      * This function destroys the current session of the user and sets all 
      * instance variables back to null or empty.
@@ -163,6 +213,52 @@ class User extends Model {
     }
     
     
+    /**
+     * This function takes a level as int value and translates it into a human
+     * readable string. The translation is defined in the tmw_config file.
+     * If parameter $level is null, the function takes the level from the 
+     * currently logged in user. If this is also null, maybe there is no one
+     * logged id, value 0 is assumed.
+     * 
+     * @param int Level to identify the corresponding name for
+     * @returns string Human readable translation of the level
+     */
+    public function getUserLevelString($level=null)
+    {
+        // get level of the current user if no level given
+        if ($level == null)
+        {
+            // is a user logged in
+            if ($this->isAuthenticated())
+            {
+                $level = $this->current_user->level;
+            }
+            else
+            {
+                $level = 0;
+            }            
+        }
+        
+        // load configured level strings from config file
+        $levels = $this->config->config['tmw_account_levels'];
+        $levelstring = "n/a";
+        
+        // loop through levels
+        foreach ($levels as $lvl)
+        {
+            if ($lvl['min'] <= $level)
+            {
+               $levelstring = $lvl['name'];
+            }
+            else
+            {
+                // we assume the list of levels is orderd. so after the first
+                // level that doesn`t match we can stop
+                return $levelstring;
+            }
+        }
+        return $levelstring;
+    }
     
     
     /**
@@ -177,8 +273,69 @@ class User extends Model {
      */
     public function getHomepageData()
     {
-        $params = array('user' => $this->current_user);        
+        $params = array('user' => $this->current_user,
+            'levelstring' => $this->getUserLevelString(),
+            'charachters' => $this->getCharacters());        
         return $params;
+    }
+    
+    
+    /**
+     * This functions is used to check wheter a user has at least one
+     * character or not. 
+     *
+     * @returns bool true, if the user has at least one charater, 
+     *               otherwise false
+     */
+    public function hasCharacters()
+    {
+        $query = $this->db->get_where('tmw_characters', 
+            array('user_id' => $this->getUser()->id), 1);
+            
+        if ($query->num_rows() > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        };
+    }
+    
+    /** 
+     * This function returns the number of characters a player has.
+     *
+     * @returns int The number of characters a player has.
+     */
+    public function getCharacterCount()
+    {
+        $query = $this->db->get_where('tmw_characters', 
+            array('user_id' => $this->getUser()->id) );
+            
+        return $query->num_rows();
+    }
+    
+    /**
+     * This functions returns an array with all character models 
+     * owned by the current user.
+     * 
+     * @param   String SQL Order clause
+     * @returns Array  Array of Character models
+     */
+    public function getCharacters($order="level desc")
+    {
+        $chars = array();
+        
+        $this->db->order_by($order);
+        $query = $this->db->get_where('tmw_characters', 
+            array('user_id' => $this->getUser()->id));
+            
+        foreach ($query->result() as $char)
+        {
+            $chars[] = new Character($char);
+        }           
+            
+        return $chars;
     }
     
     

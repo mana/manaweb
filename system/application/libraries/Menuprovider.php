@@ -85,7 +85,9 @@ class Menuprovider
         if ($this->CI->user->isAuthenticated())
         {
             return array( 
-                array( 'url'=>site_url('myaccount/logout'), 'name'=>'Logout' )
+                array('url' => site_url('accountmanager/settings'), 
+                    'name' => 'Settings'),
+                array('url' => site_url('myaccount/logout'), 'name' => 'Logout')
             );
         }
         else

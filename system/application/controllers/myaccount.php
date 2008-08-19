@@ -1,7 +1,7 @@
 <?php
 /*
  *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -124,9 +124,10 @@ class Myaccount extends Controller {
      * password link. The controller then shows the view the lostpassword
      * form. 
      */
-    function lostpassword()
+    public function lostpassword()
     {
-        $this->showPage('Account Manager', 'tmwweb/lost_password');
+        $params = array( 'has_errors' => false ); 
+        $this->showPage('Account Manager', 'tmwweb/lost_password', $params);
     }
     
     
@@ -181,7 +182,7 @@ class Myaccount extends Controller {
     
     /**
      * This function is called by users that want to change their password
-     * given a sevret identifier via mail. This key has to match the key in 
+     * given a secret identifier via mail. This key has to match the key in 
      * the database.    
      * 
      * @param String Username of the user who wants to change his password
