@@ -2,6 +2,23 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-21  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/config/tmw_config.php: prepared config file for boolean configuration
+    switches, maybe used to enable or disable functions
+    * images/icon16.png: modified from truecolor to 256 indexed palette
+    * sa/views/layout/header.php: fixed favicon in views other than main
+    * README: added chapter TRANSLATIONS
+    * index.html: added in various subdirectories to prevent directory listing
+    from the webserver
+
+2008-08-19  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/config/tmw_config.php, sa/language/german/: preparations for i18n 
+    support
+    * sa/views/tmwweb/server_statistics.php, sa/models/server_statistics.php,
+    sa/controllers/statistics.php: added view for displaying server stats
+
 2008-08-18  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/controllers/accountmanager.php, sa/libraries/menuprovider.php, 
