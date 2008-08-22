@@ -1,7 +1,7 @@
 <?php
-/*
+/**
  *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -19,6 +19,11 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id: $
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
  */
 
 
@@ -28,6 +33,12 @@
  * Each functions in the accountmanager need an authorized user, so the
  * authentication is just done in the constructor, rather in every single 
  * function.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @copyright Copyright 2008 The Mana World Development Team
+ *
+ * @package tmwweb
+ * @subpackage controllers
  */ 
 class Accountmanager extends Controller {
 
@@ -43,7 +54,7 @@ class Accountmanager extends Controller {
     function __construct()
     {
         parent::Controller();
-        $this->load->library('validation');
+        $this->load->library('validation');        
         $this->load->helper('form');
         $this->header_data['static_menu'] = 
             $this->menuprovider->getStaticMenu();        
@@ -74,7 +85,11 @@ class Accountmanager extends Controller {
      */
     public function settings()
     {
-        $params = array( 'user' => $this->user->getUser() );
+        $this->translationprovider->loadLanguage('settings');
+        $params = array( 
+            'user'       => $this->user->getUser(),
+            'has_errors' => false
+        );
         $this->showPage( 'Account Settings', 'tmwweb/settings', $params );
     }
     
@@ -90,9 +105,15 @@ class Accountmanager extends Controller {
     }
     
     
+    /**
+     * This function is called from the delete_account view if the user decides
+     * wheter or not to delete its account. If he pressed the cancel button we
+     * go back to the settings view. Otherwise we will delete his account and
+     * present a success view called delete_account_done.
+     */
     public function execute_delete()
     {
-        if ( strlen($this->input->post('TMWcancel')) > 0)
+        if (strlen($this->input->post('TMWcancel')) > 0)
         {
             // don`t delete account
             $this->settings();
@@ -111,14 +132,28 @@ class Accountmanager extends Controller {
      * The function checks wheter the current user may see this details
      * and forwards to the details view.
      *
+     * @todo check if user may see char details and build a character details 
+     *       view
      * @param int Unique id of the character
      */ 
     public function character($id)
     {
-    	//todo: check if user may see char details and build a 
-    	//character details view
-    	$this->_show_user_account();
-	}
+        $this->translationprovider->loadLanguage('character');
+        
+        // check if the user is the owner of this char
+        if (!$this->user->hasCharacter($id))
+        {
+           show_error( lang('character_view_forbidden') );
+        }        
+        
+        // for fake!
+        $params = array();
+        $char   = $this->user->getCharacter($id);
+        $params['char'] = $char;
+        
+        $this->showPage( lang('character').': '. $char->getName(), 
+            'tmwweb/character', $params);
+    }
     
     
     /**

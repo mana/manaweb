@@ -158,6 +158,16 @@ h1 {
     -moz-border-radius: 10px;
 }
 
+#main select {
+    padding: 4px 10px 4px 10px;
+    margin: 5px;
+    color: #57565c;
+    font-size: 11pt;
+    background-color: #ede2da;
+    border: 1px solid #9f9894;
+    -moz-border-radius: 10px;
+}
+
 #sidebar {
     border: 0px dashed red;
     float: right;

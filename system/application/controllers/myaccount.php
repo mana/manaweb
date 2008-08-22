@@ -18,7 +18,7 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
  */
 
 
@@ -90,6 +90,7 @@ class Myaccount extends Controller {
             // get username and password from post variables
             $user = $this->input->post('TMWusername');
             $pwd  = $this->input->post('TMWpassword');
+            $lang = $this->input->post('TMWlanguage');
             
             // try to authenticate user with membership provider
             $res = $this->user->authenticate($user, $pwd);
@@ -98,11 +99,16 @@ class Myaccount extends Controller {
             {
                 $params = array( 'has_errors' => true );                
                 $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+                return;
             }
             else
-            {
-                $this->_show_user_account();
-            }
+
+            // set language preferences 
+            $this->translationprovider->setLanguage($lang);
+            
+            // show the account homepage of the user
+            $this->_show_user_account();
+            
         }
     }
     

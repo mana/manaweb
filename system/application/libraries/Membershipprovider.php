@@ -1,7 +1,7 @@
 <?php
 /*
  *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -96,10 +96,12 @@ class Membershipprovider
         {
             return Membershipprovider::PASSWORD_TO_SHORT;
         }
+        // a password should be less then 30 chars
         if (strlen($pwd) > 30)
         {
             return Membershipprovider::PASSWORD_TO_LONG;
         }
+        // the password should be defferent from username
         if ($pwd == $username)
         {
             return Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME;

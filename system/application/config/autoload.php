@@ -40,7 +40,7 @@
 */
 
 $autoload['libraries'] = array( 'database', 'session', 'menuprovider', 
-    'membershipprovider' );
+    'membershipprovider', 'translationprovider' );
 
 
 /*
@@ -52,7 +52,7 @@ $autoload['libraries'] = array( 'database', 'session', 'menuprovider',
 |   $autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array( 'url' );
+$autoload['helper'] = array( 'url', 'language' );
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array( 'tmw_config' );
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array( 'common' );
 
 
 /*

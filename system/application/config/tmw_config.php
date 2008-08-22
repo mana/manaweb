@@ -18,8 +18,46 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
  */
+
+/*
+|--------------------------------------------------------------------------
+| Available languages
+|--------------------------------------------------------------------------
+|
+| Provide a list with all available languages. The user can choose during 
+| login which language he prefers. The translations should be added under
+| system/application/language
+|
+*/
+
+$_tmw_languages = array( 
+    array('dir'=>'english', 'name'=>'english'),
+    array('dir'=>'german', 'name'=>'deutsch')
+);
+
+$config['tmw_languages'] = $_tmw_languages; 
+ 
+
+/*
+|--------------------------------------------------------------------------
+| Enable or disable different options of the webinterface
+|--------------------------------------------------------------------------
+*/
+
+
+/* 
+| Set this option to true, if users should be able to delete one of their
+| character via the webinterface. Set this to false, if this option should be 
+| disabled. The only way to delete a character in this case is to use the 
+| client.
+|
+| possible values: true | false
+*/
+$config['tmw_allow_user_delete_character'] = true;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,12 +72,21 @@
 |
 | All ranges should be defined from smallest to highest!
 |
+| see tmwserv/src/defines.h
+| enum
+| {
+|     AL_BANNED =  0,     < This user is currently banned.
+|     AL_NORMAL = 10,     < User has regular rights.
+|     AL_GM     = 50,     < User can perform a subset of administrator tasks.
+|     AL_ADMIN  = 99      < User can perform administrator tasks.
+| };
+|
 */
-
 $_tmw_levels = array( 
-    array( 'min'=>  1, 'name'=>'User'          ),
-    array( 'min'=> 10, 'name'=>'Moderator'     ),
-    array( 'min'=>100, 'name'=>'Administrator' )
+    array( 'min'=>  0, 'name'=>'banned User'   ),
+    array( 'min'=> 10, 'name'=>'User'          ),
+    array( 'min'=> 50, 'name'=>'GM'            ),
+    array( 'min'=> 99, 'name'=>'Administrator' )
 );
 
 $config['tmw_account_levels'] = $_tmw_levels;

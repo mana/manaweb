@@ -204,8 +204,8 @@ class User extends Model {
     /**
      * Gets the authenticated user.
      *
-     * @returns Objct Returns the current authenticated user. If the user is 
-     *                not authenticated, the function returns null.
+     * @return Objct Returns the current authenticated user. If the user is 
+     *               not authenticated, the function returns null.
      */
     public function getUser()
     {      
@@ -220,8 +220,8 @@ class User extends Model {
      * currently logged in user. If this is also null, maybe there is no one
      * logged id, value 0 is assumed.
      * 
-     * @param int Level to identify the corresponding name for
-     * @returns string Human readable translation of the level
+     * @param  int    Level to identify the corresponding name for
+     * @return string Human readable translation of the level
      */
     public function getUserLevelString($level=null)
     {
@@ -268,8 +268,8 @@ class User extends Model {
      * for gathering relevant data is located here in the model and not in
      * each of the controllers.
      *
-     * @returns Array Array with all parameters needed by the view 
-     *                tmwweb/user_home.
+     * @return Array Array with all parameters needed by the view 
+     *               tmwweb/user_home.
      */
     public function getHomepageData()
     {
@@ -302,6 +302,34 @@ class User extends Model {
         };
     }
     
+    
+    /**
+     * This function checks if the current user is owner of the given 
+     * character id or not.
+     * 
+     * @param int ID of the character
+     * @return boolean true, if the user is the owner of the character, 
+     *                 false otherwise
+     */
+    public function hasCharacter($id)
+    {
+        $query = $this->db->get_where('tmw_characters', 
+            array(
+                'id'      => $id,
+                'user_id' => $this->getUser()->id
+            ), 1);
+            
+        if ($query->num_rows() == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        };
+    }
+    
+    
     /** 
      * This function returns the number of characters a player has.
      *
@@ -332,10 +360,33 @@ class User extends Model {
             
         foreach ($query->result() as $char)
         {
-            $chars[] = new Character($char);
+            $chars[$char->id] = new Character($char);
         }           
             
         return $chars;
+    }
+    
+    
+    /**
+     * This function returns a character object with the given id.
+     *
+     * @param int Id of the character
+     * @return Objct Character object
+     */
+    public function getCharacter($id)
+    {
+        $query = $this->db->get_where('tmw_characters', 
+            array('id' => $id));
+            
+        if ($query->num_rows() > 0)
+        {            
+            return new Character($query->row());
+        }
+        else
+        {
+            show_error( 'User::getCharacter => a character with this id ' .
+                        'doesn`t exist!' );
+        }
     }
     
     

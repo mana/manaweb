@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *
@@ -18,12 +18,23 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
  */
 
 
 /**
  * Main controller of the homepage.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @copyright Copyright 2008 The Mana World Development Team
+ *
+ * @package tmwweb
+ * @subpackage controllers
  */ 
 class Home extends Controller {
 

@@ -7,7 +7,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15"/>
   <meta http-equiv="Content-Style-Type" content="text/css"/>
   <meta http-equiv="Content-Language" content="en"/>
-  <link rel="icon" type="image/png" href="images/icon16.png"/>
+  
+  <link rel="shortcut icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
+  <link rel="icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
+  
   <meta name="description" content="The Mana World is a free MMORPG game for Linux, MacOS X and Windows"/>
   <meta name="keywords" content="The Mana World, Mana, World, MMORPG, RPG, free, GPL"/>
   <meta name="author" content="The Mana World Dev Team"/>

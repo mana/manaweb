@@ -1,6 +1,7 @@
-2008-07-23   Andreas Habel   <mail@exceptionfault.de>
-    * refactor library Membershipprovider: move user specific functions
-      into user model
+2008-08-21   Andreas Habel   <mail@exceptionfault.de>
+    * implement change password form under account settings
+    * implement change mailadress form under account settings
+    * prepare system for i18n using language class shipped with codeigniter    
     * refactor ShowPage function in each controller: 
       implement the function in the parent class or write a helper class
       to do this

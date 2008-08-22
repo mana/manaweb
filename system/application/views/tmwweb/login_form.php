@@ -40,10 +40,22 @@
         </td>
     </tr>
     <tr>
+        <td style="border-width: 0px;">  
+            <label for="TMWlanguage">Language: </label>
+        </td>
+        <td style="border-width: 0px;">  
+            <select name="TMWlanguage" size="1" id="TMWlanguage" tabindex="3">
+            <?php foreach ($this->translationprovider->getLanguages() as $lng) { ?>
+                <option value="<?= $lng['dir'] ?>"><?= $lng['name'] ?></option>
+            <?php } ?>
+            </select>
+        </td>
+    </tr>
+    <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
-            <input type="submit" tabindex="3" value="Login" 
+            <input type="submit" tabindex="4" value="Login" 
                 id="TMWsubmit" title="Login" name="TMWsubmit">
-            <input type="reset" tabindex="4" value="Cancel" 
+            <input type="reset" tabindex="5" value="Cancel" 
                 id="TMWcancel" title="Cancel" name="TMWcancel">
         </td>
     </tr>    
