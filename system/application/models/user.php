@@ -103,10 +103,15 @@ class User extends Model {
      * 
      * @param String Username to authenticate
      * @param String Password of the user
-     * @returns Object false, if the authentications fails, the user_id of
+     * @param Boolean if true, the session is modified after successful login
+     *                to store user credentials. if false, only username and
+     *                password are validated
+     * @returns Object false, if the authentications fails, the user_object of
      *                 the authenticated user if authentication succeeded
+     *                 If parameter setsession has been set to false, the 
+     *                 function only returns true or false.
      */
-    public function authenticate( $username, $password )
+    public function authenticate($username, $password, $setsession=true)
     {
         // hash the password
         $pwd = hash('sha256', $username . $password);
@@ -118,20 +123,32 @@ class User extends Model {
         if ($query->num_rows == 1)
         {
             // authentication succeeded
-            $this->is_authenticated = true;
-            $this->current_user = $query->row();
+            if ($setsession)
+            {
+                // modify session 
+                $this->is_authenticated = true;
+                $this->current_user = $query->row();
             
-            // store cookie
-            $this->session->set_userdata('logged_in', true);
-            $this->session->set_userdata('user_id', $this->current_user->id);
+                // store cookie
+                $this->session->set_userdata('logged_in', true);
+                $this->session->set_userdata('user_id', 
+                    $this->current_user->id);
             
-            return $this->current_user;
+                return $this->current_user;
+            }       
+            else
+            {
+                return true;
+            }         
         }
         else
         {
-            // authentication failed
-            $this->is_authenticated = false;
-            $this->current_user = null;
+            if ($setsession)
+            {
+                // authentication failed
+                $this->is_authenticated = false;
+                $this->current_user = null;
+            }
             
             return false;
         }

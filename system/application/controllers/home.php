@@ -24,6 +24,7 @@
  *  @copyright Copyright 2008 The Mana World Development Team
  *
  *  @package tmwweb
+ *  @subpackage controllers
  */
 
 
@@ -50,6 +51,10 @@ class Home extends Controller {
     function __construct()
     {
         parent::Controller();
+        $this->output->enable_profiler(
+            $this->config->item('tmw_enable_profiler')
+        );
+        
         $this->header_data['static_menu'] = $this->menuprovider->getStaticMenu();
         $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
     }

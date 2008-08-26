@@ -23,6 +23,18 @@
 
 /*
 |--------------------------------------------------------------------------
+| Maps config file
+|--------------------------------------------------------------------------
+|
+| tmwweb tries to read the configured maps.xml file shipped with tmwserv to
+| show the current location of characters as human readable string.
+|
+*/
+$config['tmwserv_maps.xml'] = 'C:/xampp/htdocs/TMW/tmwserv/trunk/data/maps.xml'; 
+
+
+/*
+|--------------------------------------------------------------------------
 | Available languages
 |--------------------------------------------------------------------------
 |
@@ -57,6 +69,15 @@ $config['tmw_languages'] = $_tmw_languages;
 */
 $config['tmw_allow_user_delete_character'] = true;
 
+/* 
+| Set this option to true, to enable the internal profiler shipped with 
+| CodeIgniter. This should be disabled in production!!!
+|
+| possible values: true | false
+*/
+$config['tmw_enable_profiler'] = false;
+
+
 
 
 /*
@@ -90,6 +111,44 @@ $_tmw_levels = array(
 );
 
 $config['tmw_account_levels'] = $_tmw_levels;
+
+
+/*
+|--------------------------------------------------------------------------
+| Permissions and securtity
+|--------------------------------------------------------------------------
+|
+| This sections defines some rights and permissions and the minimum level
+| a user needs to execute or even see the part of the admin interface.
+|
+*/
+
+/* 
+| "tmwadmin_level" defines the minimum level to have access to the tmwweb admin
+| interface. It just enables the link in the menu and gives no other rights.
+*/
+$config['tmwweb_admin_level'] = 50;
+
+$config['tmwweb_admin_permissions'] = array(
+
+    // needed level to see a list of all accounts
+    array( 'right' => 'see_account_list',       'level' => 50 ),
+    
+    // needed level to reset a password of an account
+    array( 'right' => 'reset_account_password', 'level' => 50 ),
+    
+    // needed level to ban an account for a given time
+    array( 'right' => 'ban_account',            'level' => 50 ),
+    
+    // needed level to unban an account for a given time
+    array( 'right' => 'unban_account',          'level' => 50 ),
+    
+    // needed level to modify the level of an account
+    array( 'right' => 'modify_account_level',   'level' => 99 ),
+    
+    // needed level to delete an account
+    array( 'right' => 'delete_account',         'level' => 99 )
+);
 
 
 /*

@@ -19,6 +19,8 @@ On FreeBSD you will need to install ports databases/php5-pdo_sqlite and
 security/pecl-hash along with lang/php5. 
 
 
+=============================================================================
+
 2. CONFIGURATION NOTES
 
 There are several config files that have to be prepared for your specific
@@ -47,11 +49,18 @@ files:
         * here you find all tmw specific configurations. Its worth a look!
         
 After proper configuration of all files you have to ensure that the webserver 
-has write access to the ./system/logs directory. 
+has write access to the ./system/logs and ./data directory. 
 
     chmod 777 ./system/logs
-        
-        
+    chmod 777 ./data
+    
+Tmwweb tries to store cached data read from other modules like tmwserv in the
+data directory for faster access. Therefore you should allow the webserver to 
+create files there. The logs directory is used for logging as you can think.
+
+            
+=============================================================================
+
 3. TROUBLESHOOTING
 
 After uploading and configuring tmwweb it might happen that every site you 
@@ -60,6 +69,9 @@ refreshing your site in the browser have a look at the logfiles under
 ./system/logs
 If there is no file except index.html please recheck your directory 
 permissions. Again, the webserver needs write permissions to ./system/logs
+
+
+=============================================================================
 
 4. TRANSLATIONS
 
@@ -94,6 +106,8 @@ To start with a new language there are two simple steps to do:
           array('dir'=>'german', 'name'=>'deutsch')
        );
 
+       
+=============================================================================
 
 5.  CONTACT AND SUPPORT
 

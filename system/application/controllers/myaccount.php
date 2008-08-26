@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *
@@ -19,6 +19,12 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage controllers
  */
 
 
@@ -26,6 +32,12 @@
  * The myaccount controller is responsible for account management like 
  * login, logout, regathering lost passwords and so on. Most of its functions 
  * can be called when not logged in.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @copyright Copyright 2008 The Mana World Development Team
+ *
+ * @package tmwweb
+ * @subpackage controllers
  */ 
 class Myaccount extends Controller {
 
@@ -41,8 +53,13 @@ class Myaccount extends Controller {
     function __construct()
     {
         parent::Controller();
+        $this->output->enable_profiler(
+            $this->config->item('tmw_enable_profiler')
+        );
+
         $this->load->library('validation');
         $this->load->helper('form');
+        $this->translationprovider->loadLanguage('account');
         $this->header_data['static_menu'] = 
             $this->menuprovider->getStaticMenu();        
     }
@@ -62,8 +79,8 @@ class Myaccount extends Controller {
         }
         else
         {
-            $params = array( 'has_errors' => false ); 
-            $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+            $param = array('has_errors' => false); 
+            $this->showPage(lang('tmwweb_title'), 'tmwweb/login_form', $param);
         }
     }
     
@@ -81,8 +98,8 @@ class Myaccount extends Controller {
         // validate userinput against rules
         if ($this->validation->run() == false)
         {
-            $params = array( 'has_errors' => true ); 
-            $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+            $param = array('has_errors' => true); 
+            $this->showPage(lang('tmwweb_title'), 'tmwweb/login_form', $param);
         }
         else
         {
@@ -97,20 +114,23 @@ class Myaccount extends Controller {
             
             if( $res === false )
             {
-                $params = array( 'has_errors' => true );                
-                $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+                $params = array('has_errors' => true);
+                $this->showPage(lang('tmwweb_title'), 
+                    'tmwweb/login_form', $params);
                 return;
             }
             else
-
-            // set language preferences 
-            $this->translationprovider->setLanguage($lang);
+            {
+                // set language preferences 
+                $this->translationprovider->setLanguage($lang);            
+                // show the account homepage of the user
+                $this->_show_user_account();
+                
+            } // $res == true
             
-            // show the account homepage of the user
-            $this->_show_user_account();
-            
-        }
-    }
+        } // validation failed
+        
+    } // funtion login()
     
     
     /**
@@ -120,8 +140,8 @@ class Myaccount extends Controller {
     function logout()
     {
         $this->user->logout();
-        $params = array( 'has_errors' => false ); 
-        $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+        $params = array('has_errors' => false); 
+        $this->showPage(lang('tmwweb_title'), 'tmwweb/login_form', $params);
     }
     
     
@@ -132,8 +152,8 @@ class Myaccount extends Controller {
      */
     public function lostpassword()
     {
-        $params = array( 'has_errors' => false ); 
-        $this->showPage('Account Manager', 'tmwweb/lost_password', $params);
+        $params = array('has_errors' => false); 
+        $this->showPage(lang('tmwweb_title'), 'tmwweb/lost_password', $params);
     }
     
     
@@ -154,7 +174,8 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $params = array('has_errors'=>true); 
-            $this->showPage('Account Manager', 'tmwweb/lost_password', $params);
+            $this->showPage(lang('tmwweb_title'), 'tmwweb/lost_password', 
+                $params);
         }
         else
         {
@@ -166,7 +187,7 @@ class Myaccount extends Controller {
             if ($this->validation->run() == false)
             {
                 $params = array('has_errors'=>true); 
-                $this->showPage('Account Manager', 'tmwweb/lost_password', 
+                $this->showPage(lang('tmwweb_title'), 'tmwweb/lost_password', 
                     $params);
             }
             else
@@ -178,7 +199,7 @@ class Myaccount extends Controller {
                 $this->_send_passwort_change_request($username, $email);
                     
                 // forward to the success page
-                $this->showPage('Account Manager', 
+                $this->showPage(lang('tmwweb_title'), 
                     'tmwweb/lost_password_mailsent',
                     array('username'=>$username, 'email'=>$email));
             }
@@ -200,14 +221,14 @@ class Myaccount extends Controller {
         if ($this->membershipprovider->validateKeyForUser($username, $key))
         {
             // show view for changing password
-            $this->showPage('Account Manager',
+            $this->showPage(lang('tmwweb_title'),
                 'tmwweb/lost_password_change',
                 array('username'=>$username, 'key'=>$key));
         }
         else
         {
             // show error page
-            $this->showPage('Account Manager', 
+            $this->showPage(lang('tmwweb_title'), 
                 'tmwweb/lost_password_wrong_key');
         }
     }
@@ -242,7 +263,7 @@ class Myaccount extends Controller {
                     'key'=>$key
                 ); 
                 
-                $this->showPage('Account Manager', 
+                $this->showPage(lang('tmwweb_title'), 
                     'tmwweb/lost_password_change', 
                     $params);
             }
@@ -254,7 +275,7 @@ class Myaccount extends Controller {
                     $username, 
                     $this->input->post('TMWpassword') );
                     
-                $this->showPage('Account Manager', 
+                $this->showPage(lang('tmwweb_title'), 
                     'tmwweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
                     ' now login with your new credentials.' ));
@@ -263,7 +284,7 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->showPage('Account Manager', 
+            $this->showPage(lang('tmwweb_title'), 
                 'tmwweb/lost_password_wrong_key');
         }
     }
@@ -380,7 +401,8 @@ class Myaccount extends Controller {
      */    
     private function _show_user_account()
     {
-        $this->showPage( 'My Account', 'tmwweb/user_home', 
+        $this->translationprovider->loadLanguage('account');
+        $this->showPage(lang('account_title'), 'tmwweb/user_home', 
             $this->user->getHomepageData() );
     }
    

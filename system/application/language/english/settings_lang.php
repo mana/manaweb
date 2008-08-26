@@ -29,6 +29,8 @@
 
 // header /////////////////////////////////////////////////////////////////////
 
+$lang['settings_title']                 = 'Account Settings';
+
 $lang['settings_descr'] = 
  'On this page you have serveral options to modify your account settings.\n'.
  ' Maybe you would like to change your stored mailadress, or change your login'.
@@ -58,7 +60,12 @@ $lang['settings_retype_password']       = 'retype password';
 $lang['settings_retype_new_password']   = 'Please retype your new password';
 
 $lang['settings_change_password']       = 'Change password'; 
+$lang['settings_change_password_ok']    = 'Your new password has been saved.';
 
+$lang['settings_pwd_to_short']          = 'The given password is to short.';
+$lang['settings_pwd_to_long']           = 'The given password is to long.';
+$lang['settings_pwd_eq_username']       = 'The password must be different '.
+                                          'then your username.';
 
 // change mailadress //////////////////////////////////////////////////////////
 

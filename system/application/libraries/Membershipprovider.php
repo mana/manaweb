@@ -74,7 +74,7 @@ class Membershipprovider
         // build the key in a loop, even for long string that should not
         // be relevant for performance issues i hope
         $key = "";                 
-        for ($i; $i < $length; $i++)
+        for ($i=0; $i < $length; $i++)
         {
             // add a random char from the array
             $key .= $chararray[mt_rand(0, sizeof($chararray)-1)];

@@ -35,6 +35,7 @@ $lang['character_name']             = 'Name';
 $lang['character_gender']           = 'Gender';
 $lang['character_level']            = 'Level';
 $lang['character_money']            = 'Money';
+$lang['character_map']              = 'Karte';
 
 
 $lang['character_attr_str']         = 'Strength';

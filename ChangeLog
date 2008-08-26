@@ -2,6 +2,22 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-25  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/config/tmw_config.php: added config section to define level based 
+    permissions in the upcoming admin interface of tmwweb    
+    * sa/config/tmw_config.php, sa/controllers/*.php: added support to use
+    profiler shipped with CodeIgniter, configurable in tmw specific config
+    file.
+    * sa/libraries/Mapprovider.php, sa/config/tmw_config.php, 
+    sa/views/character.php: added mapprovider to read maps.xml and show current 
+    location of a character
+    * sa/controllers/test.php: implemented first approach of unit tests for 
+    tmwweb using CodeIgniter unit_test library
+    * sa/libraries/Membershipprovider.php: fixed bug in for() syntax
+    * sa/models/user.php, sa/languages/*/settings_lang.php, 
+    sa/controllers/accountmanager.php: change password for user account
+
 2008-08-21  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/config/tmw_config.php: prepared config file for boolean configuration
@@ -30,7 +46,7 @@
     transaction handling
         
 2008-07-24  Andreas Habel  <mail@exceptionfault.de>
-
+1
     * sa/models/user.php, sa/views/user_home.php: added functionality to 
     translate levelvalue into human readable string
 

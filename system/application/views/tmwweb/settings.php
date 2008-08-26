@@ -45,6 +45,14 @@
         </td>
     </tr>
     <? } ?>
+    <? if (isset($pwd_changed_message)) { ?>
+    <tr>
+        <td colspan="2" style="border: 1px solid #006600; font-weight: bold;
+            color: #006600;">
+            <?= $pwd_changed_message; ?>
+        </td>
+    </tr>
+    <? } ?>
     <tr>
         <td style="border-width: 0px;">  
             <label for="TMW_old_password">
@@ -119,7 +127,7 @@
     <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
-            <input type="submit" tabindex="2" 
+            <input type="submit" tabindex="6" 
                 value="<?= lang('settings_delete_account') ?>" 
                 id="TMWsubmit" title="<?= lang('settings_delete_account') ?>" 
                 name="TMWsubmit" />

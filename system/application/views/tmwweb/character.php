@@ -77,8 +77,13 @@
         </td>        
     </tr>    
     <tr>
-        <td style="border-width: 0px;" colspan="2" rowspan="2">  
-            &nbsp;
+        <td style="border-width: 0px;">  
+            <span class="label"><?= lang('character_map') ?>: </span>
+        </td>
+        <td style="border-width: 0px;">  
+            <span class="input">
+                <? $map = $char->getMap(); echo $map['name']; ?>
+            </span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_int') ?>: </span>
@@ -90,6 +95,9 @@
         </td>        
     </tr>    
     <tr>
+        <td style="border-width: 0px;" colspan="2">  
+            &nbsp;
+        </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_will') ?>: </span>
         </td>

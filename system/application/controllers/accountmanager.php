@@ -18,12 +18,13 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
  *
  *  @author Andreas Habel <mail@exceptionfault.de>
  *  @copyright Copyright 2008 The Mana World Development Team
  *
  *  @package tmwweb
+ *  @subpackage controllers
  */
 
 
@@ -54,16 +55,21 @@ class Accountmanager extends Controller {
     function __construct()
     {
         parent::Controller();
+        $this->output->enable_profiler(
+            $this->config->item('tmw_enable_profiler')
+        );
+
         $this->load->library('validation');        
         $this->load->helper('form');
         $this->header_data['static_menu'] = 
-            $this->menuprovider->getStaticMenu();        
+        $this->menuprovider->getStaticMenu();        
             
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
-            $params = array( 'has_errors' => false ); 
-            $this->showPage( 'Account Manager', 'tmwweb/login_form', $params);
+            $param = array('has_errors' => false); 
+            $this->translationprovider->loadLanguage('account');
+            $this->showPage(lang('account_login'), 'tmwweb/login_form', $param);
         }
     }
     
@@ -86,11 +92,8 @@ class Accountmanager extends Controller {
     public function settings()
     {
         $this->translationprovider->loadLanguage('settings');
-        $params = array( 
-            'user'       => $this->user->getUser(),
-            'has_errors' => false
-        );
-        $this->showPage( 'Account Settings', 'tmwweb/settings', $params );
+        $params = array('has_errors' => false);
+        $this->showPage(lang('settings_title'), 'tmwweb/settings', $params);
     }
     
     
@@ -101,7 +104,8 @@ class Accountmanager extends Controller {
      */
     public function delete_account()
     {
-        $this->showPage( 'Account Settings', 'tmwweb/delete_account' );
+        $this->translationprovider->loadLanguage('settings');
+        $this->showPage(lang('settings_title'), 'tmwweb/delete_account');
     }
     
     
@@ -122,7 +126,8 @@ class Accountmanager extends Controller {
         
         $this->user->deleteCurrentUser();
         
-        $this->showPage( 'Account Settings', 'tmwweb/delete_account_done' );
+        $this->translationprovider->loadLanguage('settings');
+        $this->showPage(lang('settings_title'), 'tmwweb/delete_account_done');
     }
     
     
@@ -132,27 +137,128 @@ class Accountmanager extends Controller {
      * The function checks wheter the current user may see this details
      * and forwards to the details view.
      *
-     * @todo check if user may see char details and build a character details 
-     *       view
      * @param int Unique id of the character
      */ 
     public function character($id)
     {
         $this->translationprovider->loadLanguage('character');
+        $this->load->library('mapprovider');
         
         // check if the user is the owner of this char
         if (!$this->user->hasCharacter($id))
         {
-           show_error( lang('character_view_forbidden') );
+           show_error(lang('character_view_forbidden'));
         }        
         
-        // for fake!
         $params = array();
         $char   = $this->user->getCharacter($id);
         $params['char'] = $char;
         
-        $this->showPage( lang('character').': '. $char->getName(), 
+        $this->showPage(lang('character').': '. $char->getName(), 
             'tmwweb/character', $params);
+    }
+    
+    
+    /** 
+     * This function is called from the view settings and should
+     * set a new password for the given user.
+     */
+    public function changepassword()
+    {
+        $old_pwd  = $this->input->post('TMW_old_password');
+        $new_pwd  = $this->input->post('TMW_new_password');
+        $new2_pwd = $this->input->post('TMW_retype_password');
+        
+        // define rules for the new password
+        $rules['TMW_old_password'] = "required|callback_validate_password";
+        $rules['TMW_new_password'] = "required|callback_password_strength";
+        $rules['TMW_retype_password'] = "required|matches[TMW_new_password]";
+        $rules['PasswordStrength'] = "";
+        $this->validation->set_rules($rules);
+
+                
+        $this->translationprovider->loadLanguage('settings');
+        
+        // validate userinput against rules
+        if ($this->validation->run() == false)
+        {
+            // validation fails, prepare params for change form
+            $param = array('has_errors' => true); 
+            $this->showPage(lang('settings_title'), 'tmwweb/settings', $param);
+        }
+        else
+        {
+            // the new password is ok.
+            $this->membershipprovider->setPasswordForUser(
+                $this->user->getUser()->username, 
+                $this->input->post('TMW_new_password'),
+                false );
+                    
+            $param = array(
+                'has_errors' => false,
+                'pwd_changed_message' => lang('settings_change_password_ok')
+            );                 
+            $this->showPage(lang('settings_title'), 'tmwweb/settings', $param);
+        }
+    }
+    
+    
+    /** 
+     * This is a callback function to validate the user given password against
+     * password policy.
+     *
+     * @param String Password to validate
+     * @returns boolean true, if the password fulfills the policy, otherwise 
+     *                  false.
+     */
+    public function password_strength($pwd)
+    {
+        $username = $this->user->getUser()->username;
+        $ret = Membershipprovider::validatePassword($pwd, $username);
+        echo "$pwd, $username";
+        switch ($ret)
+        {
+            case Membershipprovider::PASSWORD_OK:
+                return true;
+            case Membershipprovider::PASSWORD_TO_SHORT:
+                $this->validation->set_message('password_strength', 
+                lang('settings_pwd_to_short'));
+                return false;
+            case Membershipprovider::PASSWORD_TO_LONG:
+                $this->validation->set_message('password_strength', 
+                lang('settings_pwd_to_long'));
+                return false;
+            case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
+                $this->validation->set_message('password_strength', 
+                lang('settings_pwd_eq_username'));
+                return false;
+        }
+    }
+    
+    
+    /** 
+     * This is a callback function to validate the current password of the user
+     * if he tries to change his password.
+     * 
+     * @param String Password to validate
+     * @return boolean true, if the password matches the current, false 
+     *                 otherwise
+     */
+    public function validate_password($pwd)
+    {
+        $name = $this->user->getUser()->username;
+        
+        // call authenticate function from user model but set 3rd parameter to
+        // false to prevent session from being modified
+        $retval = $this->user->authenticate($name, $pwd, false);
+        
+        // if authentication fails, set correct error message
+        if (!$retval)
+        {
+            $this->validation->set_message('validate_password', 
+            'The old password is wrong.');
+        }
+        return $retval;
     }
     
     
@@ -161,8 +267,8 @@ class Accountmanager extends Controller {
      */    
     private function _show_user_account()
     {
-        $this->showPage( 'My Account', 'tmwweb/user_home', 
-            $this->user->getHomepageData() );
+        $this->showPage('My Account', 'tmwweb/user_home', 
+            $this->user->getHomepageData());
     }
     
         

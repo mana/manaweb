@@ -28,7 +28,7 @@
  */
 
 
- 
+$lang['tmwweb_title']    = 'Account Manager';
  
 $lang['cancel']          = 'Cancel';
 

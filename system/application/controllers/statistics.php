@@ -39,6 +39,10 @@ class Statistics extends Controller {
     function __construct()
     {
         parent::Controller();
+        $this->output->enable_profiler(
+            $this->config->item('tmw_enable_profiler')
+        );
+
         $this->header_data['static_menu'] = $this->menuprovider->getStaticMenu();
         $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
     }
@@ -67,4 +71,4 @@ class Statistics extends Controller {
     }
     
 }
-?>
+?>

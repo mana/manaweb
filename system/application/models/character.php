@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *
@@ -18,7 +18,13 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage models
  */
 
 
@@ -26,6 +32,12 @@
  * The caharcter model deals with all data according to a character.
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage models
  */ 
 class Character {
 
@@ -95,12 +107,18 @@ class Character {
         // therefore we cannot access $this->config directly
         $this->CI =& get_instance();
         $this->char = $record;
+        
+        // characters need informations about maps so load the mapprovider
+        if (!isset($this->CI->mapprovider))
+        {
+            $this->CI->load->library('mapprovider');
+        }
     }
     
     /**
      * This function returns the unique id of the character.
      * 
-     * @returns int Unique id of the character
+     * @return int Unique id of the character
      */
     public function getID()
     {
@@ -111,7 +129,7 @@ class Character {
     /**
      * This function returns the name of the character.
      * 
-     * @returns string Name of the character
+     * @return string Name of the character
      */
     public function getName()
     {
@@ -121,7 +139,7 @@ class Character {
     /**
      * This function returns the level of the character.
      * 
-     * @returns int Level of the character
+     * @return int Level of the character
      */
     public function getLevel()
     {
@@ -132,7 +150,7 @@ class Character {
      * This function returns the gender of the character.
      * See constants GENDER_MALE and GENDER_FEMALE.
      * 
-     * @returns int Gender of the character
+     * @return int Gender of the character
      */
     public function getGender()
     {
@@ -142,11 +160,22 @@ class Character {
     /** 
      * This functions returns the money of the character.
      * 
-     * @returns int The money of the character
+     * @return int The money of the character
      */
     public function getMoney()
     {
         return $this->char->money;
+    }
+    
+    
+    /** 
+     * This function returns the map, the character is located on.
+     *
+     * @return object Map the character is located.
+     */
+    public function getMap()
+    {
+        return $this->CI->mapprovider->getMap($this->char->map_id);
     }
     
     

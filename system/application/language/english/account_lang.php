@@ -27,27 +27,7 @@
  *  @subpackage translations
  */
 
-$lang['character']                  = 'Character';
-$lang['character_statistics']       = 'Character statistics';
-$lang['character_guild_member']     = 'Guild memberships';
-
-$lang['character_name']             = 'Name';
-$lang['character_gender']           = 'Gender';
-$lang['character_level']            = 'Level';
-$lang['character_money']            = 'Money';
-$lang['character_map']              = 'Map';
-
-
-$lang['character_attr_str']         = 'Strength';
-$lang['character_attr_agi']         = 'Agility';
-$lang['character_attr_dex']         = 'Dexterity';
-$lang['character_attr_vit']         = 'Vitality';
-$lang['character_attr_int']         = 'Intelligence';
-$lang['character_attr_will']        = 'Willpower';
-
-
-$lang['character_not_guild_member'] = "Your character is not a member of any guild.";
-$lang['character_view_forbidden']   = "You are not permittet to show the details of this char.";
-$lang['character_back']             = 'back to the account page';
+$lang['account_login']          = 'Login';
+$lang['account_title']          = 'My Account';
 
 ?>
