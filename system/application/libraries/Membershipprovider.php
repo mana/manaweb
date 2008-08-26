@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *

@@ -25,6 +25,7 @@ of one to see its details.</p>
     <th width="20">Level</th>
     <th width="20">Gender</th>
     <th>Money</th>
+    <th>Map</th>
 </tr>
 <?php foreach ($this->user->getCharacters() as $char){ ?>
 <tr>
@@ -43,6 +44,7 @@ of one to see its details.</p>
         } 
     ?></td>
     <td align="right"><?= number_format($char->getMoney(), 0, ".", ",") ?></td>
+    <td><? $map = $char->getMap(); echo $map['name']; ?></td>
 </tr>
 <? } ?>
 </table>    

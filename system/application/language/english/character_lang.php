@@ -29,6 +29,9 @@
 
 $lang['character']                  = 'Character';
 $lang['character_statistics']       = 'Character statistics';
+$lang['weapon_skills']              = 'Weapon skills';
+$lang['magic_skills']               = 'Magic skills';
+$lang['crafting_skills']            = 'Crafting skills';
 $lang['character_guild_member']     = 'Guild memberships';
 
 $lang['character_name']             = 'Name';
@@ -44,6 +47,18 @@ $lang['character_attr_dex']         = 'Dexterity';
 $lang['character_attr_vit']         = 'Vitality';
 $lang['character_attr_int']         = 'Intelligence';
 $lang['character_attr_will']        = 'Willpower';
+
+$lang['character_skill_none']       = 'Fist';
+$lang['character_skill_knife']      = 'Knife';
+$lang['character_skill_sword']      = 'Sword';
+$lang['character_skill_polearm']    = 'Polearm';
+$lang['character_skill_staff']      = 'Staff';
+$lang['character_skill_whip']       = 'Whip';
+$lang['character_skill_bow']        = 'Bow';
+$lang['character_skill_shooting']   = 'Shooting';
+$lang['character_skill_mace']       = 'Mace';
+$lang['character_skill_axe']        = 'Axe';
+$lang['character_skill_thrown']     = 'Thrown';
 
 
 $lang['character_not_guild_member'] = "Your character is not a member of any guild.";

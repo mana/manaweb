@@ -34,13 +34,12 @@
 |
 */
 $_tmw_static_links = array( 
-   array( 'name'=>'News',        'url'=>site_url('home')                  ),
-   array( 'name'=>'About',       'url'=>site_url('home/about')            ),
-   array( 'name'=>'Wiki',        'url'=>'http://wiki.themanaworld.org'    ),
-   array( 'name'=>'Forums',      'url'=>'http://forums.themanaworld.org/' ),
-   array( 'name'=>'Bug tracker', 'url'=>'http://mantis.themanaworld.org/' ),
-   array( 'name'=>'My Account',  'url'=>site_url('myaccount')             ),
-   array( 'name'=>'Statistics',  'url'=>site_url('statistics')            )   
+   array( 'name'=>'News',        'url'=>'http://themanaworld.org'           ),
+   array( 'name'=>'About',       'url'=>'http://themanaworld.org/about.php' ),
+   array( 'name'=>'Wiki',        'url'=>'http://wiki.themanaworld.org'      ),
+   array( 'name'=>'Forums',      'url'=>'http://forums.themanaworld.org/'   ),
+   array( 'name'=>'Bug tracker', 'url'=>'http://mantis.themanaworld.org/'   ),
+   array( 'name'=>'Statistics',  'url'=>site_url('statistics')              )   
 );
 
 $config['tmw_static_links'] = $_tmw_static_links;

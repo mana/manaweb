@@ -30,7 +30,7 @@
 | show the current location of characters as human readable string.
 |
 */
-$config['tmwserv_maps.xml'] = 'C:/xampp/htdocs/TMW/tmwserv/trunk/data/maps.xml'; 
+$config['tmwserv_maps.xml'] = '/path/to/your/tmwserv/installation/maps.xml'; 
 
 
 /*
@@ -157,13 +157,13 @@ $config['tmwweb_admin_permissions'] = array(
 |--------------------------------------------------------------------------
 | 
 | When a user losts his password and requests to change it, we will send him a 
-| mail with a link where he can change it. The url should contain two 
-| paramters in sprintf syntax:
+| mail with a link where he can change it. The link should point to your tmwweb
+| installation. The url should contain two paramters in sprintf syntax:
 |   %s (string) the username
 |   %s (string) a generic key stored in the database to validate the mailbox
 |
 */
-$config['tmw_change_password_link'] = "http://tmw.sourceforge.net/ci/index.php". 
+$config['tmw_change_password_link'] = "http://example.com/index.php". 
     "/myaccount/changepassword/%s/%s";
 
     
@@ -177,7 +177,7 @@ $config['tmw_change_password_subject'] = "TMW: Your password change request";
 | Define the mailaddress from which mails are sent to the user.
 | e.g. something like "noreply@themanaworld.org"
 */    
-$config['tmw_email_from_address'] = "noreply@testdomain.org";
+$config['tmw_email_from_address'] = "noreply@example.com";
 
 /*
 | Define the visible name of the address configured above.

@@ -84,6 +84,23 @@ class Character {
      */
     const CHAR_ATTR_WILLPOWER  = "will";
 
+    // character experiences //////////////////////////////////////////////////
+
+    /**
+     * Constants for character experiences 
+     */
+    const CHAR_SKILL_NONE      = "unarmed_exp";
+    const CHAR_SKILL_KNIFE     = "knife_exp";
+    const CHAR_SKILL_SWORD     = "sword_exp";
+    const CHAR_SKILL_POLEARM   = "polearm_exp";
+    const CHAR_SKILL_STAFF     = "staff_exp";
+    const CHAR_SKILL_WHIP      = "whip_exp";
+    const CHAR_SKILL_BOW       = "bow_exp";
+    const CHAR_SKILL_SHOOTING  = "shoot_exp";
+    const CHAR_SKILL_MACE      = "mace_exp";
+    const CHAR_SKILL_AXE       = "axe_exp";
+    const CHAR_SKILL_THROWN    = "thrown_exp";
+    
     ///////////////////////////////////////////////////////////////////////////
     
     /**
@@ -191,6 +208,19 @@ class Character {
         return $this->char->$attribute;
     }
 
+    
+    /** 
+     * This function returns a skill value of the character.
+     * Use the constants Character::CHAR_SKILL_* as input of this function.
+     *
+     * @param string Skill name.
+     * @return int Skill value.
+     */    
+    public function getSkill($skill)
+    {
+        return $this->char->$skill;
+    }
+    
     
     /**
      * This functions is used to check wheter a character is member of at least

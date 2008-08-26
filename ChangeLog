@@ -2,6 +2,15 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-26  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/views/tmwweb/character.php, images/items/*.png, 
+    sa/models/character.php: added skills in character overview
+    * sa/libraries/TMW_Config.php, sa/config/*.php: extended configuration
+    system to use custom ".user.php" files if they exist. Thats doesn't work 
+    for basic files like config.php, so config.default.php was added that could 
+    be used as template by the user. see README for more details
+
 2008-08-25  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/config/tmw_config.php: added config section to define level based 

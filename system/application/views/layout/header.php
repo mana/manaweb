@@ -56,20 +56,39 @@
           </div>
          </div>
 
-         <? if (isset($user_menu) ) { ?>
+         
          <div class="section_topleft">
           <div class="section_bottomleft">
            <div class="section_topright">
             <div class="section_bottomright">
              <div class="section">                
-               <ul><?php foreach( $user_menu as $link )
+               <ul><li>Account Manager</li><li><a href="<?= site_url('myaccount') ?>">My Account</a></li><?php if (isset($user_menu) ) {
+                   foreach( $user_menu as $link )
                      { ?><li><a href="<?= $link['url'] ?>"><?= $link['name'] ?></a></li><?php } ?></ul>
+                <? } ?>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         
+         <? if (isset($user_menu) && $this->user->isAdmin()) { ?>
+         <div class="section_topleft">
+          <div class="section_bottomleft">
+           <div class="section_topright">
+            <div class="section_bottomright">
+             <div class="section">                
+               <ul>
+                    <li>Admin Interface</li>
+                    <li><a href="">Admin Interface</a></li>
+               </ul>
              </div>
             </div>
            </div>
           </div>
          </div>
          <? } ?>
+         
 
        <!-- This empty div fixes a rendering issue with IE 7 -->
        <div></div>

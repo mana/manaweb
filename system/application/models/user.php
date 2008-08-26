@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *
@@ -18,13 +18,25 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
+ *  $Id$
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage models
  */
 require_once('system/application/models/character.php');
 
 
 /**
  * The user model deals with all data according to a account.
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage models
  */ 
 class User extends Model {
 
@@ -37,9 +49,16 @@ class User extends Model {
     /**
      * Boolean variable that indicates wheter the user has authenticated
      * or not.
+     * @var boolean
      */
     private $is_authenticated;
     
+    /**
+     * Boolean variable that indicates wheter the user has administrative 
+     * rights according to his level or not.
+     * @var boolean
+     */
+    private $is_admin;
         
     
     /**
@@ -53,6 +72,7 @@ class User extends Model {
         
         // set defaults
         $this->is_authenticated = false;
+        $this->is_admin = false;
         $this->current_user = null;
         
         $this->isAuthenticated();
@@ -98,6 +118,38 @@ class User extends Model {
     
     
     /**
+     * This function checks wheter the user level is high enough to use 
+     * administrative functions and to see the admin interface link. 
+     * The permission can be configured in tmw_config.php with parameter
+     * tmwweb_admin_level.
+     *
+     * @return boolean true if the user is allowed to see the admin interface,
+     *                 false otherwise.
+     */ 
+    public function isAdmin()
+    {
+        if ($this->is_admin)
+        {
+            return true;
+        }
+        else
+        {
+            // check if the userlevel has a sufficient value
+            if ($this->current_user->level >= 
+                $this->config->item('tmwweb_admin_level'))
+            {
+                $this->is_admin = true;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+    
+    
+    /**
      * This function tries to authenticate a user by its username and
      * password. 
      * 
@@ -106,7 +158,7 @@ class User extends Model {
      * @param Boolean if true, the session is modified after successful login
      *                to store user credentials. if false, only username and
      *                password are validated
-     * @returns Object false, if the authentications fails, the user_object of
+     * @return Object false, if the authentications fails, the user_object of
      *                 the authenticated user if authentication succeeded
      *                 If parameter setsession has been set to false, the 
      *                 function only returns true or false.
@@ -147,6 +199,7 @@ class User extends Model {
             {
                 // authentication failed
                 $this->is_authenticated = false;
+                $this->is_admin = false;
                 $this->current_user = null;
             }
             
@@ -211,6 +264,7 @@ class User extends Model {
     public function logout()
     {
         $this->is_authenticated = false;
+        $this->is_admin = false;
         $this->current_user = null;
         $this->session->unset_userdata('logged_in');
         $this->session->unset_userdata('user_id');
@@ -257,7 +311,7 @@ class User extends Model {
         }
         
         // load configured level strings from config file
-        $levels = $this->config->config['tmw_account_levels'];
+        $levels = $this->config->item('tmw_account_levels');
         $levelstring = "n/a";
         
         // loop through levels
