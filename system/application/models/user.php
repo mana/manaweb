@@ -26,7 +26,7 @@
  *  @package tmwweb
  *  @subpackage models
  */
-require_once('system/application/models/character.php');
+require_once(APPPATH.'models/character'.EXT);
 
 
 /**
@@ -40,6 +40,14 @@ require_once('system/application/models/character.php');
  */ 
 class User extends Model {
 
+    /**
+     * Name of the accounts table
+     * @var string
+     */
+    const ACCOUNT_TBL = 'tmw_accounts';
+    
+    
+    
     
     /**
      * The user model holds an instance to the curently logged in user.
@@ -97,14 +105,14 @@ class User extends Model {
             if ($this->session->userdata('logged_in'))
             {
                 $user_id = $this->session->userdata('user_id');
-                $query = $this->db->get_where( 'tmw_accounts', 
-                    array( 'id' => $user_id ));
+                $query = $this->db->get_where( User::ACCOUNT_TBL, 
+                    array('id' => $user_id));
             
                 if ($query->num_rows == 1)
                 {
                     // authentication succeeded
                     $this->is_authenticated = true;
-                    $this->current_user = $query->row();                                        
+                    $this->current_user = $query->row();
                     return true;
                 }                
             }
@@ -169,7 +177,7 @@ class User extends Model {
         $pwd = hash('sha256', $username . $password);
         
         // select user from db with given name and password
-        $query = $this->db->get_where( 'tmw_accounts', 
+        $query = $this->db->get_where( User::ACCOUNT_TBL, 
             array( 'username' => $username, 'password' => $pwd ));
 
         if ($query->num_rows == 1)
@@ -249,7 +257,7 @@ class User extends Model {
         $this->db->delete('tmw_characters', array('user_id' => $userid));     
         
         // lastly delete account
-        $this->db->delete('tmw_accounts', array('id' => $userid)); 
+        $this->db->delete(User::ACCOUNT_TBL, array('id' => $userid)); 
         
         // commit
         $this->db->trans_complete();

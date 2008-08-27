@@ -81,6 +81,11 @@ class Accountmanager extends Controller {
      */
     public function index()
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
         $this->_show_user_account();
     }
     
@@ -91,6 +96,11 @@ class Accountmanager extends Controller {
      */
     public function settings()
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+            
         $this->translationprovider->loadLanguage('settings');
         $params = array('has_errors' => false);
         $this->showPage(lang('settings_title'), 'tmwweb/settings', $params);
@@ -104,6 +114,11 @@ class Accountmanager extends Controller {
      */
     public function delete_account()
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
         $this->translationprovider->loadLanguage('settings');
         $this->showPage(lang('settings_title'), 'tmwweb/delete_account');
     }
@@ -117,6 +132,11 @@ class Accountmanager extends Controller {
      */
     public function execute_delete()
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
         if (strlen($this->input->post('TMWcancel')) > 0)
         {
             // don`t delete account
@@ -141,6 +161,11 @@ class Accountmanager extends Controller {
      */ 
     public function character($id)
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
         $this->translationprovider->loadLanguage('character');
         $this->load->library('mapprovider');
         
@@ -165,13 +190,22 @@ class Accountmanager extends Controller {
      */
     public function changepassword()
     {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
         $old_pwd  = $this->input->post('TMW_old_password');
         $new_pwd  = $this->input->post('TMW_new_password');
         $new2_pwd = $this->input->post('TMW_retype_password');
         
         // define rules for the new password
-        $rules['TMW_old_password'] = "required|callback_validate_password";
-        $rules['TMW_new_password'] = "required|callback_password_strength";
+        // you may wonder why those validation function have 2 underscores "__" 
+        // in it. This is due to the fact, that callback functions have to 
+        // start with "callback_" and to make the function itself private for 
+        // CI, the function has to start with an underscore. 
+        $rules['TMW_old_password'] = "required|callback__validate_password";
+        $rules['TMW_new_password'] = "required|callback__password_strength";
         $rules['TMW_retype_password'] = "required|matches[TMW_new_password]";
         $rules['PasswordStrength'] = "";
         $this->validation->set_rules($rules);
@@ -211,7 +245,7 @@ class Accountmanager extends Controller {
      * @returns boolean true, if the password fulfills the policy, otherwise 
      *                  false.
      */
-    public function password_strength($pwd)
+    public function _password_strength($pwd)
     {
         $username = $this->user->getUser()->username;
         $ret = Membershipprovider::validatePassword($pwd, $username);
@@ -221,15 +255,15 @@ class Accountmanager extends Controller {
             case Membershipprovider::PASSWORD_OK:
                 return true;
             case Membershipprovider::PASSWORD_TO_SHORT:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 lang('settings_pwd_to_short'));
                 return false;
             case Membershipprovider::PASSWORD_TO_LONG:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 lang('settings_pwd_to_long'));
                 return false;
             case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 lang('settings_pwd_eq_username'));
                 return false;
         }
@@ -244,7 +278,7 @@ class Accountmanager extends Controller {
      * @return boolean true, if the password matches the current, false 
      *                 otherwise
      */
-    public function validate_password($pwd)
+    public function _validate_password($pwd)
     {
         $name = $this->user->getUser()->username;
         
@@ -255,7 +289,7 @@ class Accountmanager extends Controller {
         // if authentication fails, set correct error message
         if (!$retval)
         {
-            $this->validation->set_message('validate_password', 
+            $this->validation->set_message('_validate_password', 
             'The old password is wrong.');
         }
         return $retval;

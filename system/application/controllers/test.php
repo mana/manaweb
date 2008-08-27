@@ -54,8 +54,25 @@ class Test extends Controller {
      */
     function index()
     {
+        $this->test_guild_model();
         $this->test_membershipprovider();
         echo $this->unit->report();
+    }
+    
+    
+    /**
+     * This function runs tests on guild model library.
+     */
+    private function test_guild_model()
+    {
+        require(APPPATH.'models/guild'.EXT);
+        
+        $guild = Guild::getGuild(1);
+        $this->unit->run( $guild->getId(), 1, 'test guild id function' );
+        $this->unit->run( $guild->getName(), 'Masters of the universe', 
+            'test guild name function' );
+        $guild = Guild::getGuild(2);
+        $this->unit->run( $guild, 'is_false', 'test guild doesn\'t exist' );
     }
     
     
@@ -87,8 +104,6 @@ class Test extends Controller {
         $this->unit->run( $mp->validatePassword("testpassword", "testuser"),  
             Membershipprovider::PASSWORD_OK,
             'test passwordpolicy: ok' );            
-            
-                    
     }
     
     

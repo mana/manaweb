@@ -80,7 +80,7 @@
              <div class="section">                
                <ul>
                     <li>Admin Interface</li>
-                    <li><a href="">Admin Interface</a></li>
+                    <li><a href="<?= site_url('admin') ?>">Admin Interface</a></li>
                </ul>
              </div>
             </div>

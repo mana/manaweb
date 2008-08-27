@@ -19,11 +19,23 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
+ *
+ *  @author Andreas Habel <mail@exceptionfault.de>
+ *  @copyright Copyright 2008 The Mana World Development Team
+ *
+ *  @package tmwweb
+ *  @subpackage controllers
  */
 
 
 /**
  * Controller for displaying server statistics.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @copyright Copyright 2008 The Mana World Development Team
+ *
+ * @package tmwweb
+ * @subpackage controllers
  */ 
 class Statistics extends Controller {
 
@@ -50,7 +62,7 @@ class Statistics extends Controller {
     /** 
      * Default controller function. Shows the news of the homepage.
      */
-    function index()
+    public function index()
     {
         $this->load->model('server_statistics');
         $this->showPage( 'Server Statistics', 'tmwweb/server_statistics',

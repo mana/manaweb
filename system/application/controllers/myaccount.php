@@ -88,7 +88,7 @@ class Myaccount extends Controller {
     /**
      * Function when user tries to login via loginform
      */
-    function login()
+    public function login()
     {
         // define rules that must be met in the login form
         $rules['TMWusername']  = "required|min_length[4]|max_length[30]";
@@ -137,7 +137,7 @@ class Myaccount extends Controller {
      * This function is called from user menu, if the user wants to logout
      * from the account manager
      */
-    function logout()
+    public function logout()
     {
         $this->user->logout();
         $params = array('has_errors' => false); 
@@ -163,7 +163,7 @@ class Myaccount extends Controller {
      * of username and mailaddress and sends a generic random key to the user.
      * With this link he can change his password.
      */
-    function resetpassword()
+    public function resetpassword()
     {
         // define rules that must be met in the login form
         $rules['TMWusername'] = "required|min_length[4]|max_length[30]";
@@ -180,7 +180,7 @@ class Myaccount extends Controller {
         else
         {
             // simple checks are ok, so extend the rules and recheck
-            $rules['TMWusername'] = "callback_username_check"; 
+            $rules['TMWusername'] = "callback__username_check"; 
             $this->validation->set_rules($rules);
             
             // validate again userinput against rules
@@ -215,7 +215,7 @@ class Myaccount extends Controller {
      * @param String Username of the user who wants to change his password
      * @param String Secret key sent to the user via email
      */
-    function changepassword($username, $key)
+    public function changepassword($username, $key)
     {
         // check if a combination of username and key exist in db
         if ($this->membershipprovider->validateKeyForUser($username, $key))
@@ -248,7 +248,7 @@ class Myaccount extends Controller {
         if ($this->membershipprovider->validateKeyForUser($username, $key))
         {
             // define rules for the new password
-            $rules['TMWpassword'] = "required|callback_password_strength";
+            $rules['TMWpassword'] = "required|callback__password_strength";
             $rules['TMWpassword2'] = "required|matches[TMWpassword]";
             $rules['PasswordStrength'] = "";
             $this->validation->set_rules($rules);
@@ -298,7 +298,7 @@ class Myaccount extends Controller {
      * @returns boolean true, if the password fulfills the policy, otherwise 
      *                  false.
      */
-    public function password_strength($pwd)
+    public function _password_strength($pwd)
     {
         $username = $this->input->post('TMWUsername');
         $ret = Membershipprovider::validatePassword($pwd, $username);
@@ -307,15 +307,15 @@ class Myaccount extends Controller {
             case Membershipprovider::PASSWORD_OK:
                 return true;
             case Membershipprovider::PASSWORD_TO_SHORT:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 'The given password is to short.');
                 return false;
             case Membershipprovider::PASSWORD_TO_LONG:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 'The given password is to long.');
                 return false;
             case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
-                $this->validation->set_message('password_strength', 
+                $this->validation->set_message('_password_strength', 
                 'The password must be different then your username.');
                 return false;
         }
@@ -331,7 +331,7 @@ class Myaccount extends Controller {
      * @param String Username to validate
      * @returns boolean true, if the combination is valid, false otherwise
      */
-    public function username_check($username)
+    public function _username_check($username)
     {
         // get mail from post and hash it 
         $mail  = $this->input->post('TMWMail');
@@ -347,7 +347,7 @@ class Myaccount extends Controller {
         }
         else
         {
-            $this->validation->set_message('username_check', 
+            $this->validation->set_message('_username_check', 
                 'A user with this mailaddress could not be found.');
             return false;
         }

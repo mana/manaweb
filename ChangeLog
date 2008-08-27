@@ -2,6 +2,17 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-27  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/controllers/accountmanager.php, sa/controllers/myaccount.php: 
+    fixed a minor security bug
+    * sa/controllers/admin.php, sa/views/admin/main.php,
+    sa/language/*/admin_lang.php, sa/views/layout/header.php: 
+    added first view for admin interface with basic permission checks
+    * sa/models/guild.php
+    * sa/libraries/characterprovider.php: no longer needed
+    * sa/controllers/statistics.php: refactored and svn tags added
+
 2008-08-26  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/views/tmwweb/character.php, images/items/*.png, 
