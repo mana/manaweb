@@ -10,7 +10,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_str') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_STRENGTH) ?>
             </span>
@@ -21,22 +21,12 @@
             <span class="label"><?= lang('character_gender') ?>: </span>
         </td>
         <td style="border-width: 0px;">  
-            <span class="input"><?     
-        switch ($char->getGender())
-        {
-            case Character::GENDER_MALE:
-                echo "<img src=\"" . base_url() . "images/gender_male.gif\">";
-                break;
-            case Character::GENDER_FEMALE:
-                echo "<img src=\"" . base_url() . "images/gender_female.gif\">";
-                break;
-        } 
-    ?></span>
+            <span class="input"><?= $char->getGender('image') ?></span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_agi') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_AGILITY) ?>
             </span>
@@ -46,13 +36,13 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_level') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input"><?= $char->getLevel() ?></span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_dex') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_DEXTERITY) ?>
             </span>
@@ -62,15 +52,13 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_money') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
-            <span class="input">
-                <?= number_format($char->getMoney(), 0, ".", ",") ?>
-            </span>
+        <td style="border-width: 0px;" align="right">  
+            <span class="input"><?= $char->getMoney('string') ?></span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_vit') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_VITALITY) ?>
             </span>
@@ -88,7 +76,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_int') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_INTELLIGENCE) ?>
             </span>
@@ -101,7 +89,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_will') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_WILLPOWER) ?>
             </span>
@@ -118,7 +106,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_none') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_NONE) ?>
             </span>
@@ -130,7 +118,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_mace') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_MACE) ?>
             </span>
@@ -141,7 +129,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_shooting') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_SHOOTING) ?>
             </span>
@@ -154,7 +142,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_knife') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_KNIFE) ?>
             </span>
@@ -166,7 +154,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_polearm') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_POLEARM) ?>
             </span>
@@ -178,7 +166,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_bow') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_BOW) ?>
             </span>
@@ -191,7 +179,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_sword') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_SWORD) ?>
             </span>
@@ -202,7 +190,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_staff') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_STAFF) ?>
             </span>
@@ -213,7 +201,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_thrown') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_THROWN) ?>
             </span>
@@ -226,7 +214,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_axe') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_AXE) ?>
             </span>
@@ -237,7 +225,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_skill_whip') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;" align="right">  
             <span class="input">
                 <?= $char->getSkill(Character::CHAR_SKILL_WHIP) ?>
             </span>

@@ -2,6 +2,20 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-28  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/config/tmw_config.php: modified config array for faster access
+    * sa/controllers/admin.php, sa/views/admin/main.php: added quick search for 
+    characters and implemented security levels
+    * sa/models/character.php, sa/views/tmwweb/character.php,
+    sa/views/tmwweb/user_home.php: extended some getter functions to return 
+    values in different formats
+    * sa/models/user.php: added function to check rights uf the user
+    * sa/controllers/*.php, sa/libraries/TMW_Output.php: refactored showPage 
+    function into output library
+    * sa/controllers/myaccount.php: fixed a bug when reloading page after login
+    * default.css: fixed width related layout bug in tables
+
 2008-08-27  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/controllers/accountmanager.php, sa/controllers/myaccount.php: 

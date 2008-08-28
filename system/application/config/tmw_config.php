@@ -1,7 +1,7 @@
 <?php
-/*
+/**
  *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -132,22 +132,25 @@ $config['tmwweb_admin_level'] = 50;
 $config['tmwweb_admin_permissions'] = array(
 
     // needed level to see a list of all accounts
-    array( 'right' => 'see_account_list',       'level' => 50 ),
+    'see_account_list'          => array( 'level' => 50 ),
+    
+    // needed level to see a list of all characters
+    'see_character_list'        => array( 'level' => 50 ),
     
     // needed level to reset a password of an account
-    array( 'right' => 'reset_account_password', 'level' => 50 ),
+    'reset_account_password'    => array( 'level' => 50 ),
     
     // needed level to ban an account for a given time
-    array( 'right' => 'ban_account',            'level' => 50 ),
+    'ban_account'               => array( 'level' => 50 ),
     
     // needed level to unban an account for a given time
-    array( 'right' => 'unban_account',          'level' => 50 ),
+    'unban_account'             => array( 'level' => 50 ),
     
     // needed level to modify the level of an account
-    array( 'right' => 'modify_account_level',   'level' => 99 ),
+    'modify_account_level'      => array( 'level' => 99 ),
     
     // needed level to delete an account
-    array( 'right' => 'delete_account',         'level' => 99 )
+    'delete_account'            => array( 'level' => 99 )
 );
 
 

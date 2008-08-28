@@ -46,7 +46,11 @@ class User extends Model {
      */
     const ACCOUNT_TBL = 'tmw_accounts';
     
-    
+
+    /** 
+     * Account level determining the user is banned
+     */
+    const LEVEL_BANNED = 0;    
     
     
     /**
@@ -153,6 +157,69 @@ class User extends Model {
             {
                 return false;
             }
+        }
+    }
+    
+    
+    /**
+     * This function tells wheter a user is currently banned or not.
+     * If the account is banned, the function will return the unixtimestamp 
+     * by when the account is banned. If not, it will return false.
+     * 
+     * @return mixed Unixtimestamp or false
+     */
+    public function isBanned()
+    {
+        if ($this->current_user->banned > time() || 
+            $this->current_user->level == User::LEVEL_BANNED)
+        {
+            return $this->current_user->banned;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
+    /**
+     * This function checks wheter a user is logged in, is admin and has a
+     * sufficient level to do a special action. The action is given as 
+     * parameter right. See tmw_config.php for details of the available rights.
+     *
+     * @param  string  Right to check against users permission
+     * @return boolean true if the user has the right, otherwise: false 
+     */
+    public function hasRight($right)
+    {
+        // the user has to be authenticated
+        if (!$this->isAuthenticated())
+        {
+            return false;
+        }
+        // the user needs administrative rights
+        if (!$this->isAdmin())
+        {
+            return false;
+        }
+        // load the configured rights
+        $rights = $this->config->item('tmwweb_admin_permissions');
+        
+        
+        if (!isset($rights[$right]))
+        {
+            show_error("The requested right '".$right."' doesn't exist.");
+            return;
+        }
+        
+        // compare levels with explicit type conversion!
+        if ($this->current_user->level >= intval($rights[$right]['level']))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     

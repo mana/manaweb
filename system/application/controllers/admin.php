@@ -44,12 +44,6 @@
 class Admin extends Controller {
 
     /**
-     * Array to store data needed by the header view.
-     */
-    private $header_data = Array();
-    
-    
-    /**
      * Initializes the Home controller.
      */
     function __construct()
@@ -63,16 +57,14 @@ class Admin extends Controller {
         $this->load->library('validation');
         $this->translationprovider->loadLanguage('admin');            
 
-        $this->header_data['static_menu'] = 
-            $this->menuprovider->getStaticMenu();
         
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
         {
             $param = array('has_errors' => false); 
-            $this->load->library('validation');
             $this->translationprovider->loadLanguage('account');
-            $this->showPage(lang('account_login'), 'tmwweb/login_form', $param);
+            $this->output->showPage(lang('account_login'), 
+                'tmwweb/login_form', $param);
         }
     }
     
@@ -87,7 +79,7 @@ class Admin extends Controller {
             return;
         }
         
-        $this->showPage(lang('admin_title'), 'admin/main');
+        $this->output->showPage(lang('admin_title'), 'admin/main');
     }
     
     
@@ -97,8 +89,10 @@ class Admin extends Controller {
      */
     public function search_account()
     {
-        if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
+        if (!$this->user->hasRight('see_account_list'))
         {
+            $param = array('error' => 'You are not allowed to see account list');
+            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
             return;
         }
 
@@ -107,7 +101,7 @@ class Admin extends Controller {
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-            $this->showPage(lang('admin_title'), 'admin/main');
+            $this->output->showPage(lang('admin_title'), 'admin/main');
             return;
         }
         
@@ -122,14 +116,17 @@ class Admin extends Controller {
         
         if ($res->num_rows() > 0)
         {
-            $param = array('result_account' => $res->result());
+            $param = array(
+                'result_account' => $res->result(),
+                'searchstring'   => $this->input->post('TMWusername')
+            );
         }
         else
         {
             $param = array('result_account' => false);
         }
         
-        $this->showPage(lang('admin_title'), 'admin/main', $param);
+        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     }
     
     
@@ -139,27 +136,59 @@ class Admin extends Controller {
      */
     public function search_character()
     {
-        if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
+        if (!$this->user->hasRight('see_character_list'))
         {
+            $param = array('error' => 'You are not allowed to see character list');
+            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
             return;
         }
         
-        $param = array('result_character' => true);
-        $this->showPage(lang('admin_title'), 'admin/main', $param);
-    }
-    
+        // the searchfield has to contain at least one character        
+        $rules['TMWcharacter']  = "required|min_length[1]";
+        $this->validation->set_rules($rules);
+        if ($this->validation->run() == false)
+        {
+            $this->output->showPage(lang('admin_title'), 'admin/main');
+            return;
+        }
         
-    /**
-     * Use this function to show a view with the given parameters
-     */
-    private function showPage( $title, $filename, $params=array() )
-    {
-        $this->header_data['page_title'] = $title;
-        $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
-        $this->load->view('layout/header', $this->header_data);
-        $this->load->view($filename, $params);
-        $this->load->view('layout/footer');
-    }
+        // search for the given character name
+        // due to another bug in pdo that wraps parenthesis around the table
+        // but not araound the join part, sqlite returns an error
+        $search = '%' . $this->input->post('TMWcharacter') . '%';
+
+        $sql = "SELECT ".Character::CHARACTER_TBL.".*, "
+             . "       ".User::ACCOUNT_TBL.".username"
+             . "  FROM ".Character::CHARACTER_TBL
+             . "  JOIN ".User::ACCOUNT_TBL
+             . "    ON ".Character::CHARACTER_TBL.".user_id = ".
+                         User::ACCOUNT_TBL.".id"
+             . " WHERE ".Character::CHARACTER_TBL.".name LIKE '".$search."'"
+             . " ORDER BY ".Character::CHARACTER_TBL.".name";
+             
+        $res = $this->db->query($sql);
+        
+        if ($res->num_rows() > 0)
+        {
+            // transform sql results to char objects
+            $result = array();
+            foreach ($res->result() as $row)
+            {
+                $result[] = new Character($row);
+            }
+            
+            $param = array(
+                'result_character' => $result,
+                'searchstring'     => $this->input->post('TMWcharacter')
+            );
+        }
+        else
+        {
+            $param = array('result_character' => false);
+        }
+        
+        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+    } // function search_character()
     
 } // class Myaccount
 ?>

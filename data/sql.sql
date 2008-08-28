@@ -9,16 +9,29 @@ CREATE TABLE tmw_accounts (
     level           INTEGER     NOT NULL,
     banned          INTEGER     NOT NULL,
     activation      TEXT        NULL );
+
+ 
+/*  ruby: 
+    --------
+    crypt pwd:          Digest.hexencode( Digest::SHA256.digest("admintest")  ) 
+    current time:       Time.now.to_f
     
-INSERT INTO "tmw_accounts" 
-VALUES(
-    1,
-    'testuser',
-    'ccb200748a9304f5a2436e6f4039362144bf95fbfb391b451a5481d5deb964cd',
-    'f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a',
-    10,
-    0 
-);
+    
+    demo users:
+    --------------
+    
+    username            password            email
+    =================== =================== =======================
+    testuser            test                test@test.com
+    banned_user         test                test@test.com
+    gm                  test                test@test.com
+    admin               test                test@test.com
+*/
+
+INSERT INTO TMW_ACCOUNTS VALUES( 1, 'testuser',    'ccb200748a9304f5a2436e6f4039362144bf95fbfb391b451a5481d5deb964cd', 'f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a', 10, 0 );
+INSERT INTO TMW_ACCOUNTS VALUES( 2, 'banned_user', 'c4b3c6d725254d7712e2dc3ec7e811c159e46c4ad96ade007b0ddbd14b52694d', 'f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a',  0, 1219935729 );
+INSERT INTO TMW_ACCOUNTS VALUES( 3, 'gm',          '1164a8c1f57c3e3738d7836aaee13b2953049352d78f8e2fd1f62d7feefa2d49', 'f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a', 50, 0 );
+INSERT INTO TMW_ACCOUNTS VALUES( 4, 'admin',       'bbd7182cd0ee95488f1a1e6f3fe0d8f94ed0d14e4db1dce713fe82a3231c523d', 'f660ab912ec121d1b1e928a0bb4bc61b15f5ad44d5efdc4e1c92a25e99b8e44a', 99, 0 );
 
 
 CREATE TABLE tmw_characters (

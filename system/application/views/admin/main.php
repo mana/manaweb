@@ -2,6 +2,16 @@
 
 <table style="border-width: 0px; margin-bottom: 0px;">
 
+    <?php if (isset($error)) { ?>
+    <tr>
+        <td colspan="3" style="border: 1px solid #660000; font-weight: bold;
+            color: #660000;">
+            An error occured: <br />
+            <?= $error ?>
+        </td>
+    </tr>
+    <? } ?>
+    
     <? $attributes = array('name'=>'searchAccount', 'id'=>'TMWsearchAccount');
         echo form_open('admin/search_account', $attributes); ?>
     <tr>
@@ -61,7 +71,10 @@
     <?php foreach ($result_account as $account) { ?>
     <tr>
         <td><?= $account->id ?></td>
-        <td><?= $account->username ?></td>
+        <td><?= str_replace( 
+            $searchstring, 
+            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
+            $account->username) ?></td>
         <td>
             <?= $this->user->getUserLevelString($account->level) ?>
             ( <?= $account->level ?> )
@@ -69,7 +82,12 @@
     </tr>
     <?php }}} ?>
     
-    <?php if (isset($result_character)) { ?>
+    <?php if (isset($result_character)) { 
+        if ($result_character === false) {  ?>
+    <tr>
+        <th>Sorry, your search returns no rows.</th>
+    </tr>
+    <? } else { ?>        
     <tr>
         <th>ID</th>
         <th>Character</th>
@@ -78,7 +96,19 @@
         <th>Level</th>
         <th>Money</th>
     </tr>
-    <?php } ?>
+    <?php foreach ($result_character as $char) { ?>
+    <tr>
+        <td align="right"><?= $char->getId() ?></td>
+        <td><?= str_replace( 
+            $searchstring, 
+            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
+            $char->getName()) ?></td>
+        <td><?= $char->getUsername() ?></td>
+        <td align="center"><?= $char->getGender('image') ?></td>
+        <td align="right"><?= $char->getLevel() ?></td>
+        <td align="right"><?= $char->getMoney('string') ?></td>
+    </tr>
+    <?php }}} ?>
 
 
 </table>

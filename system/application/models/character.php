@@ -41,6 +41,13 @@
  */ 
 class Character {
 
+    /**
+     * Name of the characters table
+     * @var string
+     */
+    const CHARACTER_TBL = 'tmw_characters';
+    
+    
     /** 
      * Defines constant for male characters
      */
@@ -153,6 +160,27 @@ class Character {
         return $this->char->name;
     }
     
+    
+    /**
+     * This function returns the username of the account owning the character.
+     * Normally, this column is not available as it is not present in the
+     * characters table. But if the character model is initialized with a
+     * resultset of a join between characters and accounts this property can
+     * return the name of the user. 
+     *
+     * @todo: think about if we should load the username in case it is not 
+     *        included in the initializing record instead of returning null
+     */
+    public function getUsername()
+    {
+        if (isset($this->char->username))
+        {
+            return $this->char->username;
+        }
+        return null;
+    }
+    
+    
     /**
      * This function returns the level of the character.
      * 
@@ -167,21 +195,49 @@ class Character {
      * This function returns the gender of the character.
      * See constants GENDER_MALE and GENDER_FEMALE.
      * 
-     * @return int Gender of the character
+     * @param  string If $format is 'int', the gender is given as id.
+     *                If $format is 'image', the gender is given as html 
+     *                image tag.
+     * @return mixed  Gender of the character
      */
-    public function getGender()
+    public function getGender($format='int')
     {
-        return $this->char->gender;
+        if ($format == 'image')
+        {
+            switch ($this->char->gender)
+            {
+                case Character::GENDER_MALE:
+                    return "<img src=\"". base_url()."images/gender_male.gif\">";
+                    break;
+                case Character::GENDER_FEMALE:
+                    return "<img src=\"".base_url()."images/gender_female.gif\">";
+                    break;
+            }
+        }
+        else
+        {
+            return $this->char->gender;
+        }
     }
     
     /** 
-     * This functions returns the money of the character.
-     * 
-     * @return int The money of the character
+     * This functions returns the money of the character. 
+     *
+     * @param  string If $format is 'int', the money is given as integer value.
+     *                If $format is 'string', the money is formated for display
+     * @return mixed  The money of the character
      */
-    public function getMoney()
+    public function getMoney($format='int')
     {
-        return $this->char->money;
+        if ($format == 'string')
+        {
+            return number_format($this->char->money, 0, ".", ",");
+            
+        }
+        else
+        {
+            return intval($this->char->money);
+        }
     }
     
     

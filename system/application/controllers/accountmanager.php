@@ -44,12 +44,6 @@
 class Accountmanager extends Controller {
 
     /**
-     * Array to store data needed by the header view.
-     */
-    private $header_data = Array();
-    
-    
-    /**
      * Initializes the Home controller.
      */
     function __construct()
@@ -61,15 +55,14 @@ class Accountmanager extends Controller {
 
         $this->load->library('validation');        
         $this->load->helper('form');
-        $this->header_data['static_menu'] = 
-        $this->menuprovider->getStaticMenu();        
             
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
             $param = array('has_errors' => false); 
             $this->translationprovider->loadLanguage('account');
-            $this->showPage(lang('account_login'), 'tmwweb/login_form', $param);
+            $this->output->showPage(lang('account_login'), 
+                'tmwweb/login_form', $param);
         }
     }
     
@@ -103,7 +96,8 @@ class Accountmanager extends Controller {
             
         $this->translationprovider->loadLanguage('settings');
         $params = array('has_errors' => false);
-        $this->showPage(lang('settings_title'), 'tmwweb/settings', $params);
+        $this->output->showPage(lang('settings_title'), 
+            'tmwweb/settings', $params);
     }
     
     
@@ -120,7 +114,8 @@ class Accountmanager extends Controller {
         }
         
         $this->translationprovider->loadLanguage('settings');
-        $this->showPage(lang('settings_title'), 'tmwweb/delete_account');
+        $this->output->showPage(lang('settings_title'), 
+            'tmwweb/delete_account');
     }
     
     
@@ -147,7 +142,8 @@ class Accountmanager extends Controller {
         $this->user->deleteCurrentUser();
         
         $this->translationprovider->loadLanguage('settings');
-        $this->showPage(lang('settings_title'), 'tmwweb/delete_account_done');
+        $this->output->showPage(lang('settings_title'), 
+            'tmwweb/delete_account_done');
     }
     
     
@@ -179,7 +175,7 @@ class Accountmanager extends Controller {
         $char   = $this->user->getCharacter($id);
         $params['char'] = $char;
         
-        $this->showPage(lang('character').': '. $char->getName(), 
+        $this->output->showPage(lang('character').': '. $char->getName(), 
             'tmwweb/character', $params);
     }
     
@@ -218,7 +214,8 @@ class Accountmanager extends Controller {
         {
             // validation fails, prepare params for change form
             $param = array('has_errors' => true); 
-            $this->showPage(lang('settings_title'), 'tmwweb/settings', $param);
+            $this->output->showPage(lang('settings_title'), 
+                'tmwweb/settings', $param);
         }
         else
         {
@@ -232,7 +229,8 @@ class Accountmanager extends Controller {
                 'has_errors' => false,
                 'pwd_changed_message' => lang('settings_change_password_ok')
             );                 
-            $this->showPage(lang('settings_title'), 'tmwweb/settings', $param);
+            $this->output->showPage(lang('settings_title'), 
+                'tmwweb/settings', $param);
         }
     }
     
@@ -301,22 +299,10 @@ class Accountmanager extends Controller {
      */    
     private function _show_user_account()
     {
-        $this->showPage('My Account', 'tmwweb/user_home', 
+        $this->output->showPage('My Account', 'tmwweb/user_home', 
             $this->user->getHomepageData());
     }
     
         
-    /**
-     * Use this function to show a view with the given parameters
-     */
-    private function showPage( $title, $filename, $params=array() )
-    {
-        $this->header_data['page_title'] = $title;
-        $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
-        $this->load->view('layout/header', $this->header_data);
-        $this->load->view($filename, $params);
-        $this->load->view('layout/footer');
-    }
-    
 } // class Myaccount
 ?>

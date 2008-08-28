@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  *  The Mana World Server
  *  Copyright 2008 The Mana World Development Team
  *
@@ -40,12 +40,6 @@
 class Statistics extends Controller {
 
     /**
-     * Array to store data needed by the header view.
-     */
-    private $header_data = Array();
-    
-    
-    /**
      * Initializes the Home controller.
      */
     function __construct()
@@ -54,9 +48,6 @@ class Statistics extends Controller {
         $this->output->enable_profiler(
             $this->config->item('tmw_enable_profiler')
         );
-
-        $this->header_data['static_menu'] = $this->menuprovider->getStaticMenu();
-        $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
     }
     
     /** 
@@ -65,22 +56,9 @@ class Statistics extends Controller {
     public function index()
     {
         $this->load->model('server_statistics');
-        $this->showPage( 'Server Statistics', 'tmwweb/server_statistics',
+        $this->output->showPage( 'Server Statistics', 'tmwweb/server_statistics',
             array('stats' => $this->server_statistics->getGlobalStats()));
     }
     
-   
-    /**
-     * Use this function to show a view with the given parameters
-     */
-    private function showPage( $title, $filename, $params=array() )
-    {
-        $this->header_data['page_title'] = $title;
-        $this->header_data['user_menu'] = $this->menuprovider->getUserMenu();
-        $this->load->view('layout/header', $this->header_data);
-        $this->load->view($filename, $params);
-        $this->load->view('layout/footer');
-    }
-    
-}
+} // class Statistics
 ?>

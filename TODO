@@ -1,5 +1,9 @@
-2008-08-21   Andreas Habel   <mail@exceptionfault.de>
+2008-08-28   Andreas Habel   <mail@exceptionfault.de>
     * implement change mailadress form under account settings
-    * refactor ShowPage function in each controller: 
-      implement the function in the parent class or write a helper class
-      to do this
+    
+think about...
+------------------
+
+    trapdoor mentioned, that users should be able to raise support requests
+    via tmwweb. This sounds like developing a simple ticket system :) 
+    cool idea with great potential

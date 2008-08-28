@@ -11,7 +11,14 @@
    </ul>   
 </p>
 
-<p>Your current state is <strong><?= $levelstring ?></strong>.</p>
+<p>Your current state is <strong><?= $levelstring ?></strong>.
+<? if ($this->user->isBanned())
+   {
+       echo "Your account is banned until ". date('d-m-Y H:i', $this->user->isBanned());
+   }
+?>
+</p>
+
 
 <?php if ($this->user->hasCharacters()){ ?>
 <h3>Character overview</h3>
@@ -32,18 +39,8 @@ of one to see its details.</p>
     <td><a href="<?= site_url('accountmanager/character/' . 
         $char->getID()) ?>"><?= $char->getName() ?></a></td>
     <td align="right"><?= $char->getLevel() ?></td>
-    <td align="center"><? 
-        switch ($char->getGender())
-        {
-            case Character::GENDER_MALE:
-                echo "<img src=\"" . base_url() . "images/gender_male.gif\">";
-                break;
-            case Character::GENDER_FEMALE:
-                echo "<img src=\"" . base_url() . "images/gender_female.gif\">";
-                break;
-        } 
-    ?></td>
-    <td align="right"><?= number_format($char->getMoney(), 0, ".", ",") ?></td>
+    <td align="center"><?= $char->getGender('image') ?></td>
+    <td align="right"><?= $char->getMoney('string') ?></td>
     <td><? $map = $char->getMap(); echo $map['name']; ?></td>
 </tr>
 <? } ?>
