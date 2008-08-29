@@ -67,14 +67,10 @@ CREATE TABLE tmw_characters (
     thrown_exp      INTEGER     NOT NULL,
     FOREIGN KEY (user_id) REFERENCES tmw_accounts(id),
     FOREIGN KEY (map_id)  REFERENCES tmw_maps(id));
-    
-INSERT INTO "tmw_characters" 
-VALUES(
-    1,
-    1,
-    'testuser',
-    0,1,9,1,0,0,0,802,592,1,10,10,10,10,10,10,0,0,0,0,0,0,0,0,0,0,0
-);
+
+--                                                     Gener Hair Lvl Pts   Money  Pos
+INSERT INTO TMW_CHARACTERS VALUES(  1, 1, 'testuser',  0,    1,9, 1,  0,0,      0, 802,592,1, 10,10,10,10,10,10, 0,0,0,0,0,0,0,0,0,0,0 );
+INSERT INTO TMW_CHARACTERS VALUES(  2, 1, 'testuser2', 1,    1,9, 8,  0,0,  30100, 803,592,1, 11,11,11,11,11,11, 0,0,0,0,0,0,0,0,0,0,0 );
 
 CREATE TABLE tmw_inventories (
     id       INTEGER  PRIMARY KEY,
@@ -88,6 +84,13 @@ CREATE TABLE tmw_guilds (
     id      INTEGER     PRIMARY KEY,
     name    TEXT        NOT NULL UNIQUE
 );
+
+INSERT INTO TMW_GUILDS VALUES( 1, 'Masters of the universe' );
+INSERT INTO TMW_GUILDS VALUES( 2, 'Guild Name 2' );
+INSERT INTO TMW_GUILDS VALUES( 3, 'Guild Name 3' );
+INSERT INTO TMW_GUILDS VALUES( 4, 'Guild Name 4' );
+INSERT INTO TMW_GUILDS VALUES( 5, 'Guild Name 5' );
+
 
 CREATE TABLE tmw_guild_members (
     guild_id       INTEGER     NOT NULL,

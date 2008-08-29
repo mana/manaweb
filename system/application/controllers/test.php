@@ -71,7 +71,7 @@ class Test extends Controller {
         $this->unit->run( $guild->getId(), 1, 'test guild id function' );
         $this->unit->run( $guild->getName(), 'Masters of the universe', 
             'test guild name function' );
-        $guild = Guild::getGuild(2);
+        $guild = Guild::getGuild(99);
         $this->unit->run( $guild, 'is_false', 'test guild doesn\'t exist' );
     }
     

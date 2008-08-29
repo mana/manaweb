@@ -2,6 +2,16 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-08-29  Andreas Habel  <mail@exceptionfault.de>
+
+    * ext/jpgraph-2.3.3, sa/librariesJpgraphwrapper.php,
+    sa/config/tmw_config.php : added jpgraph library  to visualize server 
+    statistics as charts
+    * ./data/sql.sql: added testdata
+    * licenses: added directory to summarize all licences used by tmwweb
+    * sa/controllers/statistics: added chart to test jpgraph functionality
+    
+
 2008-08-28  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/config/tmw_config.php: modified config array for faster access

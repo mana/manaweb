@@ -2,10 +2,14 @@
 <p>
 Currently there are <?= $stats[Server_statistics::CHARACTER_COUNT] ?> 
 individual Characters on the Mana World, played by 
-<?= $stats[Server_statistics::PLAYER_COUNT] ?> players. The characters founded
-<?= $stats[Server_statistics::GUILD_COUNT] ?> guilds.
+<?= $stats[Server_statistics::PLAYER_COUNT] ?> players. 
+The characters founded
+<?= $stats[Server_statistics::GUILD_COUNT] ?> guilds.<br />
+All characters form a purchasing power of 
+<?= 
+  number_format($stats[Server_statistics::ECONOMY_PURCHASE_POW], 0, ".", ",");
+?> money.
 </p>
-
 
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
@@ -16,6 +20,9 @@ individual Characters on the Mana World, played by
             <span class="input">
                 <?= $stats[Server_statistics::PLAYER_COUNT] ?>
             </span>
+        </td>
+        <td rowspan="4" align="right" style="border-width: 0px;">
+            <img src="<?= base_url() ?>/data/testchar2.png">
         </td>
     </tr>
     <tr>
@@ -38,30 +45,38 @@ individual Characters on the Mana World, played by
             </span>
         </td>
     </tr>
+    <tr>
+        <td colspan="2" height="100" style="border-width: 0px;"></td>
+    </td>
 </table>
 
 <h3>The top 10 Guilds on the mana world</h3>
-
+<? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
+    <p>Sorry, there are currently no guilds founded.</p>
+<? } else { ?>    
 <table class="datatable">
     <tr>
         <th></th>
         <th>Guild</th>
-        <th>Founder</th>
         <th>Members</th>
     </tr>
-<?php for ($i=1; $i<=10; $i++)
-{ ?>
+    <?  $i = 1;
+        foreach ($stats[Server_statistics::GUILD_TOPTEN] as $guild) { ?>
     <tr>
-        <td width="10" align="right"><?= $i . "." ?></td>
-        <td>Guildname</td>
-        <td>Charactername</td>
-        <td align="right"><?= 100 - $i ?></td>
+        <td width="10" align="right"><?= $i++ ?>.</td>
+        <td><?= $guild->NAME ?></td>
+        <td align="right"><?= $guild->MEMBERS ?></td>
     </tr>
-<?php } ?>    
+    <? } ?>
 </table>
+<?php } ?>    
+
+
 
 <h3>The top 10 Characters on the mana world</h3>
-
+<? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
+    <p>Sorry, there are currently no characters alive.</p>
+<? } else { ?>    
 <table class="datatable">
     <tr>
         <th></th>
@@ -69,13 +84,14 @@ individual Characters on the Mana World, played by
         <th>Player</th>
         <th>Level</th>
     </tr>
-<?php for ($i=1; $i<=10; $i++)
-{ ?>
+    <?  $i = 1;
+        foreach ($stats[Server_statistics::CHARACTER_TOPTEN] as $char) { ?>
     <tr>
-        <td width="10" align="right"><?= $i . "." ?></td>
-        <td>Character</td>
-        <td>Player</td>
-        <td align="right"><?= 100 - $i ?></td>
+        <td width="10" align="right"><?= $i++ . "." ?></td>
+        <td><?= $char->NAME ?></td>
+        <td><?= $char->USERNAME ?></td>
+        <td align="right"><?= $char->LEVEL ?></td>
     </tr>
-<?php } ?>    
+    <?php } ?>    
 </table>
+<?php } ?>    

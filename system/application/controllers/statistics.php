@@ -48,17 +48,71 @@ class Statistics extends Controller {
         $this->output->enable_profiler(
             $this->config->item('tmw_enable_profiler')
         );
+        
+        // this is for testing only
+        $this->load->library('jpgraphwrapper');
     }
     
     /** 
-     * Default controller function. Shows the news of the homepage.
+     * Default controller function. 
      */
     public function index()
     {
         $this->load->model('server_statistics');
+        $this->CreateChart();
+        
+        
         $this->output->showPage( 'Server Statistics', 'tmwweb/server_statistics',
             array('stats' => $this->server_statistics->getGlobalStats()));
     }
+    
+    
+    /** 
+     * THIS FUNCTION IS IMPLEMENTED AS TECHNICAL DEMO USING JPGRAPH. IT HEAVYLY
+     * NEED REFACTORING !!!
+     * JUST COMMITED BECAUSE ITS WEEKEND AND WE WORK ON A BRANCH YET ;-)
+     */ 
+    private function CreateChart()
+    {
+        $g = $this->jpgraphwrapper->PieChart(400, 200, "testchar2.png", 1);
+        $g->setFrame(true, '#E1D6CF', 0);
+        $g->SetColor('#E1D6CF');
+        $g->SetAntiAliasing(); 
+        
+        
+        $g->legend->Hide(false); 
+        
+        // Title setup
+        $g->title->Set("Ratio male chars to female");
+        $g->title->SetFont(FF_FONT1,FS_BOLD);
+               
+        $res = $this->db->query( 
+            "SELECT GENDER, COUNT(*) AS AMNT " .
+            "  FROM tmw_characters " .
+            " GROUP BY GENDER " .
+            " ORDER BY GENDER " );
+         
+        $data = array();   
+        foreach ($res->result() as $gender)
+        {
+            $data[$gender->GENDER] = $gender->AMNT;
+        }
+        $p1 = new PiePlot3D($data);
+        
+        $p1->SetEdge(); 
+        $p1->SetSliceColors(array('#DBBBA4','#BA7A58')); 
+        
+        // Setup slice labels and move them into the plot
+        $p1->value->SetFont(FF_FONT1,FS_BOLD);
+        $p1->value->SetColor("black");
+        $p1->SetLabelPos(0.3);
+        $p1->SetLegends(array('male', 'female'));
+        
+        $g->Add($p1);
+        
+        $g->Stroke(); 
+    }
+    
     
 } // class Statistics
 ?>

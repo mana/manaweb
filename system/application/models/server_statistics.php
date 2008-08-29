@@ -21,6 +21,10 @@
  *  $Id: $
  */
 
+// load dependecies 
+require_once(APPPATH.'models/guild'.EXT);
+
+ 
 /**
  * The Server_statistics model deals with all global data according to a 
  * server.
@@ -38,9 +42,21 @@ class Server_statistics extends Model {
      */
     const CHARACTER_COUNT = 'character_count';
     /**
+     * Constant for statistic value of character topten list.
+     */
+    const CHARACTER_TOPTEN = 'character_topten';
+    /**
+     * Constant for statistic value of character topten list.
+     */
+    const ECONOMY_PURCHASE_POW = 'economy_purchase_power';
+    /**
      * Constant for statistic value of guild count.
      */
     const GUILD_COUNT = 'guild_count';
+    /**
+     * Constant for statistic value of guild topten list.
+     */
+    const GUILD_TOPTEN = 'guild_topten';
     
     //*************************************************************************
     
@@ -64,9 +80,15 @@ class Server_statistics extends Model {
     { 
         $stats = array();
         
+        // simple stats
         $stats[Server_statistics::PLAYER_COUNT] = $this->getPlayerCount();
         $stats[Server_statistics::CHARACTER_COUNT] = $this->getCharacterCount();
         $stats[Server_statistics::GUILD_COUNT] = $this->getGuildCount();
+        $stats[Server_statistics::ECONOMY_PURCHASE_POW] = $this->getPurchasingPower();
+        
+        // more complex stats
+        $stats[Server_statistics::GUILD_TOPTEN] = $this->getGuildTopTen();
+        $stats[Server_statistics::CHARACTER_TOPTEN] = $this->getCharacterTopTen();
         
         return $stats;
     }
@@ -103,6 +125,107 @@ class Server_statistics extends Model {
     {
         return $this->db->count_all('tmw_guilds');
     }
+    
+    
+    private function getPurchasingPower()
+    {
+        $this->db->select_sum('money');
+        $query = $this->db->get(Character::CHARACTER_TBL);
+        return $query->row()->money;
+        // Produces: SELECT SUM(age) as age FROM members
+    }
+    
+    
+    /**
+     * This function returns a top ten list of all registered guilds.
+     * At the moment the top ten is computed, simply by counting the number of
+     * members.
+     *
+     * @return array Topten list of guilds
+     */
+    private function getGuildTopTen()
+    {
+        // as the statements get more complex its easier and more efficient to
+        // write statements per dbsystem individually 
+        if (stripos($this->db->database, 'sqlite') === 0 ||
+            stripos($this->db->database, 'mysql') === 0 )
+        {
+            // should work for mysql and sqlite
+            $sql = "SELECT g.ID AS ID, "
+                 . "        g.NAME AS NAME, "
+                 . "        COUNT(m.GUILD_ID) AS MEMBERS "
+                 . "  FROM " . Guild::GUILD_TBL . " g "
+                 . " LEFT OUTER JOIN " . Guild::GUILD_MEMBER_TBL . " m "
+                 . "    ON g.ID = m.guild_id " 
+                 . " GROUP BY g.ID, g.NAME "
+                 . " ORDER BY MEMBERS DESC, NAME "
+                 . " LIMIT 10 ";
+        }
+        else
+        {
+            log_message('error', 'models/server_statistics: requested statement ' . 
+                'for unknown database system. This need implementation!');
+            show_error( "this feature is not implemented for your ".
+             "database system!");
+        }
+             
+        $res = $this->db->query($sql);    
+        
+        
+        if ($res->num_rows() == 0)
+        {
+            return false;
+        }
+        
+        return $res->result();
+    } // function getGuildTopTen()
+    
+    
+    /**
+     * This function returns a top ten list of all registered guilds.
+     * At the moment the top ten is computed, simply by counting the number of
+     * members.
+     *
+     * @return array Topten list of guilds
+     */
+    private function getCharacterTopTen()
+    {
+        // as the statements get more complex its easier and more efficient to
+        // write statements per dbsystem individually 
+        if (stripos($this->db->database, 'sqlite') === 0 ||
+            stripos($this->db->database, 'mysql') === 0 )
+        {
+            // should work for mysql and sqlite
+            $sql = "SELECT c.ID AS ID, " 
+                 . "       c.NAME as NAME, "
+                 . "       c.LEVEL AS LEVEL, "
+                 . "       u.username AS USERNAME "
+                 . "  FROM " . Character::CHARACTER_TBL . " c "
+                 . "  JOIN " . User::ACCOUNT_TBL . " u "
+                 . "    ON c.user_id = u.id "
+                 . " ORDER BY c.LEVEL DESC, NAME DESC "
+                 . " LIMIT 10 ";
+        }
+        else
+        {
+            log_message('error', 'models/server_statistics: requested statement ' . 
+                'for unknown database system. This need implementation!');
+            show_error( "this feature is not implemented for your ".
+             "database system!");
+        }
+             
+        $res = $this->db->query($sql);    
+        
+        if ($res->num_rows() == 0)
+        {
+            return false;
+        }
+        
+        return $res->result();
+        
+    } // function getCharacterTopTen()
+    
+    
     
 } // class Server Statistics
 ?>

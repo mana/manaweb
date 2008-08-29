@@ -35,6 +35,19 @@ $config['tmwserv_maps.xml'] = '/path/to/your/tmwserv/installation/maps.xml';
 
 /*
 |--------------------------------------------------------------------------
+| Plugins and extensions
+|--------------------------------------------------------------------------
+|
+| tmwweb uses some extensions or plugins that are not shipped together with
+| the main distribution of CodeIgniter. All these extensions will be installed
+| under ./ext directory. Normally you don't have to configure anything...
+|
+*/
+$config['tmw_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
+                                 '/ext/jpgraph-2.3.3/src/';                
+
+/*
+|--------------------------------------------------------------------------
 | Available languages
 |--------------------------------------------------------------------------
 |
