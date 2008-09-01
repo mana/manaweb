@@ -19,6 +19,7 @@
   </style>
  </head>
  <body>
+  <a name="top"></a>
   <div id="page">
 
    <div id="irc_info">
@@ -81,6 +82,7 @@
                <ul>
                     <li>Admin Interface</li>
                     <li><a href="<?= site_url('admin') ?>">Admin Interface</a></li>
+                    <li><a href="<?= site_url('admin/maintenance') ?>">Maintenance</a></li>
                </ul>
              </div>
             </div>

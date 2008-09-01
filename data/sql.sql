@@ -68,9 +68,10 @@ CREATE TABLE tmw_characters (
     FOREIGN KEY (user_id) REFERENCES tmw_accounts(id),
     FOREIGN KEY (map_id)  REFERENCES tmw_maps(id));
 
---                                                     Gener Hair Lvl Pts   Money  Pos
-INSERT INTO TMW_CHARACTERS VALUES(  1, 1, 'testuser',  0,    1,9, 1,  0,0,      0, 802,592,1, 10,10,10,10,10,10, 0,0,0,0,0,0,0,0,0,0,0 );
-INSERT INTO TMW_CHARACTERS VALUES(  2, 1, 'testuser2', 1,    1,9, 8,  0,0,  30100, 803,592,1, 11,11,11,11,11,11, 0,0,0,0,0,0,0,0,0,0,0 );
+--                                                       Gender Hair Lvl Pts   Money  Pos
+INSERT INTO TMW_CHARACTERS VALUES(  1, 1, 'testuser',    0,     1,9, 1,  0,0,      0, 802,592,1, 10,10,10,10,10,10, 0,0,0,0,0,0,0,0,0,0,0 );
+INSERT INTO TMW_CHARACTERS VALUES(  2, 1, 'testuser2',   1,     1,9, 8,  0,0,  30100, 803,592,1, 11,11,11,11,11,11, 0,0,0,0,0,0,0,0,0,0,0 );
+INSERT INTO TMW_CHARACTERS VALUES(  3, 2, 'banned_char', 0,     1,9, 8,  0,0,   1500, 804,592,1, 10,10,10,10,10,10, 0,0,0,0,0,0,0,0,0,0,0 );
 
 CREATE TABLE tmw_inventories (
     id       INTEGER  PRIMARY KEY,

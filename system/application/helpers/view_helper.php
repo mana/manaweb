@@ -24,20 +24,25 @@
  *  @copyright Copyright 2008 The Mana World Development Team
  *
  *  @package tmwweb
- *  @subpackage translations
+ *  @subpackage helpers
  */
 
-
-$lang['tmwweb_title']     = 'Account Manager';
+/**
+ * This helper function generates a link "to the top" that enables the user to
+ * jump to the beginning of each page.
+ * 
+ * @return string HTML code to use in views to link to the top of a page.
+ */
  
-$lang['cancel']           = 'Cancel';
-$lang['go_up']            = 'go up';
-
-
-
-$lang['date_time_format'] = 'd-m-Y H:i';
-$lang['date_format']      = 'd-m-Y';
-$lang['time_format']      = 'H:i';
-
+function to_the_top()
+{
+    return "\n "
+         . "<div style=\"text-align: right;\">\n"
+         . "<a href=\"#top\">"
+         . "<img src=\"".base_url()."images/go-up.png\" "
+         . "border=\"0\" style=\"vertical-align: middle;\"> " . lang('go_up')
+         . "</a>\n"
+         . "</div>\n\n";
+}
 
 ?>

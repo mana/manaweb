@@ -1,0 +1,65 @@
+/**
+ *  The Mana World Webinterface
+ *  Copyright 2008 The Mana World Development Team
+ *
+ *  This file is part of The Mana World.
+ *
+ *  The Mana World  is free software; you can redistribute  it and/or modify it
+ *  under the terms of the GNU General  Public License as published by the Free
+ *  Software Foundation; either version 2 of the License, or any later version.
+ *
+ *  The Mana  World is  distributed in  the hope  that it  will be  useful, but
+ *  WITHOUT ANY WARRANTY; without even  the implied warranty of MERCHANTABILITY
+ *  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ *  more details.
+ *
+ *  You should  have received a  copy of the  GNU General Public  License along
+ *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
+ *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
+ *  $Id$
+ */
+
+This file contains a list of all external resources used by tmwweb:
+(sorted by their time of integration into tmwweb)
+
+PHP CodeIgniterFramework
+-------------------------
+    "CodeIgniter is a powerful PHP framework with a very small footprint, 
+    built for PHP coders who need a simple and elegant toolkit to create 
+    full-featured web applications. If you're a developer who lives in the 
+    real world of shared hosting accounts and clients with deadlines, and 
+    if you're tired of ponderously large and thoroughly undocumented 
+    frameworks"
+    
+    http://codeigniter.com/
+    License: ./licenses/CodeIgniter.txt
+    
+
+JpGraph
+--------
+    "JpGraph is a Object-Oriented Graph creating library for PHP >= 4.3.1 The 
+    library is completely written in PHP and ready to be used in any PHP 
+    scripts (both CGI/APXS/CLI versions of PHP are supported).
+
+    The library can be used to create numerous types of graphs either on-line 
+    or written to a file. JpGraph makes it easy to draw both "quick and dirty" 
+    graphs with a minimum of code as well as complex graphs which requires a 
+    very fine grained control. The library assigns context sensitive default 
+    values for most of the parameters which minimizes the learning curve. The 
+    features are there when you need them - not as an obstacle to overcome!"
+    
+    http://www.aditus.nu/jpgraph/
+    License: ./licenses/JPGraph.txt
+    
+    
+Tango Desktop Project
+----------------------    
+    "The Tango Desktop Project exists to help create a consistent graphical 
+    user interface experience for free and Open Source software."
+    
+    Tmwweb uses some icons of this project as long as tmw has not its own set
+    of icons. (some of them got recoloured to match the style of tmwweb)
+    
+    http://tango.freedesktop.org    
+    License: ./licenses/Tango Desktop Project.txt

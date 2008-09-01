@@ -52,7 +52,7 @@ $autoload['libraries'] = array( 'database', 'session', 'menuprovider',
 |   $autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array( 'url', 'language' );
+$autoload['helper'] = array( 'url', 'language', 'view_helper' );
 
 
 /*

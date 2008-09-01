@@ -14,14 +14,16 @@
 <p>Your current state is <strong><?= $levelstring ?></strong>.
 <? if ($this->user->isBanned())
    {
-       echo "Your account is banned until ". date('d-m-Y H:i', $this->user->isBanned());
+       echo "Your account is banned until ". date(lang('date_time_format'), 
+        $this->user->isBanned());
    }
 ?>
 </p>
 
 
-<?php if ($this->user->hasCharacters()){ ?>
 <h3>Character overview</h3>
+
+<?php if ($this->user->hasCharacters()){ ?>
 
 <p>Here you see a summary of all your characters. Click on the name
 of one to see its details.</p>
@@ -41,10 +43,16 @@ of one to see its details.</p>
     <td align="right"><?= $char->getLevel() ?></td>
     <td align="center"><?= $char->getGender('image') ?></td>
     <td align="right"><?= $char->getMoney('string') ?></td>
-    <td><? $map = $char->getMap(); echo $map['name']; ?></td>
+    <td><?= $char->getMap()->getDescription() ?></td>
 </tr>
 <? } ?>
 </table>    
+
+<?php } else {
+    // user has no characters 
+?>
+    <p>You currently don't have any characters. This is is a little uncommon,
+    but never mind: You can create one with The Mana World client.</p>
 
 <?php } ?>
 

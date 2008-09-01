@@ -2,6 +2,16 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-09-01  Andreas Habel  <mail@exceptionfault.de>
+
+    * licenses/Tango Desktop Project.txt, images/view-refresh.png: added icons
+    from the tango! Desktop project as long as there is no custom icon set 
+    available for tmwweb/admin
+    * sa/models/map.php, sa/libraries/Mapprovider.php, sa/views/admin/main.php,
+    sa/views/tmwweb/character.php, sa/views/tmwweb/user_home.php: added Map 
+    model and fixed views and Mapprovider to use it instead of associative 
+    arrays
+
 2008-08-29  Andreas Habel  <mail@exceptionfault.de>
 
     * ext/jpgraph-2.3.3, sa/librariesJpgraphwrapper.php,

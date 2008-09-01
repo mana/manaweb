@@ -70,7 +70,7 @@
         </td>
         <td style="border-width: 0px;">  
             <span class="input">
-                <? $map = $char->getMap(); echo $map['name']; ?>
+                <?= $char->getMap()->getDescription(); ?>
             </span>
         </td>
         <td style="border-width: 0px;">  
@@ -95,7 +95,7 @@
             </span>
         </td>        
     </tr>        
-</table>   
+</table>
 
 <h3><?= lang('weapon_skills') ?></h3>
 <table style="border-width: 0px; margin-bottom: 0px;">
@@ -234,9 +234,18 @@
     </tr>
 
 </table>
+<?= to_the_top() ?>
+
 
 <h3><?= lang('magic_skills') ?></h3>
+<p>Sorry, this feature is not yet supported.</p>
+<?= to_the_top() ?>
+
+
 <h3><?= lang('crafting_skills') ?></h3>
+<p>Sorry, this feature is not yet supported.</p>
+<?= to_the_top() ?>
+
 
 
 <h3><?= lang('character_guild_member') ?></h3>
@@ -251,7 +260,7 @@
 <?php 
     } 
     else 
-    {  // the char is member in at least one guild... 
+    {  // the char is not member in any guild... 
 ?>
     <p>
         <?= lang('character_not_guild_member') ?>
@@ -261,7 +270,5 @@
 ?>
 
 
-<p>   
-    <?= anchor('accountmanager', "&laquo; " . lang('character_back')) ?>
-</p>    
+<?= to_the_top() ?>
    

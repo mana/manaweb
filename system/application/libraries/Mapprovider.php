@@ -26,7 +26,9 @@
  *  @package tmwweb
  *  @subpackage libraries
  */
-
+ 
+// load dependecies 
+require_once(APPPATH.'models/map'.EXT);
  
 /**
  * The mapprovider is responsible for all actions according to maps in the 
@@ -121,6 +123,8 @@ class Mapprovider
      */
     public function load_maps_file()
     {
+        log_message('debug', 'Reloading maps.xml file from tmwserv');
+        
         // load the configured path and filename from config file
         $this->maps_file = $this->CI->config->item('tmwserv_maps.xml');
         
@@ -133,21 +137,44 @@ class Mapprovider
         }        
         else
         {
+            // reset current maps
+            $this->maps = array();
+            
             // load and parse the xml file
             $maps = simplexml_load_file($this->maps_file);
             foreach ($maps as $map)
             {
                 // loop through defined maps and build internal array
-                $m = array( 
-                    'id'   => intval($map->attributes()->id),
-                    'name' => strval($map->attributes()->name)
-                );
-                $this->maps[strval($map->attributes()->id)] = $m;
+                $m = new Map( 
+                    intval($map->attributes()->id), // id
+                    strval($map->attributes()->name) // name
+                );                    
+                
+                // set description if available
+                if (strlen(strval($map->attributes()->description)) > 0)
+                {
+                    $m->setDescription(strval($map->attributes()->description));
+                }
+                
+                $this->maps[$m->getId()] = $m;
             }
             
             $this->flush_maps();
         }
+        log_message('debug', 'Reloading maps.xml file ... done');
     } // function load_maps_file
+    
+    
+    /** 
+     * This function returns the date and time of the last modification to the
+     * local map cache as unix timestamp.
+     *
+     * @return unixtimestamp Time of the last modification.
+     */
+    public function getMapVersion()
+    {
+        return filemtime(Mapprovider::MAP_STORAGE);
+    }
     
     
     /**

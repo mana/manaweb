@@ -95,6 +95,7 @@
         <th>Gender</th>
         <th>Level</th>
         <th>Money</th>
+        <th>Map</th>
     </tr>
     <?php foreach ($result_character as $char) { ?>
     <tr>
@@ -107,6 +108,7 @@
         <td align="center"><?= $char->getGender('image') ?></td>
         <td align="right"><?= $char->getLevel() ?></td>
         <td align="right"><?= $char->getMoney('string') ?></td>
+        <td align="right"><?= $char->getMap()->getDescription() ?></td>
     </tr>
     <?php }}} ?>
 

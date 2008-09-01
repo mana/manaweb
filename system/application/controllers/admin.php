@@ -83,6 +83,34 @@ class Admin extends Controller {
     }
     
     
+    public function maintenance($action=null)
+    {
+        if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
+        {
+            return;
+        }
+        
+        $this->load->library('mapprovider');
+        
+        // execute the requested action
+        $retmsg = null;
+        switch ($action)
+        {
+            case 'reload_maps.xml':
+                $retmsg = $this->_reload_maps_file();
+                break;
+        }
+        
+        $params = array(
+            'maps_file_age' => $this->mapprovider->getMapVersion(),
+            'action_result' => $retmsg
+        );        
+        
+        $this->output->showPage(lang('maintenance_title'), 
+            'admin/maintenance', $params);
+    }
+    
+    
     /**
      * This function is called by the view admin/main if the user searches for
      * a account.
@@ -189,6 +217,19 @@ class Admin extends Controller {
         
         $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     } // function search_character()
+    
+    
+    
+    /**
+     * This function tries to reload the maps.xml from tmwserv and updates the
+     * local cache.
+     * @return string Result of the function as message.
+     */
+    private function _reload_maps_file()
+    {
+        $this->mapprovider->load_maps_file();
+        return lang('maps_file_reloaded');
+    }
     
 } // class Myaccount
 ?>
