@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage controllers
  */
 
 
@@ -36,10 +30,7 @@
  * function.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage controllers
+ * @ingroup controllers
  */ 
 class Accountmanager extends Controller {
 
@@ -153,7 +144,7 @@ class Accountmanager extends Controller {
      * The function checks wheter the current user may see this details
      * and forwards to the details view.
      *
-     * @param int Unique id of the character
+     * @param id (int) Unique id of the character
      */ 
     public function character($id)
     {
@@ -239,9 +230,9 @@ class Accountmanager extends Controller {
      * This is a callback function to validate the user given password against
      * password policy.
      *
-     * @param String Password to validate
-     * @returns boolean true, if the password fulfills the policy, otherwise 
-     *                  false.
+     * @param pwd (String) Password to validate
+     * @returns (Bool) \c true, if the password fulfills the policy, otherwise 
+     *                  \c false.
      */
     public function _password_strength($pwd)
     {
@@ -272,9 +263,9 @@ class Accountmanager extends Controller {
      * This is a callback function to validate the current password of the user
      * if he tries to change his password.
      * 
-     * @param String Password to validate
-     * @return boolean true, if the password matches the current, false 
-     *                 otherwise
+     * @param pwd (String) Password to validate
+     * @return (Bool) \c  true, if the password matches the current, 
+     *                 otherwise \c false
      */
     public function _validate_password($pwd)
     {

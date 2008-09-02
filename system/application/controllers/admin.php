@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage controllers
  */
 
 
@@ -36,11 +30,8 @@
  * constructor, rather in every single function.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage controllers
- */ 
+ * @ingroup controllers
+ */
 class Admin extends Controller {
 
     /**
@@ -83,6 +74,12 @@ class Admin extends Controller {
     }
     
     
+    /**
+     * This function is called by the maintenance view if the user requests to
+     * execute a maintenance task.
+     *
+     * @param action (String) Action that should be executed,
+     */
     public function maintenance($action=null)
     {
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
@@ -219,11 +216,10 @@ class Admin extends Controller {
     } // function search_character()
     
     
-    
     /**
      * This function tries to reload the maps.xml from tmwserv and updates the
      * local cache.
-     * @return string Result of the function as message.
+     * @return (String) Result of the function as message.
      */
     private function _reload_maps_file()
     {

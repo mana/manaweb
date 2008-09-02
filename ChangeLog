@@ -2,6 +2,15 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-09-02  Andreas Habel  <mail@exceptionfault.de>
+
+    * heavyly modified all code comments to support documentation generation 
+    with doxygen.
+    * docs/*: added Doxyfile, doxyfile.php and make_docs.* scripts to generate
+    source documentation
+    * sa/models/inventory.php: added Inventory model (still emtpy) to supply 
+    access to a characters inventory via tmwweb
+
 2008-09-01  Andreas Habel  <mail@exceptionfault.de>
 
     * licenses/Tango Desktop Project.txt, images/view-refresh.png: added icons

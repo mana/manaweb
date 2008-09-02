@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage libraries
  */
 
 /**
@@ -33,10 +27,7 @@
  * JPGraphWrapper.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage libraries
+ * @ingroup libraries
  */ 
 class Jpgraphwrapper
 {
@@ -47,7 +38,6 @@ class Jpgraphwrapper
     
     /**
      * Holds the absolute path to the jpgraph library, configured in tmw_config
-     * @var string
      */
     private $lib_path;
     
@@ -71,7 +61,7 @@ class Jpgraphwrapper
     /**
      * This function is used to load additional JpGraph library files.
      *
-     * @param string Name of the library
+     * @param name (String) Name of the library to load
      */
     private function loadLib($name)
     {
@@ -87,7 +77,18 @@ class Jpgraphwrapper
         }
     }    
     
-    
+    /**
+     * This function initializes a PieGraph object with the given width and
+     * height, sets the filename and a time how long the resulting graph 
+     * should be cached.
+     *
+     * @param xwidth    (int) Width of the generated piechart
+     * @param ywidth    (int) Height of the generated piechart
+     * @param name      (String) Filename of the generated image
+     * @param cachetime (int) duration of cached items
+     * @return (Object) Returns a initialized pieGraph object from JpGraph 
+     *         library
+     */
     public function PieChart($xwidth, $ywidth, $name, $cachetime)
     {
         $this->loadLib('pie');

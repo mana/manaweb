@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,30 +19,21 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
  */
+ 
 require_once(APPPATH.'models/character'.EXT);
 
 
 /**
  * The user model deals with all data according to a account.
  *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup models
  */ 
 class User extends Model {
 
     /**
      * Name of the accounts table
-     * @var string
      */
     const ACCOUNT_TBL = 'tmw_accounts';
     
@@ -61,14 +52,12 @@ class User extends Model {
     /**
      * Boolean variable that indicates wheter the user has authenticated
      * or not.
-     * @var boolean
      */
     private $is_authenticated;
     
     /**
      * Boolean variable that indicates wheter the user has administrative 
      * rights according to his level or not.
-     * @var boolean
      */
     private $is_admin;
         
@@ -95,8 +84,8 @@ class User extends Model {
      * This method checks if the user has just authenticated or if a session
      * cookie validates its membership. 
      *
-     * @returns Boolean true, if the user is authenticated or logged in, 
-     *                  otherwise false.
+     * @return  (bool) \c true, if the user is authenticated or logged in, 
+     *                  otherwise \c false.
      */
     public function isAuthenticated()
     {
@@ -135,8 +124,8 @@ class User extends Model {
      * The permission can be configured in tmw_config.php with parameter
      * tmwweb_admin_level.
      *
-     * @return boolean true if the user is allowed to see the admin interface,
-     *                 false otherwise.
+     * @return (bool) \c true if the user is allowed to see the admin 
+     *                interface, otherwise \c false.
      */ 
     public function isAdmin()
     {
@@ -166,7 +155,7 @@ class User extends Model {
      * If the account is banned, the function will return the unixtimestamp 
      * by when the account is banned. If not, it will return false.
      * 
-     * @return mixed Unixtimestamp or false
+     * @return (Mixed) Unixtimestamp or \c false
      */
     public function isBanned()
     {
@@ -187,8 +176,8 @@ class User extends Model {
      * sufficient level to do a special action. The action is given as 
      * parameter right. See tmw_config.php for details of the available rights.
      *
-     * @param  string  Right to check against users permission
-     * @return boolean true if the user has the right, otherwise: false 
+     * @param  right (String) Right to check against users permission
+     * @return (bool) \c true if the user has the right, otherwise \c false.
      */
     public function hasRight($right)
     {
@@ -228,15 +217,15 @@ class User extends Model {
      * This function tries to authenticate a user by its username and
      * password. 
      * 
-     * @param String Username to authenticate
-     * @param String Password of the user
-     * @param Boolean if true, the session is modified after successful login
-     *                to store user credentials. if false, only username and
-     *                password are validated
-     * @return Object false, if the authentications fails, the user_object of
-     *                 the authenticated user if authentication succeeded
-     *                 If parameter setsession has been set to false, the 
-     *                 function only returns true or false.
+     * @param username   (String) Username to authenticate
+     * @param password   (String) Password of the user
+     * @param setsession (bool)   if \c true, the session is modified after 
+     *                   successful login to store user credentials. 
+                         If \c false, only username and password are validated
+     * @return (Object) \c false, if the authentications fails, the user_object
+     *                  of the authenticated user if authentication succeeded
+     *                  If parameter setsession has been set to \c false, the 
+     *                  function only returns \c true or \c false.
      */
     public function authenticate($username, $password, $setsession=true)
     {
@@ -298,6 +287,8 @@ class User extends Model {
     /**
      * This function is used to delete all data of a user with the given 
      * userid.
+     *
+     * @param userid (int) Id of the user to delete
      */
     public function deleteUser($userid)
     {
@@ -350,8 +341,8 @@ class User extends Model {
     /**
      * Gets the authenticated user.
      *
-     * @return Objct Returns the current authenticated user. If the user is 
-     *               not authenticated, the function returns null.
+     * @return (Object) Returns the current authenticated user. If the user is 
+     *         not authenticated, the function returns \c null.
      */
     public function getUser()
     {      
@@ -362,12 +353,12 @@ class User extends Model {
     /**
      * This function takes a level as int value and translates it into a human
      * readable string. The translation is defined in the tmw_config file.
-     * If parameter $level is null, the function takes the level from the 
-     * currently logged in user. If this is also null, maybe there is no one
+     * If parameter $level is \c null, the function takes the level from the 
+     * currently logged in user. If this is also \c null, maybe there is no one
      * logged id, value 0 is assumed.
      * 
-     * @param  int    Level to identify the corresponding name for
-     * @return string Human readable translation of the level
+     * @param  level (int) Level to identify the corresponding name for
+     * @return (String) Human readable translation of the level
      */
     public function getUserLevelString($level=null)
     {
@@ -414,8 +405,8 @@ class User extends Model {
      * for gathering relevant data is located here in the model and not in
      * each of the controllers.
      *
-     * @return Array Array with all parameters needed by the view 
-     *               tmwweb/user_home.
+     * @return (Array) Returns an array with all parameters needed by the view 
+     *               <tt>tmwweb/user_home</tt>.
      */
     public function getHomepageData()
     {
@@ -430,8 +421,8 @@ class User extends Model {
      * This functions is used to check wheter a user has at least one
      * character or not. 
      *
-     * @returns bool true, if the user has at least one charater, 
-     *               otherwise false
+     * @return (bool) \c true, if the user has at least one charater, 
+     *               otherwise \c false
      */
     public function hasCharacters()
     {
@@ -453,9 +444,9 @@ class User extends Model {
      * This function checks if the current user is owner of the given 
      * character id or not.
      * 
-     * @param int ID of the character
-     * @return boolean true, if the user is the owner of the character, 
-     *                 false otherwise
+     * @param id (int) ID of the character
+     * @return (bool) \c true, if the user is the owner of the character, 
+     *                 otherwise \c false
      */
     public function hasCharacter($id)
     {
@@ -479,7 +470,7 @@ class User extends Model {
     /** 
      * This function returns the number of characters a player has.
      *
-     * @returns int The number of characters a player has.
+     * @return (int) The amount of characters a player has.
      */
     public function getCharacterCount()
     {
@@ -493,8 +484,8 @@ class User extends Model {
      * This functions returns an array with all character models 
      * owned by the current user.
      * 
-     * @param   String SQL Order clause
-     * @returns Array  Array of Character models
+     * @param   order (String) SQL Order by clause
+     * @return  (Array) Returns an array of character models
      */
     public function getCharacters($order="level desc")
     {
@@ -516,8 +507,8 @@ class User extends Model {
     /**
      * This function returns a character object with the given id.
      *
-     * @param int Id of the character
-     * @return Objct Character object
+     * @param id (int) Id of the character
+     * @return (Object) Character object
      */
     public function getCharacter($id)
     {

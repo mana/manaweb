@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage controllers
  */
 
 
@@ -34,10 +28,7 @@
  * can be called when not logged in.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage controllers
+ * @ingroup controllers
  */ 
 class Myaccount extends Controller {
 
@@ -62,7 +53,7 @@ class Myaccount extends Controller {
      * homepage of the user account, depending of the login status of the 
      * current user.
      */
-    function index()
+    public function index()
     {
         // check if the user is currently logged in
         if ($this->user->isAuthenticated())
@@ -79,7 +70,7 @@ class Myaccount extends Controller {
     
     
     /**
-     * Function when user tries to login via loginform
+     * Function is called when the user tries to login via loginform.
      */
     public function login()
     {
@@ -215,8 +206,9 @@ class Myaccount extends Controller {
      * given a secret identifier via mail. This key has to match the key in 
      * the database.    
      * 
-     * @param String Username of the user who wants to change his password
-     * @param String Secret key sent to the user via email
+     * @param username (String) Username of the user who wants to change 
+     *                 his password
+     * @param key      (String) Secret key sent to the user via email
      */
     public function changepassword($username, $key)
     {
@@ -296,9 +288,9 @@ class Myaccount extends Controller {
      * This is a callback function to validate the user given password against
      * password policy.
      *
-     * @param String Password to validate
-     * @returns boolean true, if the password fulfills the policy, otherwise 
-     *                  false.
+     * @param pwd (String) Password to validate
+     * @return (Bool) \c true, if the password fulfills the policy, otherwise 
+     *                \c false.
      */
     public function _password_strength($pwd)
     {
@@ -330,8 +322,8 @@ class Myaccount extends Controller {
      * new password. The username is provided by the validation provider as
      * parameter. The mailaddress has to come from the input handler.
      *
-     * @param String Username to validate
-     * @returns boolean true, if the combination is valid, false otherwise
+     * @param username (String) Username to validate
+     * @return (Bool) \c true, if the combination is valid, otherwise \c false
      */
     public function _username_check($username)
     {
@@ -357,7 +349,11 @@ class Myaccount extends Controller {
     
     
     /**
-     * 
+     * This function generates a unique hash and sends it via mail to the user.
+     * The has is also stored in the tmw_accounts table to verify it later.
+     *
+     * @param username    (String) User that wants to reset his password
+     * @param mailaddress (String) Mailaddress we should send the mail to
      */
     private function _send_passwort_change_request($username, $mailaddress)
     {

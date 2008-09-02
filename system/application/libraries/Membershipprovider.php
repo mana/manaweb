@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -23,7 +23,10 @@
 
  
 /**
- * The membershipprovider ist responsible for sessionhandling
+ * The Membershipprovider ist responsible for sessionhandling.
+ *
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup libraries
  */ 
 class Membershipprovider
 {
@@ -58,8 +61,8 @@ class Membershipprovider
     /**
      * This static function returns a random hash string in the given length.
      * 
-     * @param int Length of the requested hash string
-     * @returns string Random hash key
+     * @param length (int) Length of the requested hash string
+     * @return (String) Random hash key
      */
     static function getRandomHashKey($length=24)
     {
@@ -86,8 +89,9 @@ class Membershipprovider
      * This function validates a passwort against the ample discussed password
      * policy of The Mana World.
      *
-     * @param String The password to be validated
-     * @returns int Returns one of the PASSWORD_* constants.
+     * @param   pwd      (String) The password to be validated
+     * @param   username (String) The name of the user
+     * @return  (int) Returns one of the PASSWORD_* constants.
      */                  
     static function validatePassword($pwd, $username)
     {
@@ -125,6 +129,10 @@ class Membershipprovider
     /**
      * This function updates a user record in the tmw_accounts table and sets
      * a key for a given username. 
+     *
+     * @param username (String) Name of the user
+     * @param key      (String) Hash key to store in the column 
+     *                 <tt>authorization</tt>
      */
     public function setKeyForUser($username, $key)
     {
@@ -142,10 +150,10 @@ class Membershipprovider
      * This function sets a new password for a given username. If the third
      * paramter is true (default), the activation keyy will be set to null.
      *
-     * @param String Name of the user to set the password
-     * @param String The new password.
-     * @param boolean If true, set activation key to NULL, otherwise leave it
-     *                untouched.
+     * @param username  (String) Name of the user to set the password
+     * @param password  (String) The new password.
+     * @param reset_key (bool)   If true, set activation key to NULL, otherwise 
+     *                           leave it untouched.
      */
     public function setPasswordForUser($username, $password, $reset_key=true)
     {
@@ -174,9 +182,9 @@ class Membershipprovider
     /**
      * Checks, wheter a user with the given key exists or not.
      *
-     * @param   String  Username who wants to change its password
-     * @param   String  Authorization key sent to the user via mail
-     * @returns boolean Returns true, if the given user exists and has set this
+     * @param   username (String) Username who wants to change its password
+     * @param   key      (String) Authorization key sent to the user via mail
+     * @return  (bool)  Returns true, if the given user exists and has set this
      *                  key as his authorization key, otherwise false
      */
     public function validateKeyForUser($username, $key)

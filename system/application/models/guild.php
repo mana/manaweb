@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
  */
 
 
@@ -33,36 +27,39 @@
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup tmwweb models
  */ 
 class Guild {
 
     /**
      * Name of the guilds table
-     * @var string
      */
     const GUILD_TBL        = 'tmw_guilds';
     
     /**
      * Name of the guild memberships table
-     * @var string
      */
     const GUILD_MEMBER_TBL = 'tmw_guild_members';
     
+    
+    //
+    // Permissions defining rights of guild members.
+    // Those constants are derived from 
+    // <tt>tmwser/trunk/src/chat-server/guild.hpp</tt>
+    //
+     
     /**
-     * Permissions defining rights of guild members
-     * Those constants are derived from tmwser/trunk/src/chat-server/guild.hpp
-     *
-     * Members with NONE cannot invite users or set permissions
-     * Members with COMMANDER can invite other users but cannot set permissions
-     * Members with LEADER can invite users and set permissions
+     * Members cannot invite users or set permissions
      */
     const PERMISSION_NONE      = 0;
+    /**
+     * Members can invite other users but cannot set permissions.
+     */
     const PERMISSION_COMMANDER = 1;
+    /**
+     * Members can invite users and set permissions.
+     */
     const PERMISSION_LEADER    = 2;
     
     ///////////////////////////////////////////////////////////////////////////
@@ -77,9 +74,12 @@ class Guild {
      */
     private $guild;
     
+    
     /**
      * Constructor initializes a new instance of the Character model.
      * The constructor needs a database record as parameter.
+     *
+     * @param record (Array) Database record to initialite values of the Guild.
      */
     public function __construct($record)
     {
@@ -94,10 +94,10 @@ class Guild {
     /**
      * This function retruns an instance of the guild with the given id.
      *
-     * @param  int    ID of the guild
-     * @return object Guild object or false if the guild doesn't exist
+     * @param  id (int) ID of the guild
+     * @return (Object) Guild object or false if the guild doesn't exist
      */
-    public static function getGuild($id)
+    static function getGuild($id)
     {
         $CI  =& get_instance();
         $res = $CI->db->get_where( Guild::GUILD_TBL,
@@ -116,7 +116,7 @@ class Guild {
     
     /**
      * This function returns the unique Id of the guild.
-     * @return int Id of the guild
+     * @return (int) Id of the guild
      */
     public function getId()
     {
@@ -126,7 +126,7 @@ class Guild {
     
     /**
      * This function returns the name of the guild.
-     * @return string Name of the guild
+     * @return (String) Name of the guild
      */
     public function getName()
     {
@@ -137,7 +137,7 @@ class Guild {
     /**
      * This function returns a list with all members of the guild.
      * @todo implement this function when updated sqlite db is available
-     * @return array Array with all members of the guild
+     * @return (Array) Returns Array with all members of the guild
      */
     public function getMembers()
     {

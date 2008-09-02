@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,30 +19,20 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage libraries
  */
 
  
 /**
- * The TMW_Config library extends the config library shipped with codeigniter
- * to support user defined config files. The library now loads the requested
- * config file and looks if there is a custom config file to override the
- * default settings. 
- * Custom files have to be in the same directory as the default and have to be
- * named like "<configfile>.user.php"
+ * The TMW_Output extends the output library shipped with codeigniter.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup libraries
  */ 
 class TMW_Output extends CI_Output
 {
     
     /** 
      * Array used to store fixed values that needed by the layout views.
-     * 
-     * @var array
      */
     private $header_data = array();
     
@@ -50,14 +40,13 @@ class TMW_Output extends CI_Output
     /**
      * Use this function to show a view with the given parameters.
      *
-     * @param string Title to sho in the view
-     * @param string Filename of the view to show
-     * @param array  Array with values ans params to show
+     * @param title    (String) Title to show in the view header
+     * @param filename (String) Filename of the view to show
+     * @param params   (Array)  Array with values ans params to show
      */
     public function showPage($title, $filename, $params=array())
     {
         $CI =& get_instance();
-        
         
         $this->header_data['static_menu'] = $CI->menuprovider->getStaticMenu();
         $this->header_data['user_menu']   = $CI->menuprovider->getUserMenu();
@@ -69,5 +58,5 @@ class TMW_Output extends CI_Output
         $CI->load->view('layout/footer');
     }
     
-} // class MY_Config
+} // class TMW_Output
 ?>

@@ -20,12 +20,37 @@
  *
  *  $Id$
  */
+
  
-$lang['admin_title']          = 'Admin Interface';
-$lang['maintenance_title']    = 'Maintenance tasks';
+/**
+ * The inventory model deals with all items owned by a character.
+ * This class is not used as a model in terms of CodeIgniter. It is
+ * used as a simple data object.
+ *
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup models
+ */ 
+class Inventory {
 
+    /**
+     * Reference to the CodeIgniter framework
+     */
+    private $CI;
 
-$lang['maps_file_reloaded']   = 'The maps.xml file has been reloaded. Local '
-                              . 'database is now up to date!';
-
+    
+    
+    /**
+     * Constructor initializes a new instance of the Inventory model.
+     * The constructor needs a database record as parameter.
+     */
+    public function __construct()
+    {
+        // get an instance of CI
+        // we have to do this, because we are not in an controller and 
+        // therefore we cannot access $this->config directly
+        $this->CI =& get_instance();
+    }
+    
+    
+} // class Inventory
 ?>

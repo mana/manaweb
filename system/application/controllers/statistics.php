@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage controllers
  */
 
 
@@ -32,10 +26,7 @@
  * Controller for displaying server statistics.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage controllers
+ * @ingroup controllers
  */ 
 class Statistics extends Controller {
 
@@ -68,7 +59,7 @@ class Statistics extends Controller {
     
     
     /** 
-     * THIS FUNCTION IS IMPLEMENTED AS TECHNICAL DEMO USING JPGRAPH. IT HEAVYLY
+     * @todo THIS FUNCTION IS IMPLEMENTED AS TECHNICAL DEMO USING JPGRAPH. IT HEAVYLY
      * NEED REFACTORING !!!
      * JUST COMMITED BECAUSE ITS WEEKEND AND WE WORK ON A BRANCH YET ;-)
      */ 

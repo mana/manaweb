@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage libraries
  */
 
  
@@ -34,7 +28,10 @@
  * config file and looks if there is a custom config file to override the
  * default settings. 
  * Custom files have to be in the same directory as the default and have to be
- * named like "<configfile>.user.php"
+ * named like <tt>"configfile".user.php</tt>
+ *
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup libraries
  */ 
 class TMW_Config extends CI_Config
 {
@@ -48,11 +45,12 @@ class TMW_Config extends CI_Config
     /**
      * Load Config File
      *
-     * @access  public
-     * @param   string  the config file name
+     * @param   file (string)  the config file name
+     * @param   use_sections (bool)  
+     * @param   fail_gracefully (bool)
      * @return  boolean if the file was loaded correctly
      */ 
-    function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
+    public function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
     {
         parent::load($file, $use_sections, $fail_gracefully);
         

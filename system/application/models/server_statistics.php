@@ -1,6 +1,6 @@
 <?php
 /*
- *  The Mana World Server
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
  */
 
 // load dependecies 
@@ -34,6 +28,9 @@ require_once(APPPATH.'models/guild'.EXT);
 /**
  * The Server_statistics model deals with all global data according to a 
  * server.
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup models
  */ 
 class Server_statistics extends Model {
 
@@ -80,7 +77,7 @@ class Server_statistics extends Model {
      * This function gathers all global statistics from the tmw server and 
      * summarizes them in an array.
      * 
-     * @returns Array Array with server statistics
+     * @return Array with server statistics
      */
     public function getGlobalStats()
     { 
@@ -103,7 +100,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all registered accounts.
      * 
-     * @returns int Number of accounts registered at the tmw server.
+     * @return (int) Number of accounts registered at the tmw server.
      */
     private function getPlayerCount()
     {
@@ -114,7 +111,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all created characters.
      * 
-     * @returns int Number of created characters on the tmw server.
+     * @return (int) Number of created characters on the tmw server.
      */
     private function getCharacterCount()
     {
@@ -125,7 +122,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all created guilds.
      * 
-     * @returns int Number of created guilds on the tmw server.
+     * @return (int) Number of created guilds on the tmw server.
      */
     private function getGuildCount()
     {
@@ -133,12 +130,16 @@ class Server_statistics extends Model {
     }
     
     
+    /**
+     * This function returns the amount of money all characters have together.
+     * 
+     * @return (int) Purchasing power of The Mana World population.
+     */     
     private function getPurchasingPower()
     {
         $this->db->select_sum('money');
         $query = $this->db->get(Character::CHARACTER_TBL);
         return $query->row()->money;
-        // Produces: SELECT SUM(age) as age FROM members
     }
     
     
@@ -147,7 +148,7 @@ class Server_statistics extends Model {
      * At the moment the top ten is computed, simply by counting the number of
      * members.
      *
-     * @return array Topten list of guilds
+     * @return (Array) Topten list of guilds
      */
     private function getGuildTopTen()
     {
@@ -192,7 +193,7 @@ class Server_statistics extends Model {
      * At the moment the top ten is computed, simply by counting the number of
      * members.
      *
-     * @return array Topten list of guilds
+     * @return (Array) Topten list of characters
      */
     private function getCharacterTopTen()
     {
@@ -230,8 +231,6 @@ class Server_statistics extends Model {
         return $res->result();
         
     } // function getCharacterTopTen()
-    
-    
     
 } // class Server Statistics
 ?>

@@ -19,13 +19,24 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
+ *
+ *  This file is used to add doxygen specific commands and description to the
+ *  tmwweb documentation.
  */
  
-$lang['admin_title']          = 'Admin Interface';
-$lang['maintenance_title']    = 'Maintenance tasks';
 
+/**
+ *  @defgroup models        Models
+ *  @defgroup controllers   Controllers
+ *  @defgroup views         Views
+ *  @defgroup libraries     Libraries
+ *  @defgroup helpers       Helper functions that can be used in views
+ */
 
-$lang['maps_file_reloaded']   = 'The maps.xml file has been reloaded. Local '
-                              . 'database is now up to date!';
-
+ 
+/** 
+ * @mainpage
+ * @verbinclude README
+ */
+ 
 ?>

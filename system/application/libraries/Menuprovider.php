@@ -1,6 +1,6 @@
 <?php
 /*
- *  The Mana World Server
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -27,12 +27,20 @@
  * navigation menu. This includes static links, that are always visible and
  * links based on the authentication state of the current user.
  *
- * The menuprovider uses a custom configuration script - see constant
- * Menuprovider::CONFIG_FILE_NAME for its current name - located under 
- * application/config. See this file for further options.
+ * The menuprovider uses a custom configuration script located under 
+ * <tt>application/config</tt>. See this file for further options.
+ *
+ * @see Menuprovider::CONFIG_FILE_NAME
+ *
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup libraries
  */ 
 class Menuprovider
 {
+    /**
+     * Defines the filename of the configuration file where the structure of 
+     * the custom menu is defined.
+     */
     const CONFIG_FILE_NAME = 'menu';
     
     
@@ -65,7 +73,7 @@ class Menuprovider
     
     /**
      * Returns an array with all configured static links
-     * @returns Array Array with static links.
+     * @return (Array) Returns an array with static links.
      */
     function getStaticMenu()
     {
@@ -77,7 +85,7 @@ class Menuprovider
      * This function returns the structure of the user menu if the user has
      * authenticated.
      *
-     * @returns Array Returns an array with the menu structure, if the user
+     * @return (Array) Returns an array with the menu structure, if the user
      *                 is authenticated, otherwise null;
      */
     function getUserMenu()
@@ -96,7 +104,6 @@ class Menuprovider
         }
     }
     
-}
-
+} // class Menuprovider
 
 ?>

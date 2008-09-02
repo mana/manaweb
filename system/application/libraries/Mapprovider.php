@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage libraries
  */
  
 // load dependecies 
@@ -36,34 +30,29 @@ require_once(APPPATH.'models/map'.EXT);
  * maps to the user.
  * 
  * @author Andreas Habel <mail@exceptionfault.de>
- * @copyright Copyright 2008 The Mana World Development Team
- *
- * @package tmwweb
- * @subpackage libraries
+ * @ingroup libraries
  */ 
 class Mapprovider
 {
     /**
-     *  
+     *  Defines the location and filename where to store the locally cached 
+     *  maps data.
      */
     const MAP_STORAGE = './data/maps.php.db';
     
     /**
      * Reference to the CodeIgniter framework
-     * @var object
      */
     private $CI;
     
     /** 
      * Configured path and name of the maps.xml file.
-     * @var string 
      */
     private $maps_file;
     
     /**
      * List of all available maps loaded from the maps.xml or the serialized
      * data object.
-     * @var array array with map objects
      */
     private $maps;
     
@@ -101,8 +90,8 @@ class Mapprovider
     /**
      * This function returns all informations stored to the map with the given
      * id.
-     * @param int ID of the map
-     * @return object Map object.
+     * @param id (int) ID of the map
+     * @return (Object) Map object
      */
     public function getMap($id)
     {
@@ -169,7 +158,7 @@ class Mapprovider
      * This function returns the date and time of the last modification to the
      * local map cache as unix timestamp.
      *
-     * @return unixtimestamp Time of the last modification.
+     * @return (int) Time of the last modification as Unixtimestamp.
      */
     public function getMapVersion()
     {
@@ -191,6 +180,4 @@ class Mapprovider
     
     
 } // class Mapprovider
-
-
 ?>

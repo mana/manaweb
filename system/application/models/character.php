@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,12 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
  */
 
 
@@ -33,20 +27,15 @@
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup models
  */ 
 class Character {
 
     /**
      * Name of the characters table
-     * @var string
      */
     const CHARACTER_TBL = 'tmw_characters';
-    
     
     /** 
      * Defines constant for male characters
@@ -93,19 +82,31 @@ class Character {
 
     // character experiences //////////////////////////////////////////////////
 
-    /**
+    /*
      * Constants for character experiences 
      */
+     
+    /** Skill for unarmed fights */
     const CHAR_SKILL_NONE      = "unarmed_exp";
-    const CHAR_SKILL_KNIFE     = "knife_exp";
+    /** Skill for fighting with knifes */
+    const CHAR_SKILL_KNIFE     = "knife_exp"; 
+    /** Skill for fighting with swords */
     const CHAR_SKILL_SWORD     = "sword_exp";
+    /** Skill for fighting with polearms */
     const CHAR_SKILL_POLEARM   = "polearm_exp";
+    /** Skill for fighting with staffs */
     const CHAR_SKILL_STAFF     = "staff_exp";
+    /** Skill for fighting with a whip */
     const CHAR_SKILL_WHIP      = "whip_exp";
+    /** Skill for shooting with bows */
     const CHAR_SKILL_BOW       = "bow_exp";
+    /** Skill for shooting */
     const CHAR_SKILL_SHOOTING  = "shoot_exp";
+    /** Skill for fighting with maces */
     const CHAR_SKILL_MACE      = "mace_exp";
+    /** Skill for fighting with axes */
     const CHAR_SKILL_AXE       = "axe_exp";
+    /** Skill for throwing weapons */
     const CHAR_SKILL_THROWN    = "thrown_exp";
     
     ///////////////////////////////////////////////////////////////////////////
@@ -123,6 +124,9 @@ class Character {
     /**
      * Constructor initializes a new instance of the Character model.
      * The constructor needs a database record as parameter.
+     *
+     * @param record (Array) Database record to initialite values of the 
+     *                       Character.
      */
     public function __construct($record)
     {
@@ -142,7 +146,7 @@ class Character {
     /**
      * This function returns the unique id of the character.
      * 
-     * @return int Unique id of the character
+     * @return (int) Unique id of the character
      */
     public function getID()
     {
@@ -153,7 +157,7 @@ class Character {
     /**
      * This function returns the name of the character.
      * 
-     * @return string Name of the character
+     * @return (String) Name of the character
      */
     public function getName()
     {
@@ -168,7 +172,7 @@ class Character {
      * resultset of a join between characters and accounts this property can
      * return the name of the user. 
      *
-     * @todo: think about if we should load the username in case it is not 
+     * @todo  think about if we should load the username in case it is not 
      *        included in the initializing record instead of returning null
      */
     public function getUsername()
@@ -184,7 +188,7 @@ class Character {
     /**
      * This function returns the level of the character.
      * 
-     * @return int Level of the character
+     * @return (int) Level of the character
      */
     public function getLevel()
     {
@@ -195,10 +199,11 @@ class Character {
      * This function returns the gender of the character.
      * See constants GENDER_MALE and GENDER_FEMALE.
      * 
-     * @param  string If $format is 'int', the gender is given as id.
-     *                If $format is 'image', the gender is given as html 
+     * @param  format (String) 
+     *                If $format is \c 'int', the gender is given as id.
+     *                If $format is \c 'image', the gender is given as html 
      *                image tag.
-     * @return mixed  Gender of the character
+     * @return (Mixed) Gender of the character
      */
     public function getGender($format='int')
     {
@@ -223,9 +228,10 @@ class Character {
     /** 
      * This functions returns the money of the character. 
      *
-     * @param  string If $format is 'int', the money is given as integer value.
-     *                If $format is 'string', the money is formated for display
-     * @return mixed  The money of the character
+     * @param  format (String) 
+     *                If $format is \c 'int', the money is given as integer value.
+     *                If $format is \c 'string', the money is formated for display
+     * @return (Mixed) The money of the character
      */
     public function getMoney($format='int')
     {
@@ -244,7 +250,7 @@ class Character {
     /** 
      * This function returns the map, the character is located on.
      *
-     * @return object Map the character is located.
+     * @return (Object) Map the character is located.
      */
     public function getMap()
     {
@@ -256,8 +262,8 @@ class Character {
      * This function returns the attribute value of the character.
      * Use the constants Character::CHAR_ATTR_* as input of this function.
      *
-     * @param string Attribute name.
-     * @return int Attribute value.
+     * @param attribute (String) Attribute name.
+     * @return (int) Attribute value.
      */
     public function getAttribute($attribute)
     {
@@ -269,8 +275,8 @@ class Character {
      * This function returns a skill value of the character.
      * Use the constants Character::CHAR_SKILL_* as input of this function.
      *
-     * @param string Skill name.
-     * @return int Skill value.
+     * @param skill (String) Skill name.
+     * @return (int) Skill value.
      */    
     public function getSkill($skill)
     {
@@ -282,8 +288,8 @@ class Character {
      * This functions is used to check wheter a character is member of at least
      * one guild.
      *
-     * @return bool true, if the character is member of a guild, 
-                    otherwise false
+     * @return (bool) \c true, if the character is member of a guild, 
+                    otherwise \c false
      */
     public function isGuildMember()
     {

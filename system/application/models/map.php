@@ -1,6 +1,6 @@
 <?php
-/**
- *  The Mana World Server
+/*
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,34 +19,28 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage models
  */
 
 /**
  * The Model repesents a map in The Mana World.
+ *
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup models
  */ 
 class Map 
 {
     /**
      * Unique Id of the map
-     * @var int
      */
     private $id;
     
     /**
      * Filename of the map
-     * @var string
      */
     private $name;
     
     /**
      * Human readable description of the map
-     * @var string
      */
     private $description;
     
@@ -54,8 +48,8 @@ class Map
     /**
      * Creates a new map object. Id and name are required.
      * 
-     * @param int    Unique Id of the map
-     * @param string Filename of the map
+     * @param id   (int)    Unique Id of the map
+     * @param name (String) Filename of the map
      */
     public function __construct($id, $name)
     {
@@ -67,7 +61,7 @@ class Map
     
     /**
      * Returns the unique Id of the map.
-     * @return in Unique Id of the map.
+     * @return (int) Unique Id of the map.
      */
     public function getId()
     {
@@ -77,7 +71,7 @@ class Map
     
     /**
      * Returns the filename of the map.
-     * @return string Filename of the map.
+     * @return (String) Filename of the map.
      */
     public function getName()
     {
@@ -88,7 +82,7 @@ class Map
     /**
      * Returns the description of the map. As the description field is optional
      * this function returns the name, if no description is available.
-     * @return string Description of the map.
+     * @return (String) Description of the map.
      */
     public function getDescription()
     {
@@ -105,7 +99,7 @@ class Map
     
     /**
      * Sets the description of the map.
-     * @param string Description of the map.
+     * @param desc (String) Description of the map.
      */
     public function setDescription($desc)
     {

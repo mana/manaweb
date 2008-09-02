@@ -1,6 +1,6 @@
 <?php
 /*
- *  The Mana World Server
+ *  The Mana World Account Manager
  *  Copyright 2008 The Mana World Development Team
  *
  *  This file is part of The Mana World.
@@ -19,21 +19,15 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  $Id$
- *
- *  @author Andreas Habel <mail@exceptionfault.de>
- *  @copyright Copyright 2008 The Mana World Development Team
- *
- *  @package tmwweb
- *  @subpackage libraries
  */
 
  
 /**
  * The translationprovider is responsible for managing languages and 
  * translations.
- *
- *  @package tmwweb
- *  @subpackage libraries
+ * 
+ * @author Andreas Habel <mail@exceptionfault.de>
+ * @ingroup libraries
  */ 
 class Translationprovider
 {
@@ -64,7 +58,7 @@ class Translationprovider
     /**
      * This functions returns a list with all available languages.
      * 
-     * @returns array List of all available languages.
+     * @return (Array) List of all available languages.
      */
     public function getLanguages()
     {
@@ -78,7 +72,7 @@ class Translationprovider
      * find a cookie with that information, we are using the default language
      * defined in system/application/config/config.php
      *
-     * @returns string Directory name of the current language
+     * @return (String) Directory name of the current language
      */
     public function getCurrentLanguage()
     {
@@ -105,7 +99,7 @@ class Translationprovider
      * adds the needed language as second parameter based on the current
      * user settings.
      * 
-     * @param string Filename of the language file.
+     * @param filename (String) Filename of the language file.
      */
     public function loadLanguage($filename)
     {
@@ -116,7 +110,7 @@ class Translationprovider
     /** 
      * This function sets the language for the current user.
      * 
-     * @params string Name of the language directory.
+     * @param lang (String) Name of the language directory.
      */
     public function setLanguage($lang)
     {
