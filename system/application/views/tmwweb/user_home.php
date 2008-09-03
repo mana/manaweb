@@ -38,7 +38,7 @@ of one to see its details.</p>
 </tr>
 <?php foreach ($this->user->getCharacters() as $char){ ?>
 <tr>
-    <td><a href="<?= site_url('accountmanager/character/' . 
+    <td><a href="<?= site_url('charcontroller/' . 
         $char->getID()) ?>"><?= $char->getName() ?></a></td>
     <td align="right"><?= $char->getLevel() ?></td>
     <td align="center"><?= $char->getGender('image') ?></td>

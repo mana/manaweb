@@ -53,6 +53,13 @@ class TMW_Output extends CI_Output
         $this->header_data['page_title']  = $title;
         
         
+        // shall we display a character menu in the navigation 
+        $char = $CI->menuprovider->getCharMenu();
+        if ($char)
+        {
+            $this->header_data['character_menu']   = $char;
+        }
+        
         $CI->load->view('layout/header', $this->header_data);
         $CI->load->view($filename, $params);
         $CI->load->view('layout/footer');

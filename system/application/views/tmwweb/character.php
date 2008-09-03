@@ -15,6 +15,84 @@
                 <?= $char->getAttribute(Character::CHAR_ATTR_STRENGTH) ?>
             </span>
         </td>
+        
+        <td style="border-width: 0px;" rowspan="6">  
+        
+            <table style="border-width: 0px; margin-bottom: 0px; padding: 0px;  border-spacing: 0px;">
+                <tr>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/slot.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin-bottom: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/helmet.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/slot.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-width: 0px; margin: 10px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/slot.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/torso.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/gloves.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/weapon1.png); 
+                        background-repeat: no-repeat;"> 
+                        <img src='<?= base_url() ?>images/items/axe.png'>
+                    </td>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/legs.png); 
+                        background-repeat: no-repeat;"> 
+                        <img src='<?= base_url() ?>images/items/armor-legs-shorts.png'>
+                    </td>
+                    <td style="border-width: 0px; margin-bottom: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/weapon2.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/ring.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin-bottom: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/feet.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                    <td style="border-width: 0px; margin: 0px;
+                        width: 36px; height: 38px;
+                        background-image: url(<?= base_url() ?>images/slots/ring.png); 
+                        background-repeat: no-repeat;"> 
+                    </td>
+                </tr>
+            </table>
+            
+        </td>
+        
     </tr>
     <tr>
         <td style="border-width: 0px;">  
@@ -36,7 +114,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_level') ?>: </span>
         </td>
-        <td style="border-width: 0px;" align="right">  
+        <td style="border-width: 0px;">  
             <span class="input"><?= $char->getLevel() ?></span>
         </td>
         <td style="border-width: 0px;">  
@@ -52,7 +130,7 @@
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_money') ?>: </span>
         </td>
-        <td style="border-width: 0px;" align="right">  
+        <td style="border-width: 0px;">  
             <span class="input"><?= $char->getMoney('string') ?></span>
         </td>
         <td style="border-width: 0px;">  
@@ -97,178 +175,4 @@
     </tr>        
 </table>
 
-<h3><?= lang('weapon_skills') ?></h3>
-<table style="border-width: 0px; margin-bottom: 0px;">
-    <tr>
-        <td style="border-width: 0px;">
-            <img src='<?= base_url() ?>images/items/unarmed.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_none') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_NONE) ?>
-            </span>
-        </td>
-        
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/mace.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_mace') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_MACE) ?>
-            </span>
-        </td>        
-        <td style="border-width: 0px;">
-            <img src='<?= base_url() ?>images/items/shooting.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_shooting') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_SHOOTING) ?>
-            </span>
-        </td>    </tr>
-    
-    <tr>
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/knife.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_knife') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_KNIFE) ?>
-            </span>
-        </td>
-        
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/polearm.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_polearm') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_POLEARM) ?>
-            </span>
-        </td>
-        
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/bow.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_bow') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_BOW) ?>
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/sword.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_sword') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_SWORD) ?>
-            </span>
-        </td>
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/staff.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_staff') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_STAFF) ?>
-            </span>
-        </td>
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/thrown.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_thrown') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_THROWN) ?>
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/axe.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_axe') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_AXE) ?>
-            </span>
-        </td>    
-        <td style="border-width: 0px;">  
-            <img src='<?= base_url() ?>images/items/whip.png'>
-        </td>
-        <td style="border-width: 0px;">  
-            <span class="label"><?= lang('character_skill_whip') ?>: </span>
-        </td>
-        <td style="border-width: 0px;" align="right">  
-            <span class="input">
-                <?= $char->getSkill(Character::CHAR_SKILL_WHIP) ?>
-            </span>
-        </td>    
-        <td style="border-width: 0px;"^colspan="3">&nbsp;</td>
-    </tr>
-
-</table>
-<?= to_the_top() ?>
-
-
-<h3><?= lang('magic_skills') ?></h3>
-<p>Sorry, this feature is not yet supported.</p>
-<?= to_the_top() ?>
-
-
-<h3><?= lang('crafting_skills') ?></h3>
-<p>Sorry, this feature is not yet supported.</p>
-<?= to_the_top() ?>
-
-
-
-<h3><?= lang('character_guild_member') ?></h3>
-
-<?php 
-    if ($char->isGuildMember())
-    { // the char is member in at least one guild... 
-?>
-    <p>
-        TODO: present a list of all guild memberships
-    </p>
-<?php 
-    } 
-    else 
-    {  // the char is not member in any guild... 
-?>
-    <p>
-        <?= lang('character_not_guild_member') ?>
-    </p>
-<?php 
-    } 
-?>
-
-
-<?= to_the_top() ?>
    

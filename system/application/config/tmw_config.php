@@ -32,6 +32,23 @@
 */
 $config['tmwserv_maps.xml'] = '/path/to/your/tmwserv/installation/maps.xml'; 
 
+/*
+|--------------------------------------------------------------------------
+| Items config file
+|--------------------------------------------------------------------------
+|
+| tmwweb tries to read the configured items.xml file shipped with tmwserv to
+| show the equipment and inventory of characters. Also it tries to copy the
+| images of the items into the ./images/items directory if the don't exist yet. 
+| Therfore you have to configure the absolute path, where the images are 
+| located. Normally, this is your tmwdata/trunk/graphics/items directory.
+|
+| Don't forget the trailing slash after the images directory!
+|
+*/
+$config['tmwserv_items.xml']    = '/path/to/your/tmwserv/installation/items.xml'; 
+$config['tmwserv_items_images'] = '/path/to/your/tmwdata/trunk/graphics/items/'; 
+
 
 /*
 |--------------------------------------------------------------------------

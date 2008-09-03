@@ -7,7 +7,8 @@ Contents
 2.  Configuration notes
 3.  Troubleshooting
 4.  Translations
-5.  Contact and support
+5.  Maintenance
+6.  Contact and support
 
 
 =============================================================================
@@ -54,10 +55,11 @@ All other files in the config directory shouldn`t get touched by you!
 
 
 After proper configuration of all files you have to ensure that the webserver 
-has write access to the ./system/logs and ./data directory. 
+has write access to the ./system/logs, the ./images/items and ./data directory. 
 
     chmod 777 ./system/logs
     chmod 777 ./data
+    chmod 777 ./images/items
     
 Tmwweb tries to store cached data read from other modules like tmwserv in the
 data directory for faster access. Therefore you should allow the webserver to 
@@ -116,7 +118,39 @@ To start with a new language there are two simple steps to do:
        
 =============================================================================
 
-5.  CONTACT AND SUPPORT
+5.  MAINTENANCE
+
+The intention of tmwweb is to be a slim, administrative frontend for tmwserv. 
+Therfore it is natural to use as much as data, information and configuration we
+can get from tmwserv. Because tmwserv makes extensive use of xml configuration
+files, which would be too expensive to parse on every page request, tmwweb uses
+different methods to cache those informations for faster access.
+
+From time to time, if the data in tmwserv was modified, a admin user has to
+refresh the caches of tmwweb. Therefor you can find a menuoption "maintance" 
+when logged in with an administrative account. This page shows you all caches
+and allows you to refresh them with a single click.
+
+items.xml
+---------
+Refreshing the items database is a bit special, thats why it is mentioned here
+additionally.
+To show the inventory of a character, the images of those items have to be
+available for a webbrowser. Therfore they have to reside somewhere
+under the DOCUMENT_ROOT of your webserver. To keep all things together, we 
+decided to store them under ./images/items. When refreshing the items database,
+tmwweb looks in that directory and compares the images located there to all 
+items in the database. If a image is missing, tmwweb tries to copy this image 
+from your tmwdata path, you can configure in tmw_config.php (see chapter 2).
+To copy those images, the webserver needs write permission to the images/items
+directory. If tmwweb can't find the image in the tmwdata directory is is not
+allowed to write to the ./images/items directory, the refresh procedure will 
+show you a list with all missing images. Then you will have to copy those 
+images yourself.
+
+=============================================================================
+
+6.  CONTACT AND SUPPORT
 
 For support please refer to the well know places like 
 Wiki:  http://wiki.themanaworld.org, the forum under

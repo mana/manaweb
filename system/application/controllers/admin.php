@@ -88,20 +88,23 @@ class Admin extends Controller {
         }
         
         $this->load->library('mapprovider');
+        $this->load->library('dalprovider');
         
         // execute the requested action
         $retmsg = null;
+        $params = array();
+        
         switch ($action)
         {
+            case 'reload_items.xml';
+                $retmsg = $this->_reload_items_file($params);
+                break;
             case 'reload_maps.xml':
-                $retmsg = $this->_reload_maps_file();
+                $retmsg = $this->_reload_maps_file($params);
                 break;
         }
         
-        $params = array(
-            'maps_file_age' => $this->mapprovider->getMapVersion(),
-            'action_result' => $retmsg
-        );        
+        $params['maps_file_age'] = $this->mapprovider->getMapVersion();
         
         $this->output->showPage(lang('maintenance_title'), 
             'admin/maintenance', $params);
@@ -219,12 +222,24 @@ class Admin extends Controller {
     /**
      * This function tries to reload the maps.xml from tmwserv and updates the
      * local cache.
-     * @return (String) Result of the function as message.
+     * @param[in,out] params (Array) Parameter that should be send to the view
      */
-    private function _reload_maps_file()
+    private function _reload_maps_file(& $params)
     {
         $this->mapprovider->load_maps_file();
-        return lang('maps_file_reloaded');
+        $params['action_result'] = lang('maps_file_reloaded');
+    }
+    
+    /**
+     * This function tries to reload the items.xml from tmwserv and updates the
+     * database table.
+     * @param[in,out] params (Array) Parameter that should be send to the view
+     */
+    private function _reload_items_file(& $params)
+    {
+        $retval = $this->dalprovider->refreshStorage();
+        $params['action_result']       = lang('items_file_reloaded');
+        $params['missing_item_images'] = $retval;
     }
     
 } // class Myaccount

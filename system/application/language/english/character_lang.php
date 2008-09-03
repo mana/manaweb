@@ -23,6 +23,9 @@
 
 $lang['character']                  = 'Character';
 $lang['character_statistics']       = 'Character statistics';
+$lang['character_inventory']        = 'Character inventory';
+$lang['character_equipment']        = 'Character equipment';
+$lang['character_administration']   = 'Character administration';
 $lang['weapon_skills']              = 'Weapon skills';
 $lang['magic_skills']               = 'Magic skills';
 $lang['crafting_skills']            = 'Crafting skills';

@@ -21,6 +21,8 @@
  *  $Id$
  */
 
+// load dependecies 
+require_once(APPPATH.'models/inventory'.EXT);
 
 /**
  * The caharcter model deals with all data according to a character.
@@ -112,6 +114,25 @@ class Character {
     ///////////////////////////////////////////////////////////////////////////
     
     /**
+     * This constant defines the exponent of the \a experienceForLevel function
+     * to determine the needed experience points to level up.
+     *
+     * @todo These values should be stored in a external config file to allow
+     *       tmwserv and tmwweb shared access to thoses constants.
+     */
+    const EXPCURVE_EXPONENT = 3;
+    /**
+     * This constant defines the factor of the \a experienceForLevel function
+     * to determine the needed experience points to level up.
+     *
+     * @todo These values should be stored in a external config file to allow
+     *       tmwserv and tmwweb shared access to thoses constants.
+     */
+    const EXPCURVE_FACTOR = 10;
+    
+    ///////////////////////////////////////////////////////////////////////////
+    
+    /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
@@ -120,6 +141,28 @@ class Character {
      * holds a reference to the database record.
      */
     private $char;
+    
+    /**
+     * Holds a reference to the \a Inventory model of the character. 
+     * This variable only gets initialized, when the method 
+     * \a Character::getInventory is called.
+     */ 
+    private $inventory;
+    
+    
+    /**
+     * This function returns the needed experience points for a character to 
+     * reach the given level. 
+     *
+     * @param level (int) Level the character wants to reach
+     * @return (int) Experience points a character needs to level up.
+     */
+    static function experienceForLevel($level)
+    {
+        return intval(pow($level, Character::EXPCURVE_EXPONENT) * 
+            Character::EXPCURVE_FACTOR);
+    }
+    
     
     /**
      * Constructor initializes a new instance of the Character model.
@@ -135,6 +178,7 @@ class Character {
         // therefore we cannot access $this->config directly
         $this->CI =& get_instance();
         $this->char = $record;
+        $this->inventory = null;
         
         // characters need informations about maps so load the mapprovider
         if (!isset($this->CI->mapprovider))
@@ -285,6 +329,36 @@ class Character {
     
     
     /**
+     * This function returns the inventory object of the character.
+     *
+     * @return (\a Inventory) Object of the character
+     */
+    public function getInventory()
+    {
+        if (!isset($this->inventory))
+        {
+            $this->inventory = new Inventory($this->char->id);
+        }
+        return $this->inventory;
+    }
+    
+    
+    
+    /** 
+     * This function computes the maximum weight the character can carry.
+     *
+     * @remarks This algorithm is taken from the 0.0.* branch, so maybe it 
+     *          changes in later implementations of the 0.1.* branch.
+     *
+     * @return (int) Maximum weight the character can carry.
+     */
+    public function getMaximumWeight()
+    {
+        return intval($this->getAttribute(Character::CHAR_ATTR_STRENGTH) * 100);
+    }
+    
+    
+    /**
      * This functions is used to check wheter a character is member of at least
      * one guild.
      *
@@ -294,7 +368,7 @@ class Character {
     public function isGuildMember()
     {
         $query = $this->CI->db->get_where('tmw_guild_members', 
-            array('member_name' => $this->char->name), 1);
+            array('member_id' => $this->char->id), 1);
             
         if ($query->num_rows() > 0)
         {

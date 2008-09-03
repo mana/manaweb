@@ -40,7 +40,10 @@
 |
 */
 
-$route['default_controller']  = "myaccount";
+$route['default_controller']           = "myaccount";
+$route['charcontroller/(:num)']        = "charcontroller/index/$1";
+$route['charcontroller/(:num)/(:any)'] = "charcontroller/index/$1/$2";
+
 $route['scaffolding_trigger'] = "tmwsecret";
 
 

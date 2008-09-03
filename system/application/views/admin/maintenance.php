@@ -7,6 +7,21 @@ stored data.</p>
 <? if (isset($action_result)) { ?>
 <p style="border: 1px solid black; padding:10px;">
     <strong><?= $action_result ?></strong>
+    <? if(isset($missing_item_images) && sizeof($missing_item_images) > 0) { ?>
+    <br />
+    <span style="color: red; font-weight: bold;">
+    For the following items, the image could not be found. Please update the
+    <tt>./images/items</tt> directory of your tmwweb installation.<br />
+    <tt>
+    <!--<ul>-->
+        <? foreach ($missing_item_images as $img) { 
+                echo $img . ", ";
+           }
+        ?>        
+    <!--</ul>-->
+    </tt>
+    </span>
+    <? } ?>
 </p>
 <? } ?>
 
@@ -37,6 +52,28 @@ stored data.</p>
                 <img src="<?= base_url() ?>images/view-refresh.png" 
                     style="vertical-align: middle"
                     title="Reload maps database"
+                    border="0">
+                </a>
+                &nbsp;
+            </span>    
+        </td>
+    </tr>    
+    <tr>
+        <td>  
+            <span class="label">items.xml</span>
+        </td>
+        <td>  
+            The file <tt>items.xml</tt> contains all known items of The Mana 
+            World. Tmwweb stores all itmes redundant in the database for a 
+            faster access.
+        </td>
+        <td></td>
+        <td>  
+            <span class="label">
+                <a href="<?= site_url('admin/maintenance/reload_items.xml') ?>">
+                <img src="<?= base_url() ?>images/view-refresh.png" 
+                    style="vertical-align: middle"
+                    title="Reload item database"
                     border="0">
                 </a>
                 &nbsp;

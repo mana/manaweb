@@ -54,6 +54,12 @@ class Menuprovider
      */
     private $CI;
     
+    /**
+     * Reference to the currently observed character if we should display
+     * a character menu.
+     */
+    private $char;
+    
     
     /**
      * Initialize a new instance of the Menuprovider.
@@ -69,6 +75,8 @@ class Menuprovider
         // navigation menu
         $this->CI->config->load( Menuprovider::CONFIG_FILE_NAME );    
         $this->static_links = $this->CI->config->config['tmw_static_links'];    
+        
+        $this->char = null;
     }
     
     /**
@@ -102,6 +110,38 @@ class Menuprovider
         {
             return null;
         }
+    }
+    
+    
+    /** 
+     * This function is called by the \a TMW_Output library to find out if 
+     * we should display the menu for characers or not.
+     *
+     * @return (Bool) \c true, if we look at character details, otherwise
+     *                \c false.
+     */
+    public function getCharMenu()
+    {
+        if (isset($this->char))
+        {
+            return $this->char;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
+    /**
+     * Sets the currently observed character and leads to displaying the 
+     * character menu at the right side.
+     *
+     * @param char (Object) Reference to the character object.
+     */
+    public function setChar(& $char)
+    {
+        $this->char = $char;
     }
     
 } // class Menuprovider

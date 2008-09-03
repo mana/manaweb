@@ -45,10 +45,25 @@ class Test extends Controller {
      */
     function index()
     {
+        $this->test_character_model();
         $this->test_guild_model();
         $this->test_membershipprovider();
         echo $this->unit->report();
     }
+    
+    
+    /**
+     * This function runs tests on character model library.
+     */
+    private function test_character_model()
+    {
+        require_once(APPPATH.'models/character'.EXT);
+        
+        $this->unit->run( Character::experienceForLevel(  5 ),  1250 );
+        $this->unit->run( Character::experienceForLevel( 10 ), 10000 );
+        $this->unit->run( Character::experienceForLevel( 15 ), 33750 );
+    } 
+    
     
     
     /**

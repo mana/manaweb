@@ -138,39 +138,6 @@ class Accountmanager extends Controller {
     }
     
     
-    /**
-     * This function is called from the character overview page and 
-     * leeds to the character details with a given character id.
-     * The function checks wheter the current user may see this details
-     * and forwards to the details view.
-     *
-     * @param id (int) Unique id of the character
-     */ 
-    public function character($id)
-    {
-        if (!$this->user->isAuthenticated())
-        {
-            return;
-        }
-        
-        $this->translationprovider->loadLanguage('character');
-        $this->load->library('mapprovider');
-        
-        // check if the user is the owner of this char
-        if (!$this->user->hasCharacter($id))
-        {
-           show_error(lang('character_view_forbidden'));
-        }        
-        
-        $params = array();
-        $char   = $this->user->getCharacter($id);
-        $params['char'] = $char;
-        
-        $this->output->showPage(lang('character').': '. $char->getName(), 
-            'tmwweb/character', $params);
-    }
-    
-    
     /** 
      * This function is called from the view settings and should
      * set a new password for the given user.

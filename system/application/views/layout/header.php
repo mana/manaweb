@@ -73,6 +73,27 @@
           </div>
          </div>
          
+         <? if (isset($character_menu)) { ?>
+         <div class="section_topleft">
+          <div class="section_bottomleft">
+           <div class="section_topright">
+            <div class="section_bottomright">
+             <div class="section">                
+               <ul>
+                    <li><?= $character_menu->getName() ?></li>
+                    <li><a href="<?= site_url('charcontroller/' . $character_menu->getId() ) ?>">Character sheet</a></li>
+                    <li><a href="<?= site_url('charcontroller/' . $character_menu->getId() ) ?>/skills">Skills</a></li>
+                    <li><a href="<?= site_url('charcontroller/' . $character_menu->getId() ) ?>/inventory">Inventory</a></li>
+                    <li><a href="<?= site_url('charcontroller/' . $character_menu->getId() ) ?>/guilds">Parties &amp; Guilds</a></li>
+                    <li><a href="<?= site_url('charcontroller/' . $character_menu->getId() ) ?>/admin">Administration</a></li>
+               </ul>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         <? } ?>
+         
          <? if (isset($user_menu) && $this->user->isAdmin()) { ?>
          <div class="section_topleft">
           <div class="section_bottomleft">

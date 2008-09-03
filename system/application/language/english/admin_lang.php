@@ -28,4 +28,7 @@ $lang['maintenance_title']    = 'Maintenance tasks';
 $lang['maps_file_reloaded']   = 'The maps.xml file has been reloaded. Local '
                               . 'database is now up to date!';
 
+$lang['items_file_reloaded']  = 'The items.xml file has been reloaded. Local '
+                              . 'database is now up to date!';
+                              
 ?>

@@ -2,6 +2,23 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-09-03  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/controllers/charcontroller.php, sa/views/tmwweb/character_*.php,
+    sa/views/layout/header.php: added charcontroller to display character data,
+    modified CodeIgniter routing tu support shorter urls, splitted char view
+    in multiple subpages, addded menu for browsing of subpages
+    * sa/controllers/myaccount.php: fixed errormessage on after wrong login 
+    * data/tmw.db: updated to current version of tmwserv
+    * sa/models/inventory.php: extended inventory model with constants from
+    tmwserv
+    * images/progress/*: added progressbar images and creation script as well 
+    as template graphics. To save cpu on the webserver, each possible state
+    (101) has been prepared as static image instead of building at runtime with
+    gd library. They can be recreated using the provided script 
+    ./images/progress/progressbar.php
+    * sa/views/tmwweb/character_inventory.php: addded inventory list
+    
 2008-09-02  Andreas Habel  <mail@exceptionfault.de>
 
     * heavyly modified all code comments to support documentation generation 

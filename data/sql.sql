@@ -73,15 +73,41 @@ INSERT INTO TMW_CHARACTERS VALUES(  1, 1, 'testuser',    0,     1,9, 1,  0,0,   
 INSERT INTO TMW_CHARACTERS VALUES(  2, 1, 'testuser2',   1,     1,9, 8,  0,0,  30100, 803,592,1, 11,11,11,11,11,11, 0,0,0,0,0,0,0,0,0,0,0 );
 INSERT INTO TMW_CHARACTERS VALUES(  3, 2, 'banned_char', 0,     1,9, 8,  0,0,   1500, 804,592,1, 10,10,10,10,10,10, 0,0,0,0,0,0,0,0,0,0,0 );
 
-CREATE TABLE tmw_inventories (
+--
+CREATE TABLE tmw_items 
+(
+    id           INTEGER  PRIMARY KEY,
+    name         TEXT     NOT NULL,
+    description  TEXT     NOT NULL,
+    image        TEXT     NOT NULL,
+    weight       INTEGER  NOT NULL,
+    itemtype     TEXT     NOT NULL,
+    effect       TEXT
+);
+
+--
+CREATE TABLE tmw_inventories 
+(
     id       INTEGER  PRIMARY KEY,
     owner_id INTEGER  NOT NULL,
     slot     INTEGER  NOT NULL,
     class_id INTEGER  NOT NULL,
     amount   INTEGER  NOT NULL,
-    FOREIGN KEY (owner_id) REFERENCES tmw_characters(id));
-    
-CREATE TABLE tmw_guilds (
+    FOREIGN KEY (owner_id) REFERENCES tmw_characters(id)
+    -- FOREIGN KEY (class_id) REFERENCES tmw_items(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_inventories_owner ON tmw_inventories ( owner_id );
+
+INSERT INTO TMW_INVENTORIES VALUES( 1, 1, 50, 2107,  1 );
+INSERT INTO TMW_INVENTORIES VALUES( 2, 1, 51,  619,  2 );
+INSERT INTO TMW_INVENTORIES VALUES( 3, 1, 51,  679,  1 );
+INSERT INTO TMW_INVENTORIES VALUES( 4, 1, 51,  569, 55 );
+
+
+--    
+CREATE TABLE tmw_guilds 
+(
     id      INTEGER     PRIMARY KEY,
     name    TEXT        NOT NULL UNIQUE
 );

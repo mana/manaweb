@@ -106,6 +106,8 @@ class Myaccount extends Controller {
             
             if( $res === false )
             {
+                $this->validation->error_string = 
+                    'The given username or password is incorrect.';
                 $params = array('has_errors' => true);
                 $this->output->showPage(lang('tmwweb_title'), 
                     'tmwweb/login_form', $params);
