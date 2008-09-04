@@ -13,12 +13,10 @@ stored data.</p>
     For the following items, the image could not be found. Please update the
     <tt>./images/items</tt> directory of your tmwweb installation.<br />
     <tt>
-    <!--<ul>-->
         <? foreach ($missing_item_images as $img) { 
                 echo $img . ", ";
            }
         ?>        
-    <!--</ul>-->
     </tt>
     </span>
     <? } ?>
@@ -28,9 +26,9 @@ stored data.</p>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
-        <th>Filename</th>
+        <th>Subject</th>
         <th>Description</th>
-        <th>local Version</th>
+        <th>Value</th>
         <th>Actions</th>
     </tr>
     <tr>
@@ -43,8 +41,9 @@ stored data.</p>
             character locations.
         </td>
         <td>
-            <span class="label"><?= date(lang('date_time_format'), 
-                $maps_file_age); ?></span>            
+            <span class="label">
+                <?= date(lang('date_time_format'), $maps_file_age); ?>
+            </span>            
         </td>
         <td>  
             <span class="label">
@@ -79,5 +78,23 @@ stored data.</p>
                 &nbsp;
             </span>    
         </td>
-    </tr>    
+    </tr>
+    <tr>
+        <td>
+            <span class="label">Errorlogs</span>
+        </td>
+        <td>  
+            CodeIgniter writes errors into daily rotating logfiles in a separate
+            directory. Here you can see how many logfiles have been written and
+            view these logfiles or simply clean up the directory.
+        </td>
+        <td>
+            Files: <?= $log_count ?>
+            <!-- number of logfiles -->
+        </td>
+        <td>  
+            <span class="label">
+            </span>    
+        </td>
+    </tr>        
 </table>

@@ -35,6 +35,13 @@
 class Admin extends Controller {
 
     /**
+     * This constant defines the format CodeIgniter writes its logfiles
+     * to the log_path directory. 
+     */
+    const LOGFILE_FORMAT = "/^log-\d{4}-\d{2}-\d{2}\.php$/";
+    
+    
+    /**
      * Initializes the Home controller.
      */
     function __construct()
@@ -105,6 +112,7 @@ class Admin extends Controller {
         }
         
         $params['maps_file_age'] = $this->mapprovider->getMapVersion();
+        $params = array_merge($params, $this->_count_error_logs());
         
         $this->output->showPage(lang('maintenance_title'), 
             'admin/maintenance', $params);
@@ -240,6 +248,49 @@ class Admin extends Controller {
         $retval = $this->dalprovider->refreshStorage();
         $params['action_result']       = lang('items_file_reloaded');
         $params['missing_item_images'] = $retval;
+    }
+    
+    
+    /** 
+     * This function looks into the error log directory and counts the number 
+     * and size of all error logs as well as the date of the first and the
+     * last file.
+     *
+     * @return (Array) Returns an array with the resulting file informations.
+     */
+    private function _count_error_logs()
+    {
+        $log_path = $this->config->item('log_path');
+        if (strlen($log_path) == 0)
+        {
+            $log_path = './system/logs';
+        } 
+        
+        $retval = array(
+            'log_count'     => 0, 
+            'logfile_size'  => 0,
+            'log_path'      => $log_path
+        );
+       
+        foreach(scandir($log_path) as $entry)
+        {
+            // skip directories and index.html file
+            if (is_dir($entry) && $entry == "index.html")
+            {
+                continue;
+            }
+                       
+            // check if the file is a logfile e.g. "log-2008-09-03.php"
+            if (preg_match(Admin::LOGFILE_FORMAT , $entry) > 0)
+            {
+                $retval['log_count']++;
+                /** todo: get the filesize and add to the array */
+                $retval['logfile_size'] += 0;
+                /** todo: get the mod date and compute oldest and newest file */
+                $retval['logfile_size'] += 0;
+            }
+        }
+        return $retval;
     }
     
 } // class Myaccount

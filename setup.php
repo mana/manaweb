@@ -39,19 +39,24 @@
         echo "<tr><td colspan=\"4\" style=\"background-color: #dbbba4;\"><strong>$name</strong></td></tr>\n";
     }
     
+    function print_message($msg)
+    {
+        echo "<tr><td colspan=\"4\"><em>$msg</em></td></tr>\n";
+    }
+    
     function check_file_exists($filename, $vital=true)
     {
         if (file_exists( $filename ))
         {
-            print_check( "Checking existance of file <tt>$filename</tt>", "ok" );
+            print_check( "Checking existence of file <tt>$filename</tt>", "ok" );
             return true;
         }
         else
         {
             if ($vital) {
-                print_check( "Checking existance of file <tt>$filename</tt>", "failed" );
+                print_check( "Checking existence of file <tt>$filename</tt>", "failed" );
             } else {
-                print_check( "Checking existance of file <tt>$filename</tt>", "warning" );
+                print_check( "Checking existence of file <tt>$filename</tt>", "warning" );
             }
             return false;
         }
@@ -62,7 +67,7 @@
     {
         if (!is_dir($directory))
         {
-            print_check( "Checking existance of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking existence of directory <tt>$directory</tt>", "failed" );
             return false;
         }
         try {
@@ -81,7 +86,7 @@
     {
         if (!is_dir($directory))
         {
-            print_check( "Checking existance of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking existence of directory <tt>$directory</tt>", "failed" );
             return false;
         }
         try {
@@ -176,6 +181,26 @@
         if (!check_file_exists($config['tmwserv_items.xml'])) return;
         if (!try_read_dir($config['tmwserv_items_images'])) return;
         
+        print_header("Checking database configuration and connection.");
+        require_once('./system/application/config/database.php');
+        
+        if ($db['default']['dbdriver'] != "pdo")
+        {
+            print_check( "Used database driver", "failed", $db['default']['dbdriver'], "pdo" );
+        }
+        else
+        {
+            print_check( "Used database driver", "ok", $db['default']['dbdriver'], "pdo" );
+        }
+        
+        if(substr($db['default']['database'], 0, 6) == "sqlite")
+        {
+            print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found sqlite as database backend...");
+        }
+        else
+        {
+            print_check( "Used database backend", "failed", $db['default']['database'], "sqlite" );
+        }
         
     }
     
