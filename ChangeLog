@@ -2,6 +2,13 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-10-16  Andreas Habel  <mail@exceptionfault.de>
+
+    * setup.php: enhanced the validation of the installation parameters and 
+    added more detailed descriptions to the found problems
+    * sa/models/character.php: fixed retrieving of character skills according 
+    new database layout of tmwserv
+
 2008-09-03  Andreas Habel  <mail@exceptionfault.de>
 
     * sa/controllers/charcontroller.php, sa/views/tmwweb/character_*.php,

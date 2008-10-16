@@ -21,7 +21,7 @@
  *  $Id$
  */
 
-    function print_check( $msg, $result, $required="", $state="" )
+    function print_check( $msg, $result, $required="", $state="", $ann="" )
     {
         echo "
             <tr>
@@ -30,6 +30,15 @@
                 <td>$state</td>
                 <td width=\"50\" class=\"$result\">" . strtoupper($result) . "</td>
             </tr>\n";
+            
+        if (strlen($ann) > 0)
+        {
+	        echo "
+            <tr>
+                <td colspan=\"3\" style=\"padding-left: 15px;\">$ann</td>
+                <td>&nbsp;</td>
+            </tr>\n";
+        }
         ob_flush();
         flush();
     } 
@@ -44,9 +53,9 @@
         echo "<tr><td colspan=\"4\"><em>$msg</em></td></tr>\n";
     }
     
-    function check_file_exists($filename, $vital=true)
+    function check_file_exists($filename, $annotation="", $vital=true)
     {
-        if (file_exists( $filename ))
+        if (file_exists($filename))
         {
             print_check( "Checking existence of file <tt>$filename</tt>", "ok" );
             return true;
@@ -54,20 +63,21 @@
         else
         {
             if ($vital) {
-                print_check( "Checking existence of file <tt>$filename</tt>", "failed" );
+                print_check( "Checking existence of file <tt>$filename</tt>", "failed", "", "", $annotation );
             } else {
-                print_check( "Checking existence of file <tt>$filename</tt>", "warning" );
+                print_check( "Checking existence of file <tt>$filename</tt>", "warning", "", "", $annotation );
             }
             return false;
         }
     }
     
     
-    function try_read_dir($directory)
+    function try_read_dir($directory, $annotation="")
     {
         if (!is_dir($directory))
         {
-            print_check( "Checking existence of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking existence of directory <tt>$directory</tt>", "failed", "", "",
+            	"<strong><tt>$directory</tt> is not a valid directory.</strong><br />" . $annotation);
             return false;
         }
         try {
@@ -76,17 +86,19 @@
             return true;
         } catch(Exception $e)
         {
-            print_check( "Checking read permissions of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking read permissions of directory <tt>$directory</tt>", "failed", "", "",
+            	"<strong>The webserver cannot read the contents of the directory <tt>$directoy</tt>. Please check permissions!</strong><br />" . $annotation);
             return false;
         }
     }
     
     
-    function try_write_dir($directory)
+    function try_write_dir($directory, $annotation="")
     {
         if (!is_dir($directory))
         {
-            print_check( "Checking existence of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking existence of directory <tt>$directory</tt>", "failed", "", "",
+            	"<strong><tt>$directory</tt> is not a valid directory.</strong><br />" . $annotation);
             return false;
         }
         try {
@@ -99,7 +111,8 @@
             print_check( "Checking write permissions of directory <tt>$directory</tt>", "ok" );
             return true;
         } catch(Exception $e) {
-            print_check( "Checking write permissions of directory <tt>$directory</tt>", "failed" );
+            print_check( "Checking write permissions of directory <tt>$directory</tt>", "failed", "", "",
+            	"<strong>The webserver cannot write to directory <tt>$directoy</tt>. Please check permissions!</strong><br />" . $annotation);
             return false;
         }
             
@@ -112,14 +125,18 @@
         // check version of php, should be >= 5.1
         if (intval(substr(PHP_VERSION, 0, 1)) < 4)
         {
-            print_check( "checking version of PHP", "failed", ">= 5.1", PHP_VERSION );
+            print_check( "checking version of PHP", "failed", ">= 5.1", PHP_VERSION,
+            	"Your installed Version of PHP doesn't match the requirements. ".
+            	"Please update to a least 5.1"  );
             return;
         }
         else
         {
             if (intval(substr(PHP_VERSION, 2, 1)) < 1)
             {
-                print_check( "checking version of PHP", "failed", ">= 5.1", PHP_VERSION );
+                print_check( "checking version of PHP", "failed", ">= 5.1", PHP_VERSION,
+                "Your installed Version of PHP doesn't match the requirements. ".
+            	"Please update to a least 5.1" );
                 return;
             }
             else
@@ -130,56 +147,122 @@
         
         // check existence of config files
         print_header("Checking existance of config files");
-        if (!check_file_exists('system/application/config/config.php')) return;
-        if (!check_file_exists('system/application/config/database.php')) return;
-        if (!check_file_exists('system/application/config/email.php')) return;
         
-        if (!check_file_exists('system/application/config/tmw_config.user.php', false)) return;  
-         
-        // try to write to directories
-        print_header("Checking directory permissions");
-        if (!try_write_dir("./data")) return;
-        if (!try_write_dir("./system/logs")) return;
-        if (!try_write_dir("./images/items")) return;
-        
+        if (!check_file_exists('system/application/config/config.php',
+        	"This configuration  file is the basic configuration of your Account Manager installation and is therefore ".
+        	"vital for any further step. You can find a template for the configuation file called <tt>config.default.php</tt> ".
+        	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>config.php</tt> and ".
+        	"make your modifications.")) return;
+        	
+        	
         // requiring config file
         define('BASEPATH', '.');
         require('./system/application/config/config.php');
+        print_message("File ./system/application/config/config.php loaded.");
         
+        
+        if (!check_file_exists('system/application/config/database.php',
+        	"This configuration file determines which database system you are using for tmwserv and/or the account manager and ".
+        	"how we can connect to this database. You can find a template for the configuation file called <tt>database.default.php</tt> ".
+        	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>database.php</tt> and ".
+        	"make your modifications.")) return;
+        
+        
+        if (!check_file_exists('system/application/config/email.php',
+        	"To be able to send emails to the user, you have to configure which method should be used. ".
+        	"You can find a template for the configuation file called <tt>email.default.php</tt> ".
+        	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>email.php</tt> and ".
+        	"make your modifications.")) return;
+        
+        if (!check_file_exists('system/application/config/tmw_config.user.php', 
+        	"The account manager has a tight integration into tmwserv and shares lots of files and parameters with it. You have to ".
+        	"configure some paths and options to make integration work properly. To not lose your configuration when upgrading ".
+        	"to a new release of tmwweb, you should make a copy of the file <tt>tmw_config.php</tt> in the directory ".
+        	"<tt>system/application/config</tt> and name it <tt>tmw_config.user.php</tt>. Tmwweb will first read the shipped ".
+        	"file and then overrides them with all settings you have changed in you config file.")) return;  
+
+        	
+        // try to write to directories
+        print_header("Checking directory permissions");
+        if (!try_write_dir("./data",
+        	"This directory is used by tmwweb to store cached item or map informations, so make sure it is writeable by the webserver.")) return;
+        	
+        // checking wheter a custom logpath is set
+        if (strlen($config['log_path']) > 0)
+        {
+        	$logdir = $config['log_path'];
+        }
+        else
+        {
+            $logdir = "./system/logs";
+        }
+        
+        if (!try_write_dir($logdir,
+        	"According to your configured parameter <tt>log_threshold</tt> in the <tt>config.php</tt> file, tmwweb will ".
+        	"log debug or error messages to this directory.")) return;
+        	
+        if (!try_write_dir("./images/items",
+        	"To be able to display item images, these images have to be available under your http document root.".
+        	"The account manager can copy all required images into the mentioned path during caching of the items database.")) return;
+        
+        // checking wheter a custom cachepath is set
+        if (strlen($config['cache_path']) > 0)
+        {
+            $cachedir = $config['cache_path'];
+        }
+        else
+        {
+            $cachedir = "./system/cache";
+        }
+        if (!try_write_dir($cachedir, 
+        	"To increase performance of page rendering, tmwweb is able to cache static content for faster access. The directory " .
+        	"therefore needs to be writeable by the webserver to store caching information.")) return;
+        	
+        	        
         // checking config options
-        print_header("Checking options in file <tt>./system/application/config/config.php</tt>");
+        print_header("Checking basci configuration options");
         if ($config['base_url'] == "http://example.com/tmwweb/")
         {   
-            print_check( "parameter <tt>base_url</tt>", "failed" );
+            print_check( "parameter <tt>base_url</tt>", "failed", "", "",
+            	"This option is necessary to build correct internal links. Please set this parameter to the correct root of ".
+            	"your tmwweb installation." );
             return;
         }
         else
         {
             print_check( "parameter <tt>base_url</tt>", "ok" );
         }
-        
-        // checking wheter a custom logpath is set
-        if (strlen($config['log_path']) > 0)
-        {
-            if (!try_write_dir($config['log_path'])) return;
-        }
-        // checking wheter a custom cachepath is set
-        if (strlen($config['cache_path']) > 0)
-        {
-            if (!try_write_dir($config['cache_path'])) return;
-        }
+      
         
         // checking tmw_options
-        print_header("Checking options in file <tt>./system/application/config/tmw_config(.user).php</tt>");
+        print_header("Checking tmwweb specific configuration.");
         require_once('./system/application/config/tmw_config.php');
+        print_message("File ./system/application/config/tmw_config.php loaded.");
         if (file_exists('./system/application/config/tmw_config.user.php'))
         {
             require_once('./system/application/config/tmw_config.user.php');
+            print_message("File ./system/application/config/tmw_config.user.php loaded.");
         }
         
-        if (!check_file_exists($config['tmwserv_maps.xml'])) return;
-        if (!check_file_exists($config['tmwserv_items.xml'])) return;
-        if (!try_read_dir($config['tmwserv_items_images'])) return;
+        
+        if (!check_file_exists($config['tmwserv_maps.xml'],
+        	"The Account manager tries to read the maps.xml file shipped with tmwserv to show the current location of characters ".
+        	"as human readable string.")) return;
+        	
+        	
+        if (!check_file_exists($config['tmwserv_items.xml'],
+        	"The Account manager tries to read the items.xml file shipped with tmwserv to show the equipment and inventory of characters. ".
+        	"It also tries to copy the images of the items into the ./images/items directory if they don't exist yet. ".
+        	"Therfore you have to configure the absolute path, where the images are located. Normally, this is your ".
+        	"tmwdata/trunk/graphics/items directory." )) return;
+        
+        
+        if (!try_read_dir($config['tmwserv_items_images'],
+        	"The Account manager tries to read the items.xml file shipped with tmwserv to show the equipment and inventory of characters. ".
+        	"It also tries to copy the images of the items into the ./images/items directory if they don't exist yet. ".
+			"Therfore you have to configure the absolute path, where the images are located. Normally, this is your ".
+			"tmwdata/trunk/graphics/items directory." )) return;
+			
         
         print_header("Checking database configuration and connection.");
         require_once('./system/application/config/database.php');

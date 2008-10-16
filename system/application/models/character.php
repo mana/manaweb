@@ -88,28 +88,32 @@ class Character {
      * Constants for character experiences 
      */
      
+    /** Number of first available skill to loop over all attributes. */
+    const CHAR_SKILL_MIN       = 1;
     /** Skill for unarmed fights */
-    const CHAR_SKILL_NONE      = "unarmed_exp";
+    const CHAR_SKILL_NONE      = Character::CHAR_SKILL_MIN;
     /** Skill for fighting with knifes */
-    const CHAR_SKILL_KNIFE     = "knife_exp"; 
+    const CHAR_SKILL_KNIFE     = 2; 
     /** Skill for fighting with swords */
-    const CHAR_SKILL_SWORD     = "sword_exp";
+    const CHAR_SKILL_SWORD     = 3;
     /** Skill for fighting with polearms */
-    const CHAR_SKILL_POLEARM   = "polearm_exp";
+    const CHAR_SKILL_POLEARM   = 4;
     /** Skill for fighting with staffs */
-    const CHAR_SKILL_STAFF     = "staff_exp";
+    const CHAR_SKILL_STAFF     = 5;
     /** Skill for fighting with a whip */
-    const CHAR_SKILL_WHIP      = "whip_exp";
+    const CHAR_SKILL_WHIP      = 6;
     /** Skill for shooting with bows */
-    const CHAR_SKILL_BOW       = "bow_exp";
+    const CHAR_SKILL_BOW       = 7;
     /** Skill for shooting */
-    const CHAR_SKILL_SHOOTING  = "shoot_exp";
+    const CHAR_SKILL_SHOOTING  = 8;
     /** Skill for fighting with maces */
-    const CHAR_SKILL_MACE      = "mace_exp";
+    const CHAR_SKILL_MACE      = 9;
     /** Skill for fighting with axes */
-    const CHAR_SKILL_AXE       = "axe_exp";
+    const CHAR_SKILL_AXE       = 10;
     /** Skill for throwing weapons */
-    const CHAR_SKILL_THROWN    = "thrown_exp";
+    const CHAR_SKILL_THROWN    = 11;
+    /** Number of last available skill to loop over all attributes. */
+    const CHAR_SKILL_MAX       = Character::CHAR_SKILL_THROWN;
     
     ///////////////////////////////////////////////////////////////////////////
     
@@ -149,6 +153,11 @@ class Character {
      */ 
     private $inventory;
     
+    /**
+     * Array storing all experiences of a character.
+     */
+    private $skills;
+    
     
     /**
      * This function returns the needed experience points for a character to 
@@ -179,6 +188,8 @@ class Character {
         $this->CI =& get_instance();
         $this->char = $record;
         $this->inventory = null;
+        $this->skills = array();
+        
         
         // characters need informations about maps so load the mapprovider
         if (!isset($this->CI->mapprovider))
@@ -311,7 +322,7 @@ class Character {
      */
     public function getAttribute($attribute)
     {
-        return $this->char->$attribute;
+	    return $this->char->$attribute;
     }
 
     
@@ -323,9 +334,28 @@ class Character {
      * @return (int) Skill value.
      */    
     public function getSkill($skill)
-    {
-        return $this->char->$skill;
-    }
+	{
+		// attributes are not initialized yet, do it now!
+		if (sizeof($this->skills) == 0)
+		{
+			$query = $this->CI->db->get_where('tmw_char_skills', 
+			array('char_id' => $this->char->id));
+
+			if ($query->num_rows() > 0)
+			{
+				foreach ($query->result() as $row)
+				{
+					$this->skills[$row->skill_id] = $row->skill_exp;
+				}
+			}
+		}
+	
+		if (isset($this->skills[$skill]))
+		{
+			return $this->skills[$skill];
+		}
+		return 0;
+	}
     
     
     /**
