@@ -112,6 +112,19 @@
          </div>
          <? } ?>
          
+         <div class="section_topleft">
+          <div class="section_bottomleft">
+           <div class="section_topright">
+            <div class="section_bottomright">
+             <div class="section">                
+               <ul><li>ManaBay</li><li><a href="<?= site_url('manabay') ?>">Auctions</a></li>
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+         
+         
 
        <!-- This empty div fixes a rendering issue with IE 7 -->
        <div></div>

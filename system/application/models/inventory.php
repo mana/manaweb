@@ -27,10 +27,10 @@
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup models
  */ 
-class Inventory {
+class Inventory 
+{
 
     /**
      * Name of the inventories table
@@ -63,6 +63,21 @@ class Inventory {
      */
     private $equipment;
     
+    ///////////////////////////////////////////////////////////////////////////
+    // Constants defining item categories
+    
+    const ITEM_TYPE_ONEHAND = "equip-1hand";
+	const ITEM_TYPE_TWOHAND = "equip-2hand";
+	const ITEM_TYPE_AMMO    = "equip-ammo";
+	const ITEM_TYPE_ARMS    = "equip-arms";
+	const ITEM_TYPE_FEET    = "equip-feet";
+	const ITEM_TYPE_HEAD    = "equip-head";
+	const ITEM_TYPE_LEGS    = "equip-legs";
+	const ITEM_TYPE_RING    = "equip-ring";
+	const ITEM_TYPE_SHIELD  = "equip-shield";
+	const ITEM_TYPE_TORSO   = "equip-torso";
+	const ITEM_TYPE_GENERIC = "generic";
+	const ITEM_TYPE_USABLE  = "usable";
 
     ///////////////////////////////////////////////////////////////////////////
     // Constants defining inventory slots

@@ -101,15 +101,18 @@ class Dalprovider
                 continue;
             }
             
+            $img = $this->parseImage($item->attributes()->image);
+            
             // try to update existing 
             $data = array(
                 'id'          => intval($item->attributes()->id),
                 'name'        => strval($item->attributes()->name),
                 'description' => strval($item->attributes()->description),
-                'image'       => $this->parseImage($item->attributes()->image),
+                'image'       => strval($img[0]),
                 'weight'      => intval($item->attributes()->weight),
                 'itemtype'    => strval($item->attributes()->type),
-                'effect'      => strval($item->attributes()->effect)
+                'effect'      => strval($item->attributes()->effect),
+                'dyestring'   => strval($img[1])
             );
             
             $db->insert(Inventory::ITEMS_TBL, $data);
@@ -157,6 +160,7 @@ class Dalprovider
      */
     private function parseImage($img)
     {
+	    $split = array("", "");
         // example string from items.xml
         // "armor-chest-tnecksweater.png|W:#665522,ccbb33,ffffaa"
         // we have to look after the pipe...
@@ -165,13 +169,15 @@ class Dalprovider
         $pos = strpos($img, "|");
         if ($pos === false)
         {
-            return strval($img);
+            $split[0] = $img;
         }
         else
         {
-            return strval(substr($img, 0, $pos));
+	        $split[0] = strval(substr($img, 0, $pos));
+            $split[1] = strval(substr($img, $pos + 1));
         }
         
+        return $split;
     }
     
 } // class DalProvider

@@ -154,8 +154,8 @@ class Server_statistics extends Model {
     {
         // as the statements get more complex its easier and more efficient to
         // write statements per dbsystem individually 
-        if (stripos($this->db->database, 'sqlite') === 0 ||
-            stripos($this->db->database, 'mysql') === 0 )
+        if (($this->db->dbdriver == 'pdo') ||
+            ($this->db->dbdriver ==  'mysql' ))
         {
             // should work for mysql and sqlite
             $sql = "SELECT g.ID AS ID, "
@@ -199,8 +199,8 @@ class Server_statistics extends Model {
     {
         // as the statements get more complex its easier and more efficient to
         // write statements per dbsystem individually 
-        if (stripos($this->db->database, 'sqlite') === 0 ||
-            stripos($this->db->database, 'mysql') === 0 )
+        if (($this->db->dbdriver == 'pdo') ||
+            ($this->db->dbdriver ==  'mysql' ))
         {
             // should work for mysql and sqlite
             $sql = "SELECT c.ID AS ID, " 

@@ -288,6 +288,7 @@ class User extends Model {
      * This function is used to delete all data of a user with the given 
      * userid.
      *
+     * @bug also delete from tmw_char_skills
      * @param userid (int) Id of the user to delete
      */
     public function deleteUser($userid)
@@ -310,6 +311,8 @@ class User extends Model {
             'where owner_id in ( ' .
             '   select id from tmw_characters where user_id = ' . $userid 
             . ' )' );
+            
+         
             
         // delete characters
         $this->db->delete('tmw_characters', array('user_id' => $userid));     

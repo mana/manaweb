@@ -49,6 +49,20 @@ $config['tmwserv_maps.xml'] = '/path/to/your/tmwserv/installation/maps.xml';
 $config['tmwserv_items.xml']    = '/path/to/your/tmwserv/installation/items.xml'; 
 $config['tmwserv_items_images'] = '/path/to/your/tmwdata/trunk/graphics/items/'; 
 
+/*
+|--------------------------------------------------------------------------
+| Image dyeing
+|--------------------------------------------------------------------------
+|
+| Some images defined in the items.xml file are stored as greyscaled images
+| to be able to colorize them in different colors. As the GD library shipped
+| with PHP has some problems with non-true-color images, tmwweb needs an 
+| external tool that dyes the images for tmwweb. You can find this tool 
+| called dyecmd in version controll under tmw\trunk\tools\dyecmd.
+|
+*/
+$config['tmwserv_enable_dyecmd'] = false;
+$config['tmwserv_dyecmd']        = '/path/to/your/dyecmd/tool';
 
 /*
 |--------------------------------------------------------------------------

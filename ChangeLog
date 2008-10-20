@@ -2,6 +2,17 @@
 # annotations: the path sa/ is used as shortcut to system/application for
 # readability
 #
+2008-10-20  Andreas Habel  <mail@exceptionfault.de>
+
+    * sa/config/menu.php, sa/config/tmw_config.php, sa/controllers/itemslist.php,
+    as/libraries/Dalprovider.php, sa/libraries/Imageprovider.php,
+    sa/models/inventory.php, sa/views/tmwweb/item_list.php: Added item reference 
+    according to the current items.xml
+    * sa/models/server_statistics.php: Fixed statistics page when using mysql
+    * sa/models/user.php: noted a bug when deleting a character, has to be done
+    * sa/views/layout/header.php: Extended navigation to include the manabay in
+    some days
+
 2008-10-16  Andreas Habel  <mail@exceptionfault.de>
 
     * setup.php: enhanced the validation of the installation parameters and 
