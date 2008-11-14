@@ -18,6 +18,10 @@
         $this->user->isBanned());
    }
 ?>
+This account is registered since <strong><?= date(lang('date_time_format'), 
+    $this->user->getRegistrationDate()) ?></strong>. Your last login was 
+    <strong><?= date(lang('date_time_format'), 
+    $this->user->getLastLogin()) ?></strong>.
 </p>
 
 

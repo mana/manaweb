@@ -1,6 +1,45 @@
 <h3>Item dictionary</h3>
 	<table style="border-width: 0px; margin-bottom: 0px;">
 		<tr>
+			<td colspan="3">You can search an item by its name... </td>
+		</tr>
+		
+	    <?php if (isset($result_items)) { 
+              if ($result_items === false) { ?>
+	    <tr>
+	        <td colspan="3" style="border: 1px solid #660000; font-weight: bold;
+	            color: #660000;">
+	            Sorry, your search returns no rows.
+	        </td>
+	    </tr>
+	    <? }} ?>
+	    
+	    
+		<? $attributes = array('name'=>'searchItem', 'id'=>'TMWsearchItem');
+	    echo form_open('itemslist/search_item', $attributes); ?>
+		<tr>
+			<td colspan="3" style="border-width: 0px; margin-bottom: 0px;">
+				<table style="border-width: 0px; margin-bottom: 0px;">
+					<tr>
+				        <td style="border-width: 0px;">  
+				            <input type="text" size="30" tabindex="1" value="" id="TMWSearchItem" 
+				                title="Enter a item name" name="TMWSearchItem">
+				        </td>
+				        <td style="border-width: 0px;">  
+				            <input type="submit" tabindex="2" value="Search" 
+				                id="TMWsubmit" title="Search" name="TMWsearch">
+				        </td>
+				    </tr>
+				</table>
+			</td>
+		</tr>
+		<?= form_close(); ?>
+		
+		
+		<tr>
+			<td colspan="3">... or by its category: </td>
+		</tr>
+		<tr>
 			<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
 				<strong>Weapons</strong><br />
 				<ul>
@@ -55,7 +94,17 @@
     <tr>
         <td><img src="<?= $imageprovider->getItemImage($item->id, $item->image, $item->dyestring) ?>"></td>
         <td>
-        	<strong><?= $item->name ?></strong><br />
+        	<strong><?
+        	if (isset($result_items))
+        	{
+	        	echo str_replace($searchstring, 
+	        		'<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
+            		$item->name);
+        	}
+        	else
+        	{
+        		echo $item->name;
+    		} ?></strong><br />
         	<em><?= $item->description ?></em>
         </td>
         <td align="right"><?= $item->weight ?></td>
@@ -64,3 +113,10 @@
     <? } ?>
 </table>
 <? } ?>
+
+<script type="text/javascript">
+<!--
+    // set the focus to the search field
+    document.searchItem.TMWSearchItem.focus();
+//-->
+</script>

@@ -66,44 +66,34 @@ class Inventory
     ///////////////////////////////////////////////////////////////////////////
     // Constants defining item categories
     
-    const ITEM_TYPE_ONEHAND = "equip-1hand";
-	const ITEM_TYPE_TWOHAND = "equip-2hand";
-	const ITEM_TYPE_AMMO    = "equip-ammo";
-	const ITEM_TYPE_ARMS    = "equip-arms";
-	const ITEM_TYPE_FEET    = "equip-feet";
-	const ITEM_TYPE_HEAD    = "equip-head";
-	const ITEM_TYPE_LEGS    = "equip-legs";
-	const ITEM_TYPE_RING    = "equip-ring";
-	const ITEM_TYPE_SHIELD  = "equip-shield";
-	const ITEM_TYPE_TORSO   = "equip-torso";
-	const ITEM_TYPE_GENERIC = "generic";
-	const ITEM_TYPE_USABLE  = "usable";
+    const ITEM_TYPE_ONEHAND = "equip-1hand";   /**< Item equipped in one hand */
+	const ITEM_TYPE_TWOHAND = "equip-2hand";   /**< Item equipped in two hands */
+	const ITEM_TYPE_AMMO    = "equip-ammo";    /**< Item used as ammo, e.g. bolts or arrows. */
+	const ITEM_TYPE_ARMS    = "equip-arms";    /**< Item worn at the arms. */ 
+	const ITEM_TYPE_FEET    = "equip-feet";    /**< Item worn at the feets. */
+	const ITEM_TYPE_HEAD    = "equip-head";    /**< Item worn at the head. */
+	const ITEM_TYPE_LEGS    = "equip-legs";    /**< Item worn at the legs. */
+	const ITEM_TYPE_RING    = "equip-ring";    /**< Item worn at the fingers. */
+	const ITEM_TYPE_SHIELD  = "equip-shield";  /**< Item worn as shield in one hand. */
+	const ITEM_TYPE_TORSO   = "equip-torso";   /**< Item worn at the torso. */
+	const ITEM_TYPE_GENERIC = "generic";       /**< A generic item. */
+	const ITEM_TYPE_USABLE  = "usable";        /**< A usable item like food or potions. */
 
     ///////////////////////////////////////////////////////////////////////////
     // Constants defining inventory slots
     
-    /** Item equipped at the breast */
-    const EQUIP_TORSO_SLOT = 0;
-    /** Item equipped at the arms */
-    const EQUIP_ARMS_SLOT = 1;
-    /** Item equipped on the head */
-    const EQUIP_HEAD_SLOT = 2;
-    /** Item equipped at the legs */
-    const EQUIP_LEGS_SLOT = 3;
-    /** Item equipped on the feets */
-    const EQUIP_FEET_SLOT = 4;
-    /** Item equipped at the left hand */
-    const EQUIP_RING1_SLOT = 5;
-    /** Item equipped at the right hand */
-    const EQUIP_RING2_SLOT = 6;
-    /** Item equipped at the neck */
-    const EQUIP_NECKLACE_SLOT = 7;
-    /** Item equipped in the left hand */
-    const EQUIP_FIGHT1_SLOT = 8;
-    /** Item equipped in the right hand */
-    const EQUIP_FIGHT2_SLOT = 9;
-    /** Item equipped as projectile for bows e.g. arrows or bolts */
-    const EQUIP_PROJECTILE_SLOT = 10;
+    const EQUIP_TORSO_SLOT      =  0;          /**< Item equipped at the breast */
+    const EQUIP_ARMS_SLOT       =  1;          /**< Item equipped at the arms */
+    const EQUIP_HEAD_SLOT       =  2;          /**< Item equipped on the head */
+    const EQUIP_LEGS_SLOT       =  3;          /**< Item equipped at the legs */
+    const EQUIP_FEET_SLOT       =  4;          /**< Item equipped on the feets */
+    const EQUIP_RING1_SLOT      =  5;          /**< Item equipped at the left hand */
+    const EQUIP_RING2_SLOT      =  6;          /**< Item equipped at the right hand */
+    const EQUIP_NECKLACE_SLOT   =  7;          /**< Item equipped at the neck */
+    const EQUIP_FIGHT1_SLOT     =  8;          /**< Item equipped in the left hand */
+    const EQUIP_FIGHT2_SLOT     =  9;          /**< Item equipped in the right hand */
+    const EQUIP_PROJECTILE_SLOT = 10;          /**< Item equipped as projectile for bows e.g. arrows or bolts */
+    
     /** 
      * Defines the number of the last slot for equipped icons. Larger slots 
      * mean, that the item is in the inventory of the character.

@@ -288,7 +288,7 @@ class User extends Model {
      * This function is used to delete all data of a user with the given 
      * userid.
      *
-     * @bug also delete from tmw_char_skills
+     * @bug: delete bids on deleted auctions.
      * @param userid (int) Id of the user to delete
      */
     public function deleteUser($userid)
@@ -300,22 +300,39 @@ class User extends Model {
         
         // first delete records from child tables via subselects
         
+        // delete quest states of characters
+        $this->db->query( 'delete from tmw_quests ' .
+            'where owner_id in ( ' .
+            '   select id from tmw_characters where user_id = ' . $userid 
+            . ' )' );
+            
         // delete guild memberships
         $this->db->query( 'delete from tmw_guild_members ' .
             'where member_name in ( ' .
             '   select name from tmw_characters where user_id = ' . $userid 
             . ' )' );
-            
+        
         // delete inventory of characters
         $this->db->query( 'delete from tmw_inventories ' .
             'where owner_id in ( ' .
             '   select id from tmw_characters where user_id = ' . $userid 
             . ' )' );
-            
-         
-            
+        
+        // delete inventory of characters
+        $this->db->query( 'delete from tmw_char_skills ' .
+            'where char_id in ( ' .
+            '   select id from tmw_characters where user_id = ' . $userid 
+            . ' )' );
+
+        // delete auctions started by the player
+        $this->db->query( 'delete from tmw_auctions ' .
+            'where char_id in ( ' .	
+            '   select id from tmw_characters where user_id = ' . $userid 
+            . ' )' );
+        // bug: delete bids on deleted auctions
+        
         // delete characters
-        $this->db->delete('tmw_characters', array('user_id' => $userid));     
+        $this->db->delete('tmw_characters', array('user_id' => $userid));
         
         // lastly delete account
         $this->db->delete(User::ACCOUNT_TBL, array('id' => $userid)); 
@@ -529,6 +546,28 @@ class User extends Model {
         }
     }
     
+    /** 
+     * This function returns the registration date of the account as 
+     * unixtimestamp.
+     *
+     * @return int Unixtimestamp of the account registration
+     */
+    public function getRegistrationDate()
+    {
+        return intval($this->getUser()->registration);
+    }
+        
+    
+    /** 
+     * This function returns the date of the last login into this account using
+     * the Mana World client.
+     *
+     * @return int Unixtimestamp of the last login.
+     */
+    public function getLastLogin()
+    {
+        return intval($this->getUser()->lastlogin);
+    }    
     
     
 } // class User

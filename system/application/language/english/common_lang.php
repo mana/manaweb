@@ -29,9 +29,10 @@ $lang['go_up']            = 'go up';
 
 
 
-$lang['date_time_format'] = 'd-m-Y H:i';
-$lang['date_format']      = 'd-m-Y';
-$lang['time_format']      = 'H:i';
+$lang['date_time_format']     = 'd-m-Y H:i';
+$lang['date_time_format_sec'] = 'd-m-Y H:i:s';
+$lang['date_format']          = 'd-m-Y';
+$lang['time_format']          = 'H:i';
 
 
 ?>

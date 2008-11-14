@@ -74,7 +74,7 @@ All characters form a purchasing power of
 
 
 <h3>The top 10 Characters on the mana world</h3>
-<? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
+<? if ($stats[Server_statistics::CHARACTER_TOPTEN] === false ) { ?>
     <p>Sorry, there are currently no characters alive.</p>
 <? } else { ?>    
 <table class="datatable">
@@ -92,6 +92,6 @@ All characters form a purchasing power of
         <td><?= $char->USERNAME ?></td>
         <td align="right"><?= $char->LEVEL ?></td>
     </tr>
-    <?php } ?>    
+    <?php } ?>
 </table>
-<?php } ?>    
+<?php } ?>

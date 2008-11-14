@@ -48,6 +48,8 @@ class Itemslist extends Controller
         );
         
         $this->load->library("Imageprovider");
+        $this->load->helper('form');
+        $this->load->library('validation');
         
         $this->_initCategoryStats();
     }
@@ -61,6 +63,51 @@ class Itemslist extends Controller
         $this->output->showPage( 'Item dictionary', 'tmwweb/item_list',
             array("ctrl" => $this));
     }
+    
+    
+    /** 
+     * This function is called by the view item_list if a user wants to search
+     * an item by its name.
+     */
+    public function search_item()
+    {
+        // the searchfield has to contain at least one character
+        $rules['TMWSearchItem']  = "required|min_length[1]";
+        $this->validation->set_rules($rules);
+        if ($this->validation->run() == false)
+        {
+        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list',
+            array("ctrl" => $this));
+            return;
+        }
+        
+        // search for the given account name
+        // even if active record has a method ->like we write the code on our
+        // own due to a bug which does wrong quoting in the searchstring... :(
+        $search = '%' . $this->input->post('TMWSearchItem') . '%';
+        
+        $this->db->where('name LIKE \'' . $search . '\'');
+        $this->db->order_by('name');
+        $res = $this->db->get('tmw_items');
+        
+        if ($res->num_rows() > 0)
+        {
+            $param = array(
+                'result_items'   => true,
+                'itemslist'      => $res->result(),
+                'searchstring'   => $this->input->post('TMWSearchItem'),
+                'imageprovider'  => $this->imageprovider
+            );
+        }
+        else
+        {
+            $param = array('result_items' => false);
+        }
+        
+        $params = array_merge( array("ctrl" => $this), $param );
+        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list', $params);
+    }
+    
     
     /**
      * This function is called by the item_list view to load a list of all
