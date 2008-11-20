@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 
@@ -79,15 +77,36 @@ class Admin extends Controller {
         
         $this->output->showPage(lang('admin_title'), 'admin/main');
     }
-    
-    
+
+    /**
+     * Shows a character sheet.
+     * @param <type> $id Show the character with the given id.
+     */
+    public function show_character($id)
+    {
+        if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
+        {
+            return;
+        }
+        $this->translationprovider->loadLanguage('character');
+        $this->load->library('mapprovider');
+        
+        $params = array();
+        $char   = $this->user->getCharacter($id);
+        $params['char'] = $char;
+        $page = 'admin/character';
+
+        $this->output->showPage(lang('character').': '. $char->getName(),
+            $page, $params);
+    }
+
     /**
      * This function is called by the maintenance view if the user requests to
      * execute a maintenance task.
      *
      * @param action (String) Action that should be executed,
      */
-    public function maintenance($action=null)
+    public function maintenance($action=null, $param=null)
     {
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
         {
@@ -103,11 +122,20 @@ class Admin extends Controller {
         
         switch ($action)
         {
-            case 'reload_items.xml';
+            case 'reload_item_images';
                 $retmsg = $this->_reload_items_file($params);
                 break;
             case 'reload_maps.xml':
                 $retmsg = $this->_reload_maps_file($params);
+                break;
+            case 'list_logfiles':
+                $retmsg = $this->_load_logfiles($params);
+                break;
+            case 'show_log':
+                $retmsg = $this->_show_logfile($params, $param);
+                break;
+            case 'delete_log':
+                $retmsg = $this->_delete_logfile($params, $param);
                 break;
         }
         
@@ -249,7 +277,78 @@ class Admin extends Controller {
         $params['action_result']       = lang('items_file_reloaded');
         $params['missing_item_images'] = $retval;
     }
-    
+
+    /**
+     * Returns a list of all logfiles written by CodeIgniter.
+     * @param[in,out] params (array) Parameter that should be send to the view
+     */
+    private function _load_logfiles(& $params)
+    {
+        $params['action_result']       = "";
+        $params['show_logfiles']       = true;
+
+        $retval = $this->_count_error_logs();
+        $params['logfiles'] = $retval['logfiles'];
+    }
+
+    /**
+     * Shows a logfile from the log directory of CodeIgniter
+     * @param[in,out] params (array) Parameter that should be send to the view
+     * @param filename (string) filename to show
+     */
+    private function _show_logfile(& $params, $filename)
+    {
+        // determine the directory of logfiles
+        $log_path = $this->config->item('log_path');
+        if (strlen($log_path) == 0)
+        {
+            $log_path = './system/logs';
+        }
+        if (is_file($log_path . "/" . $filename))
+        {
+            $msg = "";
+            ob_start();
+            readfile($log_path . "/" . $filename);
+
+            $params['log_content'] = ob_get_contents();
+            ob_end_clean();
+        }
+        else
+        {
+            $msg = "Error: The logfile <tt>" . $filename . "</tt> was not found.";
+        }
+
+        $this->_load_logfiles($params);
+        $params['action_result'] = $msg;
+    }
+
+    /**
+     * Deletes a logfile from the log directory of CodeIgniter
+     * @param[in,out] params (array) Parameter that should be send to the view
+     * @param filename (string) filename to delete
+     */
+    private function _delete_logfile(& $params, $filename)
+    {
+        // determine the directory of logfiles
+        $log_path = $this->config->item('log_path');
+        if (strlen($log_path) == 0)
+        {
+            $log_path = './system/logs';
+        }
+
+        if (is_file($log_path . "/" . $filename))
+        {
+            $msg = "The logfile <tt>" . $filename . "</tt> has been deleted.";
+            unlink($log_path . "/" . $filename);
+        }
+        else
+        {
+            $msg = "Error: The logfile <tt>" . $filename . "</tt> was not found.";
+        }
+
+        $this->_load_logfiles($params);
+        $params['action_result'] = $msg;
+    }
     
     /** 
      * This function looks into the error log directory and counts the number 
@@ -265,13 +364,17 @@ class Admin extends Controller {
         {
             $log_path = './system/logs';
         } 
-        
+
+        $files = array();
         $retval = array(
             'log_count'     => 0, 
             'logfile_size'  => 0,
-            'log_path'      => $log_path
+            'log_path'      => $log_path,
+            'min_date'      => null,
+            'max_date'      => null,
+            'logfiles'      => null
         );
-       
+
         foreach(scandir($log_path) as $entry)
         {
             // skip directories and index.html file
@@ -284,12 +387,29 @@ class Admin extends Controller {
             if (preg_match(Admin::LOGFILE_FORMAT , $entry) > 0)
             {
                 $retval['log_count']++;
-                /** todo: get the filesize and add to the array */
-                $retval['logfile_size'] += 0;
-                /** todo: get the mod date and compute oldest and newest file */
-                $retval['logfile_size'] += 0;
+
+                $filesize = filesize($log_path . "/" . $entry);
+                $retval['logfile_size'] += $filesize;
+
+                // compute oldest and newest modification date of logfiles
+                $mtime = filemtime($log_path . "/" . $entry);
+                if (!isset($retval['min_date']))
+                {
+                    $retval['min_date'] = $mtime;
+                    $retval['max_date'] = $mtime;
+                }
+                else
+                {
+                    if ($mtime < $retval['min_date'])
+                        $retval['min_date'] = $mtime;
+                    if ($mtime > $retval['max_date'])
+                        $retval['max_date'] = $mtime;
+                }
+
+                $files[] = array('filename'=>$entry, 'filesize'=>$filesize, 'filedate'=>$mtime);
             }
         }
+        $retval['logfiles'] = $files;
         return $retval;
     }
     

@@ -99,11 +99,12 @@
     </tr>
     <?php foreach ($result_character as $char) { ?>
     <tr>
-        <td align="right"><?= $char->getId() ?></td>
-        <td><?= str_replace( 
+        <td align="right"><a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>"><?= $char->getId() ?></a></td>
+        <td><a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>">
+            <?= str_replace(
             $searchstring, 
             '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
-            $char->getName()) ?></td>
+            $char->getName()) ?></a></td>
         <td><?= $char->getUsername() ?></td>
         <td align="center"><?= $char->getGender('image') ?></td>
         <td align="right"><?= $char->getLevel() ?></td>

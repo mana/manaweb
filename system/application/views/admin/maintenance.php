@@ -4,7 +4,7 @@ directory for fast and reliable access. If you made modifications to the
 original data (maybe in tmwserv), it is necessary to have tmwweb to refresh its 
 stored data.</p>
 
-<? if (isset($action_result)) { ?>
+<? if (isset($action_result) && strlen($action_result) > 0 ) { ?>
 <p style="border: 1px solid black; padding:10px;">
     <strong><?= $action_result ?></strong>
     <? if(isset($missing_item_images) && sizeof($missing_item_images) > 0) { ?>
@@ -59,17 +59,17 @@ stored data.</p>
     </tr>    
     <tr>
         <td>  
-            <span class="label">items.xml</span>
+            <span class="label">item graphics</span>
         </td>
         <td>  
-            The file <tt>items.xml</tt> contains all known items of The Mana 
-            World. Tmwweb stores all itmes redundant in the database for a 
-            faster access.
+            The database table <code>tmw_items</code> contains all known items
+            of The Mana World. Use this function to copy all images provided
+            by the client data to a directory accessible to the webserver.
         </td>
         <td></td>
         <td>  
             <span class="label">
-                <a href="<?= site_url('admin/maintenance/reload_items.xml') ?>">
+                <a href="<?= site_url('admin/maintenance/reload_item_images') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png" 
                     style="vertical-align: middle"
                     title="Reload item database"
@@ -88,13 +88,71 @@ stored data.</p>
             directory. Here you can see how many logfiles have been written and
             view these logfiles or simply clean up the directory.
         </td>
-        <td>
-            Files: <?= $log_count ?>
+        <td nowrap>
             <!-- number of logfiles -->
+            Files: <?= $log_count ?>
+            <?php if ($log_count > 0) { ?>
+            <br />
+            <!-- size in kilobytes of logfiles -->
+            Size: <?= round( $logfile_size / 1024 ) ?> kB<br />
+            <!-- daterange -->
+            Oldest log: <?= date(lang('date_format'), $min_date) ?> <br />
+            Latest log: <?= date(lang('date_format'), $max_date) ?>
+            <?php } ?>
         </td>
-        <td>  
+        <td>
+            <?php if ($log_count > 0) { ?>
             <span class="label">
-            </span>    
+                <a href="<?= site_url('admin/maintenance/list_logfiles#loglist') ?>">
+                <img src="<?= base_url() ?>images/ico-src.png"
+                    style="vertical-align: middle"
+                    title="List logfiles"
+                    border="0">
+                </a>
+                
+            </span>
+            <?php } ?>&nbsp;
         </td>
-    </tr>        
+    </tr>
+    <?php if (isset($show_logfiles) && $log_count > 0) { ?>
+    <tr>
+        <td colspan="4">
+            <a name="loglist"></a>
+            <table class="datatable">
+                <tr>
+                    <th>Logfile</th>
+                    <th>Size</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+                <?php foreach ($logfiles as $logfile) { ?>
+                <tr>
+                    <td><?= $logfile['filename'] ?></td>
+                    <td align="right"><?= round( $logfile['filesize'] / 1024 ) ?> kB</td>
+                    <td><?= date(lang('date_time_format'), $logfile['filedate'] ) ?></td>
+                    <td><a href="<?= site_url("admin/maintenance/delete_log/" . $logfile['filename']) ?>">
+                            <img src="<?= base_url() ?>images/edit-delete.png"
+                                 style="vertical-align: middle"
+                                 title="delete logfile"
+                                 border="0">
+                        </a>
+                        <a href="<?= site_url("admin/maintenance/show_log/" . $logfile['filename']) ?>">
+                            <img src="<?= base_url() ?>images/edit-delete.png"
+                                 style="vertical-align: middle"
+                                 title="show logfile"
+                                 border="0">
+                        </a>
+                    </td>
+                </tr>
+                    <?php if (isset($log_content)) { ?>
+                    <!-- display logfile content -->
+                    <tr>
+                        <td colspan="4"><tt><?= nl2br($log_content) ?></tt></td>
+                    </tr>
+                    <?php } ?>
+                <?php } ?>
+            </table>
+        </td>
+    </tr>
+    <?php } ?>
 </table>

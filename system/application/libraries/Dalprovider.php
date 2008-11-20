@@ -68,8 +68,8 @@ class Dalprovider
 
     
     /** 
-     * This function loads the \c items.xml file, parses it, and refreshs the
-     * stored items in the tmw_items database table for faster access.
+     * This function loads all known items \c form the tmw_items table
+     * and refreshs the locally stores item images
      */
     public function refreshStorage()
     {
@@ -77,108 +77,47 @@ class Dalprovider
         {
             show_error('The file ' . $this->items_file . ' was not found.');
         }
-        
-        $db =& $this->CI->db;
-        $db->query("BEGIN TRANSACTION");
-        $db->query("DELETE FROM ".Inventory::ITEMS_TBL);
-        
+
         // this is used as return message
         $retval = array();
+
+        // this should no longer be necessary as tmwserv refreshs the
+        // item storage on startup!
+
+        $db =& $this->CI->db;
+        $query = $db->get("tmw_items");
         
-        $items = simplexml_load_file($this->items_file);
-        foreach ($items->item as $item) {
-            
-            // filter item ids < 0
-            if (!isset($item->attributes()->id) || $item->attributes()->id < 0)
-            {
-                continue;
-            }
-            
-            // filter items that have no name and no image
-            if (!isset($item->attributes()->name) || 
-                !isset($item->attributes()->image))
-            {
-                continue;
-            }
-            
-            $img = $this->parseImage($item->attributes()->image);
-            
-            // try to update existing 
-            $data = array(
-                'id'          => intval($item->attributes()->id),
-                'name'        => strval($item->attributes()->name),
-                'description' => strval($item->attributes()->description),
-                'image'       => strval($img[0]),
-                'weight'      => intval($item->attributes()->weight),
-                'itemtype'    => strval($item->attributes()->type),
-                'effect'      => strval($item->attributes()->effect),
-                'dyestring'   => strval($img[1])
-            );
-            
-            $db->insert(Inventory::ITEMS_TBL, $data);
+        foreach ($query->result() as $item)
+        {
             
             // check if the corresponding image is available to tmwweb
-            if (!file_exists("./images/items/" . $data['image']))
+            if (!file_exists("./images/items/" . $item->image))
             {
                 // try to copy the image
-                if (file_exists($this->images_dir . $data['image']))
+                if (file_exists($this->images_dir . $item->image))
                 {
-                    $res = copy($this->images_dir . $data['image'], 
-                        "images/items/" . $data['image']);
+                    $res = copy($this->images_dir . $item->image,
+                        "images/items/" . $item->image);
                         
                     // copy failed
                     if (!$res)
                     {
-                        $retval[] = $data['image'];
+                        $retval[] = $item->image;
                     }
                 }
                 else
                 {
-                    if (!in_array($data['image'], $retval))
+                    if (!in_array($item->image, $retval))
                     {
-                        $retval[] = $data['image'];
+                        $retval[] = $item->image;
                     }
                 }
             }
         }
         
-        // commit if successful
-        $db->query("COMMIT");
-        
-        
         return $retval;
         
     } // public function refreshStorage()
-    
-    
-    /** 
-     * This function scans the string given in the image attribute of the 
-     * items.xml file and tries to extract the image name.
-     *
-     * @param img (String) Value of image attribute from items.xml file
-     * @return (String) Name of the image
-     */
-    private function parseImage($img)
-    {
-	    $split = array("", "");
-        // example string from items.xml
-        // "armor-chest-tnecksweater.png|W:#665522,ccbb33,ffffaa"
-        // we have to look after the pipe...
-        
-        // get position of | in the string
-        $pos = strpos($img, "|");
-        if ($pos === false)
-        {
-            $split[0] = $img;
-        }
-        else
-        {
-	        $split[0] = strval(substr($img, 0, $pos));
-            $split[1] = strval(substr($img, $pos + 1));
-        }
-        
-        return $split;
-    }
     
 } // class DalProvider
 

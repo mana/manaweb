@@ -152,6 +152,13 @@ class Character {
      * \a Character::getInventory is called.
      */ 
     private $inventory;
+
+    /**
+     * Database record representing the owning user of this character.
+     * This variable only gets initialized, when the method
+     * \a Character::getUsername() or \a Character::getOwner() is called.
+     */
+    private $user;
     
     /**
      * Array storing all experiences of a character.
@@ -188,6 +195,7 @@ class Character {
         $this->CI =& get_instance();
         $this->char = $record;
         $this->inventory = null;
+        $this->user = null;
         $this->skills = array();
         
         
@@ -219,16 +227,30 @@ class Character {
         return $this->char->name;
     }
     
-    
+    /**
+     * Returns the owner of the character.
+     * @return (object) Owner of the character.
+     */
+    public function getOwner()
+    {
+        if (!isset($this->user))
+        {
+            $query = $this->CI->db->get_where('tmw_accounts',
+                array('id' => $this->char->user_id), 1);
+			$this->user = $query->result();
+            $this->user = $this->user[0];
+        }
+        return $this->user;
+    }
+
     /**
      * This function returns the username of the account owning the character.
      * Normally, this column is not available as it is not present in the
      * characters table. But if the character model is initialized with a
      * resultset of a join between characters and accounts this property can
-     * return the name of the user. 
+     * return the name of the user.
      *
-     * @todo  think about if we should load the username in case it is not 
-     *        included in the initializing record instead of returning null
+     * @return (string) Username of the owning player.
      */
     public function getUsername()
     {
@@ -236,7 +258,10 @@ class Character {
         {
             return $this->char->username;
         }
-        return null;
+        else
+        {
+            return $this->getOwner()->username;
+        }
     }
     
     
@@ -292,8 +317,7 @@ class Character {
     {
         if ($format == 'string')
         {
-            return number_format($this->char->money, 0, ".", ",");
-            
+            return number_format($this->char->money, 0, ".", ",");            
         }
         else
         {

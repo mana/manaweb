@@ -22,6 +22,7 @@
  */
 
 $lang['character']                  = 'Character';
+$lang['character_owner']            = 'Owner';
 $lang['character_statistics']       = 'Character statistics';
 $lang['character_inventory']        = 'Character inventory';
 $lang['character_equipment']        = 'Character equipment';
@@ -61,5 +62,7 @@ $lang['character_skill_thrown']     = 'Thrown';
 $lang['character_not_guild_member'] = "Your character is not a member of any guild.";
 $lang['character_view_forbidden']   = "You are not permittet to show the details of this char.";
 $lang['character_back']             = 'back to the account page';
+
+$lang['administrative_tasks']       = "Administrative tasks";
 
 ?>
