@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
  
 /**
@@ -53,9 +51,6 @@ class Imageprovider
      * If the image is a dyed version of a grayscaled image, the function 
      * checks the image cache and if not present, dyes the image and caches the
      * result.
-     *
-     * @todo Implement configuration parameter to define command line tool for 
-     *       image dyeing.
      *
      * @param itemid Unique id of the item, used to build the name of the cached image.
      * @param image  Filename of the original image.

@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 
@@ -82,12 +80,21 @@ class Statistics extends Controller {
             "  FROM tmw_characters " .
             " GROUP BY GENDER " .
             " ORDER BY GENDER " );
-         
-        $data = array();   
-        foreach ($res->result() as $gender)
+        
+        // initialize data array if no characters exist yet
+        if ($res->num_rows() == 0)
         {
-            $data[$gender->GENDER] = $gender->AMNT;
+            $data = array(0 => 1, 1 => 1);
         }
+        else
+        {
+            $data = array();
+            foreach ($res->result() as $gender)
+            {
+                $data[$gender->GENDER] = $gender->AMNT;
+            }
+        }
+            
         $p1 = new PiePlot3D($data);
         
         $p1->SetEdge(); 

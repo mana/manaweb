@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
  
 require_once(APPPATH.'models/character'.EXT);
@@ -36,13 +34,6 @@ class User extends Model {
      * Name of the accounts table
      */
     const ACCOUNT_TBL = 'tmw_accounts';
-    
-
-    /** 
-     * Account level determining the user is banned
-     */
-    const LEVEL_BANNED = 0;    
-    
     
     /**
      * The user model holds an instance to the curently logged in user.
@@ -136,8 +127,7 @@ class User extends Model {
         else
         {
             // check if the userlevel has a sufficient value
-            if ($this->current_user->level >= 
-                $this->config->item('tmwweb_admin_level'))
+            if ($this->current_user->level & AL_ADMIN)
             {
                 $this->is_admin = true;
                 return true;
@@ -160,7 +150,7 @@ class User extends Model {
     public function isBanned()
     {
         if ($this->current_user->banned > time() || 
-            $this->current_user->level == User::LEVEL_BANNED)
+            $this->current_user->level & AL_BANNED)
         {
             return $this->current_user->banned;
         }
@@ -202,7 +192,7 @@ class User extends Model {
         }
         
         // compare levels with explicit type conversion!
-        if ($this->current_user->level >= intval($rights[$right]['level']))
+        if ($this->current_user->level & intval($rights[$right]['group']))
         {
             return true;
         }
@@ -376,7 +366,9 @@ class User extends Model {
      * If parameter $level is \c null, the function takes the level from the 
      * currently logged in user. If this is also \c null, maybe there is no one
      * logged id, value 0 is assumed.
-     * 
+     *
+     * @todo: need to return an array of groups, cause a user can be member of
+     * more then only one group
      * @param  level (int) Level to identify the corresponding name for
      * @return (String) Human readable translation of the level
      */
@@ -392,7 +384,7 @@ class User extends Model {
             }
             else
             {
-                $level = 0;
+                $level = AL_BANNED;
             }            
         }
         
@@ -403,15 +395,9 @@ class User extends Model {
         // loop through levels
         foreach ($levels as $lvl)
         {
-            if ($lvl['min'] <= $level)
+            if ($lvl['byte'] & $level)
             {
                $levelstring = $lvl['name'];
-            }
-            else
-            {
-                // we assume the list of levels is orderd. so after the first
-                // level that doesn`t match we can stop
-                return $levelstring;
             }
         }
         return $levelstring;

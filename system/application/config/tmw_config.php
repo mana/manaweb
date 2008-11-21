@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 /*
@@ -132,26 +130,36 @@ $config['tmw_enable_profiler'] = false;
 | The table tmw_accounts has a level column, that shows the priviledged level
 | of a user. To visualize the level of a user in the management area, there
 | should be names for each levels or ranges of levels.
-| Each range should be defined as array with a minimium value and a description
-| of the level. The given minimum level is included in the range.
 |
-| All ranges should be defined from smallest to highest!
+| A normal player would have permissions of 1
+| A tester would have permissions of 3 (AL_PLAYER | AL_TESTER)
+| A dev would have permissions of 7 (AL_PLAYER | AL_TESTER | AL_DEV)
+| A gm would have permissions of 11 (AL_PLAYER | AL_TESTER | AL_GM)
+| A admin would have permissions of 255 (*)
 |
 | see tmwserv/src/defines.h
-| enum
-| {
-|     AL_BANNED =  0,     < This user is currently banned.
-|     AL_NORMAL = 10,     < User has regular rights.
-|     AL_GM     = 50,     < User can perform a subset of administrator tasks.
-|     AL_ADMIN  = 99      < User can perform administrator tasks.
-| };
+|    AL_BANNED =   0,     < This user is currently banned.
+|    AL_PLAYER =   1,     < User has regular rights.
+|    AL_TESTER =   2,     < User can perform testing tasks.
+|    AL_DEV    =   4,     < User is a developer and can perform dev tasks
+|    AL_GM     =   8,     < User is a moderator and can perform mod tasks
+|    AL_ADMIN  =  128     < User can perform administrator tasks.
 |
 */
+define('AL_BANNED',   0);
+define('AL_PLAYER',   1);
+define('AL_TESTER',   2);
+define('AL_DEV',      4);
+define('AL_GM',       8);
+define('AL_ADMIN',  128 );
+
 $_tmw_levels = array( 
-    array( 'min'=>  0, 'name'=>'banned User'   ),
-    array( 'min'=> 10, 'name'=>'User'          ),
-    array( 'min'=> 50, 'name'=>'GM'            ),
-    array( 'min'=> 99, 'name'=>'Administrator' )
+    array( 'byte'=> AL_BANNED, 'name'=>'banned User'   ),
+    array( 'byte'=> AL_PLAYER, 'name'=>'Player'        ),
+    array( 'byte'=> AL_TESTER, 'name'=>'Tester'        ),
+    array( 'byte'=> AL_DEV,    'name'=>'Developer'     ),
+    array( 'byte'=> AL_GM,     'name'=>'GM'            ),
+    array( 'byte'=> AL_ADMIN,  'name'=>'Administrator' )
 );
 
 $config['tmw_account_levels'] = $_tmw_levels;
@@ -171,30 +179,28 @@ $config['tmw_account_levels'] = $_tmw_levels;
 | "tmwadmin_level" defines the minimum level to have access to the tmwweb admin
 | interface. It just enables the link in the menu and gives no other rights.
 */
-$config['tmwweb_admin_level'] = 50;
-
 $config['tmwweb_admin_permissions'] = array(
 
     // needed level to see a list of all accounts
-    'see_account_list'          => array( 'level' => 50 ),
+    'see_account_list'          => array( 'group' => AL_ADMIN ),
     
     // needed level to see a list of all characters
-    'see_character_list'        => array( 'level' => 50 ),
+    'see_character_list'        => array( 'group' => AL_ADMIN ),
     
     // needed level to reset a password of an account
-    'reset_account_password'    => array( 'level' => 50 ),
+    'reset_account_password'    => array( 'group' => AL_ADMIN ),
     
     // needed level to ban an account for a given time
-    'ban_account'               => array( 'level' => 50 ),
+    'ban_account'               => array( 'group' => AL_ADMIN ),
     
     // needed level to unban an account for a given time
-    'unban_account'             => array( 'level' => 50 ),
+    'unban_account'             => array( 'group' => AL_ADMIN ),
     
     // needed level to modify the level of an account
-    'modify_account_level'      => array( 'level' => 99 ),
+    'modify_account_level'      => array( 'group' => AL_ADMIN ),
     
     // needed level to delete an account
-    'delete_account'            => array( 'level' => 99 )
+    'delete_account'            => array( 'level' => AL_ADMIN )
 );
 
 

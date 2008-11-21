@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 // load dependecies 
@@ -34,53 +32,18 @@ require_once(APPPATH.'models/inventory'.EXT);
  */ 
 class Character {
 
-    /**
-     * Name of the characters table
-     */
-    const CHARACTER_TBL = 'tmw_characters';
-    
-    /** 
-     * Defines constant for male characters
-     */
-    const GENDER_MALE   = 0;
-    
-    /**
-     * Defines constant for female characters
-     */
-    const GENDER_FEMALE = 1;
-    
+    const CHARACTER_TBL = 'tmw_characters';     /**< Name of the characters table */
+    const GENDER_MALE   = 0;                    /**< Defines constant for male characters */
+    const GENDER_FEMALE = 1;                    /**< Defines constant for female characters */
     
     // character attributes ///////////////////////////////////////////////////
     
-    /**
-     * Constant for character attribute STRENGTH 
-     */
-    const CHAR_ATTR_STRENGTH = "str";
-    
-    /**
-     * Constant for character attribute AGILITY
-     */
-    const CHAR_ATTR_AGILITY  = "agi";
-
-    /**
-     * Constant for character attribute DEXTERITY
-     */
-    const CHAR_ATTR_DEXTERITY  = "dex";
-
-    /**
-     * Constant for character attribute VITALITY
-     */
-    const CHAR_ATTR_VITALITY  = "vit";
-
-    /**
-     * Constant for character attribute INTELLIGENCE
-     */
-    const CHAR_ATTR_INTELLIGENCE  = "int";
-    
-    /**
-     * Constant for character attribute INTELLIGENCE
-     */
-    const CHAR_ATTR_WILLPOWER  = "will";
+    const CHAR_ATTR_STRENGTH = "str";           /**< Constant for character attribute STRENGTH */
+    const CHAR_ATTR_AGILITY  = "agi";           /**< Constant for character attribute AGILITY */
+    const CHAR_ATTR_DEXTERITY  = "dex";         /**< Constant for character attribute DEXTERITY */
+    const CHAR_ATTR_VITALITY  = "vit";          /**< Constant for character attribute VITALITY */
+    const CHAR_ATTR_INTELLIGENCE  = "int";      /**< Constant for character attribute INTELLIGENCE */
+    const CHAR_ATTR_WILLPOWER  = "will";        /**< Constant for character attribute WILLPOWER */
 
     // character experiences //////////////////////////////////////////////////
 
@@ -120,17 +83,11 @@ class Character {
     /**
      * This constant defines the exponent of the \a experienceForLevel function
      * to determine the needed experience points to level up.
-     *
-     * @todo These values should be stored in a external config file to allow
-     *       tmwserv and tmwweb shared access to thoses constants.
      */
     const EXPCURVE_EXPONENT = 3;
     /**
      * This constant defines the factor of the \a experienceForLevel function
      * to determine the needed experience points to level up.
-     *
-     * @todo These values should be stored in a external config file to allow
-     *       tmwserv and tmwweb shared access to thoses constants.
      */
     const EXPCURVE_FACTOR = 10;
     
@@ -215,8 +172,7 @@ class Character {
     {
         return $this->char->id;
     }
-    
-    
+        
     /**
      * This function returns the name of the character.
      * 
@@ -262,8 +218,7 @@ class Character {
         {
             return $this->getOwner()->username;
         }
-    }
-    
+    }    
     
     /**
      * This function returns the level of the character.
@@ -324,8 +279,7 @@ class Character {
             return intval($this->char->money);
         }
     }
-    
-    
+        
     /** 
      * This function returns the map, the character is located on.
      *
@@ -335,8 +289,7 @@ class Character {
     {
         return $this->CI->mapprovider->getMap($this->char->map_id);
     }
-    
-    
+        
     /** 
      * This function returns the attribute value of the character.
      * Use the constants Character::CHAR_ATTR_* as input of this function.
@@ -348,7 +301,6 @@ class Character {
     {
 	    return $this->char->$attribute;
     }
-
     
     /** 
      * This function returns a skill value of the character.
@@ -381,7 +333,6 @@ class Character {
 		return 0;
 	}
     
-    
     /**
      * This function returns the inventory object of the character.
      *
@@ -395,9 +346,7 @@ class Character {
         }
         return $this->inventory;
     }
-    
-    
-    
+        
     /** 
      * This function computes the maximum weight the character can carry.
      *
@@ -410,8 +359,7 @@ class Character {
     {
         return intval($this->getAttribute(Character::CHAR_ATTR_STRENGTH) * 100);
     }
-    
-    
+        
     /**
      * This functions is used to check wheter a character is member of at least
      * one guild.
@@ -432,8 +380,7 @@ class Character {
         {
             return false;
         };
-    }
-        
+    }        
 }
 
 ?>

@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 
@@ -27,7 +25,6 @@
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup tmwweb models
  */ 
 class Guild {
@@ -99,8 +96,7 @@ class Guild {
      */
     static function getGuild($id)
     {
-        $CI  =& get_instance();
-        $res = $CI->db->get_where( Guild::GUILD_TBL,
+        $res = $this->CI->db->get_where( Guild::GUILD_TBL,
             array('id' => $id));
             
         if ($res->num_rows() > 0)
@@ -136,13 +132,25 @@ class Guild {
     
     /**
      * This function returns a list with all members of the guild.
-     * @todo implement this function when updated sqlite db is available
-     * @return (Array) Returns Array with all members of the guild
+     * 
+     * @return (Array) Returns Array with all members_ids of the guild and their
+     *                 current rights.
      */
     public function getMembers()
     {
-        //TODO: implement when new db is available
-        return array();
+        $res = $this->CI->db->get_where( Guild::GUILD_MEMBER_TBL,
+            array('guild_id' => $this->getId()));
+
+        $members = array();
+        if ($res->num_rows() > 0)
+        {
+            foreach($res->result() as $member)
+            {
+                $members[] = array( 'member_id' => $member['member_id'],
+                    'rights' => $member['rights'] );
+            }
+        }
+        return $members;
     }
     
         

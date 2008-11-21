@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
     function print_check( $msg, $result, $required="", $state="", $ann="" )
@@ -103,16 +101,22 @@
         }
         try {
             // try to create file and write to it
-            $fp = fopen($directory."/tempfile.tmp", "w+" );
-            fputs($fp, "content");
-            fclose($fp);
-            unlink($directory."/tempfile.tmp"); 
+            $fp = @fopen($directory."/tempfile.tmp", "w+" );
+            @fputs($fp, "content");
+            @fclose($fp);
+
+            if (!is_file($directory."/tempfile.tmp"))
+            {
+                throw new Exception();
+            }
+
+            @unlink($directory."/tempfile.tmp");
             
             print_check( "Checking write permissions of directory <tt>$directory</tt>", "ok" );
             return true;
         } catch(Exception $e) {
             print_check( "Checking write permissions of directory <tt>$directory</tt>", "failed", "", "",
-            	"<strong>The webserver cannot write to directory <tt>$directoy</tt>. Please check permissions!</strong><br />" . $annotation);
+            	"<strong>The webserver cannot write to directory <tt>$directory</tt>. Please check permissions!</strong><br />" . $annotation);
             return false;
         }
             
