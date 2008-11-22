@@ -11,11 +11,21 @@
    </ul>   
 </p>
 
-<p>Your current state is <strong><?= $levelstring ?></strong>.
+<p>
 <? if ($this->user->isBanned())
    {
-       echo "Your account is banned until ". date(lang('date_time_format'), 
+       echo "Your account is banned until ". date(lang('date_time_format') .". ",
         $this->user->isBanned());
+   }
+   else
+   {
+    echo "You are a member of the following access groups:
+    <ul>";
+        foreach ($groups as $group)
+        {
+            echo "<li>$group</li>";
+        }
+    echo "</ul>";
    }
 ?>
 This account is registered since <strong><?= date(lang('date_time_format'), 

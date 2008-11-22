@@ -156,7 +156,7 @@
     transaction handling
         
 2008-07-24  Andreas Habel  <mail@exceptionfault.de>
-1
+
     * sa/models/user.php, sa/views/user_home.php: added functionality to 
     translate levelvalue into human readable string
 

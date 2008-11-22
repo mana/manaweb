@@ -20,6 +20,12 @@
  */
 
 /*
+ * define some constants to identify the current running version of tmwweb
+ */
+define ('TMWWEB_VERSION', '1.0.0');
+define ('TMWWEB_VERSION_DATE', '2008-11-22');
+
+/*
 |--------------------------------------------------------------------------
 | Maps config file
 |--------------------------------------------------------------------------

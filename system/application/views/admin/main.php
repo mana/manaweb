@@ -66,7 +66,7 @@
     <tr>
         <th>ID</th>
         <th>Username</th>
-        <th>Level</th>
+        <th>Groups</th>
     </tr>
     <?php foreach ($result_account as $account) { ?>
     <tr>
@@ -75,8 +75,12 @@
             $searchstring, 
             '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
             $account->username) ?></td>
-        <td>
-            <?= $this->user->getUserLevelString($account->level) ?>
+        <td><?
+                foreach ($this->user->getUserLevelString($account->level) as $group )
+                {
+                    echo $group . ", ";
+                }
+            ?>
             ( <?= $account->level ?> )
         </td>
     </tr>

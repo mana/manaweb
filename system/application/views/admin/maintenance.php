@@ -137,7 +137,7 @@ stored data.</p>
                                  border="0">
                         </a>
                         <a href="<?= site_url("admin/maintenance/show_log/" . $logfile['filename']) ?>">
-                            <img src="<?= base_url() ?>images/edit-delete.png"
+                            <img src="<?= base_url() ?>images/edit-find.png"
                                  style="vertical-align: middle"
                                  title="show logfile"
                                  border="0">

@@ -150,7 +150,7 @@ class User extends Model {
     public function isBanned()
     {
         if ($this->current_user->banned > time() || 
-            $this->current_user->level & AL_BANNED)
+            $this->current_user->level == AL_BANNED)
         {
             return $this->current_user->banned;
         }
@@ -367,13 +367,12 @@ class User extends Model {
      * currently logged in user. If this is also \c null, maybe there is no one
      * logged id, value 0 is assumed.
      *
-     * @todo: need to return an array of groups, cause a user can be member of
-     * more then only one group
      * @param  level (int) Level to identify the corresponding name for
-     * @return (String) Human readable translation of the level
+     * @return (array) List of all group the level is a member of
      */
     public function getUserLevelString($level=null)
     {
+        $groups = array();
         // get level of the current user if no level given
         if ($level == null)
         {
@@ -397,10 +396,10 @@ class User extends Model {
         {
             if ($lvl['byte'] & $level)
             {
-               $levelstring = $lvl['name'];
+               $groups[] = $lvl['name'];
             }
         }
-        return $levelstring;
+        return $groups;
     }
     
     
@@ -417,7 +416,7 @@ class User extends Model {
     public function getHomepageData()
     {
         $params = array('user' => $this->current_user,
-            'levelstring' => $this->getUserLevelString(),
+            'groups'      => $this->getUserLevelString(),
             'charachters' => $this->getCharacters());        
         return $params;
     }
