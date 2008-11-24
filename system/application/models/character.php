@@ -38,12 +38,12 @@ class Character {
     
     // character attributes ///////////////////////////////////////////////////
     
-    const CHAR_ATTR_STRENGTH = "str";           /**< Constant for character attribute STRENGTH */
-    const CHAR_ATTR_AGILITY  = "agi";           /**< Constant for character attribute AGILITY */
-    const CHAR_ATTR_DEXTERITY  = "dex";         /**< Constant for character attribute DEXTERITY */
-    const CHAR_ATTR_VITALITY  = "vit";          /**< Constant for character attribute VITALITY */
-    const CHAR_ATTR_INTELLIGENCE  = "int";      /**< Constant for character attribute INTELLIGENCE */
-    const CHAR_ATTR_WILLPOWER  = "will";        /**< Constant for character attribute WILLPOWER */
+    const CHAR_ATTR_STRENGTH     = "str";    /**< Constant for character attribute STRENGTH */
+    const CHAR_ATTR_AGILITY      = "agi";    /**< Constant for character attribute AGILITY */
+    const CHAR_ATTR_DEXTERITY    = "dex";    /**< Constant for character attribute DEXTERITY */
+    const CHAR_ATTR_VITALITY     = "vit";    /**< Constant for character attribute VITALITY */
+    const CHAR_ATTR_INTELLIGENCE = "int";    /**< Constant for character attribute INTELLIGENCE */
+    const CHAR_ATTR_WILLPOWER    = "will";   /**< Constant for character attribute WILLPOWER */
 
     // character experiences //////////////////////////////////////////////////
 
@@ -52,31 +52,46 @@ class Character {
      */
      
     /** Number of first available skill to loop over all attributes. */
-    const CHAR_SKILL_MIN       = 1;
+    const CHAR_SKILL_MIN       = 0;
     /** Skill for unarmed fights */
     const CHAR_SKILL_NONE      = Character::CHAR_SKILL_MIN;
     /** Skill for fighting with knifes */
-    const CHAR_SKILL_KNIFE     = 2; 
+    const CHAR_SKILL_KNIFE     = 1;
     /** Skill for fighting with swords */
-    const CHAR_SKILL_SWORD     = 3;
+    const CHAR_SKILL_SWORD     = 2;
     /** Skill for fighting with polearms */
-    const CHAR_SKILL_POLEARM   = 4;
+    const CHAR_SKILL_POLEARM   = 3;
     /** Skill for fighting with staffs */
-    const CHAR_SKILL_STAFF     = 5;
+    const CHAR_SKILL_STAFF     = 4;
     /** Skill for fighting with a whip */
-    const CHAR_SKILL_WHIP      = 6;
+    const CHAR_SKILL_WHIP      = 5;
     /** Skill for shooting with bows */
-    const CHAR_SKILL_BOW       = 7;
+    const CHAR_SKILL_BOW       = 6;
     /** Skill for shooting */
-    const CHAR_SKILL_SHOOTING  = 8;
+    const CHAR_SKILL_SHOOTING  = 7;
     /** Skill for fighting with maces */
-    const CHAR_SKILL_MACE      = 9;
+    const CHAR_SKILL_MACE      = 8;
     /** Skill for fighting with axes */
-    const CHAR_SKILL_AXE       = 10;
+    const CHAR_SKILL_AXE       = 9;
     /** Skill for throwing weapons */
-    const CHAR_SKILL_THROWN    = 11;
+    const CHAR_SKILL_THROWN    = 10;
     /** Number of last available skill to loop over all attributes. */
     const CHAR_SKILL_MAX       = Character::CHAR_SKILL_THROWN;
+
+    /** List of all skins, their translation and corresponding image. */
+    private static $skillinfo = array(
+        self::CHAR_SKILL_NONE     => array( 'icon' => 'unarmed.png',  'text' => 'character_skill_none'),
+        self::CHAR_SKILL_KNIFE    => array( 'icon' => 'knife.png',    'text' => 'character_skill_knife'),
+        self::CHAR_SKILL_SWORD    => array( 'icon' => 'sword.png',    'text' => 'character_skill_sword'),
+        self::CHAR_SKILL_POLEARM  => array( 'icon' => 'polearm.png',  'text' => 'character_skill_polearm'),
+        self::CHAR_SKILL_STAFF    => array( 'icon' => 'staff.png',    'text' => 'character_skill_staff'),
+        self::CHAR_SKILL_WHIP     => array( 'icon' => 'whip.png',     'text' => 'character_skill_whip'),
+        self::CHAR_SKILL_BOW      => array( 'icon' => 'bow.png',      'text' => 'character_skill_bow'),
+        self::CHAR_SKILL_SHOOTING => array( 'icon' => 'shooting.png', 'text' => 'character_skill_shooting'),
+        self::CHAR_SKILL_MACE     => array( 'icon' => 'mace.png',     'text' => 'character_skill_mace'),
+        self::CHAR_SKILL_AXE      => array( 'icon' => 'axe.png',      'text' => 'character_skill_axe'),
+        self::CHAR_SKILL_THROWN   => array( 'icon' => 'thrown.png',   'text' => 'character_skill_thrown')
+    );
     
     ///////////////////////////////////////////////////////////////////////////
     
@@ -154,8 +169,7 @@ class Character {
         $this->inventory = null;
         $this->user = null;
         $this->skills = array();
-        
-        
+
         // characters need informations about maps so load the mapprovider
         if (!isset($this->CI->mapprovider))
         {
@@ -332,6 +346,46 @@ class Character {
 		}
 		return 0;
 	}
+
+    /**
+     * Gets the level for a given skill
+     *
+     * @param skill (String) Skill name.
+     * @return (\a int) Level of the skill.
+     */
+    public function getSkillLevel($skill)
+    {
+        $level = 0;
+        $exp = $this->getSkill($skill);
+        while ($exp >= Character::experienceForLevel($level + 1))
+        {
+            $level++;
+        }
+
+        return $level;
+    }
+
+    /**
+     * Returns an array with lots of informations about the current skill level
+     * of a character.
+     *
+     * @param skill (int) Id of the skill.
+     * @return (array) Array with los of skill informations.
+     */
+    public function getSkillInfo($skill)
+    {
+        $info = array();
+
+        $info['icon'] = self::$skillinfo[$skill]['icon'];
+        $info['text'] = self::$skillinfo[$skill]['text'];
+        $info['exp'] = $this->getSkill($skill);
+        $info['level'] = $this->getSkillLevel($skill);
+        $info['level_exp_min'] = self::experienceForLevel($info['level']);
+        $info['level_exp_max'] = self::experienceForLevel($info['level']+1);
+        $info['exp_delta']     = $info['exp'] - $info['level_exp_min'];
+        $info['exp_max_delta'] = $info['level_exp_max'] - $info['level_exp_min'];
+        return $info;
+    }
     
     /**
      * This function returns the inventory object of the character.
