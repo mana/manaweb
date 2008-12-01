@@ -314,8 +314,8 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
   <style type="text/css">
     .ok {
         font-weight: bold;
-        color: dark-green;
-        background-color: #00ff00;
+        color: green;
+        background-color:  #00ff00;
     }
     .failed {
         font-weight: bold;

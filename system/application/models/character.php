@@ -32,9 +32,10 @@ require_once(APPPATH.'models/inventory'.EXT);
  */ 
 class Character {
 
-    const CHARACTER_TBL = 'tmw_characters';     /**< Name of the characters table */
-    const GENDER_MALE   = 0;                    /**< Defines constant for male characters */
-    const GENDER_FEMALE = 1;                    /**< Defines constant for female characters */
+    const CHARACTER_TBL    = 'tmw_characters';      /**< Name of the characters table */
+    const ONLINE_CHARS_TBL = 'tmw_v_online_chars';  /**< Name of the view displaying online characters */
+    const GENDER_MALE   = 0;                        /**< Defines constant for male characters */
+    const GENDER_FEMALE = 1;                        /**< Defines constant for female characters */
     
     // character attributes ///////////////////////////////////////////////////
     

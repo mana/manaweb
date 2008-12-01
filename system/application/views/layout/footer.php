@@ -21,12 +21,5 @@
     Version: <?= TMWWEB_VERSION ?> from <?= TMWWEB_VERSION_DATE ?>
    </div>
   </div> <!-- /page -->
-
-  <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-  </script>
-  <script type="text/javascript">
-  _uacct = "UA-380618-3";
-  urchinTracker();
-  </script>
  </body>
 </html>

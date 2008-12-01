@@ -65,6 +65,9 @@ Tmwweb tries to store cached data read from other modules like tmwserv in the
 data directory for faster access. Therefore you should allow the webserver to 
 create files there. The logs directory is used for logging as you can think.
 
+To verify your installation and configuration steps, navigate to the setup.php
+file in your browser. It will show you what is still missing or if everything
+is fine.
             
 =============================================================================
 
