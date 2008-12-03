@@ -59,6 +59,9 @@ class Connector extends Controller {
             case "xml":
                 $this->load->view('connector/onlineuser_xml', $users);
                 break;
+            case "csv":
+                $this->load->view('connector/onlineuser_csv', $users);
+                break;
             case "plain":
             default:
                 $this->load->view('connector/onlineuser_plain', $users);
