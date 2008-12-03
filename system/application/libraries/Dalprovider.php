@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
  
 // load dependecies 
@@ -30,7 +28,6 @@ require_once(APPPATH.'models/inventory'.EXT);
  * database file, independent from tmwserv.
  *
  * @todo Make storage independent from sqlite and also support mysql  
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup libraries
  */ 
 class Dalprovider

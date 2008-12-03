@@ -27,7 +27,6 @@
  * administrative rights, so the authentication is just done in the 
  * constructor, rather in every single function.
  * 
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup controllers
  */
 class Admin extends Controller {

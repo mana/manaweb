@@ -7,7 +7,7 @@
 body {
 background-color:	#fff;
 margin:				40px;
-font-family:		Lucida Grande, Verdana, Sans-serif;
+font-family:        "Lucida Grande", "Verdana", "Geneva", Sans-serif;
 font-size:			12px;
 color:				#000;
 }

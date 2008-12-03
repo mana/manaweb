@@ -25,7 +25,6 @@ require_once(APPPATH.'models/character'.EXT);
 /**
  * The user model deals with all data according to a account.
  *
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup models
  */ 
 class User extends Model {

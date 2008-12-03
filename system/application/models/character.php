@@ -27,7 +27,6 @@ require_once(APPPATH.'models/inventory'.EXT);
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup models
  */ 
 class Character {

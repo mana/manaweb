@@ -23,7 +23,6 @@
 /**
  * Controller for displaying server statistics.
  * 
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup controllers
  */ 
 class Statistics extends Controller {

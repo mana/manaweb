@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
  
@@ -30,7 +28,6 @@
  * Custom files have to be in the same directory as the default and have to be
  * named like <tt>"configfile".user.php</tt>
  *
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup libraries
  */ 
 class TMW_Config extends CI_Config

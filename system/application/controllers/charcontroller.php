@@ -24,7 +24,6 @@
  * The CharController is responsible for all actions a user can do 
  * with its character.
  * 
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup controllers
  */ 
 class Charcontroller extends Controller {

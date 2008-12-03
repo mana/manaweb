@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
  
 // load dependecies 
@@ -29,7 +27,6 @@ require_once(APPPATH.'models/map'.EXT);
  * tmwserv module. It reads the maps.xml file, and delivers informations about
  * maps to the user.
  * 
- * @author Andreas Habel <mail@exceptionfault.de>
  * @ingroup libraries
  */ 
 class Mapprovider
