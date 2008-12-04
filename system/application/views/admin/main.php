@@ -47,6 +47,8 @@
     <?= form_close(); ?>
     
 </table>
+<div class="autocomplete" id="TMWusernameList" style="display:none"></div>
+<div class="autocomplete" id="TMWcharacterList" style="display:none"></div>
     
 
 <?php if (isset($result_account) || isset($result_character)) { ?>
@@ -121,3 +123,10 @@
 </table>
 <!-- end of search results ------------------------------------------------ -->
 <?php } ?>
+
+<script type="text/javascript">
+    new Ajax.Autocompleter('TMWusername', 'TMWusernameList', 
+        '<?php echo site_url() . "/admin/search_account_ajax" ?>', { });
+    new Ajax.Autocompleter('TMWcharacter', 'TMWcharacterList',
+        '<?php echo site_url() . "/admin/search_character_ajax" ?>', { });
+</script>

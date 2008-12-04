@@ -191,6 +191,38 @@ class Admin extends Controller {
         
         $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     }
+
+
+    /**
+     * This function is called by the main admin view when the user types
+     * in the "search Account" field.
+     * @return HTML list containing all searched account names.
+     */
+    public function search_account_ajax()
+    {
+        if (!$this->user->hasRight('see_account_list'))
+        {
+            echo "<ul></ul>";
+            return;
+        }
+        
+        if (strlen($this->input->post('TMWusername')) < 1)
+        {
+            echo "<ul></ul>";
+            return;
+        }
+
+        $search = $this->input->post('TMWusername') . '%';
+        $this->db->where('username LIKE \'' . $search . '\'');
+        $res = $this->db->get(User::ACCOUNT_TBL);
+
+        echo "<ul>";
+        foreach ($res->result() as $row)
+        {
+            echo "<li>" . $row->username . "</li>";
+        }
+        echo "</ul>";
+    }
     
     
     /**
@@ -252,7 +284,37 @@ class Admin extends Controller {
         
         $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     } // function search_character()
-    
+
+    /**
+     * This function is called by the main admin view when the user types
+     * in the "search Character" field.
+     * @return HTML list containing all searched character names.
+     */
+    public function search_character_ajax()
+    {
+        if (!$this->user->hasRight('see_character_list'))
+        {
+            echo "<ul></ul>";
+            return;
+        }
+
+        if (strlen($this->input->post('TMWcharacter')) < 1)
+        {
+            echo "<ul></ul>";
+            return;
+        }
+
+        $search = $this->input->post('TMWcharacter') . '%';
+        $this->db->where('name LIKE \'' . $search . '\'');
+        $res = $this->db->get(Character::CHARACTER_TBL);
+
+        echo "<ul>";
+        foreach ($res->result() as $row)
+        {
+            echo "<li>" . $row->name . "</li>";
+        }
+        echo "</ul>";
+    }
     
     /**
      * This function tries to reload the maps.xml from tmwserv and updates the

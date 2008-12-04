@@ -406,3 +406,38 @@ h1 {
 #pictures a:hover img {
     border-color: #a88976;
 }
+
+div.autocomplete {
+  margin:0px;
+  padding:0px;
+  width:250px;
+  background-color: #ede2da;
+  border: 1px solid #9f9894;
+  position:absolute;
+  -moz-border-radius: 10px;
+}
+
+div.autocomplete ul {
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+}
+
+div.autocomplete ul li.selected {
+  background-color:#dbbba4;
+}
+
+div.autocomplete ul li {
+  margin:0;
+  padding:0px;
+  height:18px;
+  display:block;
+  list-style-type:none;
+  cursor:pointer;
+  color:#57565c;
+}
+
+.informal {
+    font-style: italic;
+}
+

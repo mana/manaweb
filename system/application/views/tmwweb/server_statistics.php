@@ -47,7 +47,7 @@ All characters form a purchasing power of
     </tr>
     <tr>
         <td colspan="2" height="100" style="border-width: 0px;"></td>
-    </td>
+    </tr>
 </table>
 
 <h3>The top 10 Guilds on the mana world</h3>

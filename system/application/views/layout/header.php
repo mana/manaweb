@@ -8,12 +8,16 @@
   <meta http-equiv="Content-Style-Type" content="text/css"/>
   <meta http-equiv="Content-Language" content="en"/>
   
-  <link rel="shortcut icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
-  <link rel="icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
-  
   <meta name="description" content="The Mana World is a free MMORPG game for Linux, MacOS X and Windows"/>
   <meta name="keywords" content="The Mana World, Mana, World, MMORPG, RPG, free, GPL"/>
   <meta name="author" content="The Mana World Dev Team"/>
+  
+  <link rel="shortcut icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
+  <link rel="icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
+
+  <script src="<?= base_url() ?>ext/scriptaculous-js-1.8.2/lib/prototype.js" type="text/javascript"></script>
+  <script src="<?= base_url() ?>ext/scriptaculous-js-1.8.2/src/scriptaculous.js" type="text/javascript"></script>
+
   <style type="text/css">
    @import url( "<?= base_url() ?>default.css");
   </style>

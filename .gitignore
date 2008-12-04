@@ -1,2 +1,5 @@
 # directory used by NetBeans IDE
 nbproject
+
+#directory created by doxygen
+docs/html

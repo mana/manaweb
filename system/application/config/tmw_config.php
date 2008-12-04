@@ -206,7 +206,7 @@ $config['tmwweb_admin_permissions'] = array(
     'modify_account_level'      => array( 'group' => AL_ADMIN ),
     
     // needed level to delete an account
-    'delete_account'            => array( 'level' => AL_ADMIN )
+    'delete_account'            => array( 'group' => AL_ADMIN )
 );
 
 

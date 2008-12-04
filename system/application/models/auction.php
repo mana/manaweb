@@ -191,13 +191,16 @@ class Auction
         {
             $diff = $end - $start;
             // compute days
-            if($days = intval((floor($diff/86400))))
+            $days = intval((floor($diff/86400)));
+            if($days)
 				$diff = $diff % 86400;
 			// compute hours
-            if($hours=intval((floor($diff/3600))))
+            $hours=intval((floor($diff/3600)));
+            if($hours)
 				$diff = $diff % 3600;
 			// compute minutes
-            if($minutes=intval((floor($diff/60))))
+            $minutes=intval((floor($diff/60)));
+            if($minutes)
 				$diff = $diff % 60;
 			// the rest in seconds
             $diff = intval( $diff );

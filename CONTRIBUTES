@@ -61,3 +61,19 @@ Tango Desktop Project
     
     http://tango.freedesktop.org    
     License: ./licenses/Tango Desktop Project.txt
+
+
+script.aculo.us
+---------------
+
+    "The Web is changing. The 30-year-old terminal-like technology it was
+    originally is gradually giving way to new ways of doing things. The power
+    of AJAX allows for rich user interaction without the trouble that has
+    bugged traditional web applications.
+
+    Building upon the wonderful Prototype JavaScript library, script.aculo.us
+    provides you with some great additional ingredients to mix in."
+
+    http://script.aculo.us/
+    License: ./licenses/Scriptaculous.txt
+
