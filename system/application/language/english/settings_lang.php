@@ -26,13 +26,13 @@ $lang['settings_title']                 = 'Account Settings';
 $lang['settings_descr'] = 
  "On this page you have serveral options to modify your account settings.\n".
  " Maybe you would like to change your stored mailadress, or change your login".
- " password or even drop your complete accout? Just select one of the options".
+ " password or even drop your complete account? Just select one of the options".
  " below.";
  
 $lang['settings_selection']             = 'I would like to...';
 $lang['settings_select_password']       = '...change my password.';
 $lang['settings_select_mail']           = '...change my mailaddress.';
-$lang['settings_select_delete_account'] = '...delete my accout.';
+$lang['settings_select_delete_account'] = '...delete my account.';
  
  
 // change password ////////////////////////////////////////////////////////////

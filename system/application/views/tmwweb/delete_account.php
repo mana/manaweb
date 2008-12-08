@@ -20,4 +20,4 @@ cannot be undone!</strong></p>
         </td>
     </tr>        
     </table>
-<?php form_close(); ?>
+<?= form_close(); ?>

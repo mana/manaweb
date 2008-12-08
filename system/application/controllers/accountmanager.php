@@ -202,7 +202,6 @@ class Accountmanager extends Controller {
     {
         $username = $this->user->getUser()->username;
         $ret = Membershipprovider::validatePassword($pwd, $username);
-        echo "$pwd, $username";
         switch ($ret)
         {
             case Membershipprovider::PASSWORD_OK:

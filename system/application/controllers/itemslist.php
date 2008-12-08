@@ -17,8 +17,6 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
- *
- *  $Id$
  */
 
 // load dependecies 
@@ -81,7 +79,6 @@ class Itemslist extends Controller
             return;
         }
         
-        // search for the given account name
         // even if active record has a method ->like we write the code on our
         // own due to a bug which does wrong quoting in the searchstring... :(
         $search = '%' . $this->input->post('TMWSearchItem') . '%';
@@ -107,8 +104,29 @@ class Itemslist extends Controller
         $params = array_merge( array("ctrl" => $this), $param );
         $this->output->showPage( 'Item dictionary', 'tmwweb/item_list', $params);
     }
-    
-    
+
+    /**
+     * This function is called by the view item_list if a user wants to search
+     * an item by its name.
+     */
+    public function search_item_ajax()
+    {
+        // even if active record has a method ->like we write the code on our
+        // own due to a bug which does wrong quoting in the searchstring... :(
+        $search = '%' . $this->input->post('TMWSearchItem') . '%';
+
+        $this->db->where('name LIKE \'' . $search . '\'');
+        $this->db->order_by('name');
+        $res = $this->db->get('tmw_items');
+
+        echo "<ul>";
+        foreach ($res->result() as $item)
+        {
+            echo "<li>" . $item->name . "</li>";
+        }
+        echo "</ul>";
+    }
+
     /**
      * This function is called by the item_list view to load a list of all
      * items in the given category.

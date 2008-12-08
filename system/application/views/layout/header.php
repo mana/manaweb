@@ -69,8 +69,8 @@
              <div class="section">                
                <ul><li>Account Manager</li><li><a href="<?= site_url('myaccount') ?>">My Account</a></li><?php if (isset($user_menu) ) {
                    foreach( $user_menu as $link )
-                     { ?><li><a href="<?= $link['url'] ?>"><?= $link['name'] ?></a></li><?php } ?></ul>
-                <? } ?>
+                     { ?><li><a href="<?= $link['url'] ?>"><?= $link['name'] ?></a></li><?php } ?>
+                <? } ?></ul>
              </div>
             </div>
            </div>
@@ -121,7 +121,7 @@
            <div class="section_topright">
             <div class="section_bottomright">
              <div class="section">                
-               <ul><li>ManaBay</li><li><a href="<?= site_url('manabay') ?>">Auctions</a></li>
+               <ul><li>ManaBay</li><li><a href="<?= site_url('manabay') ?>">Auctions</a></li></ul>
              </div>
             </div>
            </div>

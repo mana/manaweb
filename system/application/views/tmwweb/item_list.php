@@ -1,4 +1,8 @@
 <h3>Item dictionary</h3>
+
+	<? $attributes = array('name'=>'TMWsearchItemForm', 'id'=>'TMWsearchItemForm');
+    echo form_open('itemslist/search_item', $attributes); ?>
+
 	<table style="border-width: 0px; margin-bottom: 0px;">
 		<tr>
 			<td colspan="3">You can search an item by its name... </td>
@@ -13,28 +17,22 @@
 	        </td>
 	    </tr>
 	    <? }} ?>
-	    
-	    
-		<? $attributes = array('name'=>'searchItem', 'id'=>'TMWsearchItem');
-	    echo form_open('itemslist/search_item', $attributes); ?>
 		<tr>
 			<td colspan="3" style="border-width: 0px; margin-bottom: 0px;">
 				<table style="border-width: 0px; margin-bottom: 0px;">
 					<tr>
 				        <td style="border-width: 0px;">  
 				            <input type="text" size="30" tabindex="1" value="" id="TMWSearchItem" 
-				                title="Enter a item name" name="TMWSearchItem">
+				                title="Enter a item name" name="TMWSearchItem" />
 				        </td>
 				        <td style="border-width: 0px;">  
 				            <input type="submit" tabindex="2" value="Search" 
-				                id="TMWsubmit" title="Search" name="TMWsearch">
+				                id="TMWsubmit" title="Search" name="TMWsearch" />
 				        </td>
 				    </tr>
 				</table>
 			</td>
 		</tr>
-		<?= form_close(); ?>
-		
 		
 		<tr>
 			<td colspan="3">... or by its category: </td>
@@ -81,6 +79,8 @@
 			</td>
 		</tr>
 	</table>
+	<?= form_close(); ?>
+    <div class="autocomplete" id="TMWSearchItemList" style="display:none"></div>
 
 <? if (isset($itemslist)) { ?>	
 <table class="datatable">
@@ -114,9 +114,14 @@
 </table>
 <? } ?>
 
+
 <script type="text/javascript">
 <!--
+    new Ajax.Autocompleter('TMWSearchItem', 'TMWSearchItemList',
+        '<?php echo site_url() . "/itemslist/search_item_ajax" ?>', 
+        {minChars:3});
+
     // set the focus to the search field
-    document.searchItem.TMWSearchItem.focus();
+    $('TMWSearchItem').focus();
 //-->
 </script>

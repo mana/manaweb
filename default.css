@@ -1,7 +1,11 @@
-@import url("default_basic.css");
-
+/* /////////////////////////////////////////////////////////////////////////////
+basic elements
+///////////////////////////////////////////////////////////////////////////// */
 body {
-    padding-top: 0px;
+    background-color: #eeeeee;
+    padding: 0px 10px 10px 10px;
+    margin: 0px;
+    font-family: sans-serif;
 }
 
 body, div, p, td, li, h1, h2, h3, h4 {
@@ -18,15 +22,41 @@ h1 {
     margin: 0px;
     top: 0px;
     border: 0px solid green;
+    z-index:200;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(100,10,10);
+}
+
+a:visited {
+    color: rgb(60,0,0);
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    border-style: none;
+    height: 1px;
+    background-color: silver;
+    color: silver;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////
+named elements
+///////////////////////////////////////////////////////////////////////////// */
+
 #page {
-    margin-right: 10%;
-    min-width: 650px;
+    min-width: 870px;
+    max-width: 1280px;    
 }
 
 #page h1 span {
-    display: none;
+    display: none;    
 }
 
 #irc_info {
@@ -38,7 +68,6 @@ h1 {
 }
 
 #main_topleft {
-    border: 0px dashed green;
     background-image: url(images/main_topleft.png);
     background-position: top left;
     background-repeat: no-repeat;
@@ -68,7 +97,6 @@ h1 {
 }
 
 #main {
-    border: 0px dashed purple;
     padding: 0px 4px 0px 0px;
 }
 
@@ -107,16 +135,7 @@ h1 {
     font-weight: bold;
     color: #3c3c3c;
     border-bottom: 1px solid #9f9894;
-    /*
-    border-right: 1px solid #9f9894;
-    border-top: 1px solid #f2e6df;
-    border-left: 1px solid #f2e6df;
-    */
     font-size: 11pt;
-    /*
-    background-color: #d1c7c0;
-    padding: 2px 5px 2px 5px;
-    */
 }
 
 #main label {
@@ -167,6 +186,10 @@ h1 {
     border: 1px solid #9f9894;
     -moz-border-radius: 10px;
 }
+
+/* /////////////////////////////////////////////////////////////////////////////
+sidebar
+///////////////////////////////////////////////////////////////////////////// */
 
 #sidebar {
     border: 0px dashed red;
@@ -251,16 +274,9 @@ h1 {
     background-color: #dbbba4;
 }
 
-#sidebar .banners {
-    text-align: center;
-    padding: 13px 7px 8px 7px;
-}
-
-#sidebar .banners img {
-    border-width: 0px;
-    margin-bottom: 5px;
-    vertical-align: text-bottom;
-}
+/* /////////////////////////////////////////////////////////////////////////////
+contents
+///////////////////////////////////////////////////////////////////////////// */
 
 #contents_leftrepeat {
     background-image: url(images/contents_leftrepeat.png);
@@ -272,7 +288,6 @@ h1 {
 #contents_topleft {
     background-image: url(images/contents_topleft.png);
     background-repeat: no-repeat;
-    border: 0px dashed red;
 }
 
 #contents_bottomleft {
@@ -300,8 +315,8 @@ h1 {
 }
 
 #contents {
-    padding: 12px 8px 175px 11px;
-    border: 0px solid blue;
+    min-height: 400px;
+    padding: 12px 8px 250px 11px;
     line-height: 150%;
 }
 
@@ -316,7 +331,13 @@ h1 {
 
 #contents ul {
     margin: 15px 40px 13px 20px;
+    padding: 0px 0px 0px 40px;
     list-style-image:url(images/icon16.png);
+}
+
+#contents li {
+    padding-left: 5px;
+    margin-left: 0px;
 }
 
 #contents table {
@@ -333,7 +354,6 @@ h1 {
     background-color: #ede2da;
     border: 1px solid #9f9894;
     -moz-border-radius: 10px;
-
 }
 
 #contents td {
@@ -351,65 +371,13 @@ h1 {
     padding: 5px;
 }
 
-.news {
-    margin-bottom: 30px;
-}
+/* /////////////////////////////////////////////////////////////////////////////
+javascript features
+///////////////////////////////////////////////////////////////////////////// */
 
-.news_body {
-}
-
-.news_date {
-    font-style: italic;
-    float: right;
-    color: #57565c;
-    font-size: 8pt;
-}
-
-.news_author {
-    font-size: 8pt;
-    color: #57565c;
-    border-bottom: 1px solid #9f9894;
-}
-
-.releases {
-    margin: 15px 40px 15px 30px;
-}
-
-.release {
-    background-color: #ede2da;
-    margin: 5px;
-    padding: 5px 5px 5px 15px;
-    white-space: nowrap;
-    -moz-border-radius: 10px;
-}
-
-.releases img {
-    vertical-align: middle;
-    margin-right: 5px;
-    width: 16px;
-    height: 16px;
-}
-
-/* Gallery style */
-#pagenumbers {
-    text-align: center;
-    margin: 0px 1em 0px 1em;
-}
-
-#pictures a img {
-    border: 1px solid #c7b1a3;
-    border-bottom-width: 2px;
-    border-right-width: 2px;
-    margin: 5px;
-}
-
-#pictures a:hover img {
-    border-color: #a88976;
-}
-
-div.autocomplete {
-  margin:0px;
-  padding:0px;
+#contents div.autocomplete {
+  margin: 3px 3px 3px 3px;
+  padding: 7px 7px 7px 7px;
   width:250px;
   background-color: #ede2da;
   border: 1px solid #9f9894;
@@ -417,27 +385,26 @@ div.autocomplete {
   -moz-border-radius: 10px;
 }
 
-div.autocomplete ul {
+#contents div.autocomplete ul {
   margin:0px;
   padding:0px;
   list-style-type:none;
+  list-style-image:none;
 }
 
-div.autocomplete ul li.selected {
+#contents div.autocomplete ul li.selected {
   background-color:#dbbba4;
 }
 
-div.autocomplete ul li {
-  margin:0;
-  padding:0px;
+#contents div.autocomplete ul li {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
   height:18px;
   display:block;
   list-style-type:none;
+  list-style-image:none;
   cursor:pointer;
   color:#57565c;
 }
 
-.informal {
-    font-style: italic;
-}
-
+/* ////////////////////// end of file /////////////////////////////////////// */
