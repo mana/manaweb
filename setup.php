@@ -254,13 +254,6 @@
         	"as human readable string.")) return;
         	
         	
-        if (!check_file_exists($config['tmwserv_items.xml'],
-        	"The Account manager tries to read the items.xml file shipped with tmwserv to show the equipment and inventory of characters. ".
-        	"It also tries to copy the images of the items into the ./images/items directory if they don't exist yet. ".
-        	"Therfore you have to configure the absolute path, where the images are located. Normally, this is your ".
-        	"tmwdata/trunk/graphics/items directory." )) return;
-        
-        
         if (!try_read_dir($config['tmwserv_items_images'],
         	"The Account manager tries to read the items.xml file shipped with tmwserv to show the equipment and inventory of characters. ".
         	"It also tries to copy the images of the items into the ./images/items directory if they don't exist yet. ".

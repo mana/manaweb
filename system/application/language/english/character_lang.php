@@ -61,6 +61,4 @@ $lang['character_not_guild_member'] = "Your character is not a member of any gui
 $lang['character_view_forbidden']   = "You are not permittet to show the details of this char.";
 $lang['character_back']             = 'back to the account page';
 
-$lang['administrative_tasks']       = "Administrative tasks";
-
 ?>

@@ -18,8 +18,9 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
- 
-require_once(APPPATH.'models/character'.EXT);
+
+// load dependecies
+require_once(APPPATH.'models/account'.EXT);
 
 
 /**
@@ -28,11 +29,6 @@ require_once(APPPATH.'models/character'.EXT);
  * @ingroup models
  */ 
 class User extends Model {
-
-    /**
-     * Name of the accounts table
-     */
-    const ACCOUNT_TBL = 'tmw_accounts';
     
     /**
      * The user model holds an instance to the curently logged in user.
@@ -88,14 +84,14 @@ class User extends Model {
             if ($this->session->userdata('logged_in'))
             {
                 $user_id = $this->session->userdata('user_id');
-                $query = $this->db->get_where( User::ACCOUNT_TBL, 
+                $query = $this->db->get_where( Account::ACCOUNT_TBL,
                     array('id' => $user_id));
             
                 if ($query->num_rows == 1)
                 {
                     // authentication succeeded
                     $this->is_authenticated = true;
-                    $this->current_user = $query->row();
+                    $this->current_user = new Account($query->row());
                     return true;
                 }                
             }
@@ -126,7 +122,7 @@ class User extends Model {
         else
         {
             // check if the userlevel has a sufficient value
-            if ($this->current_user->level & AL_ADMIN)
+            if ($this->current_user->isAdmin())
             {
                 $this->is_admin = true;
                 return true;
@@ -148,15 +144,7 @@ class User extends Model {
      */
     public function isBanned()
     {
-        if ($this->current_user->banned > time() || 
-            $this->current_user->level == AL_BANNED)
-        {
-            return $this->current_user->banned;
-        }
-        else
-        {
-            return false;
-        }
+        $this->current_user->isBanned();
     }
     
     
@@ -191,7 +179,7 @@ class User extends Model {
         }
         
         // compare levels with explicit type conversion!
-        if ($this->current_user->level & intval($rights[$right]['group']))
+        if ($this->current_user->getLevel() & intval($rights[$right]['group']))
         {
             return true;
         }
@@ -222,7 +210,7 @@ class User extends Model {
         $pwd = hash('sha256', $username . $password);
         
         // select user from db with given name and password
-        $query = $this->db->get_where( User::ACCOUNT_TBL, 
+        $query = $this->db->get_where( Account::ACCOUNT_TBL,
             array( 'username' => $username, 'password' => $pwd ));
 
         if ($query->num_rows == 1)
@@ -232,12 +220,12 @@ class User extends Model {
             {
                 // modify session 
                 $this->is_authenticated = true;
-                $this->current_user = $query->row();
+                $this->current_user = new Account($query->row());
             
                 // store cookie
                 $this->session->set_userdata('logged_in', true);
                 $this->session->set_userdata('user_id', 
-                    $this->current_user->id);
+                    $this->current_user->getID());
             
                 return $this->current_user;
             }       
@@ -268,7 +256,7 @@ class User extends Model {
      */
     public function deleteCurrentUser()
     {
-        $this->deleteUser($this->current_user->id); 
+        $this->deleteUser($this->current_user->getID());
         $this->logout();
     }
     
@@ -292,39 +280,39 @@ class User extends Model {
         // delete quest states of characters
         $this->db->query( 'delete from tmw_quests ' .
             'where owner_id in ( ' .
-            '   select id from tmw_characters where user_id = ' . $userid 
+            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
             
         // delete guild memberships
         $this->db->query( 'delete from tmw_guild_members ' .
             'where member_name in ( ' .
-            '   select name from tmw_characters where user_id = ' . $userid 
+            '   select name from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
         
         // delete inventory of characters
         $this->db->query( 'delete from tmw_inventories ' .
             'where owner_id in ( ' .
-            '   select id from tmw_characters where user_id = ' . $userid 
+            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
         
         // delete inventory of characters
         $this->db->query( 'delete from tmw_char_skills ' .
             'where char_id in ( ' .
-            '   select id from tmw_characters where user_id = ' . $userid 
+            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
 
         // delete auctions started by the player
         $this->db->query( 'delete from tmw_auctions ' .
             'where char_id in ( ' .	
-            '   select id from tmw_characters where user_id = ' . $userid 
+            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
         // bug: delete bids on deleted auctions
         
         // delete characters
-        $this->db->delete('tmw_characters', array('user_id' => $userid));
+        $this->db->delete(Character::CHARACTER_TBL,  array('user_id' => $userid));
         
         // lastly delete account
-        $this->db->delete(User::ACCOUNT_TBL, array('id' => $userid)); 
+        $this->db->delete(Account::ACCOUNT_TBL, array('id' => $userid));
         
         // commit
         $this->db->trans_complete();
@@ -350,7 +338,7 @@ class User extends Model {
     /**
      * Gets the authenticated user.
      *
-     * @return (Object) Returns the current authenticated user. If the user is 
+     * @return (Account) Returns the current authenticated user. If the user is
      *         not authenticated, the function returns \c null.
      */
     public function getUser()
@@ -378,7 +366,7 @@ class User extends Model {
             // is a user logged in
             if ($this->isAuthenticated())
             {
-                $level = $this->current_user->level;
+                $level = $this->current_user->getLevel();
             }
             else
             {
@@ -430,17 +418,7 @@ class User extends Model {
      */
     public function hasCharacters()
     {
-        $query = $this->db->get_where('tmw_characters', 
-            array('user_id' => $this->getUser()->id), 1);
-            
-        if ($query->num_rows() > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        };
+        return $this->current_user->hasCharacters();
     }
     
     
@@ -454,10 +432,10 @@ class User extends Model {
      */
     public function hasCharacter($id)
     {
-        $query = $this->db->get_where('tmw_characters', 
+        $query = $this->db->get_where(Character::CHARACTER_TBL,
             array(
                 'id'      => $id,
-                'user_id' => $this->getUser()->id
+                'user_id' => $this->getUser()->getID()
             ), 1);
             
         if ($query->num_rows() == 1)
@@ -478,10 +456,7 @@ class User extends Model {
      */
     public function getCharacterCount()
     {
-        $query = $this->db->get_where('tmw_characters', 
-            array('user_id' => $this->getUser()->id) );
-            
-        return $query->num_rows();
+        return $this->current_user->getCharacterCount();
     }
     
     /**
@@ -493,21 +468,9 @@ class User extends Model {
      */
     public function getCharacters($order="level desc")
     {
-        $chars = array();
-        
-        $this->db->order_by($order);
-        $query = $this->db->get_where('tmw_characters', 
-            array('user_id' => $this->getUser()->id));
-            
-        foreach ($query->result() as $char)
-        {
-            $chars[$char->id] = new Character($char);
-        }           
-            
-        return $chars;
+        return $this->current_user->getCharacters($order);
     }
-    
-    
+
     /**
      * This function returns a character object with the given id.
      *
@@ -516,7 +479,7 @@ class User extends Model {
      */
     public function getCharacter($id)
     {
-        $query = $this->db->get_where('tmw_characters', 
+        $query = $this->db->get_where(Character::CHARACTER_TBL,
             array('id' => $id));
             
         if ($query->num_rows() > 0)
@@ -529,16 +492,16 @@ class User extends Model {
                         'doesn`t exist!' );
         }
     }
-    
+
     /** 
      * This function returns the registration date of the account as 
      * unixtimestamp.
      *
-     * @return int Unixtimestamp of the account registration
+     * @return (int) Unixtimestamp of the account registration
      */
     public function getRegistrationDate()
     {
-        return intval($this->getUser()->registration);
+        return $this->getUser()->getRegistration();
     }
         
     
@@ -546,11 +509,11 @@ class User extends Model {
      * This function returns the date of the last login into this account using
      * the Mana World client.
      *
-     * @return int Unixtimestamp of the last login.
+     * @return (int) Unixtimestamp of the last login.
      */
     public function getLastLogin()
     {
-        return intval($this->getUser()->lastlogin);
+        return $this->getUser()->getLastLogin();
     }    
     
     

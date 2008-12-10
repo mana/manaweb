@@ -23,7 +23,7 @@
 require_once(APPPATH.'models/inventory'.EXT);
 
 /**
- * The caharcter model deals with all data according to a character.
+ * The character model deals with all data according to a character.
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
@@ -50,32 +50,21 @@ class Character {
     /*
      * Constants for character experiences 
      */
-     
+    const CHAR_SKILL_NONE      = 0;     /**< Skill for unarmed fights */
+    const CHAR_SKILL_KNIFE     = 1;     /**< Skill for fighting with knifes */
+    const CHAR_SKILL_SWORD     = 2;     /**< Skill for fighting with swords */
+    const CHAR_SKILL_POLEARM   = 3;     /**< Skill for fighting with polearms */
+    const CHAR_SKILL_STAFF     = 4;     /**< Skill for fighting with staffs */
+    const CHAR_SKILL_WHIP      = 5;     /**< Skill for fighting with a whip */
+    const CHAR_SKILL_BOW       = 6;     /**< Skill for shooting with bows */
+    const CHAR_SKILL_SHOOTING  = 7;     /**< Skill for shooting */
+    const CHAR_SKILL_MACE      = 8;     /**< Skill for fighting with maces */
+    const CHAR_SKILL_AXE       = 9;     /**< Skill for fighting with axes */
+    const CHAR_SKILL_THROWN    = 10;    /**< Skill for throwing weapons */
+
     /** Number of first available skill to loop over all attributes. */
-    const CHAR_SKILL_MIN       = 0;
-    /** Skill for unarmed fights */
-    const CHAR_SKILL_NONE      = Character::CHAR_SKILL_MIN;
-    /** Skill for fighting with knifes */
-    const CHAR_SKILL_KNIFE     = 1;
-    /** Skill for fighting with swords */
-    const CHAR_SKILL_SWORD     = 2;
-    /** Skill for fighting with polearms */
-    const CHAR_SKILL_POLEARM   = 3;
-    /** Skill for fighting with staffs */
-    const CHAR_SKILL_STAFF     = 4;
-    /** Skill for fighting with a whip */
-    const CHAR_SKILL_WHIP      = 5;
-    /** Skill for shooting with bows */
-    const CHAR_SKILL_BOW       = 6;
-    /** Skill for shooting */
-    const CHAR_SKILL_SHOOTING  = 7;
-    /** Skill for fighting with maces */
-    const CHAR_SKILL_MACE      = 8;
-    /** Skill for fighting with axes */
-    const CHAR_SKILL_AXE       = 9;
-    /** Skill for throwing weapons */
-    const CHAR_SKILL_THROWN    = 10;
-    /** Number of last available skill to loop over all attributes. */
+    const CHAR_SKILL_MIN       = Character::CHAR_SKILL_NONE;
+    /**  Number of last available skill to loop over all attributes. */
     const CHAR_SKILL_MAX       = Character::CHAR_SKILL_THROWN;
 
     /** List of all skins, their translation and corresponding image. */
@@ -211,6 +200,15 @@ class Character {
             $this->user = $this->user[0];
         }
         return $this->user;
+    }
+
+    /**
+     * Returns the Id of the owner.
+     * @return (int) ID of the owning account.
+     */
+    public function getOwnerId()
+    {
+        return $this->char->user_id;
     }
 
     /**

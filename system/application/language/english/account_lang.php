@@ -22,4 +22,18 @@
 $lang['account_login']          = 'Login';
 $lang['account_title']          = 'My Account';
 
+$lang['account_details']        = 'Account details';
+
+$lang['account_id']             = 'ID';
+$lang['account_username']       = 'Username';
+$lang['account_characters']     = 'Characters';
+$lang['account_groups']         = 'Groups';
+$lang['account_status']         = 'Status';
+
+$lang['account_registration']   = 'Registration';
+$lang['account_lastlogin']      = 'last Login';
+
+$lang['account_status_banned']  = 'Banned until';
+$lang['account_status_active']  = 'Active';
+
 ?>

@@ -19,7 +19,6 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-
 /**
  * The admin controller is responsible for all actions a admin or gm can do 
  * to administrate tmwweb.
@@ -78,8 +77,28 @@ class Admin extends Controller {
     }
 
     /**
+     * Shows a account sheet.
+     * @param id (int) Unique id of the account.
+     */
+    public function show_account($id)
+    {
+        if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
+        {
+            return;
+        }
+        $this->translationprovider->loadLanguage('account');
+        $params = array();
+        $acc = Account::getAccount($id);
+        $params['account'] = $acc;
+        $page = 'admin/account';
+
+        $this->output->showPage(lang('account_username').': '. $acc->getUsername(),
+            $page, $params);
+    }
+
+    /**
      * Shows a character sheet.
-     * @param <type> $id Show the character with the given id.
+     * @param id (int) Show the character with the given id.
      */
     public function show_character($id)
     {
@@ -175,12 +194,17 @@ class Admin extends Controller {
         
         $this->db->where('username LIKE \'' . $search . '\'');
         $this->db->order_by('username');
-        $res = $this->db->get(User::ACCOUNT_TBL);
+        $res = $this->db->get(Account::ACCOUNT_TBL);
         
         if ($res->num_rows() > 0)
         {
+            $accounts = array();
+            foreach($res->result() as $row)
+            {
+                $accounts[] = new Account($row);
+            }
             $param = array(
-                'result_account' => $res->result(),
+                'result_account' => $accounts,
                 'searchstring'   => $this->input->post('TMWusername')
             );
         }
@@ -214,7 +238,7 @@ class Admin extends Controller {
 
         $search = $this->input->post('TMWusername') . '%';
         $this->db->where('username LIKE \'' . $search . '\'');
-        $res = $this->db->get(User::ACCOUNT_TBL);
+        $res = $this->db->get(Account::ACCOUNT_TBL);
 
         echo "<ul>";
         foreach ($res->result() as $row)
@@ -253,11 +277,11 @@ class Admin extends Controller {
         $search = '%' . $this->input->post('TMWcharacter') . '%';
 
         $sql = "SELECT ".Character::CHARACTER_TBL.".*, "
-             . "       ".User::ACCOUNT_TBL.".username"
+             . "       ".Account::ACCOUNT_TBL.".username"
              . "  FROM ".Character::CHARACTER_TBL
-             . "  JOIN ".User::ACCOUNT_TBL
+             . "  JOIN ".Account::ACCOUNT_TBL
              . "    ON ".Character::CHARACTER_TBL.".user_id = ".
-                         User::ACCOUNT_TBL.".id"
+                         Account::ACCOUNT_TBL.".id"
              . " WHERE ".Character::CHARACTER_TBL.".name LIKE '".$search."'"
              . " ORDER BY ".Character::CHARACTER_TBL.".name";
              

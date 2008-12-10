@@ -68,24 +68,24 @@
     <? } else { ?>
     <tr>
         <th>ID</th>
-        <th colspan="2">Username</th>
+        <th>Username</th>
         <th>Groups</th>
     </tr>
     <?php foreach ($result_account as $account) { ?>
     <tr>
-        <td><?= $account->id ?></td>
+        <td><a href="<?= site_url(array("admin/show_account", $account->getID() )) ?>"><?= $account->getID() ?></a></td>
         <td><?= str_replace( 
             $searchstring, 
             '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
-            $account->username) ?></td>
-        <td><a href="#" onclick="$('user_info').appear(); return false;">Test</a></td>
+            $account->getUsername() ) ?></td>
+        <!--<td><a href="#" onclick="$('user_info').appear(); return false;">Test</a></td>-->
         <td><?
-                foreach ($this->user->getUserLevelString($account->level) as $group )
+                foreach ($this->user->getUserLevelString($account->getLevel()) as $group )
                 {
                     echo $group . ", ";
                 }
             ?>
-            ( <?= $account->level ?> )
+            ( <?= $account->getLevel() ?> )
         </td>
     </tr>
     <?php }}} ?>
@@ -113,7 +113,7 @@
             $searchstring, 
             '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
             $char->getName()) ?></a></td>
-        <td><?= $char->getUsername() ?></td>
+        <td><a href="<?= site_url(array("admin/show_account", $char->getOwnerId())) ?>"><?= $char->getUsername() ?></a></td>
         <td align="center"><?= $char->getGender('image') ?></td>
         <td align="right"><?= $char->getLevel() ?></td>
         <td align="right"><?= $char->getMoney('string') ?></td>

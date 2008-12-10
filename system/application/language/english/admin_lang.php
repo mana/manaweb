@@ -21,7 +21,7 @@
  
 $lang['admin_title']          = 'Admin Interface';
 $lang['maintenance_title']    = 'Maintenance tasks';
-
+$lang['administrative_tasks'] = "Administrative tasks";
 
 $lang['maps_file_reloaded']   = 'The maps.xml file has been reloaded. Local '
                               . 'database is now up to date!';

@@ -99,7 +99,9 @@
             <span class="label"><?= lang('character_owner') ?>: </span>
         </td>
         <td style="border-width: 0px;">  
-            <span class="input"><?= $char->getUsername() ?></span>
+            <span class="input"><a href="<?= site_url(array("admin/show_account", $char->getOwnerId() )) ?>">
+                <?= $char->getUsername() ?></a>
+            </span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_agi') ?>: </span>

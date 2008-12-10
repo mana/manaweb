@@ -1,4 +1,4 @@
-<h3>Welcome <?= $user->username ?>!</h3>
+<h3>Welcome <?= $user->getUsername() ?>!</h3>
 
 <p>From this page you can manage several options of your account. Also you can
    get current statistics of you characters. Please choose one option 
