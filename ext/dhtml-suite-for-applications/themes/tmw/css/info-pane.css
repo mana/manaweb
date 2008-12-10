@@ -1,0 +1,80 @@
+.DHTMLSuite_panel{
+	margin-left:10px;
+	margin-right:10px;
+	margin-top:10px;	
+}
+.DHTMLSuite_panelContent{
+	font-size:0.7em;	
+	background-position:top right;
+	border-left:1px solid #FFF;
+	border-bottom:1px solid #FFF;	
+	padding-left:2px;
+	padding-right:2px;	
+	overflow:hidden;
+	position:relative;
+	clear:both;
+}
+.DHTMLSuite_panelContent div{
+	position:relative;
+	text-align:left;
+	top:0px;
+}
+.DHTMLSuite_panel .DHTMLSuite_infoPaneTopBar{	
+	background-repeat:repeat-x;
+	height:23px;
+	padding-right:5px;
+	cursor:pointer;
+	overflow:hidden;		
+
+}
+
+	
+.DHTMLSuite_infoPane_topBar_button{
+	position:absolute;
+	background-position:center center;
+	background-repeat:no-repeat;
+	right:3px;
+	top:4px;
+	background-image:url(../images/info-pane/xp-info-pane-arrow_up.gif);
+	background-repeat:no-repeat;
+	height:13px;
+	width:13px;
+	padding:1px;
+	border:0px;
+}
+
+.DHTMLSuite_infoPaneButton_over{
+	background-color:#FFA160;
+	border:1px solid #BE510E;	
+	padding:0px;
+}
+
+.DHTMLSuite_infoPane_topBar_buttonDown{
+	background-image:url(../images/info-pane/xp-info-pane-arrow_down.gif);
+}
+
+
+.DHTMLSuite_panel .DHTMLSuite_infoPaneTopBar span{
+	line-height:23px;
+	vertical-align:middle;
+	font-family:arial;
+	font-size:0.7em;
+	color:#FFEDC8;
+	font-weight:bold;
+	float:left;
+	padding-left:5px;
+}
+.DHTMLSuite_panel .DHTMLSuite_infoPaneTopBar img{
+	float:right;
+	cursor:pointer;
+}
+
+.DHTMLSuite_xpPane{
+	background-color:#494949;
+	float:left;
+	height:1200px;
+	width:200px;
+}
+.DHTMLSuite_xpPane span.DHTMLSuite_infoPanelOver{
+	color:#FFF;	
+}
