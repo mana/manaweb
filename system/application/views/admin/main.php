@@ -108,11 +108,13 @@
     <?php foreach ($result_character as $char) { ?>
     <tr>
         <td align="right"><a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>"><?= $char->getId() ?></a></td>
-        <td><a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>">
+        <td><?= $char->isOnline('img') ?>
+            <a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>">
             <?= str_replace(
             $searchstring, 
             '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
-            $char->getName()) ?></a></td>
+            $char->getName()) ?></a>        
+        </td>
         <td><a href="<?= site_url(array("admin/show_account", $char->getOwnerId())) ?>"><?= $char->getUsername() ?></a></td>
         <td align="center"><?= $char->getGender('image') ?></td>
         <td align="right"><?= $char->getLevel() ?></td>

@@ -31,10 +31,11 @@ require_once(APPPATH.'models/inventory'.EXT);
  */ 
 class Character {
 
-    const CHARACTER_TBL    = 'tmw_characters';      /**< Name of the characters table */
-    const ONLINE_CHARS_TBL = 'tmw_v_online_chars';  /**< Name of the view displaying online characters */
-    const GENDER_MALE   = 0;                        /**< Defines constant for male characters */
-    const GENDER_FEMALE = 1;                        /**< Defines constant for female characters */
+    const CHARACTER_TBL        = 'tmw_characters';      /**< Name of the characters table */
+    const CHARACTER_ONLINE_TBL = 'tmw_online_list';     /**< Name of the online list table */
+    const ONLINE_CHARS_TBL     = 'tmw_v_online_chars';  /**< Name of the view displaying online characters */
+    const GENDER_MALE   = 0;                            /**< Defines constant for male characters */
+    const GENDER_FEMALE = 1;                            /**< Defines constant for female characters */
     
     // character attributes ///////////////////////////////////////////////////
     
@@ -81,6 +82,9 @@ class Character {
         self::CHAR_SKILL_AXE      => array( 'icon' => 'axe.png',      'text' => 'character_skill_axe'),
         self::CHAR_SKILL_THROWN   => array( 'icon' => 'thrown.png',   'text' => 'character_skill_thrown')
     );
+
+    /** List of all online characters. */
+    private static $onlinelist;
     
     ///////////////////////////////////////////////////////////////////////////
     
@@ -259,10 +263,12 @@ class Character {
             switch ($this->char->gender)
             {
                 case Character::GENDER_MALE:
-                    return "<img src=\"". base_url()."images/gender_male.gif\">";
+                    return "<img class=\"online-led\"
+                        src=\"". base_url()."images/gender_male.gif\">";
                     break;
                 case Character::GENDER_FEMALE:
-                    return "<img src=\"".base_url()."images/gender_female.gif\">";
+                    return "<img class=\"online-led\"
+                        src=\"".base_url()."images/gender_female.gif\">";
                     break;
             }
         }
@@ -431,8 +437,54 @@ class Character {
         else
         {
             return false;
-        };
-    }        
+        }
+    }
+
+    /**
+     * This function checks wheter the character is online or not.
+     *
+     * @param  format (String)
+     *         If $format is \c 'bool', the function returns \c true or \c false
+     *         If $format is \c 'img', the function returns a html img element
+     * @return (object) Online status of the character
+     */
+    public function isOnline($format='bool')
+    {
+        $online = false;
+        
+        if (!isset(self::$onlinelist))
+        {
+            // load list of online users
+            $query = $this->CI->db->get(Character::CHARACTER_ONLINE_TBL);
+            foreach ($query->result() as $char)
+            {
+                self::$onlinelist[$char->char_id] = $char;
+            }
+        }
+
+        if (isset(self::$onlinelist[$this->getID()]))
+        {
+            $online = true;
+        }
+
+        switch ($format)
+        {
+            case 'bool':
+                return $online; break;
+            case 'img':
+                if ($online)
+                {
+                    return "<img class=\"online-led\"
+                        src=\"". base_url()."images/status_online.png\">";
+                }
+                else
+                {
+                    return "<img class=\"online-led\"
+                        src=\"". base_url()."images/status_offline.png\">";
+                }
+                break;
+        }
+    }
 }
 
 ?>

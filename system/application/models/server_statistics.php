@@ -205,7 +205,7 @@ class Server_statistics extends Model {
                  . "       c.LEVEL AS LEVEL, "
                  . "       u.username AS USERNAME "
                  . "  FROM " . Character::CHARACTER_TBL . " c "
-                 . "  JOIN " . User::ACCOUNT_TBL . " u "
+                 . "  JOIN " . Account::ACCOUNT_TBL . " u "
                  . "    ON c.user_id = u.id "
                  . " ORDER BY c.LEVEL DESC, NAME DESC "
                  . " LIMIT 10 ";
