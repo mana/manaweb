@@ -158,7 +158,12 @@ class Admin extends Controller {
         }
         
         $params['maps_file_age'] = $this->mapprovider->getMapVersion();
-        $params = array_merge($params, $this->_count_error_logs());
+
+        // load logfiles if not already done
+        if (!isset($params['logfiles']))
+        {
+            $params = array_merge($params, $this->_count_error_logs());
+        }
         
         $this->output->showPage(lang('maintenance_title'), 
             'admin/maintenance', $params);
@@ -372,8 +377,7 @@ class Admin extends Controller {
         $params['action_result']       = "";
         $params['show_logfiles']       = true;
 
-        $retval = $this->_count_error_logs();
-        $params['logfiles'] = $retval['logfiles'];
+        $params = array_merge($params, $this->_count_error_logs());
     }
 
     /**
@@ -383,6 +387,9 @@ class Admin extends Controller {
      */
     private function _show_logfile(& $params, $filename)
     {
+        // load the list of logfiles
+        $this->_load_logfiles($params);
+
         // determine the directory of logfiles
         $log_path = $this->config->item('log_path');
         if (strlen($log_path) == 0)
@@ -395,15 +402,14 @@ class Admin extends Controller {
             ob_start();
             readfile($log_path . "/" . $filename);
 
-            $params['log_content'] = ob_get_contents();
+            $params['logfiles'][$filename]['content'] = ob_get_contents();
             ob_end_clean();
         }
         else
         {
             $msg = "Error: The logfile <tt>" . $filename . "</tt> was not found.";
         }
-
-        $this->_load_logfiles($params);
+        
         $params['action_result'] = $msg;
     }
 
@@ -431,7 +437,7 @@ class Admin extends Controller {
             $msg = "Error: The logfile <tt>" . $filename . "</tt> was not found.";
         }
 
-        $this->_load_logfiles($params);
+        $params = array_merge($params, $this->_count_error_logs());
         $params['action_result'] = $msg;
     }
     
@@ -491,7 +497,7 @@ class Admin extends Controller {
                         $retval['max_date'] = $mtime;
                 }
 
-                $files[] = array('filename'=>$entry, 'filesize'=>$filesize, 'filedate'=>$mtime);
+                $files[$entry] = array('filename'=>$entry, 'filesize'=>$filesize, 'filedate'=>$mtime);
             }
         }
         $retval['logfiles'] = $files;

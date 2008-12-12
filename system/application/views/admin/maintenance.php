@@ -126,7 +126,7 @@ stored data.</p>
                     <th>Action</th>
                 </tr>
                 <?php foreach ($logfiles as $logfile) { ?>
-                <tr>
+                <tr>                    
                     <td><?= $logfile['filename'] ?></td>
                     <td align="right"><?= round( $logfile['filesize'] / 1024 ) ?> kB</td>
                     <td><?= date(lang('date_time_format'), $logfile['filedate'] ) ?></td>
@@ -144,10 +144,10 @@ stored data.</p>
                         </a>
                     </td>
                 </tr>
-                    <?php if (isset($log_content)) { ?>
+                    <?php if (isset($logfile['content'])) { ?>
                     <!-- display logfile content -->
                     <tr>
-                        <td colspan="4"><tt><?= nl2br($log_content) ?></tt></td>
+                        <td colspan="4"><tt><?= nl2br($logfile['content']) ?></tt></td>
                     </tr>
                     <?php } ?>
                 <?php } ?>
