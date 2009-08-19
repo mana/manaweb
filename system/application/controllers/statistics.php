@@ -75,7 +75,7 @@ class Statistics extends Controller {
         $g->title->SetFont(FF_FONT1,FS_BOLD);
                
         $res = $this->db->query( 
-            "SELECT GENDER, COUNT(*) AS AMNT " .
+            "SELECT GENDER AS GENDER, COUNT(*) AS AMNT " .
             "  FROM tmw_characters " .
             " GROUP BY GENDER " .
             " ORDER BY GENDER " );

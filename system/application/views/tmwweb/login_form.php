@@ -27,7 +27,7 @@
         </td>
         <td style="border-width: 0px;">  
             <input type="text" size="30" tabindex="1" value="" id="TMWusername" 
-                title="Enter your username" name="TMWusername">
+                title="Enter your username" name="TMWusername" />
         </td>
     </tr>
     <tr>
@@ -36,7 +36,7 @@
         </td>
         <td style="border-width: 0px;">  
             <input type="password" size="30" tabindex="2" value="" id="TMWpassword" 
-                title="Enter your password" name="TMWpassword">
+                title="Enter your password" name="TMWpassword" />
         </td>
     </tr>
     <tr>
@@ -54,9 +54,9 @@
     <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
             <input type="submit" tabindex="4" value="Login" 
-                id="TMWsubmit" title="Login" name="TMWsubmit">
+                id="TMWsubmit" title="Login" name="TMWsubmit" />
             <input type="reset" tabindex="5" value="Cancel" 
-                id="TMWcancel" title="Cancel" name="TMWcancel">
+                id="TMWcancel" title="Cancel" name="TMWcancel" />
         </td>
     </tr>    
     <tr>

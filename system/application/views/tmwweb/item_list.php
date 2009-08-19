@@ -92,7 +92,7 @@
     
     <? foreach ($itemslist as $item) { ?>
     <tr>
-        <td><img src="<?= $imageprovider->getItemImage($item->id, $item->image, $item->dyestring) ?>"></td>
+        <td><img src="<?= $imageprovider->getItemImage($item->id, $item->image, $item->dyestring) ?>" /></td>
         <td>
         	<strong><?
         	if (isset($result_items))

@@ -69,7 +69,8 @@ class Charcontroller extends Controller {
         }
         
         $this->translationprovider->loadLanguage('character');
-        $this->load->library('mapprovider');
+        $this->load->library('Mapprovider');
+        $this->load->library('Imageprovider');
         
         // check if the user is the owner of this char
         if (!$this->user->hasCharacter($id))
@@ -92,6 +93,7 @@ class Charcontroller extends Controller {
                 break;
             case 'inventory':
                 $page = 'tmwweb/character_inventory';
+                $params['imageprovider']  = $this->imageprovider;
                 break;
             case 'guilds':
                 $page = 'tmwweb/character_guilds';

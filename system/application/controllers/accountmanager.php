@@ -176,7 +176,7 @@ class Accountmanager extends Controller {
         {
             // the new password is ok.
             $this->membershipprovider->setPasswordForUser(
-                $this->user->getUser()->username, 
+                $this->user->getUser()->getUsername(), 
                 $this->input->post('TMW_new_password'),
                 false );
                     
@@ -200,7 +200,7 @@ class Accountmanager extends Controller {
      */
     public function _password_strength($pwd)
     {
-        $username = $this->user->getUser()->username;
+        $username = $this->user->getUser()->getUsername();
         $ret = Membershipprovider::validatePassword($pwd, $username);
         switch ($ret)
         {
@@ -232,7 +232,7 @@ class Accountmanager extends Controller {
      */
     public function _validate_password($pwd)
     {
-        $name = $this->user->getUser()->username;
+        $name = $this->user->getUser()->getUsername();
         
         // call authenticate function from user model but set 3rd parameter to
         // false to prevent session from being modified

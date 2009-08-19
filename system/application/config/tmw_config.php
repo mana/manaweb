@@ -20,37 +20,36 @@
  */
 
 /*
- * define some constants to identify the current running version of tmwweb
- */
-define ('TMWWEB_VERSION', '1.0.0');
-define ('TMWWEB_VERSION_DATE', '2008-12-01');
+|--------------------------------------------------------------------------
+| Base Site URL
+|--------------------------------------------------------------------------
+|
+| URL to your TMWWEB root. Typically this will be your base URL,
+| WITH a trailing slash:
+|
+|   http://example.com/
+|
+*/
+$config['base_url'] = "http://example.com/tmwweb/";
+
 
 /*
 |--------------------------------------------------------------------------
-| Maps config file
+| tmwdata path
 |--------------------------------------------------------------------------
-|
-| tmwweb tries to read the configured maps.xml file shipped with tmwserv to
-| show the current location of characters as human readable string.
-|
+| TMWWEB needs a local copy of the clients data directory.
+| Don't forget the trailing /
 */
-$config['tmwserv_maps.xml'] = '/path/to/your/tmwserv/installation/maps.xml'; 
+$config['tmwdata_path'] = 'tmwdata/';
 
 /*
 |--------------------------------------------------------------------------
-| Items config file
+| tmwserv-data path
 |--------------------------------------------------------------------------
-|
-| TMWWeb tries to show the equipment and inventory graphics of characters.
-| Therefore it needs to copy the item graphics into the local directory
-| ./images/items directory if they don't exist yet.
-| Therfore you have to configure the absolute path, where the images are 
-| located. Normally, this is your tmwdata/trunk/graphics/items directory.
-|
-| Don't forget the trailing slash after the images directory!
-|
+| TMWWEB needs a local copy of the account servers data directory.
+| Don't forget the trailing /
 */
-$config['tmwserv_items_images'] = '/path/to/your/tmwdata/trunk/graphics/items/'; 
+$config['tmwserv-data_path'] = 'tmwserv-data/';
 
 /*
 |--------------------------------------------------------------------------
@@ -151,12 +150,6 @@ $config['tmw_enable_profiler'] = false;
 |    AL_ADMIN  =  128     < User can perform administrator tasks.
 |
 */
-define('AL_BANNED',   0);
-define('AL_PLAYER',   1);
-define('AL_TESTER',   2);
-define('AL_DEV',      4);
-define('AL_GM',       8);
-define('AL_ADMIN',  128 );
 
 $_tmw_levels = array( 
     array( 'byte'=> AL_BANNED, 'name'=>'banned User'   ),
@@ -229,6 +222,13 @@ $config['tmw_change_password_link'] = "http://example.com/index.php".
 | Define the subject of the mail that should be sent to the user.
 */    
 $config['tmw_change_password_subject'] = "TMW: Your password change request";
+
+
+/*
+| Define the time until the key given in the mail will expire.
+| Default = 1 day = 60 * 60 * 24 seconds
+*/
+$config['tmw_change_password_expiration'] = 86400;
 
         
 /*

@@ -19,6 +19,8 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
+    define('FCPATH', __FILE__);
+
     function print_check( $msg, $result, $required="", $state="", $ann="" )
     {
         echo "
@@ -154,9 +156,7 @@
         
         if (!check_file_exists('system/application/config/config.php',
         	"This configuration  file is the basic configuration of your Account Manager installation and is therefore ".
-        	"vital for any further step. You can find a template for the configuation file called <tt>config.default.php</tt> ".
-        	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>config.php</tt> and ".
-        	"make your modifications.")) return;
+        	"vital for any further step. Something is really wrong if you don't have a copy of this file...")) return;
         	
         	
         // requiring config file
@@ -178,12 +178,6 @@
         	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>email.php</tt> and ".
         	"make your modifications.")) return;
         
-        if (!check_file_exists('system/application/config/tmw_config.user.php', 
-        	"The account manager has a tight integration into tmwserv and shares lots of files and parameters with it. You have to ".
-        	"configure some paths and options to make integration work properly. To not lose your configuration when upgrading ".
-        	"to a new release of tmwweb, you should make a copy of the file <tt>tmw_config.php</tt> in the directory ".
-        	"<tt>system/application/config</tt> and name it <tt>tmw_config.user.php</tt>. Tmwweb will first read the shipped ".
-        	"file and then overrides them with all settings you have changed in you config file.")) return;  
 
         	
         // try to write to directories
@@ -205,10 +199,6 @@
         	"According to your configured parameter <tt>log_threshold</tt> in the <tt>config.php</tt> file, tmwweb will ".
         	"log debug or error messages to this directory.")) return;
         	
-        if (!try_write_dir("./images/items",
-        	"To be able to display item images, these images have to be available under your http document root.".
-        	"The account manager can copy all required images into the mentioned path during caching of the items database.")) return;
-        
         // checking wheter a custom cachepath is set
         if (strlen($config['cache_path']) > 0)
         {
@@ -222,45 +212,48 @@
         	"To increase performance of page rendering, tmwweb is able to cache static content for faster access. The directory " .
         	"therefore needs to be writeable by the webserver to store caching information.")) return;
         	
-        	        
-        // checking config options
-        print_header("Checking basci configuration options");
+       
+        // checking tmw_options
+        print_header("Checking tmwweb specific configuration.");
+        require_once('./system/application/config/tmw_config.php');
+        print_message("File ./system/application/config/tmw_config.php loaded.");
+
+        if (file_exists('./system/application/config/tmw_config.user.php'))
+        {
+            require_once('./system/application/config/tmw_config.user.php');
+            print_message("File ./system/application/config/tmw_config.user.php loaded.");
+        }
+        else
+        {
+            $msg = "File ./system/application/config/tmw_config.user.php not found.";
+            print_check( $msg, "warning", "", "",
+                "This file is not vital for running tmwweb. But you should use it to configure ".
+                "individual parameters. If you use the tmw_config.php directly, you will have to ".
+                "be aware during updates." );
+        }
+
+
         if ($config['base_url'] == "http://example.com/tmwweb/")
-        {   
+        {
             print_check( "parameter <tt>base_url</tt>", "failed", "", "",
             	"This option is necessary to build correct internal links. Please set this parameter to the correct root of ".
-            	"your tmwweb installation." );
+            	"your tmwweb installation. " );
             return;
         }
         else
         {
             print_check( "parameter <tt>base_url</tt>", "ok" );
         }
-      
         
-        // checking tmw_options
-        print_header("Checking tmwweb specific configuration.");
-        require_once('./system/application/config/tmw_config.php');
-        print_message("File ./system/application/config/tmw_config.php loaded.");
-        if (file_exists('./system/application/config/tmw_config.user.php'))
-        {
-            require_once('./system/application/config/tmw_config.user.php');
-            print_message("File ./system/application/config/tmw_config.user.php loaded.");
-        }
-        
-        
-        if (!check_file_exists($config['tmwserv_maps.xml'],
-        	"The Account manager tries to read the maps.xml file shipped with tmwserv to show the current location of characters ".
-        	"as human readable string.")) return;
-        	
-        	
-        if (!try_read_dir($config['tmwserv_items_images'],
-        	"The Account manager tries to read the items.xml file shipped with tmwserv to show the equipment and inventory of characters. ".
-        	"It also tries to copy the images of the items into the ./images/items directory if they don't exist yet. ".
-			"Therfore you have to configure the absolute path, where the images are located. Normally, this is your ".
-			"tmwdata/trunk/graphics/items directory." )) return;
-			
-        
+
+        if (!try_read_dir($config['tmwdata_path'],
+                'Tmwweb needs a local copy of the clients data directory.'
+                )) return;
+
+        if (!try_read_dir($config['tmwserv-data_path'],
+                'Tmwweb needs a local copy of the servers data directory.'
+                )) return;
+
         print_header("Checking database configuration and connection.");
         require_once('./system/application/config/database.php');
         

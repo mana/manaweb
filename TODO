@@ -1,3 +1,8 @@
+2009-08-19   Andreas Habel   <mail@exceptionfault.de>
+    * upgrade source to latest CodeIgniter version
+    * use consequently all resources directly from tmwdata and tmwserv-data
+    * integrate new tmw-skills.xml instead of hard coding thos skills
+
 2008-08-28   Andreas Habel   <mail@exceptionfault.de>
     * implement change mailadress form under account settings
     

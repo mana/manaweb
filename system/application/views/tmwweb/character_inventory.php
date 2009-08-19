@@ -17,8 +17,7 @@
     }
 ?>
 <div style="text-align: right;">
-    Your current load: <?= $weight_all ?> of <?= $weight_max ?><br />
-    <img src="<?= base_url() ?>images/progress/progress_200_<?= $weight_pct ?>.png">  
+    Your current load: <?= $weight_all ?> of <?= $weight_max ?>    
 </div>
 
 <h3><?= lang('character_equipment') ?></h3>
@@ -38,7 +37,7 @@
     
     <? foreach ($char->getInventory()->getInventory() as $item) { ?>
     <tr>
-        <td width="35"><img src="<?= base_url()."images/items/".$item->image ?>"></td>
+        <td width="35"><img src="<?= $imageprovider->getItemImage($item->id, $item->image, $item->dyestring) ?>" /></td>
         <td><?= $item->name ?></td>
         <td><?= $item->description ?></td>
         <td><?= $item->effect ?></td>

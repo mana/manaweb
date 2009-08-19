@@ -59,16 +59,22 @@ class Imageprovider
      */
     public function getItemImage($itemid, $image, $dyestring="")
     {
+        $images_dir = $this->CI->config->item('tmwdata_path') . 'graphics/items/';
+
 	    // the image has not to be dyed... just return the base image
 	    if ($dyestring == "")
 	    {
-            return base_url() . "images/items/" . $image;
+            return base_url() . $images_dir . $image;
 	    }
-	    
+
+
+        // TODO: reimplement support for dyed items
+        return base_url() . $images_dir . $image;
+        
 	    // image dyeing is disabled, return the base image
 	    if (!$this->CI->config->item('tmwserv_enable_dyecmd'))
 	    {
-		    return base_url() . "images/items/" . $image;
+		    return base_url() . $images_dir . $image;
 	    }
 	    
 	    // the image has to be dyed, so check the cache

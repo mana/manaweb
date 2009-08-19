@@ -58,8 +58,8 @@ class Dalprovider
         // therefore we cannot access $this->config
         $this->CI =& get_instance();
         
-        $this->items_file = $this->CI->config->item('tmwserv_items.xml');
-        $this->images_dir = $this->CI->config->item('tmwserv_items_images');
+        $this->items_file = $this->CI->config->item('tmwdata_path') . 'items.xml';
+        $this->images_dir = $this->CI->config->item('tmwdata_path') . 'graphics/items/';
     }
     
 
@@ -70,6 +70,11 @@ class Dalprovider
      */
     public function refreshStorage()
     {
+        // TODO:
+        // we no longer need to copy those images...
+        // just return an empty array
+        return array();
+        
         if (!file_exists($this->items_file))
         {
             show_error('The file ' . $this->items_file . ' was not found.');

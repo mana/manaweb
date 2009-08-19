@@ -134,11 +134,14 @@ class Membershipprovider
     public function setKeyForUser($username, $key)
     {
         $db = $this->CI->db;
-        
+        $expiration = $this->CI->config->item('tmw_change_password_expiration');
+
         // do the update in a single transaction, to not disturb tmwserv
         $db->trans_start();
         $db->where('username', $username);
-        $db->update('tmw_accounts', array('authorization' => $key)); 
+        $db->update('tmw_accounts', 
+            array('authorization' => $key,
+                  'expiration'    => time() + intval($expiration) ));
         $db->trans_complete();
     }
     
@@ -167,6 +170,7 @@ class Membershipprovider
             if ($reset_key)
             {
                 $values['authorization'] = null;
+                $values['expiration']    = null;
             }
             $db->update('tmw_accounts', $values); 
             
@@ -186,10 +190,24 @@ class Membershipprovider
      */
     public function validateKeyForUser($username, $key)
     {
-        $query = $this->CI->db->get_where( 'tmw_accounts', 
-                    array('username'=>$username, 'authorization'=>$key ));
-            
-        if ($query->num_rows == 1)
+        $db =& $this->CI->db;
+        $query = $db->get_where( 'tmw_accounts', array('username'=>$username));
+        $row = $query->row();
+        // first validate expiration date of the key, no matter if it's correct
+
+        
+        if (isset($row->expiration) && intval($row->expiration) < time())
+        {
+            // remove the expired key
+            $db->trans_start();
+            $db->where('username', $username);
+            $values = array('authorization'=>null, 'expiration'=>null );
+            $db->update('tmw_accounts', $values);
+            $db->trans_complete();
+            return false;
+        }
+
+        if (isset($row->authorization) && $row->authorization == $key)
         {
             return true;
         }

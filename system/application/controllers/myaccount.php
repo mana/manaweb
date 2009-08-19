@@ -209,15 +209,17 @@ class Myaccount extends Controller {
      *                 his password
      * @param key      (String) Secret key sent to the user via email
      */
-    public function changepassword($username, $key)
+    public function changepassword($username = null, $key = null)
     {
         // check if a combination of username and key exist in db
-        if ($this->membershipprovider->validateKeyForUser($username, $key))
+        if (isset($username) && isset($key) &&
+            $this->membershipprovider->validateKeyForUser($username, $key))
         {
             // show view for changing password
             $this->output->showPage(lang('tmwweb_title'),
                 'tmwweb/lost_password_change',
-                array('username'=>$username, 'key'=>$key));
+                array('username'=>$username, 'key'=>$key, 
+                    'has_errors'=>false));
         }
         else
         {
@@ -271,7 +273,8 @@ class Myaccount extends Controller {
                 $this->output->showPage(lang('tmwweb_title'), 
                     'tmwweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
-                    ' now login with your new credentials.' ));
+                    ' now login with your new credentials.',
+                    'has_errors'=>false ));
             }
         }
         else
@@ -384,7 +387,7 @@ class Myaccount extends Controller {
         $this->membershipprovider->setKeyForUser( $username, $key );
      
         // todo: comment this out in production
-        // $this->email->send();
+        $this->email->send();
         
         // log the sending...
         // todo: comment this out in production
