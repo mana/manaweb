@@ -33,6 +33,11 @@ class CI_DB_pdo_driver extends CI_DB
 {
     var $class_version = '0.1';
 
+    // this is a hack: missing random keyword...
+    // this line is not part of the official ci distribution: added 2009-08-27
+    // by exceptionfault
+    var $_random_keyword = ' Random()'; // database specific random keyword
+
     /**
      * Non-persistent database connection
      *
