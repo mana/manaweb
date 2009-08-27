@@ -1,7 +1,7 @@
 <?php
 /*
  *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  Copyright 2009 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -132,6 +132,7 @@ class Admin extends Controller {
         }
         
         $this->load->library('mapprovider');
+        $this->load->library('skillprovider');
         $this->load->library('dalprovider');
         
         // execute the requested action
@@ -146,6 +147,9 @@ class Admin extends Controller {
             case 'reload_maps.xml':
                 $retmsg = $this->_reload_maps_file($params);
                 break;
+            case 'reload_skills.xml':
+                $retmsg = $this->_reload_skills_file($params);
+                break;
             case 'list_logfiles':
                 $retmsg = $this->_load_logfiles($params);
                 break;
@@ -158,6 +162,7 @@ class Admin extends Controller {
         }
         
         $params['maps_file_age'] = $this->mapprovider->getMapVersion();
+        $params['skills_file_age'] = $this->skillprovider->getSkillsCacheVersion();
 
         // load logfiles if not already done
         if (!isset($params['logfiles']))
@@ -346,7 +351,7 @@ class Admin extends Controller {
     }
     
     /**
-     * This function tries to reload the maps.xml from tmwserv and updates the
+     * This function tries to reload the XML_MAPS_FILE from tmwserv and updates the
      * local cache.
      * @param[in,out] params (Array) Parameter that should be send to the view
      */
@@ -354,6 +359,17 @@ class Admin extends Controller {
     {
         $this->mapprovider->load_maps_file();
         $params['action_result'] = lang('maps_file_reloaded');
+    }
+
+    /**
+     * This function tries to reload the XML_SKILLS_FILE from tmwserv and updates the
+     * local cache.
+     * @param[in,out] params (Array) Parameter that should be send to the view
+     */
+    private function _reload_skills_file(& $params)
+    {
+        $this->skillprovider->loadSkillsFile();
+        $params['action_result'] = lang('skills_file_reloaded');
     }
     
     /**

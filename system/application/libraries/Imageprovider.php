@@ -27,7 +27,10 @@
  */ 
 class Imageprovider
 {
-	
+
+    const ITEMS_DIRECTORY = 1;
+    const TMWDATA_DIRECTORY = 2;
+
     /**
      * Reference to the CodeIgniter framework
      */
@@ -46,6 +49,25 @@ class Imageprovider
     } // __construct
     
     
+    /**
+     *
+     * @param  (String) Filename of the image.
+     * @param  (int)    Id of the path.
+     * @return (String) Url to the image.
+     */
+    public function getImage($filename, $path=Imageprovider::ITEMS_DIRECTORY)
+    {
+        switch( $path )
+        {
+            case Imageprovider::ITEMS_DIRECTORY:
+                return base_url() . $this->CI->config->item('tmwdata_path') . 'graphics/items/' . $filename;
+                break;
+            case Imageprovider::TMWDATA_DIRECTORY:
+                return base_url() . $this->CI->config->item('tmwdata_path') . $filename;
+                break;
+        }
+    }
+
     /** 
      * This function returns the URL to the image of the given item.
      * If the image is a dyed version of a grayscaled image, the function 

@@ -46,43 +46,6 @@ class Character {
     const CHAR_ATTR_INTELLIGENCE = "int";    /**< Constant for character attribute INTELLIGENCE */
     const CHAR_ATTR_WILLPOWER    = "will";   /**< Constant for character attribute WILLPOWER */
 
-    // character experiences //////////////////////////////////////////////////
-
-    /*
-     * Constants for character experiences 
-     */
-    const CHAR_SKILL_NONE      = 0;     /**< Skill for unarmed fights */
-    const CHAR_SKILL_KNIFE     = 1;     /**< Skill for fighting with knifes */
-    const CHAR_SKILL_SWORD     = 2;     /**< Skill for fighting with swords */
-    const CHAR_SKILL_POLEARM   = 3;     /**< Skill for fighting with polearms */
-    const CHAR_SKILL_STAFF     = 4;     /**< Skill for fighting with staffs */
-    const CHAR_SKILL_WHIP      = 5;     /**< Skill for fighting with a whip */
-    const CHAR_SKILL_BOW       = 6;     /**< Skill for shooting with bows */
-    const CHAR_SKILL_SHOOTING  = 7;     /**< Skill for shooting */
-    const CHAR_SKILL_MACE      = 8;     /**< Skill for fighting with maces */
-    const CHAR_SKILL_AXE       = 9;     /**< Skill for fighting with axes */
-    const CHAR_SKILL_THROWN    = 10;    /**< Skill for throwing weapons */
-
-    /** Number of first available skill to loop over all attributes. */
-    const CHAR_SKILL_MIN       = Character::CHAR_SKILL_NONE;
-    /**  Number of last available skill to loop over all attributes. */
-    const CHAR_SKILL_MAX       = Character::CHAR_SKILL_THROWN;
-
-    /** List of all skins, their translation and corresponding image. */
-    private static $skillinfo = array(
-        self::CHAR_SKILL_NONE     => array( 'icon' => 'unarmed.png',  'text' => 'character_skill_none'),
-        self::CHAR_SKILL_KNIFE    => array( 'icon' => 'knife.png',    'text' => 'character_skill_knife'),
-        self::CHAR_SKILL_SWORD    => array( 'icon' => 'sword.png',    'text' => 'character_skill_sword'),
-        self::CHAR_SKILL_POLEARM  => array( 'icon' => 'polearm.png',  'text' => 'character_skill_polearm'),
-        self::CHAR_SKILL_STAFF    => array( 'icon' => 'staff.png',    'text' => 'character_skill_staff'),
-        self::CHAR_SKILL_WHIP     => array( 'icon' => 'whip.png',     'text' => 'character_skill_whip'),
-        self::CHAR_SKILL_BOW      => array( 'icon' => 'bow.png',      'text' => 'character_skill_bow'),
-        self::CHAR_SKILL_SHOOTING => array( 'icon' => 'shooting.png', 'text' => 'character_skill_shooting'),
-        self::CHAR_SKILL_MACE     => array( 'icon' => 'mace.png',     'text' => 'character_skill_mace'),
-        self::CHAR_SKILL_AXE      => array( 'icon' => 'axe.png',      'text' => 'character_skill_axe'),
-        self::CHAR_SKILL_THROWN   => array( 'icon' => 'thrown.png',   'text' => 'character_skill_thrown')
-    );
-
     /** List of all online characters. */
     private static $onlinelist;
     
@@ -380,8 +343,6 @@ class Character {
     {
         $info = array();
 
-        $info['icon'] = self::$skillinfo[$skill]['icon'];
-        $info['text'] = self::$skillinfo[$skill]['text'];
         $info['exp'] = $this->getSkill($skill);
         $info['level'] = $this->getSkillLevel($skill);
         $info['level_exp_min'] = self::experienceForLevel($info['level']);

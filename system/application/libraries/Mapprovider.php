@@ -24,7 +24,7 @@ require_once(APPPATH.'models/map'.EXT);
  
 /**
  * The mapprovider is responsible for all actions according to maps in the 
- * tmwserv module. It reads the maps.xml file, and delivers informations about
+ * tmwserv module. It reads the XML_MAPS_FILE file, and delivers informations about
  * maps to the user.
  * 
  * @ingroup libraries
@@ -43,12 +43,12 @@ class Mapprovider
     private $CI;
     
     /** 
-     * Configured path and name of the maps.xml file.
+     * Configured path and name of the XML_MAPS_FILE file.
      */
     private $maps_file;
     
     /**
-     * List of all available maps loaded from the maps.xml or the serialized
+     * List of all available maps loaded from the XML_MAPS_FILE or the serialized
      * data object.
      */
     private $maps;
@@ -78,7 +78,7 @@ class Mapprovider
         }
         else
         {
-            // try to load maps.xml file
+            // try to load XML_MAPS_FILE file
             $this->load_maps_file();
         }
     } // __construct
@@ -99,25 +99,25 @@ class Mapprovider
         else
         {
             show_error('A map with the id ' . $id . ' is unknown. Maybe you '.
-                'have to reload the maps.xml file');
+                'have to reload the '. XML_MAPS_FILE .' file');
         }
     }
     
     
     /**
-     * This function tries to load and serialize the maps.xml file.
+     * This function tries to load and serialize the XML_MAPS_FILE file.
      */
     public function load_maps_file()
     {
-        log_message('debug', 'Reloading maps.xml file from tmwserv');
+        log_message('debug', 'Reloading '. XML_MAPS_FILE .' file from tmwserv');
         
         // load the configured path and filename from config file
-        $this->maps_file = $this->CI->config->item('tmwserv-data_path') . 'maps.xml';
+        $this->maps_file = $this->CI->config->item('tmwserv-data_path') . XML_MAPS_FILE;
         
         // check if the file really exists and is readable
         if (!file_exists($this->maps_file))
         {
-            show_error('The maps.xml file ' . $this->maps_file . ' configured'.
+            show_error('The '. XML_MAPS_FILE .' file ' . $this->maps_file . ' configured'.
                 ' in tmw_config.php cannot be found');
             return;
         }        
@@ -147,7 +147,7 @@ class Mapprovider
             
             $this->flush_maps();
         }
-        log_message('debug', 'Reloading maps.xml file ... done');
+        log_message('debug', 'Reloading '. XML_MAPS_FILE .' file ... done');
     } // function load_maps_file
     
     
@@ -165,7 +165,7 @@ class Mapprovider
     
     /**
      * This function writes the memory structure stored in the private maps
-     * variable to disk for faster access than reading maps.xml on each 
+     * variable to disk for faster access than reading XML_MAPS_FILE on each
      * request.
      */
     private function flush_maps()

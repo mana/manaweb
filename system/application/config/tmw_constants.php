@@ -23,8 +23,8 @@
 /*
  * define some constants to identify the current running version of tmwweb
  */
-define ('TMWWEB_VERSION', '1.0.0');
-define ('TMWWEB_VERSION_DATE', '2009-08-19');
+define ('TMWWEB_VERSION',      '1.0.0');
+define ('TMWWEB_VERSION_DATE', '2009-08-27');
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +58,18 @@ define('AL_DEV',      4);
 define('AL_GM',       8);
 define('AL_ADMIN',  128 );
 
+
+/*
+|--------------------------------------------------------------------------
+| Filenames
+|--------------------------------------------------------------------------
+|
+| The client and tmwserv are using several configurations files which define
+| things like items, skills and maps. The filenames are listed here.
+|
+*/
+
+define('XML_MAPS_FILE',   'maps.xml');
+define('XML_SKILLS_FILE', 'tmw-skills.xml');
 
 ?>

@@ -33,10 +33,10 @@ stored data.</p>
     </tr>
     <tr>
         <td>  
-            <span class="label">maps.xml</span>
+            <span class="label"><?= XML_MAPS_FILE ?></span>
         </td>
         <td>  
-            The file <tt>maps.xml</tt> contains all maps provided by the map 
+            The file <tt><?= XML_MAPS_FILE ?></tt> contains all maps provided by the map
             server. Tmwweb uses this file to show descriptions of the 
             character locations.
         </td>
@@ -57,6 +57,31 @@ stored data.</p>
             </span>    
         </td>
     </tr>    
+    <tr>
+        <td>
+            <span class="label"><?= XML_SKILLS_FILE ?></span>
+        </td>
+        <td>
+            The file <tt><?= XML_SKILLS_FILE ?></tt> contains all skills a character can gain.
+            Tmwweb uses this file to show descriptions of the skills.
+        </td>
+        <td>
+            <span class="label">
+                <?= date(lang('date_time_format'), $skills_file_age); ?>
+            </span>
+        </td>
+        <td>
+            <span class="label">
+                <a href="<?= site_url('admin/maintenance/reload_skills.xml') ?>">
+                <img src="<?= base_url() ?>images/view-refresh.png"
+                    style="vertical-align: middle"
+                    title="Reload skills database"
+                    border="0">
+                </a>
+                &nbsp;
+            </span>
+        </td>
+    </tr>
     <tr>
         <td>  
             <span class="label">item graphics</span>

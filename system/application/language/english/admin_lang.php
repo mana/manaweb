@@ -1,7 +1,7 @@
 <?php
 /*
  *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  Copyright 2009 The Mana World Development Team
  *
  *  This file is part of The Mana World.
  *
@@ -23,8 +23,12 @@ $lang['admin_title']          = 'Admin Interface';
 $lang['maintenance_title']    = 'Maintenance tasks';
 $lang['administrative_tasks'] = "Administrative tasks";
 
-$lang['maps_file_reloaded']   = 'The maps.xml file has been reloaded. Local '
+$lang['maps_file_reloaded']   = 'The '. XML_MAPS_FILE .' file has been reloaded. Local '
                               . 'database is now up to date!';
+
+$lang['skills_file_reloaded'] = 'The '. XML_SKILLS_FILE .' file has been reloaded. Local '
+                              . 'database is now up to date!';
+
 
 $lang['items_file_reloaded']  = 'All item graphics have been reloaded. Local '
                               . 'database is now up to date!';
