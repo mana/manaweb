@@ -12,3 +12,11 @@ system/application/config/tmw_config.user.php
 # logfiles created by tmwweb
 system/logs/log-*.php
 
+# cache created by tmwweb
+data/maps.php.db
+data/skills.php.db
+
+# directories used from tmwserv and tmw 
+tmwdata
+tmwserv-data
+

@@ -178,6 +178,30 @@ class Membershipprovider
                 $username ));
         $db->trans_complete();
     }
+
+    /**
+     * This function sets a new mailaddress for a given username. The mailaddress
+     * will be stored as a sha256 hash with username as salt.
+     * 
+     * @param (String) $username    Username of the user
+     * @param (String) $mailaddress New mailaddress of the user
+     */
+    public function setMailaddressForUser($username, $mailaddress)
+    {
+        $mail = hash('sha256', $username . $mailaddress);
+
+        // do the update in a single transaction, to not disturb tmwserv
+        $db = $this->CI->db;
+
+        $db->trans_start();
+            $db->where('username', $username);
+            $values = array('email' => $mail);
+            $db->update('tmw_accounts', $values);
+
+            log_message('info', sprintf('User [%s] has changed its mailaddress.',
+                $username ));
+        $db->trans_complete();
+    }
     
     
     /**

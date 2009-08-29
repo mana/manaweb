@@ -33,6 +33,7 @@ $lang['settings_selection']             = 'I would like to...';
 $lang['settings_select_password']       = '...change my password.';
 $lang['settings_select_mail']           = '...change my mailaddress.';
 $lang['settings_select_delete_account'] = '...delete my account.';
+$lang['back_to_settings']               = 'back to the settings';
  
  
 // change password ////////////////////////////////////////////////////////////
@@ -62,9 +63,22 @@ $lang['settings_pwd_eq_username']       = 'The password must be different '.
 // change mailadress //////////////////////////////////////////////////////////
 
 $lang['settings_change_mail_head']      = 'Change your mailaddress';
-$lang['settings_change_mail_descr'] = 
- 'blubb';
+$lang['settings_change_mail_descr']     = 
+    'With this form you can change your mailaddress. Please enter your current'.
+    ' password and two times your new mailaddress. Your mailaddress will be'.
+    'stored in a crypted format so there is no chance to receive spam from us!';
+$lang['mailaddress_changed_message']    = 'Your new mailaddress has been saved successfully.';
 
+$lang['settings_current_password']      = 'current password';
+$lang['settings_enter_current_password']= 'Please enter your current password';
+
+$lang['settings_new_mailaddress']       = 'new mailaddress';
+$lang['settings_enter_new_mailaddress'] = 'Please enter your new mailaddress';
+
+$lang['settings_retype_mailaddress']       = 'retype mailaddress';
+$lang['settings_enter_retype_mailaddress'] = 'Please retype your new mailaddress';
+
+$lang['settings_change_mailaddress']       = 'Change mailaddress';
 
 // delete account /////////////////////////////////////////////////////////////
 

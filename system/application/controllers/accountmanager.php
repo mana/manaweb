@@ -41,7 +41,7 @@ class Accountmanager extends Controller {
             $this->config->item('tmw_enable_profiler')
         );
 
-        $this->load->library('validation');        
+        $this->load->library('form_validation');
         $this->load->helper('form');
             
         // check if the user is currently logged in
@@ -86,6 +86,27 @@ class Accountmanager extends Controller {
         $params = array('has_errors' => false);
         $this->output->showPage(lang('settings_title'), 
             'tmwweb/settings', $params);
+    }
+
+    /**
+     * This function is used to show a form or view with the given name.
+     * @param (String) $name  Name of the view.
+     */
+    public function showForm($name)
+    {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        
+        $this->translationprovider->loadLanguage('settings');
+        switch ($name)
+        {
+            case "ChangeMailaddress":
+                $this->output->showPage(lang('settings_change_mail_head'),
+                    'tmwweb/accountmanager/change_mailaddress_form' );
+                break;
+        }
     }
     
     
@@ -155,17 +176,20 @@ class Accountmanager extends Controller {
         // in it. This is due to the fact, that callback functions have to 
         // start with "callback_" and to make the function itself private for 
         // CI, the function has to start with an underscore. 
-        $rules['TMW_old_password'] = "required|callback__validate_password";
-        $rules['TMW_new_password'] = "required|callback__password_strength";
-        $rules['TMW_retype_password'] = "required|matches[TMW_new_password]";
-        $rules['PasswordStrength'] = "";
-        $this->validation->set_rules($rules);
 
-                
+        $this->form_validation->set_rules('TMW_old_password',
+            'lang:settings_old_password', "required|callback__validate_password" );
+
+        $this->form_validation->set_rules('TMW_new_password',
+            lang('settings_new_password'), "required|callback__password_strength" );
+
+        $this->form_validation->set_rules('TMW_retype_password',
+            lang('settings_retype_password'), "required|matches[TMW_new_password]" );
+
         $this->translationprovider->loadLanguage('settings');
         
         // validate userinput against rules
-        if ($this->validation->run() == false)
+        if ($this->form_validation->run() == false)
         {
             // validation fails, prepare params for change form
             $param = array('has_errors' => true); 
@@ -188,7 +212,55 @@ class Accountmanager extends Controller {
                 'tmwweb/settings', $param);
         }
     }
-    
+
+    /**
+     * This function is called from the view settings and should set a new
+     * mailaddress for the current user.
+     */
+    public function changemailaddress()
+    {
+        if (!$this->user->isAuthenticated())
+        {
+            return;
+        }
+        $this->translationprovider->loadLanguage('settings');
+        $params = array();
+
+        $rules['TMW_new_mailaddress']    = "required";
+        $rules['TMW_retype_mailaddress'] = "required";
+
+        $this->form_validation->set_rules('TMW_current_password',
+            'lang:settings_current_password' ,
+            'required|callback__validate_password' );
+
+        $this->form_validation->set_rules('TMW_new_mailaddress',
+            lang('settings_new_mailaddress') ,
+            'required|valid_email' );
+
+        $this->form_validation->set_rules('TMW_retype_mailaddress',
+            lang('settings_retype_mailaddress') ,
+            'required|valid_email|matches[TMW_new_mailaddress]' );
+
+        // validate userinput against rules
+        if ($this->form_validation->run() == false)
+        {
+            // validation fails, prepare params for change form
+            $params['has_errors'] = true;
+        }
+        else
+        {
+            $this->membershipprovider->setMailaddressForUser(
+                $this->user->getUser()->getUsername(),
+                $this->input->post('TMW_new_mailaddress')
+            );
+            $params['mailaddress_changed_message'] = lang('mailaddress_changed_message');
+        }
+
+        $this->output->showPage(lang('settings_change_mail_head'),
+            'tmwweb/accountmanager/change_mailaddress_form', $params );
+
+
+    }
     
     /** 
      * This is a callback function to validate the user given password against
@@ -207,15 +279,15 @@ class Accountmanager extends Controller {
             case Membershipprovider::PASSWORD_OK:
                 return true;
             case Membershipprovider::PASSWORD_TO_SHORT:
-                $this->validation->set_message('_password_strength', 
+                $this->form_validation->set_message('_password_strength',
                 lang('settings_pwd_to_short'));
                 return false;
             case Membershipprovider::PASSWORD_TO_LONG:
-                $this->validation->set_message('_password_strength', 
+                $this->form_validation->set_message('_password_strength',
                 lang('settings_pwd_to_long'));
                 return false;
             case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
-                $this->validation->set_message('_password_strength', 
+                $this->form_validation->set_message('_password_strength',
                 lang('settings_pwd_eq_username'));
                 return false;
         }
@@ -241,7 +313,7 @@ class Accountmanager extends Controller {
         // if authentication fails, set correct error message
         if (!$retval)
         {
-            $this->validation->set_message('_validate_password', 
+            $this->form_validation->set_message('_validate_password',
             'The old password is wrong.');
         }
         return $retval;

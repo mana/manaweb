@@ -1,11 +1,8 @@
-2009-08-19   Andreas Habel   <mail@exceptionfault.de>
-    * upgrade source to latest CodeIgniter version
-    * use consequently all resources directly from tmwdata and tmwserv-data
-    * integrate new tmw-skills.xml instead of hard coding thos skills
+2009-08-29   Andreas Habel   <mail@exceptionfault.de>
+    * remove usage of deprecated validation library. Use form_validation instead.
+    * update installation instructions. These are out of date since its non much
+      more easier to instal tmwweb i think.
 
-2008-08-28   Andreas Habel   <mail@exceptionfault.de>
-    * implement change mailadress form under account settings
-    
 think about...
 ------------------
 
