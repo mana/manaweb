@@ -526,10 +526,10 @@ class User extends Model {
     public function isMemberOfGuild($id)
     {
         $this->db->select('g.guild_id');
-        $this->db->from(Character::CHARACTER_TBL.' c');
-        $this->db->join(Guild::GUILD_MEMBER_TBL.' g', 'c.id = g.member_id');
+        $this->db->from(Character::CHARACTER_TBL);
+        $this->db->join(Guild::GUILD_MEMBER_TBL.' g', 'id = g.member_id');
         $this->db->where(
-            array('c.user_id' => $this->getUser()->getID(),
+            array('user_id' => $this->getUser()->getID(),
                 'g.guild_id' => $id
             ));
         $result = $this->db->get();
