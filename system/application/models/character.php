@@ -455,6 +455,7 @@ class Character {
             case 'bool':
                 return $online; break;
             case 'img':
+            case 'image':
                 if ($online)
                 {
                     return "<img class=\"online-led\"

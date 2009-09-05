@@ -97,7 +97,8 @@ class Guild {
      */
     static function getGuild($id)
     {
-        $res = $this->CI->db->get_where( Guild::GUILD_TBL,
+        $ci =& get_instance();
+        $res = $ci->db->get_where( Guild::GUILD_TBL,
             array('id' => $id));
             
         if ($res->num_rows() > 0)
@@ -147,8 +148,9 @@ class Guild {
         {
             foreach($res->result() as $member)
             {
-                $members[] = array( 'member_id' => $member['member_id'],
-                    'rights' => $member['rights'] );
+                $members[] = array( 'member_id' => $member->member_id,
+                    'character' => $this->CI->user->getCharacter($member->member_id),
+                    'rights' => $member->rights );
             }
         }
         return $members;

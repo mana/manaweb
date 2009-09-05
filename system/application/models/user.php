@@ -514,7 +514,27 @@ class User extends Model {
     public function getLastLogin()
     {
         return $this->getUser()->getLastLogin();
-    }    
+    }
+
+    /**
+     * This function returns true, if the user has at least one character that
+     * is a member of the given guild.
+     *
+     * @param id (int) Id of the guild.
+     * @return (bool) True, if the player is allowd to see the guild.
+     */
+    public function isMemberOfGuild($id)
+    {
+        $this->db->select('g.guild_id');
+        $this->db->from(Character::CHARACTER_TBL.' c');
+        $this->db->join(Guild::GUILD_MEMBER_TBL.' g', 'c.id = g.member_id');
+        $this->db->where(
+            array('c.user_id' => $this->getUser()->getID(),
+                'g.guild_id' => $id
+            ));
+        $result = $this->db->get();
+        return ($result->num_rows() > 0);
+    }
     
     
 } // class User

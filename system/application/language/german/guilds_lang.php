@@ -23,5 +23,5 @@ $lang['guild_id']         = 'Id';
 $lang['guild_name']       = 'Name';
 $lang['guild_members']    = 'Mitglieder';
 
-
+$lang['guild_details_header']  = 'Guild: %s';
 ?>

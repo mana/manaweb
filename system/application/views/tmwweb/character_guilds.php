@@ -14,8 +14,12 @@
     <? foreach ($char->getGuilds() as $guild) { ?>
     <tr>
         <td><?=$guild->getId() ?></td>
-        <td><?=$guild->getName() ?></td>
-        <td><?=$guild->countMembers() ?></td>
+        <td>
+            <a href="<?= site_url(array('guildcontroller', 'index', $guild->getId())) ?>">
+                <?=$guild->getName() ?>
+            </a>
+        </td>
+        <td style="text-align:right;"><?=$guild->countMembers() ?></td>
     </tr>
     <? } ?>
 </table>
