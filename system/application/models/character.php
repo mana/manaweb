@@ -410,9 +410,9 @@ class Character {
     {
         $db =& $this->CI->db;
 
-        $db->from( Guild::GUILD_TBL .' g' );
-        $db->join ( Guild::GUILD_MEMBER_TBL .' m', 'g.id = m.guild_id' );
-        $db->where('m.member_id', $this->char->id);
+        $db->from( Guild::GUILD_TBL.' g' );
+        $db->join ( Guild::GUILD_MEMBER_TBL, 'id = '.Guild::GUILD_MEMBER_TBL.'.guild_id' );
+        $db->where(Guild::GUILD_MEMBER_TBL.'.member_id', $this->char->id);
         $query = $db->get();
 
         $guilds = array();
