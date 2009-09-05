@@ -97,6 +97,7 @@ class Charcontroller extends Controller {
                 $params['imageprovider']  = $this->imageprovider;
                 break;
             case 'guilds':
+                $this->translationprovider->loadLanguage('guilds');
                 $page = 'tmwweb/character_guilds';
                 break;
             case 'skills':

@@ -21,6 +21,7 @@
 
 // load dependecies 
 require_once(APPPATH.'models/inventory'.EXT);
+require_once(APPPATH.'models/guild'.EXT);
 
 /**
  * The character model deals with all data according to a character.
@@ -388,7 +389,7 @@ class Character {
      */
     public function isGuildMember()
     {
-        $query = $this->CI->db->get_where('tmw_guild_members', 
+        $query = $this->CI->db->get_where(Guild::GUILD_MEMBER_TBL,
             array('member_id' => $this->char->id), 1);
             
         if ($query->num_rows() > 0)
@@ -399,6 +400,27 @@ class Character {
         {
             return false;
         }
+    }
+
+    /**
+     * This function returns a list of guilds the character is member of.
+     * @return (Array) List if guilds
+     */
+    public function getGuilds()
+    {
+        $db =& $this->CI->db;
+
+        $db->from( Guild::GUILD_TBL .' g' );
+        $db->join ( Guild::GUILD_MEMBER_TBL .' m', 'g.id = m.guild_id' );
+        $db->where('m.member_id', $this->char->id);
+        $query = $db->get();
+
+        $guilds = array();
+        foreach ($query->result() as $row)
+        {
+            $guilds[] = new Guild($row);
+        }
+        return $guilds;
     }
 
     /**

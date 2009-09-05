@@ -43,21 +43,22 @@ class Guild {
     //
     // Permissions defining rights of guild members.
     // Those constants are derived from 
-    // <tt>tmwser/trunk/src/chat-server/guild.hpp</tt>
+    // <tt>defines.h</tt>
     //
      
     /**
-     * Members cannot invite users or set permissions
+     * Guild member permissions
+     * Members with NONE cannot invite users or set permissions
+     * Members with TOPIC_CHANGE can change the guild channel topic
+     * Members with INVITE can invite other users
+     * Memeber with KICK can remove other users
+     * Members with OWNER can invite users and set permissions
      */
-    const PERMISSION_NONE      = 0;
-    /**
-     * Members can invite other users but cannot set permissions.
-     */
-    const PERMISSION_COMMANDER = 1;
-    /**
-     * Members can invite users and set permissions.
-     */
-    const PERMISSION_LEADER    = 2;
+    const GAL_NONE         = 0;
+    const GAL_TOPIC_CHANGE = 1;
+    const GAL_INVITE       = 2;
+    const GAL_KICK         = 4;
+    const GAL_OWNER        = 255;
     
     ///////////////////////////////////////////////////////////////////////////
     
@@ -151,6 +152,18 @@ class Guild {
             }
         }
         return $members;
+    }
+
+    /**
+     * This function returns a membercount of the guild.
+     *
+     * @return (int) Members in the guild
+     */
+    public function countMembers()
+    {
+        $res = $this->CI->db->get_where( Guild::GUILD_MEMBER_TBL,
+            array('guild_id' => $this->getId()));
+        return $res->num_rows();
     }
     
         
