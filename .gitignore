@@ -7,7 +7,7 @@ docs/html
 # configfiles created by the user
 system/application/config/database.php
 system/application/config/email.php
-system/application/config/tmw_config.user.php
+system/application/config/mana_config.user.php
 
 # logfiles created by tmwweb
 system/logs/log-*.php
