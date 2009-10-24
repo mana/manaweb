@@ -1,14 +1,14 @@
 <h3>Server Statistics</h3>
 <p>
 Currently there are <?= $stats[Server_statistics::CHARACTER_COUNT] ?> 
-individual Characters on the Mana World, played by 
+individual Characters on #insert the name of your game here ;-)#, played by
 <?= $stats[Server_statistics::PLAYER_COUNT] ?> players. 
 The characters founded
 <?= $stats[Server_statistics::GUILD_COUNT] ?> guilds.<br />
 All characters form a purchasing power of 
 <?= 
   number_format($stats[Server_statistics::ECONOMY_PURCHASE_POW], 0, ".", ",");
-?> money.
+?> #load the name of the currency from a db file#.
 </p>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
@@ -50,7 +50,7 @@ All characters form a purchasing power of
     </tr>
 </table>
 
-<h3>The top 10 Guilds on the mana world</h3>
+<h3>The top 10 Guilds</h3>
 <? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
     <p>Sorry, there are currently no guilds founded.</p>
 <? } else { ?>    
@@ -73,7 +73,7 @@ All characters form a purchasing power of
 
 
 
-<h3>The top 10 Characters on the mana world</h3>
+<h3>The top 10 Characters</h3>
 <? if ($stats[Server_statistics::CHARACTER_TOPTEN] === false ) { ?>
     <p>Sorry, there are currently no characters alive.</p>
 <? } else { ?>    

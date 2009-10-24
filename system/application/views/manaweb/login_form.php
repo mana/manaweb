@@ -1,4 +1,4 @@
-    <h3>Login to The Mana World Account Manager</h3>
+    <h3>Login to The Mana Server Account Manager</h3>
 
 <?  $attributes = array('name' => 'loginForm', 'id' => 'TMWLoginForm');
     echo form_open('myaccount/login', $attributes); ?>

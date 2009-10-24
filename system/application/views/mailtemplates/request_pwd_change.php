@@ -1,6 +1,6 @@
 Hello {username},
 
-you`ve requested to change your account password for The Mana World.
+you`ve requested to change your account password for The Mana Server.
 Click the link above, or copy and paste it in your browser to reach the
 "change password" form.
 
@@ -10,4 +10,4 @@ If you`ve never requested to change your password just ignore this mail.
 
 
 Have a nice day!
-your The Mana world dev team.
+your The Mana Source dev team.

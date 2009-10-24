@@ -3,14 +3,14 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title>The Mana World</title>
+  <title>The Mana Source Account Manager</title>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15"/>
   <meta http-equiv="Content-Style-Type" content="text/css"/>
   <meta http-equiv="Content-Language" content="en"/>
   
-  <meta name="description" content="The Mana World is a free MMORPG game for Linux, MacOS X and Windows"/>
-  <meta name="keywords" content="The Mana World, Mana, World, MMORPG, RPG, free, GPL"/>
-  <meta name="author" content="The Mana World Dev Team"/>
+  <meta name="description" content="The Mana Server is a free MMORPG game for Linux, MacOS X and Windows"/>
+  <meta name="keywords" content="The Mana Server, Mana, Mana Source, MMORPG, 2D, RPG, free, GPL"/>
+  <meta name="author" content="The Mana Server Dev Team"/>
   
   <link rel="shortcut icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
   <link rel="icon" href="<?= base_url() ?>images/icon16.png" type="image/png"/>
@@ -27,14 +27,14 @@
   <div id="page">
 
    <div id="irc_info">
-    <a href="irc://irc.freenode.net/themanaworld" title="IRC">
-    #themanaworld<br />
+    <a href="irc://irc.freenode.net/manasource" title="IRC">
+    #manasource<br />
     irc.freenode.net
     </a>
    </div>
 
    <div id="title">
-    <h1><span>The Mana World</span></h1>
+    <h1><span>The Mana</span></h1>
    </div>
 
    <div id="main_topleft">

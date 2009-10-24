@@ -88,7 +88,7 @@ stored data.</p>
         </td>
         <td>  
             The database table <code>mana_items</code> contains all known items
-            of The Mana World. Use this function to copy all images provided
+            of The Mana Server. Use this function to copy all images provided
             by the client data to a directory accessible to the webserver.
         </td>
         <td></td>

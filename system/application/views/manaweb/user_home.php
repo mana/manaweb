@@ -66,7 +66,7 @@ of one to see its details.</p>
     // user has no characters 
 ?>
     <p>You currently don't have any characters. This is is a little uncommon,
-    but never mind: You can create one with The Mana World client.</p>
+    but never mind: You can create one with the Mana client.</p>
 
 <?php } ?>
 

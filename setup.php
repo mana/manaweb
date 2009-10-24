@@ -5,17 +5,17 @@
  *
  *  This file is part of The Mana Server.
  *
- *  The Mana World  is free software; you can redistribute  it and/or modify it
+ *  The Mana Server  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
  *  Software Foundation; either version 2 of the License, or any later version.
  *
- *  The Mana  World is  distributed in  the hope  that it  will be  useful, but
+ *  The Mana Server is  distributed in  the hope  that it  will be  useful, but
  *  WITHOUT ANY WARRANTY; without even  the implied warranty of MERCHANTABILITY
  *  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
  *  more details.
  *
  *  You should  have received a  copy of the  GNU General Public  License along
- *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
+ *  with The Mana Server; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
@@ -284,17 +284,18 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
-  <title>The Mana World</title>
+  <title>The Mana Source Account Manager</title>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15"/>
   <meta http-equiv="Content-Style-Type" content="text/css"/>
   <meta http-equiv="Content-Language" content="en"/>
-  
+
+  <meta name="description" content="The Mana Server is a free MMORPG game for Linux, MacOS X and Windows"/>
+  <meta name="keywords" content="The Mana Server, Mana, Mana Source, MMORPG, 2D, RPG, free, GPL"/>
+  <meta name="author" content="The Mana Server Dev Team"/>
+
   <link rel="shortcut icon" href="./images/icon16.png" type="image/png"/>
   <link rel="icon" href="./images/icon16.png" type="image/png"/>
-  
-  <meta name="description" content="The Mana World is a free MMORPG game for Linux, MacOS X and Windows"/>
-  <meta name="keywords" content="The Mana World, Mana, World, MMORPG, RPG, free, GPL"/>
-  <meta name="author" content="The Mana World Dev Team"/>
+
   <style type="text/css">
    @import url( "default.css");
   </style>
@@ -328,7 +329,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
    </div>
 
    <div id="title">
-    <h1><span>The Mana World</span></h1>
+    <h1><span>The Mana Server</span></h1>
    </div>
    
    <div id="main_topleft">
@@ -355,7 +356,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
                <div class="main_title_topright">
                 <div class="main_title_bottomright">
                  <div class="main_title_topleft">
-                  <h2>The Mana World Account Manager - Setup</h2>
+                  <h2>The Mana Server Account Manager - Setup</h2>
                  </div>
                 </div>
                </div>
@@ -391,7 +392,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
    </div>
    
     <div id="footer">
-    &copy; 2004-2008 The Mana World Dev Team -
+    &copy; 2004-2008 The Mana Server Dev Team -
     [<a href="http://validator.w3.org/check?uri=referer">xhtml</a>] [<a href="http://jigsaw.w3.org/css-validator/check/referer">css</a>]
    </div>
   </div> <!-- /page -->
