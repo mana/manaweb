@@ -90,7 +90,7 @@ $config['enable_hooks'] = FALSE;
 | http://codeigniter.com/user_guide/general/creating_libraries.html
 |
 */
-$config['subclass_prefix'] = 'TMW_';
+$config['subclass_prefix'] = 'MANA_';
 
 
 /*

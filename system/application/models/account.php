@@ -31,7 +31,7 @@ require_once(APPPATH.'models/character'.EXT);
  */ 
 class Account {
 
-    const ACCOUNT_TBL      = 'tmw_accounts';        /**< Name of the accounts table */
+    const ACCOUNT_TBL      = 'mana_accounts';        /**< Name of the accounts table */
     
     ///////////////////////////////////////////////////////////////////////////
     
@@ -153,8 +153,8 @@ class Account {
     /**
      * This function checks wheter the user level is high enough to use
      * administrative functions and to see the admin interface link.
-     * The permission can be configured in tmw_config.php with parameter
-     * tmwweb_admin_level.
+     * The permission can be configured in mana_config.php with parameter
+     * manaweb_admin_level.
      *
      * @return (bool) \c true if the user is allowed to see the admin
      *                interface, otherwise \c false.

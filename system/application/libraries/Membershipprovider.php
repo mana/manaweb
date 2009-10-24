@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,8 +17,8 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
-
  
 /**
  * The Membershipprovider ist responsible for sessionhandling.
@@ -124,7 +124,7 @@ class Membershipprovider
     
     
     /**
-     * This function updates a user record in the tmw_accounts table and sets
+     * This function updates a user record in the mana_accounts table and sets
      * a key for a given username. 
      *
      * @param username (String) Name of the user
@@ -134,12 +134,13 @@ class Membershipprovider
     public function setKeyForUser($username, $key)
     {
         $db = $this->CI->db;
-        $expiration = $this->CI->config->item('tmw_change_password_expiration');
+        $expiration = $this->CI->config->item('mana_change_password_expiration');
 
         // do the update in a single transaction, to not disturb tmwserv
         $db->trans_start();
         $db->where('username', $username);
-        $db->update('tmw_accounts', 
+        // TODO: use database table constants
+        $db->update('mana_accounts',
             array('authorization' => $key,
                   'expiration'    => time() + intval($expiration) ));
         $db->trans_complete();
@@ -172,7 +173,8 @@ class Membershipprovider
                 $values['authorization'] = null;
                 $values['expiration']    = null;
             }
-            $db->update('tmw_accounts', $values); 
+            // TODO: use database table constants
+            $db->update('mana_accounts', $values);
             
             log_message('info', sprintf('User [%s] has changed its password.',
                 $username ));
@@ -196,7 +198,8 @@ class Membershipprovider
         $db->trans_start();
             $db->where('username', $username);
             $values = array('email' => $mail);
-            $db->update('tmw_accounts', $values);
+            // TODO: use database table constants
+            $db->update('mana_accounts', $values);
 
             log_message('info', sprintf('User [%s] has changed its mailaddress.',
                 $username ));
@@ -215,7 +218,8 @@ class Membershipprovider
     public function validateKeyForUser($username, $key)
     {
         $db =& $this->CI->db;
-        $query = $db->get_where( 'tmw_accounts', array('username'=>$username));
+        // TODO: use database table constants
+        $query = $db->get_where( 'mana_accounts', array('username'=>$username));
         $row = $query->row();
         // first validate expiration date of the key, no matter if it's correct
 
@@ -226,7 +230,8 @@ class Membershipprovider
             $db->trans_start();
             $db->where('username', $username);
             $values = array('authorization'=>null, 'expiration'=>null );
-            $db->update('tmw_accounts', $values);
+            // TODO: use database table constants
+            $db->update('mana_accounts', $values);
             $db->trans_complete();
             return false;
         }

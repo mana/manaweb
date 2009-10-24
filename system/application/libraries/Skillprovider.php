@@ -127,7 +127,7 @@ class Skillprovider
         if (!file_exists($this->skills_file))
         {
             show_error('The '. XML_SKILLS_FILE .' file ' . $this->skills_file . ' configured'.
-                ' in tmw_config.php cannot be found');
+                ' in mana_config.php cannot be found');
             return;
         }
         else

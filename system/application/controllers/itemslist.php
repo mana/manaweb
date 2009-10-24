@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 // load dependecies 
@@ -42,7 +43,7 @@ class Itemslist extends Controller
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
         
         $this->load->library("Imageprovider");
@@ -58,7 +59,7 @@ class Itemslist extends Controller
      */
     public function index()
     {
-        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list',
+        $this->output->showPage( 'Item dictionary', 'manaweb/item_list',
             array("ctrl" => $this));
     }
     
@@ -74,7 +75,7 @@ class Itemslist extends Controller
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list',
+        $this->output->showPage( 'Item dictionary', 'manaweb/item_list',
             array("ctrl" => $this));
             return;
         }
@@ -85,7 +86,7 @@ class Itemslist extends Controller
         
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');
-        $res = $this->db->get('tmw_items');
+        $res = $this->db->get('mana_items');
         
         if ($res->num_rows() > 0)
         {
@@ -102,7 +103,7 @@ class Itemslist extends Controller
         }
         
         $params = array_merge( array("ctrl" => $this), $param );
-        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list', $params);
+        $this->output->showPage( 'Item dictionary', 'manaweb/item_list', $params);
     }
 
     /**
@@ -117,7 +118,7 @@ class Itemslist extends Controller
 
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');
-        $res = $this->db->get('tmw_items');
+        $res = $this->db->get('mana_items');
 
         echo "<ul>";
         foreach ($res->result() as $item)
@@ -136,7 +137,7 @@ class Itemslist extends Controller
     public function show($itemcategory)
     {
 	    $this->db->order_by('name');
-	    $query = $this->db->get_where('tmw_items',
+	    $query = $this->db->get_where('mana_items',
 	    	array('itemtype' => $itemcategory));
 	    	
 	    $items = array();
@@ -145,7 +146,7 @@ class Itemslist extends Controller
 		    $items[] = $row;
 	    }
 	    	
-        $this->output->showPage( 'Item dictionary', 'tmwweb/item_list',
+        $this->output->showPage( 'Item dictionary', 'manaweb/item_list',
             array(
             	'ctrl' => $this, 
             	'itemslist' => $items, 
@@ -182,9 +183,10 @@ class Itemslist extends Controller
     private function _initCategoryStats()
     {
 	    $this->cat_stats = array();
-	    
+
+        // TODO: replace hard coded table name with constant
 	    $sql = "SELECT itemtype, COUNT(*) AS amount \n".
-	           "FROM   tmw_items \n".
+	           "FROM   mana_items \n".
 	           "GROUP  BY itemtype";
 	    
 	    $query 	= $this->db->query($sql);

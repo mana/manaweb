@@ -71,7 +71,7 @@ class Menuprovider
         // load custom configuration script with static links for the 
         // navigation menu
         $this->CI->config->load( Menuprovider::CONFIG_FILE_NAME );    
-        $this->static_links = $this->CI->config->config['tmw_static_links'];    
+        $this->static_links = $this->CI->config->config['mana_static_links'];
         
         $this->char = null;
     }

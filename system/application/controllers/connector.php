@@ -34,7 +34,7 @@ class Connector extends Controller {
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
 
     }

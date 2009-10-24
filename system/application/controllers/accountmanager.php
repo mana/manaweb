@@ -38,7 +38,7 @@ class Accountmanager extends Controller {
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
 
         $this->load->library('form_validation');
@@ -50,7 +50,7 @@ class Accountmanager extends Controller {
             $param = array('has_errors' => false); 
             $this->translationprovider->loadLanguage('account');
             $this->output->showPage(lang('account_login'), 
-                'tmwweb/login_form', $param);
+                'manaweb/login_form', $param);
         }
     }
     
@@ -85,7 +85,7 @@ class Accountmanager extends Controller {
         $this->translationprovider->loadLanguage('settings');
         $params = array('has_errors' => false);
         $this->output->showPage(lang('settings_title'), 
-            'tmwweb/settings', $params);
+            'manaweb/settings', $params);
     }
 
     /**
@@ -104,7 +104,7 @@ class Accountmanager extends Controller {
         {
             case "ChangeMailaddress":
                 $this->output->showPage(lang('settings_change_mail_head'),
-                    'tmwweb/accountmanager/change_mailaddress_form' );
+                    'manaweb/accountmanager/change_mailaddress_form' );
                 break;
         }
     }
@@ -124,7 +124,7 @@ class Accountmanager extends Controller {
         
         $this->translationprovider->loadLanguage('settings');
         $this->output->showPage(lang('settings_title'), 
-            'tmwweb/delete_account');
+            'manaweb/delete_account');
     }
     
     
@@ -152,7 +152,7 @@ class Accountmanager extends Controller {
         
         $this->translationprovider->loadLanguage('settings');
         $this->output->showPage(lang('settings_title'), 
-            'tmwweb/delete_account_done');
+            'manaweb/delete_account_done');
     }
     
     
@@ -194,7 +194,7 @@ class Accountmanager extends Controller {
             // validation fails, prepare params for change form
             $param = array('has_errors' => true); 
             $this->output->showPage(lang('settings_title'), 
-                'tmwweb/settings', $param);
+                'manaweb/settings', $param);
         }
         else
         {
@@ -209,7 +209,7 @@ class Accountmanager extends Controller {
                 'pwd_changed_message' => lang('settings_change_password_ok')
             );                 
             $this->output->showPage(lang('settings_title'), 
-                'tmwweb/settings', $param);
+                'manaweb/settings', $param);
         }
     }
 
@@ -257,7 +257,7 @@ class Accountmanager extends Controller {
         }
 
         $this->output->showPage(lang('settings_change_mail_head'),
-            'tmwweb/accountmanager/change_mailaddress_form', $params );
+            'manaweb/accountmanager/change_mailaddress_form', $params );
 
 
     }
@@ -325,7 +325,7 @@ class Accountmanager extends Controller {
      */    
     private function _show_user_account()
     {
-        $this->output->showPage('My Account', 'tmwweb/user_home', 
+        $this->output->showPage('My Account', 'manaweb/user_home',
             $this->user->getHomepageData());
     }
     

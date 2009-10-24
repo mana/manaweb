@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
     define('FCPATH', __FILE__);
@@ -183,7 +184,7 @@
         // try to write to directories
         print_header("Checking directory permissions");
         if (!try_write_dir("./data",
-        	"This directory is used by tmwweb to store cached item or map informations, so make sure it is writeable by the webserver.")) return;
+        	"This directory is used by manaweb to store cached item or map informations, so make sure it is writeable by the webserver.")) return;
         	
         // checking wheter a custom logpath is set
         if (strlen($config['log_path']) > 0)
@@ -196,7 +197,7 @@
         }
         
         if (!try_write_dir($logdir,
-        	"According to your configured parameter <tt>log_threshold</tt> in the <tt>config.php</tt> file, tmwweb will ".
+        	"According to your configured parameter <tt>log_threshold</tt> in the <tt>config.php</tt> file, manaweb will ".
         	"log debug or error messages to this directory.")) return;
         	
         // checking wheter a custom cachepath is set
@@ -209,35 +210,35 @@
             $cachedir = "./system/cache";
         }
         if (!try_write_dir($cachedir, 
-        	"To increase performance of page rendering, tmwweb is able to cache static content for faster access. The directory " .
+        	"To increase performance of page rendering, manaweb is able to cache static content for faster access. The directory " .
         	"therefore needs to be writeable by the webserver to store caching information.")) return;
         	
        
-        // checking tmw_options
-        print_header("Checking tmwweb specific configuration.");
-        require_once('./system/application/config/tmw_config.php');
-        print_message("File ./system/application/config/tmw_config.php loaded.");
+        // checking mana_options
+        print_header("Checking manaweb specific configuration.");
+        require_once('./system/application/config/mana_config.php');
+        print_message("File ./system/application/config/mana_config.php loaded.");
 
-        if (file_exists('./system/application/config/tmw_config.user.php'))
+        if (file_exists('./system/application/config/mana_config.user.php'))
         {
-            require_once('./system/application/config/tmw_config.user.php');
-            print_message("File ./system/application/config/tmw_config.user.php loaded.");
+            require_once('./system/application/config/mana_config.user.php');
+            print_message("File ./system/application/config/mana_config.user.php loaded.");
         }
         else
         {
-            $msg = "File ./system/application/config/tmw_config.user.php not found.";
+            $msg = "File ./system/application/config/mana_config.user.php not found.";
             print_check( $msg, "warning", "", "",
-                "This file is not vital for running tmwweb. But you should use it to configure ".
-                "individual parameters. If you use the tmw_config.php directly, you will have to ".
+                "This file is not vital for running manaweb. But you should use it to configure ".
+                "individual parameters. If you use the mana_config.php directly, you will have to ".
                 "be aware during updates." );
         }
 
 
-        if ($config['base_url'] == "http://example.com/tmwweb/")
+        if ($config['base_url'] == "http://example.com/manaweb/")
         {
             print_check( "parameter <tt>base_url</tt>", "failed", "", "",
             	"This option is necessary to build correct internal links. Please set this parameter to the correct root of ".
-            	"your tmwweb installation. " );
+            	"your manaweb installation. " );
             return;
         }
         else
@@ -247,11 +248,11 @@
         
 
         if (!try_read_dir($config['tmwdata_path'],
-                'Tmwweb needs a local copy of the clients data directory.'
+                'Manaweb needs a local copy of the clients data directory.'
                 )) return;
 
         if (!try_read_dir($config['tmwserv-data_path'],
-                'Tmwweb needs a local copy of the servers data directory.'
+                'Manaweb needs a local copy of the servers data directory.'
                 )) return;
 
         print_header("Checking database configuration and connection.");

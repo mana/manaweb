@@ -1,7 +1,7 @@
 <h3>Cached data</h3>
-<p>Tmwweb stores some temporary data like the provided maps in its own data
+<p>Manaweb stores some temporary data like the provided maps in its own data
 directory for fast and reliable access. If you made modifications to the
-original data (maybe in tmwserv), it is necessary to have tmwweb to refresh its 
+original data (maybe in tmwserv), it is necessary to have manaweb to refresh its
 stored data.</p>
 
 <? if (isset($action_result) && strlen($action_result) > 0 ) { ?>
@@ -11,7 +11,7 @@ stored data.</p>
     <br />
     <span style="color: red; font-weight: bold;">
     For the following items, the image could not be found. Please update the
-    <tt>./images/items</tt> directory of your tmwweb installation.<br />
+    <tt>./images/items</tt> directory of your manaweb installation.<br />
     <tt>
         <? foreach ($missing_item_images as $img) { 
                 echo $img . ", ";
@@ -37,7 +37,7 @@ stored data.</p>
         </td>
         <td>  
             The file <tt><?= XML_MAPS_FILE ?></tt> contains all maps provided by the map
-            server. Tmwweb uses this file to show descriptions of the 
+            server. Manaweb uses this file to show descriptions of the
             character locations.
         </td>
         <td>
@@ -63,7 +63,7 @@ stored data.</p>
         </td>
         <td>
             The file <tt><?= XML_SKILLS_FILE ?></tt> contains all skills a character can gain.
-            Tmwweb uses this file to show descriptions of the skills.
+            Manaweb uses this file to show descriptions of the skills.
         </td>
         <td>
             <span class="label">
@@ -87,7 +87,7 @@ stored data.</p>
             <span class="label">item graphics</span>
         </td>
         <td>  
-            The database table <code>tmw_items</code> contains all known items
+            The database table <code>mana_items</code> contains all known items
             of The Mana World. Use this function to copy all images provided
             by the client data to a directory accessible to the webserver.
         </td>

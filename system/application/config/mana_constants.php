@@ -1,9 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- *  The Mana World Server
- *  Copyright 2009 The Mana World Development Team
+/*
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -21,17 +21,17 @@
  */
 
 /*
- * define some constants to identify the current running version of tmwweb
+ * define some constants to identify the current running version of manaweb
  */
-define ('TMWWEB_VERSION',      '1.0.0');
-define ('TMWWEB_VERSION_DATE', '2009-09-05');
+define ('MANAWEB_VERSION',      '1.0.0');
+define ('MANAWEB_VERSION_DATE', '2009-09-05');
 
 /*
 |--------------------------------------------------------------------------
 | Ranges to display user levels
 |--------------------------------------------------------------------------
 |
-| The table tmw_accounts has a level column, that shows the priviledged level
+| The table mana_accounts has a level column, that shows the priviledged level
 | of a user. To visualize the level of a user in the management area, there
 | should be names for each levels or ranges of levels.
 |

@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 // load dependecies 
@@ -32,9 +33,9 @@ require_once(APPPATH.'models/guild'.EXT);
  */ 
 class Character {
 
-    const CHARACTER_TBL        = 'tmw_characters';      /**< Name of the characters table */
-    const CHARACTER_ONLINE_TBL = 'tmw_online_list';     /**< Name of the online list table */
-    const ONLINE_CHARS_TBL     = 'tmw_v_online_chars';  /**< Name of the view displaying online characters */
+    const CHARACTER_TBL        = 'mana_characters';      /**< Name of the characters table */
+    const CHARACTER_ONLINE_TBL = 'mana_online_list';     /**< Name of the online list table */
+    const ONLINE_CHARS_TBL     = 'mana_v_online_chars';  /**< Name of the view displaying online characters */
     const GENDER_MALE   = 0;                            /**< Defines constant for male characters */
     const GENDER_FEMALE = 1;                            /**< Defines constant for female characters */
     
@@ -162,7 +163,8 @@ class Character {
     {
         if (!isset($this->user))
         {
-            $query = $this->CI->db->get_where('tmw_accounts',
+            // TODO: use constant for database table
+            $query = $this->CI->db->get_where('mana_accounts',
                 array('id' => $this->char->user_id), 1);
 			$this->user = $query->result();
             $this->user = $this->user[0];
@@ -296,7 +298,8 @@ class Character {
 		// attributes are not initialized yet, do it now!
 		if (sizeof($this->skills) == 0)
 		{
-			$query = $this->CI->db->get_where('tmw_char_skills', 
+            // TODO: use database table constants
+			$query = $this->CI->db->get_where('mana_char_skills',
 			array('char_id' => $this->char->id));
 
 			if ($query->num_rows() > 0)

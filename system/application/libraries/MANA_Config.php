@@ -1,9 +1,9 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,11 +17,12 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
  
 /**
- * The TMW_Config library extends the config library shipped with codeigniter
+ * The MANA_Config library extends the config library shipped with codeigniter
  * to support user defined config files. The library now loads the requested
  * config file and looks if there is a custom config file to override the
  * default settings. 
@@ -30,7 +31,7 @@
  *
  * @ingroup libraries
  */ 
-class TMW_Config extends CI_Config
+class MANA_Config extends CI_Config
 {
     
     /**
@@ -52,9 +53,9 @@ class TMW_Config extends CI_Config
         parent::load($file, $use_sections, $fail_gracefully);
         
         if (file_exists(APPPATH.'config/'. $file .
-            TMW_Config::CUSTOM_FILE_EXT . EXT))
+            MANA_Config::CUSTOM_FILE_EXT . EXT))
         {
-            parent::load($file . TMW_Config::CUSTOM_FILE_EXT);
+            parent::load($file . MANA_Config::CUSTOM_FILE_EXT);
         }
     }
 

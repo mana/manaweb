@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -19,7 +19,7 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  *  This file is used to add doxygen specific commands and description to the
- *  tmwweb documentation.
+ *  manaweb documentation.
  */
  
 

@@ -34,7 +34,7 @@ class Jpgraphwrapper
     private $CI;
     
     /**
-     * Holds the absolute path to the jpgraph library, configured in tmw_config
+     * Holds the absolute path to the jpgraph library, configured in mana_config
      */
     private $lib_path;
     
@@ -50,7 +50,7 @@ class Jpgraphwrapper
         $this->CI =& get_instance();
         
         // load the jpgprah library
-        $this->lib_path = $this->CI->config->item('tmw_plugins_jpgraph');
+        $this->lib_path = $this->CI->config->item('mana_plugins_jpgraph');
         require_once( $this->lib_path . 'jpgraph.php' );
     }
     

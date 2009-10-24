@@ -1,4 +1,4 @@
-The Mana World - Account Manager
+The Mana Server - Account Manager
 ================================
 
 Contents
@@ -27,7 +27,7 @@ security/pecl-hash along with lang/php5.
 There are several config files that have to be prepared for your specific
 environment. You can find all config files under ./system/application/config
 
-Tmwweb comes with a default configuration file called "config.default.php" You
+Manweb comes with a default configuration file called "config.default.php" You
 should use this file as template to set up your individual configuration. Make 
 a copy of this file and name rename it to "config.php". In general you have to
 modify the following settings:
@@ -43,13 +43,13 @@ The following configuration files are shipped with defaults that may or may not
 be suitable for you. 
 
     * menu.php
-    * tmw_config.php
+    * mana_config.php
     
 Instead of modifying the files directly you should make a copy of them and 
 rename them to <prefix>.user.php, so "menu.php" gets "menu.user.php".
-Tmwweb first loads menu.php, afterwards menu.user.php (if it exists) and
+Manweb first loads menu.php, afterwards menu.user.php (if it exists) and
 overrides the default values with your custom settings. The advantage of this
-method is, that upgrading tmwweb won't break your configuration.
+method is, that upgrading manaweb won't break your configuration.
 
 All other files in the config directory shouldn`t get touched by you!
 
@@ -61,7 +61,7 @@ has write access to the ./system/logs, the ./images/items and ./data directory.
     chmod 777 ./data
     chmod 777 ./images/items
     
-Tmwweb tries to store cached data read from other modules like tmwserv in the
+Manaweb tries to store cached data read from other modules like tmwserv in the
 data directory for faster access. Therefore you should allow the webserver to 
 create files there. The logs directory is used for logging as you can think.
 
@@ -73,7 +73,7 @@ is fine.
 
 3. TROUBLESHOOTING
 
-After uploading and configuring tmwweb it might happen that every site you 
+After uploading and configuring manaweb it might happen that every site you
 call is only white and blank. Lets set loglevel in config.php to 4 and after
 refreshing your site in the browser have a look at the logfiles under
 ./system/logs
@@ -87,13 +87,13 @@ If you cannot find a file that is named "config.php", please go back to chapter
 
 4. TRANSLATIONS
 
-tmwweb has simple multilanguage support integrated. During login into your
+Manaweb has simple multilanguage support integrated. During login into your
 account you can choose one of the currently translated languages. If your 
 native language is not available yet, feel free to support the dev team and 
-translate tmwweb.
+translate manaweb.
 To start with a new language there are two simple steps to do:
    a.) copy the directoy ./system/application/language/english as it is the 
-       shipped language with tmwweb and should contain all necessary strings. 
+       shipped language with manaweb and should contain all necessary strings.
        Also you have to copy ./system/language/english to your new language.
        This directory contains string comming from CodeIgniter, the used 
        php framework. 
@@ -106,7 +106,7 @@ To start with a new language there are two simple steps to do:
        Ensure to double quote '' inside of your strings if necessary.
        
    b.) At least you have to add your new language to the config file
-       tmwweb/system/application/conf/tmw_conf.php
+       manaweb/system/application/conf/tmw_conf.php
        Just add your language to the array $_tmw_languages like shown below.
        The parameter 'dir' has to be the name of your added directory, maybe
        'german'. 'name' is the displayed string during login. This should be
@@ -123,14 +123,14 @@ To start with a new language there are two simple steps to do:
 
 5.  MAINTENANCE
 
-The intention of tmwweb is to be a slim, administrative frontend for tmwserv. 
+The intention of manaweb is to be a slim, administrative frontend for manaserv.
 Therfore it is natural to use as much as data, information and configuration we
 can get from tmwserv. Because tmwserv makes extensive use of xml configuration
-files, which would be too expensive to parse on every page request, tmwweb uses
+files, which would be too expensive to parse on every page request, manaweb uses
 different methods to cache those informations for faster access.
 
 From time to time, if the data in tmwserv was modified, a admin user has to
-refresh the caches of tmwweb. Therefor you can find a menuoption "maintance" 
+refresh the caches of manaweb. Therefor you can find a menuoption "maintance"
 when logged in with an administrative account. This page shows you all caches
 and allows you to refresh them with a single click.
 
@@ -142,11 +142,11 @@ To show the inventory of a character, the images of those items have to be
 available for a webbrowser. Therfore they have to reside somewhere
 under the DOCUMENT_ROOT of your webserver. To keep all things together, we 
 decided to store them under ./images/items. When refreshing the items database,
-tmwweb looks in that directory and compares the images located there to all 
-items in the database. If a image is missing, tmwweb tries to copy this image 
-from your tmwdata path, you can configure in tmw_config.php (see chapter 2).
+manaweb looks in that directory and compares the images located there to all
+items in the database. If a image is missing, manaweb tries to copy this image
+from your tmwdata path, you can configure in mana_config.php (see chapter 2).
 To copy those images, the webserver needs write permission to the images/items
-directory. If tmwweb can't find the image in the tmwdata directory is is not
+directory. If manaweb can't find the image in the tmwdata directory is is not
 allowed to write to the ./images/items directory, the refresh procedure will 
 show you a list with all missing images. Then you will have to copy those 
 images yourself.
@@ -156,11 +156,11 @@ images yourself.
 6.  CONTACT AND SUPPORT
 
 For support please refer to the well know places like 
-Wiki:  http://wiki.themanaworld.org, the forum under
-Forum: http://forums.themanaworld.org/index.php
-IRC:   irc.freenode.net  #tmwdev or #themanaworld
+Wiki:  http://wiki.manasource.org, the forum under
+Forum: http://forums.manasource.org/index.php
+Bugs:  http://bugs.manasource.org
+IRC:   irc.freenode.net  #manasource
+
 
 Direct link to the Account manager wiki page:
-http://wiki.themanaworld.org/index.php/Account_Manager
-
-
+http://wiki.manasource.org/index.php/Account_Manager

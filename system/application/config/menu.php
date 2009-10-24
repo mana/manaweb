@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Server
- *  Copyright 2004 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -18,7 +18,6 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id: $
  */
 
 /*
@@ -33,14 +32,13 @@
 | its functions.
 |
 */
-$_tmw_static_links = array( 
-   array( 'name'=>'News',        'url'=>'http://themanaworld.org'           ),
-   array( 'name'=>'Wiki',        'url'=>'http://wiki.themanaworld.org'      ),
-   array( 'name'=>'Forums',      'url'=>'http://forums.themanaworld.org/'   ),
-   array( 'name'=>'Bug tracker', 'url'=>'http://mantis.themanaworld.org/'   ),
+$_mana_static_links = array(
+   array( 'name'=>'News',        'url'=>'http://manasource.org'           ),
+   array( 'name'=>'Wiki',        'url'=>'http://gitorious.org/mana/pages'   ),
+   array( 'name'=>'Bug tracker', 'url'=>'http://bugs.manasource.org'   ),
    array( 'name'=>'Statistics',  'url'=>site_url('statistics')              ),
    array( 'name'=>'Items',       'url'=>site_url('itemslist')               )
 );
 
-$config['tmw_static_links'] = $_tmw_static_links;
+$config['mana_static_links'] = $_mana_static_links;
 

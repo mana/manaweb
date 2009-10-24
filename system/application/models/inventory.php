@@ -33,12 +33,12 @@ class Inventory
     /**
      * Name of the inventories table
      */
-    const INVENTORY_TBL = 'tmw_inventories';
+    const INVENTORY_TBL = 'mana_inventories';
     
     /**
      * Name of the items table
      */
-    const ITEMS_TBL = 'tmw_items';
+    const ITEMS_TBL = 'mana_items';
     
     
     /**

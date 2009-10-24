@@ -59,7 +59,7 @@ class Translationprovider
      */
     public function getLanguages()
     {
-        return $this->CI->config->config['tmw_languages'];
+        return $this->CI->config->config['mana_languages'];
     }
     
     

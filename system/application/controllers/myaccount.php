@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 
@@ -36,7 +37,7 @@ class Myaccount extends Controller {
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
 
         $this->load->library('validation');
@@ -60,8 +61,8 @@ class Myaccount extends Controller {
         else
         {
             $param = array('has_errors' => false); 
-            $this->output->showPage(lang('tmwweb_title'), 
-                'tmwweb/login_form', $param);
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/login_form', $param);
         }
     }
     
@@ -87,8 +88,8 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $param = array('has_errors' => true); 
-            $this->output->showPage(lang('tmwweb_title'), 
-                'tmwweb/login_form', $param);
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/login_form', $param);
         }
         else
         {
@@ -106,8 +107,8 @@ class Myaccount extends Controller {
                 $this->validation->error_string = 
                     'The given username or password is incorrect.';
                 $params = array('has_errors' => true);
-                $this->output->showPage(lang('tmwweb_title'), 
-                    'tmwweb/login_form', $params);
+                $this->output->showPage(lang('manaweb_title'),
+                    'manaweb/login_form', $params);
                 return;
             }
             else
@@ -132,8 +133,8 @@ class Myaccount extends Controller {
     {
         $this->user->logout();
         $params = array('has_errors' => false); 
-        $this->output->showPage(lang('tmwweb_title'), 
-            'tmwweb/login_form', $params);
+        $this->output->showPage(lang('manaweb_title'),
+            'manaweb/login_form', $params);
     }
     
     
@@ -145,13 +146,13 @@ class Myaccount extends Controller {
     public function lostpassword()
     {
         $params = array('has_errors' => false); 
-        $this->output->showPage(lang('tmwweb_title'), 
-            'tmwweb/lost_password', $params);
+        $this->output->showPage(lang('manaweb_title'),
+            'manaweb/lost_password', $params);
     }
     
     
     /** 
-     * This function is called by the view tmwweb/lost_password if the user
+     * This function is called by the view manaweb/lost_password if the user
      * requests to change his password. The function validates the combination 
      * of username and mailaddress and sends a generic random key to the user.
      * With this link he can change his password.
@@ -167,8 +168,8 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $params = array('has_errors'=>true); 
-            $this->output->showPage(lang('tmwweb_title'), 
-                'tmwweb/lost_password', $params);
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/lost_password', $params);
         }
         else
         {
@@ -180,8 +181,8 @@ class Myaccount extends Controller {
             if ($this->validation->run() == false)
             {
                 $params = array('has_errors'=>true); 
-                $this->output->showPage(lang('tmwweb_title'), 
-                    'tmwweb/lost_password', $params);
+                $this->output->showPage(lang('manaweb_title'),
+                    'manaweb/lost_password', $params);
             }
             else
             {
@@ -192,8 +193,8 @@ class Myaccount extends Controller {
                 $this->_send_passwort_change_request($username, $email);
                     
                 // forward to the success page
-                $this->output->showPage(lang('tmwweb_title'), 
-                    'tmwweb/lost_password_mailsent',
+                $this->output->showPage(lang('manaweb_title'),
+                    'manaweb/lost_password_mailsent',
                     array('username'=>$username, 'email'=>$email));
             }
         }        
@@ -216,16 +217,16 @@ class Myaccount extends Controller {
             $this->membershipprovider->validateKeyForUser($username, $key))
         {
             // show view for changing password
-            $this->output->showPage(lang('tmwweb_title'),
-                'tmwweb/lost_password_change',
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/lost_password_change',
                 array('username'=>$username, 'key'=>$key, 
                     'has_errors'=>false));
         }
         else
         {
             // show error page
-            $this->output->showPage(lang('tmwweb_title'), 
-                'tmwweb/lost_password_wrong_key');
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/lost_password_wrong_key');
         }
     }
     
@@ -259,8 +260,8 @@ class Myaccount extends Controller {
                     'key'=>$key
                 ); 
                 
-                $this->output->showPage(lang('tmwweb_title'), 
-                    'tmwweb/lost_password_change', $params);
+                $this->output->showPage(lang('manaweb_title'),
+                    'manaweb/lost_password_change', $params);
             }
             else
             {
@@ -270,8 +271,8 @@ class Myaccount extends Controller {
                     $username, 
                     $this->input->post('TMWpassword'));
                     
-                $this->output->showPage(lang('tmwweb_title'), 
-                    'tmwweb/login_form',
+                $this->output->showPage(lang('manaweb_title'),
+                    'manaweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
                     ' now login with your new credentials.',
                     'has_errors'=>false ));
@@ -280,8 +281,8 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->output->showPage(lang('tmwweb_title'), 
-                'tmwweb/lost_password_wrong_key');
+            $this->output->showPage(lang('manaweb_title'),
+                'manaweb/lost_password_wrong_key');
         }
     }
     
@@ -332,9 +333,11 @@ class Myaccount extends Controller {
         // get mail from post and hash it 
         $mail  = $this->input->post('TMWMail');
         $hmail = hash('sha256', $mail);
-        
+
+        // TODO: use constant for database table name
+
         // select user from db with given name and mailaddress
-        $query = $this->db->get_where('tmw_accounts', 
+        $query = $this->db->get_where('mana_accounts',
             array( 'username'=>$username, 'email'=>$hmail ));
 
         if ($query->num_rows == 1)
@@ -352,7 +355,7 @@ class Myaccount extends Controller {
     
     /**
      * This function generates a unique hash and sends it via mail to the user.
-     * The has is also stored in the tmw_accounts table to verify it later.
+     * The has is also stored in the mana_accounts table to verify it later.
      *
      * @param username    (String) User that wants to reset his password
      * @param mailaddress (String) Mailaddress we should send the mail to
@@ -363,7 +366,7 @@ class Myaccount extends Controller {
         $key = Membershipprovider::getRandomHashKey( 24 );
         
         // build the link in the mail
-        $pwdlink = sprintf( $this->config->item('tmw_change_password_link'),
+        $pwdlink = sprintf( $this->config->item('mana_change_password_link'),
             $username, $key );
 
         // load the template parsing library and parse the mail template
@@ -376,11 +379,11 @@ class Myaccount extends Controller {
             
         // load the email library and configure it for usage
         $this->load->library('email');
-        $this->email->from($this->config->item('tmw_email_from_address'),
-            $this->config->item('tmw_email_from_name'));
+        $this->email->from($this->config->item('mana_email_from_address'),
+            $this->config->item('mana_email_from_name'));
         
         $this->email->to($mailaddress); 
-        $this->email->subject($this->config->item('tmw_change_password_subject'));
+        $this->email->subject($this->config->item('mana_change_password_subject'));
         $this->email->message($tpl); 
         
         // now store the key in the database related to the user
@@ -402,7 +405,7 @@ class Myaccount extends Controller {
     private function _show_user_account()
     {
         $this->translationprovider->loadLanguage('account');
-        $this->output->showPage(lang('account_title'), 'tmwweb/user_home', 
+        $this->output->showPage(lang('account_title'), 'manaweb/user_home',
             $this->user->getHomepageData() );
     }
    

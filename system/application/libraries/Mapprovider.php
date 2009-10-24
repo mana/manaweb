@@ -118,7 +118,7 @@ class Mapprovider
         if (!file_exists($this->maps_file))
         {
             show_error('The '. XML_MAPS_FILE .' file ' . $this->maps_file . ' configured'.
-                ' in tmw_config.php cannot be found');
+                ' in mana_config.php cannot be found');
             return;
         }        
         else

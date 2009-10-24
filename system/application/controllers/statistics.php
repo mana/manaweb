@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 
@@ -34,7 +35,7 @@ class Statistics extends Controller {
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
         
         // this is for testing only
@@ -50,7 +51,7 @@ class Statistics extends Controller {
         $this->CreateChart();
         
         
-        $this->output->showPage( 'Server Statistics', 'tmwweb/server_statistics',
+        $this->output->showPage( 'Server Statistics', 'manaweb/server_statistics',
             array('stats' => $this->server_statistics->getGlobalStats()));
     }
     
@@ -73,10 +74,11 @@ class Statistics extends Controller {
         // Title setup
         $g->title->Set("Ratio male chars to female");
         $g->title->SetFont(FF_FONT1,FS_BOLD);
-               
+
+        // TODO: exchange hardcoded table name with constant
         $res = $this->db->query( 
             "SELECT GENDER AS GENDER, COUNT(*) AS AMNT " .
-            "  FROM tmw_characters " .
+            "  FROM mana_characters " .
             " GROUP BY GENDER " .
             " ORDER BY GENDER " );
         

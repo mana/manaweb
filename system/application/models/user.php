@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 // load dependecies
@@ -107,8 +108,8 @@ class User extends Model {
     /**
      * This function checks wheter the user level is high enough to use 
      * administrative functions and to see the admin interface link. 
-     * The permission can be configured in tmw_config.php with parameter
-     * tmwweb_admin_level.
+     * The permission can be configured in mana_config.php with parameter
+     * manaweb_admin_level.
      *
      * @return (bool) \c true if the user is allowed to see the admin 
      *                interface, otherwise \c false.
@@ -151,7 +152,7 @@ class User extends Model {
     /**
      * This function checks wheter a user is logged in, is admin and has a
      * sufficient level to do a special action. The action is given as 
-     * parameter right. See tmw_config.php for details of the available rights.
+     * parameter right. See mana_config.php for details of the available rights.
      *
      * @param  right (String) Right to check against users permission
      * @return (bool) \c true if the user has the right, otherwise \c false.
@@ -169,7 +170,7 @@ class User extends Model {
             return false;
         }
         // load the configured rights
-        $rights = $this->config->item('tmwweb_admin_permissions');
+        $rights = $this->config->item('manaweb_admin_permissions');
         
         
         if (!isset($rights[$right]))
@@ -276,33 +277,35 @@ class User extends Model {
         // delete data from all tables containing user data
         
         // first delete records from child tables via subselects
-        
+
+        // TODO: remove hardcoded table names and use constants instead...
+
         // delete quest states of characters
-        $this->db->query( 'delete from tmw_quests ' .
+        $this->db->query( 'delete from mana_quests ' .
             'where owner_id in ( ' .
             '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
             
         // delete guild memberships
-        $this->db->query( 'delete from tmw_guild_members ' .
+        $this->db->query( 'delete from mana_guild_members ' .
             'where member_name in ( ' .
             '   select name from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
         
         // delete inventory of characters
-        $this->db->query( 'delete from tmw_inventories ' .
+        $this->db->query( 'delete from mana_inventories ' .
             'where owner_id in ( ' .
             '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
         
         // delete inventory of characters
-        $this->db->query( 'delete from tmw_char_skills ' .
+        $this->db->query( 'delete from mana_char_skills ' .
             'where char_id in ( ' .
             '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
 
         // delete auctions started by the player
-        $this->db->query( 'delete from tmw_auctions ' .
+        $this->db->query( 'delete from mana_auctions ' .
             'where char_id in ( ' .	
             '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
             . ' )' );
@@ -349,7 +352,7 @@ class User extends Model {
     
     /**
      * This function takes a level as int value and translates it into a human
-     * readable string. The translation is defined in the tmw_config file.
+     * readable string. The translation is defined in the mana_config file.
      * If parameter $level is \c null, the function takes the level from the 
      * currently logged in user. If this is also \c null, maybe there is no one
      * logged id, value 0 is assumed.
@@ -375,7 +378,7 @@ class User extends Model {
         }
         
         // load configured level strings from config file
-        $levels = $this->config->item('tmw_account_levels');
+        $levels = $this->config->item('mana_account_levels');
         $levelstring = "n/a";
         
         // loop through levels
@@ -398,7 +401,7 @@ class User extends Model {
      * each of the controllers.
      *
      * @return (Array) Returns an array with all parameters needed by the view 
-     *               <tt>tmwweb/user_home</tt>.
+     *               <tt>manaweb/user_home</tt>.
      */
     public function getHomepageData()
     {

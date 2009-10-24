@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
  
 // load dependecies 
@@ -24,7 +25,7 @@ require_once(APPPATH.'models/inventory'.EXT);
  
 
 /**
- * The DalProvider library is used to store tmwweb specific data in its own 
+ * The DalProvider library is used to store manaweb specific data in its own
  * database file, independent from tmwserv.
  *
  * @todo Make storage independent from sqlite and also support mysql  
@@ -65,7 +66,7 @@ class Dalprovider
 
     
     /** 
-     * This function loads all known items \c form the tmw_items table
+     * This function loads all known items \c form the mana_items table
      * and refreshs the locally stores item images
      */
     public function refreshStorage()
@@ -87,12 +88,12 @@ class Dalprovider
         // item storage on startup!
 
         $db =& $this->CI->db;
-        $query = $db->get("tmw_items");
+        $query = $db->get("mana_items");
         
         foreach ($query->result() as $item)
         {
             
-            // check if the corresponding image is available to tmwweb
+            // check if the corresponding image is available to manaweb
             if (!file_exists("./images/items/" . $item->image))
             {
                 // try to copy the image

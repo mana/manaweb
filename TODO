@@ -1,11 +1,5 @@
-2009-08-29   Andreas Habel   <mail@exceptionfault.de>
-    * remove usage of deprecated validation library. Use form_validation instead.
-    * update installation instructions. These are out of date since its non much
-      more easier to instal tmwweb i think.
-
-think about...
-------------------
-
-    trapdoor mentioned, that users should be able to raise support requests
-    via tmwweb. This sounds like developing a simple ticket system :) 
-    cool idea with great potential
+* Optimize setup process. index.php should route to setup.php until the setup
+  is not yet finished.
+* Implement a themes manager and the possibility to easy switch between 
+  styles.
+* Add gettext support for translations.

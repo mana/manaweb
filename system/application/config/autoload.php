@@ -80,7 +80,7 @@ $autoload['plugin'] = array();
 |
 */
 
-$autoload['config'] = array( 'tmw_config' );
+$autoload['config'] = array( 'mana_config' );
 
 
 /*

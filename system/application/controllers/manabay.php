@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -18,8 +18,8 @@
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
- *  $Id$
  */
+
 require_once(APPPATH.'models/auction'.EXT);
 
 /**
@@ -40,7 +40,7 @@ class Manabay extends Controller {
     {
         parent::Controller();
         $this->output->enable_profiler(
-            $this->config->item('tmw_enable_profiler')
+            $this->config->item('mana_enable_profiler')
         );
         
         $this->load->library('Imageprovider');
@@ -52,7 +52,7 @@ class Manabay extends Controller {
             $param = array('has_errors' => false); 
             $this->translationprovider->loadLanguage('account');
             $this->output->showPage(lang('account_login'), 
-                'tmwweb/login_form', $param);
+                'manaweb/login_form', $param);
         }
         */
     }

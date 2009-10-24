@@ -1,9 +1,9 @@
 <?php
 /*
- *  The Mana World Account Manager
- *  Copyright 2008 The Mana World Development Team
+ *  The Mana Server Account Manager
+ *  Copyright 2009 The Mana Project Development Team
  *
- *  This file is part of The Mana World.
+ *  This file is part of The Mana Server.
  *
  *  The Mana World  is free software; you can redistribute  it and/or modify it
  *  under the terms of the GNU General  Public License as published by the Free
@@ -17,6 +17,7 @@
  *  You should  have received a  copy of the  GNU General Public  License along
  *  with The Mana  World; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+ *
  */
 
 
@@ -25,19 +26,19 @@
  * This class is not used as a model in terms of CodeIgniter. It is
  * used as a simple data object.
  *
- * @ingroup tmwweb models
+ * @ingroup manaweb models
  */ 
 class Guild {
 
     /**
      * Name of the guilds table
      */
-    const GUILD_TBL        = 'tmw_guilds';
+    const GUILD_TBL        = 'mana_guilds';
     
     /**
      * Name of the guild memberships table
      */
-    const GUILD_MEMBER_TBL = 'tmw_guild_members';
+    const GUILD_MEMBER_TBL = 'mana_guild_members';
     
     
     //

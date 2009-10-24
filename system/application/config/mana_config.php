@@ -76,7 +76,7 @@ $config['tmwserv_dyecmd']        = '/path/to/your/dyecmd/tool';
 | under ./ext directory. Normally you don't have to configure anything...
 |
 */
-$config['tmw_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
+$config['mana_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
                                  '/ext/jpgraph-2.3.3/src/';                
 
 /*
@@ -90,12 +90,12 @@ $config['tmw_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
 |
 */
 
-$_tmw_languages = array( 
+$_mana_languages = array(
     array('dir'=>'english', 'name'=>'english'),
     array('dir'=>'german', 'name'=>'deutsch')
 );
 
-$config['tmw_languages'] = $_tmw_languages; 
+$config['mana_languages'] = $_mana_languages;
  
 
 /*
@@ -113,7 +113,7 @@ $config['tmw_languages'] = $_tmw_languages;
 |
 | possible values: true | false
 */
-$config['tmw_allow_user_delete_character'] = true;
+$config['mana_allow_user_delete_character'] = true;
 
 /* 
 | Set this option to true, to enable the internal profiler shipped with 
@@ -121,7 +121,7 @@ $config['tmw_allow_user_delete_character'] = true;
 |
 | possible values: true | false
 */
-$config['tmw_enable_profiler'] = false;
+$config['mana_enable_profiler'] = false;
 
 
 
@@ -131,7 +131,7 @@ $config['tmw_enable_profiler'] = false;
 | Ranges to display user levels
 |--------------------------------------------------------------------------
 |
-| The table tmw_accounts has a level column, that shows the priviledged level
+| The table mana_accounts has a level column, that shows the priviledged level
 | of a user. To visualize the level of a user in the management area, there
 | should be names for each levels or ranges of levels.
 |
@@ -151,7 +151,7 @@ $config['tmw_enable_profiler'] = false;
 |
 */
 
-$_tmw_levels = array( 
+$_mana_levels = array(
     array( 'byte'=> AL_BANNED, 'name'=>'banned User'   ),
     array( 'byte'=> AL_PLAYER, 'name'=>'Player'        ),
     array( 'byte'=> AL_TESTER, 'name'=>'Tester'        ),
@@ -160,7 +160,7 @@ $_tmw_levels = array(
     array( 'byte'=> AL_ADMIN,  'name'=>'Administrator' )
 );
 
-$config['tmw_account_levels'] = $_tmw_levels;
+$config['mana_account_levels'] = $_mana_levels;
 
 
 /*
@@ -177,7 +177,7 @@ $config['tmw_account_levels'] = $_tmw_levels;
 | "tmwadmin_level" defines the minimum level to have access to the tmwweb admin
 | interface. It just enables the link in the menu and gives no other rights.
 */
-$config['tmwweb_admin_permissions'] = array(
+$config['manaweb_admin_permissions'] = array(
 
     // needed level to see a list of all accounts
     'see_account_list'          => array( 'group' => AL_ADMIN ),
@@ -214,32 +214,32 @@ $config['tmwweb_admin_permissions'] = array(
 |   %s (string) a generic key stored in the database to validate the mailbox
 |
 */
-$config['tmw_change_password_link'] = "http://example.com/index.php". 
+$config['mana_change_password_link'] = "http://example.com/index.php". 
     "/myaccount/changepassword/%s/%s";
 
     
 /*
 | Define the subject of the mail that should be sent to the user.
 */    
-$config['tmw_change_password_subject'] = "TMW: Your password change request";
+$config['mana_change_password_subject'] = "TMW: Your password change request";
 
 
 /*
 | Define the time until the key given in the mail will expire.
 | Default = 1 day = 60 * 60 * 24 seconds
 */
-$config['tmw_change_password_expiration'] = 86400;
+$config['mana_change_password_expiration'] = 86400;
 
         
 /*
 | Define the mailaddress from which mails are sent to the user.
 | e.g. something like "noreply@themanaworld.org"
 */    
-$config['tmw_email_from_address'] = "noreply@example.com";
+$config['mana_email_from_address'] = "noreply@example.com";
 
 /*
 | Define the visible name of the address configured above.
 */
-$config['tmw_email_from_name'] = "Account Manager";
+$config['mana_email_from_name'] = "Account Manager";
 
 ?>

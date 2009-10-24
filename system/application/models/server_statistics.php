@@ -101,7 +101,8 @@ class Server_statistics extends Model {
      */
     private function getPlayerCount()
     {
-        return $this->db->count_all('tmw_accounts');
+        // TODO: use constants for database names
+        return $this->db->count_all('mana_accounts');
     }
     
     
@@ -112,7 +113,7 @@ class Server_statistics extends Model {
      */
     private function getCharacterCount()
     {
-        return $this->db->count_all('tmw_characters');
+        return $this->db->count_all('mana_characters');
     }
     
     
@@ -123,7 +124,7 @@ class Server_statistics extends Model {
      */
     private function getGuildCount()
     {
-        return $this->db->count_all('tmw_guilds');
+        return $this->db->count_all('mana_guilds');
     }
     
     

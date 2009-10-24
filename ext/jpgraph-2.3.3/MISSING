@@ -1,5 +1,5 @@
 # the following files and directories have been removed from distribution as 
-# they are not needed by tmwweb
+# they are not needed by manaweb
 
 removed ./docs
 removed ./src/examples

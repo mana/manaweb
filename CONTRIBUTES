@@ -18,8 +18,8 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-This file contains a list of all external resources used by tmwweb:
-(sorted by their time of integration into tmwweb)
+This file contains a list of all external resources used by manaweb:
+(sorted by their time of integration into manaweb)
 
 PHP CodeIgniterFramework
 -------------------------
@@ -56,8 +56,8 @@ Tango Desktop Project
     "The Tango Desktop Project exists to help create a consistent graphical 
     user interface experience for free and Open Source software."
     
-    Tmwweb uses some icons of this project as long as tmw has not its own set
-    of icons. (some of them got recoloured to match the style of tmwweb)
+    Manaweb uses some icons of this project as long as tmw has not its own set
+    of icons. (some of them got recoloured to match the style of manaweb)
     
     http://tango.freedesktop.org    
     License: ./licenses/Tango Desktop Project.txt

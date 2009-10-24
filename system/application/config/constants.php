@@ -40,7 +40,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 /*
  * load tmw specific constants
  */
-require_once 'tmw_constants.php';
+require_once 'mana_constants.php';
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

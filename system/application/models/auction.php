@@ -47,7 +47,7 @@ class Auction
     {
 	    /*
 	    SELECT *
-		FROM   tmw_auctions
+		FROM   mana_auctions
 		WHERE  end_time > "now"
 		AND    auction_state = 1
 		ORDER  BY end_time DESC;
@@ -56,7 +56,7 @@ class Auction
 	    $auctions = array();
 	    $db =& get_instance()->db;
 	    
-	    $query = $db->get('tmw_auctions');
+	    $query = $db->get('mana_auctions');
 	    foreach ($query->result() as $row)
 	    {
 		    $auctions[] = new Auction($row);
@@ -102,7 +102,7 @@ class Auction
 	    if (!isset($this->iteminfo))
 	    {
 		    $db =& $this->CI->db;
-		    $query = $db->get_where('tmw_items', 
+		    $query = $db->get_where('mana_items', 
 		    	array('id'=>$this->data->itemclass_id));
 		    	
 		    $row = $query->result();
@@ -155,7 +155,7 @@ class Auction
 		    $sql = "SELECT MAX(bid_price) AS max_price, ".
 		           "       MAX(bid_time) AS last_bid_time, ".
 		           "       COUNT(*) AS bid_count ".
-		           "FROM   tmw_auction_bids ".
+		           "FROM   mana_auction_bids ".
 		           "WHERE  auction_id = " . $this->data->auction_id;
 		    
 		    $query = $db->query($sql);
