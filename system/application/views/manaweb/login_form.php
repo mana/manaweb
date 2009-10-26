@@ -52,6 +52,18 @@
         </td>
     </tr>
     <tr>
+        <td style="border-width: 0px;">
+            <label for="TMWstyle">Style: </label>
+        </td>
+        <td style="border-width: 0px;">
+            <select name="TMWstyle" size="1" id="TMWstyle" tabindex="4">
+            <?php foreach ($themeprovider->getThemes(true) as $th) { ?>
+                <option value="<?= $th->getShortname() ?>"><?= $th->getName() ?></option>
+            <?php } ?>
+            </select>
+        </td>
+    </tr>
+    <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
             <input type="submit" tabindex="4" value="Login" 
                 id="TMWsubmit" title="Login" name="TMWsubmit" />

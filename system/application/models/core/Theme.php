@@ -39,6 +39,12 @@ Interface iTheme
     public function NavigationBox(NavigationBox $box);
 
     public function afterNavigationBox();
+
+    public function beforeContent();
+
+    public function afterContent();
+
+    public function title($string);
 }
 
 abstract class Theme implements iTheme
@@ -58,6 +64,12 @@ abstract class Theme implements iTheme
     public function NavigationBox(NavigationBox $box){}
 
     public function afterNavigationBox(){}
+
+    public function beforeContent(){}
+
+    public function afterContent(){}
+
+    public function title($string){return "<h1>".$string."</h1>";}
 }
 
 class ThemeInfo
@@ -65,30 +77,36 @@ class ThemeInfo
     private $errors;
 
     private $name;
+    private $shortname;
     private $author;
     private $version;
     private $theme;
+    private $stylesheet;
     private $directory;
+    private $url;
 
-    public function ThemeInfo( $themesdir )
+    public function ThemeInfo( $basedir, $themesdir )
     {
-        $this->directory = $themesdir;
+        $this->url       = Themeprovider::THEMES_DIR."/".$themesdir."/";
+        $this->directory = $basedir ."/". $themesdir;
         $this->errors    = array();
         $this->theme     = null;
+        $this->shortname = $themesdir;
 
-        if (!file_exists($themesdir."/theme.xml"))
+        if (!file_exists($this->directory."/theme.xml"))
         {
             $this->errors[] = "File 'theme.xml' not found!";
             return;
         }
-        $xml = simplexml_load_file( $themesdir."/theme.xml" );
+        $xml = simplexml_load_file( $this->directory."/theme.xml" );
 
         $this->name = strval($xml->name[0]);
         $this->author = strval($xml->author[0]);
         $this->version = strval($xml->version[0]);
+        $this->stylesheet = strval($xml->stylesheet[0]);
 
         $file = strval($xml->scriptfile[0]);
-        if (!file_exists($themesdir."/".$file))
+        if (!file_exists($this->directory."/".$file))
         {
             $this->errors[] = sprintf("File '%s' not found!", $file);
             return;
@@ -96,7 +114,7 @@ class ThemeInfo
 
         try
         {
-            require_once ($themesdir."/".$file);
+            require_once ($this->directory."/".$file);
             $classname = strval($xml->classname[0]);
 
             if (!class_exists($classname, false))
@@ -132,14 +150,29 @@ class ThemeInfo
         return $this->directory;
     }
 
+    public function getStylesheet()
+    {
+        return $this->stylesheet;
+    }
+
     public function getName()
     {
         return $this->name;
     }
 
+    public function getShortname()
+    {
+        return $this->shortname;
+    }
+
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    public function getUrl()
+    {
+        return $this->url;
     }
 }
 

@@ -26,15 +26,24 @@ require_once(APPPATH.'models/core/Theme'.EXT);
 
 class Themeprovider
 {
-    const THEMES_DIR = "/data/themes";
+    const THEMES_DIR = "data/themes";
 
     private $basedir;
     private $themeinfo;
 
     public function Themeprovider()
     {
-        $this->basedir = ROOTPATH.Themeprovider::THEMES_DIR;
-        $this->setTheme("default");
+        $this->basedir = ROOTPATH . "/" . Themeprovider::THEMES_DIR;
+        $ci =& get_instance();
+        $val = $ci->session->userdata('theme');
+        if ($val == null)
+        {
+            $this->setTheme("default");
+        }
+        else
+        {
+            $this->setTheme($ci->session->userdata('theme'));
+        }
     }
 
     public function existsTheme($name)
@@ -44,12 +53,12 @@ class Themeprovider
 
     public function setTheme( $name )
     {
-        $this->themeinfo = new ThemeInfo($this->basedir.'/'.$name);
+        $this->themeinfo = new ThemeInfo($this->basedir, $name);
     }
 
     public function getThemeInfo()
     {
-        $this->themeinfo;
+        return $this->themeinfo;
     }
 
     public function getTheme()
@@ -67,7 +76,7 @@ class Themeprovider
             if ($dirname == "." || $dirname == "..")
                 continue;
 
-            $themeinfo = new ThemeInfo( $this->basedir.'/'.$dirname );
+            $themeinfo = new ThemeInfo( $this->basedir, $dirname );
             if ($themeinfo->isValid() || !$onlyValid)
                 $themelist[] = $themeinfo;
         }

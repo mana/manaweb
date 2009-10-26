@@ -1,6 +1,11 @@
+<?php
 
-   </div><!-- /contents -->
-   <div style="clear: both"></div>
+    $themeinfo =& $themeprovider->getThemeInfo();
+    $theme     =& $themeprovider->getTheme();
+?>
+
+    <?= $theme->afterContent() ?>
+
 
    <div id="footer">
     &copy; 2009 The Mana Source Dev Team -

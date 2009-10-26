@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <theme>
 
-    <name>Manaweb default theme</name>
+    <name>The Mana World</name>
     <author>Andreas Habel</author>
     <version>1.0.0</version>
 
-    <scriptfile>theme.php</scriptfile>
+    <scriptfile>tmwtheme.php</scriptfile>
     <stylesheet>default.css</stylesheet>
-    <classname>DefaultTheme</classname>
+    <classname>TMWTheme</classname>
 
 </theme>

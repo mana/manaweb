@@ -12,7 +12,7 @@ class DefaultTheme extends Theme
 
     public function beforeNavigationBar()
     {
-        return "<div id=\"sidebar\">";
+        return "<div id=\"page\"><div id=\"sidebar\">";
     }
 
     public function afterNavigationBar()
@@ -47,6 +47,18 @@ class DefaultTheme extends Theme
         return "<div class=\"navfooter\">&nbsp;</div>
                 </div>\n";
     }
+
+    public function beforeContent()
+    {
+        return "<div id=\"contents\">";
+    }
+
+    public function afterContent()
+    {
+        return "   </div><!-- /contents -->
+           <div style=\"clear: both\"></div>";
+    }
+
 }
 
 ?>

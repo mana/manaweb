@@ -116,7 +116,11 @@ class Myaccount extends Controller {
                 // set language preferences 
                 $this->translationprovider->setLanguage($lang);            
                 // show the account homepage of the user
+                $this->themeprovider->setTheme( $this->input->post('TMWstyle'));
+                $this->session->set_userdata('theme', $this->input->post('TMWstyle'));
+
                 $this->_show_user_account();
+                
                 
             } // $res == true
             

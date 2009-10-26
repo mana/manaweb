@@ -1,4 +1,9 @@
-<?php echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
+<?php
+
+    $themeinfo =& $themeprovider->getThemeInfo();
+    $theme     =& $themeprovider->getTheme();
+
+echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -19,24 +24,23 @@
   <script src="<?= base_url() ?>ext/scriptaculous-js-1.8.2/src/scriptaculous.js" type="text/javascript"></script>
 
   <style type="text/css">
-   @import url( "<?= base_url() ?>/data/themes/default/default.css");
+   @import url(<?= base_url() ?><?= $themeinfo->getUrl() ?><?= $themeinfo->getStylesheet()?>);
   </style>
  </head>
 
 <body>
-
     <a name="top"><!-- anchor to link to the top of the page --></a>
     <?php
-        echo $theme->getTheme()->beforeLogo();
-        echo $theme->getTheme()->Logo();
-        echo $theme->getTheme()->afterLogo();
+        echo $theme->beforeLogo();
+        echo $theme->Logo();
+        echo $theme->afterLogo();
     ?>
 
-    <div id="page">
+    
 
     <!-- start of navigation bar -->
     <?php
-        echo $theme->getTheme()->beforeNavigationBar();
+        echo $theme->beforeNavigationBar();
 
         // TODO: do this with plugins...
         $nb = new NavigationBox( 'navigation.mana.main', '' );
@@ -104,14 +108,15 @@
 
         foreach( $navigation->getNavboxes() as $box )
         {
-           echo $theme->getTheme()->beforeNavigationBox();
-           echo $theme->getTheme()->NavigationBox($box);
-           echo $theme->getTheme()->afterNavigationBox();
+           echo $theme->beforeNavigationBox();
+           echo $theme->NavigationBox($box);
+           echo $theme->afterNavigationBox();
         }
     ?>
 
     <!-- end of navigation bar -->
-    <?= $theme->getTheme()->afterNavigationBar() ?>
+    <?= $theme->afterNavigationBar() ?>
+    <?= $theme->beforeContent() ?>
+    <?= $theme->title($page_title) ?>
+    
 
-    <div id="contents">
-        <h1><?=$page_title?></h1>
