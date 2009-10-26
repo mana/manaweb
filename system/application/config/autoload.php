@@ -40,7 +40,8 @@
 */
 
 $autoload['libraries'] = array( 'database', 'session', 'menuprovider', 
-    'membershipprovider', 'translationprovider' );
+    'membershipprovider', 'translationprovider',
+    'core/navigationprovider', 'core/themeprovider' );
 
 
 /*

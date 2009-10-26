@@ -47,6 +47,8 @@ class MANA_Output extends CI_Output
         
         $this->header_data['static_menu'] = $CI->menuprovider->getStaticMenu();
         $this->header_data['user_menu']   = $CI->menuprovider->getUserMenu();
+        $this->header_data['navigation']  =& $CI->navigationprovider;
+        $this->header_data['theme']  =& $CI->themeprovider;
         $this->header_data['page_title']  = $title;
         
         

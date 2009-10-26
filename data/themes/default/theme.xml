@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+
+    <name>Manaweb default theme</name>
+    <author>Andreas Habel</author>
+    <version>1.0.0</version>
+
+    <scriptfile>theme.php</scriptfile>
+    <classname>DefaultTheme</classname>
+
+</theme>

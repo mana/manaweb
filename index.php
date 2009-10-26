@@ -89,6 +89,7 @@ define('EXT', '.'.pathinfo(__FILE__, PATHINFO_EXTENSION));
 define('FCPATH', __FILE__);
 define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 define('BASEPATH', $system_folder.'/');
+define('ROOTPATH', pathinfo(__FILE__, PATHINFO_DIRNAME));
 
 if (is_dir($application_folder))
 {

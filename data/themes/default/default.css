@@ -1,0 +1,280 @@
+/* /////////////////////////////////////////////////////////////////////////////
+basic elements
+///////////////////////////////////////////////////////////////////////////// */
+body {
+    background-color: #fffcf2;
+    padding: 0px 10px 10px 10px;
+    margin: 0px;
+    font-family: sans-serif;
+    background-image: url(images/layout/headbar.png);
+    background-repeat: repeat-x;
+    background-position: 0px -25px;
+}
+
+body, div, p, td, li, h1, h2, h3, h4 {
+    font-family: 'Verdana', sans-serif;
+    font-size: 10pt;
+}
+
+#logo {
+    position: absolute;
+    width: 153px;
+    height: 97px;
+    margin: 0px;
+    top: 0px;
+    left: 10px;
+    background-image: url(images/layout/header.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    z-index:400;
+}
+
+/* Links */
+a         { color: #ff6600; text-decoration: none; }
+a:link    { color: #ff6600; text-decoration: none; }
+a:visited { color: #ff6600; text-decoration: none; }
+a:focus   { color: #ff3300; text-decoration: none; }
+a:hover   { color: #ff3300; text-decoration: none; }
+a:active  { color: #ff3300; text-decoration: none; }
+
+hr {
+    border-style: none;
+    height: 1px;
+    background-color: silver;
+    color: silver;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////
+named elements
+///////////////////////////////////////////////////////////////////////////// */
+
+#page {
+    padding: 110px 0px 0px 0px;
+}
+
+#contents 
+{
+    padding: 15px 10px 0px 230px;
+    
+}
+
+#contents h1 {
+    
+    margin: 0px;
+    color: #57565c;
+    font-size: 16pt;
+}
+
+#contents h2 {
+    padding: 7px 7px 7px 107px;
+    margin: 0px;
+    color: #57565c;
+    font-size: 16pt;
+}
+
+#contents h3 {
+    margin: 20px 0px 10px 0px;
+    
+    font-weight: bold;
+    color: #3c3c3c;
+    border-bottom: 1px solid #9f9894;
+    font-size: 11pt;
+}
+
+#contents label {
+    margin: 5px;
+    padding: 5px 5px 5px 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    text-align: right;
+}
+
+#contents span.label {
+    margin: 5px;
+    padding: 10px 5px 5px 15px;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+#contents span.input {
+    padding: 1px 10px 1px 10px;
+    margin: 5px;
+    color: #57565c;
+    font-size: 11pt;
+    background-color: #eeeeee;
+    border: 1px solid #9f9894;
+    -moz-border-radius: 4px;
+}
+
+#contents input {
+    padding: 4px 10px 4px 10px;
+    margin: 5px;
+    color: #57565c;
+    font-size: 11pt;
+    background-color: #eeeeee;
+    border: 1px solid #9f9894;
+    -moz-border-radius: 10px;
+}
+
+#contents select {
+    padding: 4px 10px 4px 10px;
+    margin: 5px;
+    color: #57565c;
+    font-size: 11pt;
+    background-color: #eeeeee;
+    border: 1px solid #9f9894;
+    -moz-border-radius: 10px;
+}
+
+#contents .datatable
+{
+    padding: 5px 0px 0px 0px;
+    color: #57565c;
+    background-color: #eeeeee;
+    border: 1px solid #9f9894;
+    -moz-border-radius: 10px;
+    width: 100%;
+}
+
+#contents .datatable td
+{
+    border: 1px dotted #cccccc;
+    padding: 0px;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+sidebar
+///////////////////////////////////////////////////////////////////////////// */
+
+#sidebar
+{
+    float:  left;
+    width:  200px;
+    padding-top: 2px;
+}
+
+#sidebar .navbox .navheader
+{
+    width: 200px;
+    height: 35px;
+    background-image: url(images/layout/nav_head.png);
+}
+
+#sidebar .navbox .navheader h1
+{
+    padding: 10px 0px 0px 30px;
+    font-weight: bold;
+}
+
+#sidebar .navbox .navbody
+{
+    width: 200px;
+    background-image: url(images/layout/nav_body.png);
+    background-repeat: repeat-y;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    border: none;
+}
+
+#sidebar .navbox .navbody ul
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+#sidebar .navbox .navbody li {
+    list-style: none;
+    margin: 0px;
+}
+
+#sidebar .navbox .navbody li a {
+    display: block;
+    margin: 0px;
+    width: auto;
+    text-decoration: none;
+    padding: 5px 5px 5px 20px;
+    margin: 0px;
+    color: black;
+    font-style: normal;
+}
+
+#sidebar .navbox .navbody a:hover {
+    background-image: url(images/layout/nav_body_hover.png);
+    background-repeat: repeat-y;
+
+}
+
+#sidebar .navbox .navfooter
+{
+    width: 200px;
+    height: 43px;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    background-image: url(images/layout/nav_footer.png);
+    
+}
+
+
+
+
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////
+style elements
+///////////////////////////////////////////////////////////////////////////// */
+
+img.online-led {
+    vertical-align: text-bottom;
+    padding: 0px 1px 0px 1px;
+}
+
+#footer
+{
+    font-size: 8pt;
+    text-align: center;
+    padding: 5px;
+    margin-top: 20px;
+    border-top: 1px dashed gray;
+    width: auto;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////
+javascript features
+///////////////////////////////////////////////////////////////////////////// */
+
+#contents div.autocomplete {
+  margin: 3px 3px 3px 3px;
+  padding: 7px 7px 7px 7px;
+  width:250px;
+  background-color: #eeeeee;
+  border: 1px solid #9f9894;
+  position:absolute;
+  -moz-border-radius: 10px;
+}
+
+#contents div.autocomplete ul {
+  margin:0px;
+  padding:0px;
+  list-style-type:none;
+  list-style-image:none;
+}
+
+#contents div.autocomplete ul li.selected {
+  color: #ff6600;
+}
+
+#contents div.autocomplete ul li {
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  height:18px;
+  display:block;
+  list-style-type:none;
+  list-style-image:none;
+  cursor:pointer;
+  color:#57565c;
+}
+
+/* ////////////////////// end of file /////////////////////////////////////// */

@@ -1,16 +1,16 @@
 <h3><?= lang('character_statistics') ?></h3>
-<table style="border-width: 0px; margin-bottom: 0px;">
+<table>
     <tr>
-        <td style="border-width: 0px;">  
+        <td>  
             <span class="label"><?= lang('character_name') ?>: </span>
         </td>
-        <td style="border-width: 0px;">  
+        <td>  
             <span class="input"><?= $char->getName() ?></span>
         </td>
-        <td style="border-width: 0px;">  
+        <td>  
             <span class="label"><?= lang('character_attr_str') ?>: </span>
         </td>
-        <td style="border-width: 0px;" align="right">  
+        <td align="right">  
             <span class="input">
                 <?= $char->getAttribute(Character::CHAR_ATTR_STRENGTH) ?>
             </span>
