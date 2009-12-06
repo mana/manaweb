@@ -207,8 +207,9 @@ class User extends Model {
      */
     public function authenticate($username, $password, $setsession=true)
     {
-        // hash the password
-        $pwd = hash('sha256', $username . $password);
+        // Hash the password. Normally the client performs the first hash and
+        // the server the second.
+        $pwd = hash('sha256', hash('sha256', $username . $password));
         
         // select user from db with given name and password
         $query = $this->db->get_where( Account::ACCOUNT_TBL,

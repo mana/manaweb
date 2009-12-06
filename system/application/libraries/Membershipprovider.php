@@ -158,8 +158,9 @@ class Membershipprovider
      */
     public function setPasswordForUser($username, $password, $reset_key=true)
     {
-        // hash the password
-        $pwd = hash('sha256', $username . $password);
+        // Hash the password. Normally the client performs the first hash and
+        // the server the second.
+        $pwd = hash('sha256', hash('sha256', $username . $password));
         
         // do the update in a single transaction, to not disturb tmwserv
         $db = $this->CI->db;
