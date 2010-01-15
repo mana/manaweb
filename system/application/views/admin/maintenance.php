@@ -1,7 +1,7 @@
 <h3>Cached data</h3>
 <p>Manaweb stores some temporary data like the provided maps in its own data
 directory for fast and reliable access. If you made modifications to the
-original data (maybe in tmwserv), it is necessary to have manaweb to refresh its
+original data (maybe in manaserv), it is necessary to have manaweb to refresh its
 stored data.</p>
 
 <? if (isset($action_result) && strlen($action_result) > 0 ) { ?>

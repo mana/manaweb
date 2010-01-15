@@ -20,6 +20,6 @@
  */
 
 $lang['account_login']          = 'Login';
-$lang['account_title']          = 'My Account';
+$lang['account_title']          = 'Mein Account';
 
 ?>

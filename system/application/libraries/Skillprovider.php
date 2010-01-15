@@ -24,7 +24,7 @@ require_once(APPPATH.'models/skills'.EXT);
 
 /**
  * The skillprovider is responsible for all actions according to skills in the
- * tmwserv module. It reads the XML_SKILLS_FILE file, and delivers informations about
+ * manaserv module. It reads the XML_SKILLS_FILE file, and delivers informations about
  * skills to the user.
  *
  * @ingroup libraries
@@ -118,7 +118,7 @@ class Skillprovider
      */
     public function loadSkillsFile()
     {
-        log_message('debug', 'Reloading '. XML_SKILLS_FILE .' file from tmwserv');
+        log_message('debug', 'Reloading '. XML_SKILLS_FILE .' file from manaserv');
 
         // load the configured path and filename from config file
         $this->skills_file = $this->CI->config->item('tmwdata_path') . XML_SKILLS_FILE;

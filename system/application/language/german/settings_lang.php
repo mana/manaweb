@@ -24,54 +24,50 @@
 $lang['settings_title']                 = 'Account Einstellungen';
 
 $lang['settings_descr'] = 
- 'On this page you have serveral options to modify your account settings.\n'.
- ' Maybe you would like to change your stored mailadress, or change your login'.
- ' password or even drop your complete accout? Just select one of the options'.
- ' below.';
+ 'Auf dieser Seite gibt es unterschiedlichste Optionen um deine Account Einstellungen zu verändern.\n'.
+ ' Vieleicht möchtest du deine Mailadresse ändern, oder dein Login Passwort oder deinen kompletten'.
+ ' Account löschen. Wähle einfach eine der folgenen Optionen aus.';
  
-$lang['settings_selection']             = 'I would like to...';
-$lang['settings_select_password']       = '...change my password.';
-$lang['settings_select_mail']           = '...change my mailaddress.';
-$lang['settings_select_delete_account'] = '...delete my accout.';
+$lang['settings_selection']             = 'Ich möchte...';
+$lang['settings_select_password']       = '...mein Passwort ändern.';
+$lang['settings_select_mail']           = '...meine Mailadresse ändern.';
+$lang['settings_select_delete_account'] = '...meinen Account löschen.';
  
  
 // change password ////////////////////////////////////////////////////////////
 
-$lang['settings_change_pwd_head']       = 'Change your password'; 
+$lang['settings_change_pwd_head']       = 'Ändere dein Passwort'; 
 $lang['settings_change_pwd_descr'] = 
- 'To change your password, please type in your current password, a new'.
- ' password for your account and retype it to be sure you have no typo in it.';
+ 'Um dein Passwort zu ändern, gib bitte dein aktuelles Passwort sowie dein neues'.
+ ' Passwort (doppelt, um Schreibfehler auszuschließen) an.';
 
-$lang['settings_old_password']          = 'old password';
-$lang['settings_enter_old_password']    = 'Please enter your old password';
+$lang['settings_old_password']          = 'altes Passwort';
+$lang['settings_enter_old_password']    = 'Bitte gib dein altes Passwort ein';
 
-$lang['settings_new_password']          = 'new password';
-$lang['settings_enter_new_password']    = 'Please enter your new password';
+$lang['settings_new_password']          = 'neues Passwort';
+$lang['settings_enter_new_password']    = 'Bitte gib dein neues Passwort ein';
 
-$lang['settings_retype_password']       = 'retype password';
-$lang['settings_retype_new_password']   = 'Please retype your new password';
+$lang['settings_retype_password']       = 'Passwort wiederholen';
+$lang['settings_retype_new_password']   = 'Bitte bestätige dein neues Passwort';
 
-$lang['settings_change_password']       = 'Change password'; 
-$lang['settings_change_password_ok']    = 'Your new password has been saved.';
+$lang['settings_change_password']       = 'Ändere dein Passwort'; 
+$lang['settings_change_password_ok']    = 'Dein neues Passwort wurde gespeichert.';
 
 
 // change mailadress //////////////////////////////////////////////////////////
 
-$lang['settings_change_mail_head']      = 'Change your mailaddress';
-$lang['settings_change_mail_descr'] = 
- 'blubb';
+$lang['settings_change_mail_head']      = 'Ändere deine Mailadresse';
+$lang['settings_change_mail_descr'] =  'blubb';
 
 
 // delete account /////////////////////////////////////////////////////////////
 
-$lang['settings_delete_account_head']   = 'Delete your account';
+$lang['settings_delete_account_head']   = 'Lösche deinen Account';
 $lang['settings_delete_account_descr']  = 
- 'With this option you can delete your account including all your characters.'.
- ' Be warned, that this action is <strong>not revertable</strong> and we are'.
- ' <strong>not able to restore your characters</strong> after that!'.
- ' Besides it would be nice if you leave a message in the forum why you wanna'.
- ' leave The Mana Server.';
+ 'Mit dieser Option kannst du deinen Account (inklusive aller Charaktere) löschen.'.
+ ' Diese Aktion kann <strong>nicht rückgängig gemacht werden</strong> und wir sind'.
+ ' <strong>nicht in der Lage deinen Account wiederherzustellen</strong>!';
 
-$lang['settings_delete_account']        = 'Yes, delete my account!';
+$lang['settings_delete_account']        = 'Ja, lösche meinen Account!';
 
 ?>

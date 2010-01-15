@@ -41,7 +41,7 @@ define ('MANAWEB_VERSION_DATE', '2009-09-05');
 | A gm would have permissions of 11 (AL_PLAYER | AL_TESTER | AL_GM)
 | A admin would have permissions of 255 (*)
 |
-| see tmwserv/src/defines.h
+| see manaserv/src/defines.h
 |    AL_BANNED =   0,     < This user is currently banned.
 |    AL_PLAYER =   1,     < User has regular rights.
 |    AL_TESTER =   2,     < User can perform testing tasks.
@@ -64,12 +64,12 @@ define('AL_ADMIN',  128 );
 | Filenames
 |--------------------------------------------------------------------------
 |
-| The client and tmwserv are using several configurations files which define
+| The client and manaserv are using several configurations files which define
 | things like items, skills and maps. The filenames are listed here.
 |
 */
 
 define('XML_MAPS_FILE',   'maps.xml');
-define('XML_SKILLS_FILE', 'tmw-skills.xml');
+define('XML_SKILLS_FILE', 'mana-skills.xml');
 
 ?>

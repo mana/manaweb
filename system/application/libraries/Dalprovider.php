@@ -26,7 +26,7 @@ require_once(APPPATH.'models/inventory'.EXT);
 
 /**
  * The DalProvider library is used to store manaweb specific data in its own
- * database file, independent from tmwserv.
+ * database file, independent from manaserv.
  *
  * @todo Make storage independent from sqlite and also support mysql  
  * @ingroup libraries
@@ -44,7 +44,7 @@ class Dalprovider
     private $items_file;
     
     /**
-     * Configured path to the item images for import into tmwweb.
+     * Configured path to the item images for import into manaweb.
      */
     private $images_dir;
     
@@ -84,7 +84,7 @@ class Dalprovider
         // this is used as return message
         $retval = array();
 
-        // this should no longer be necessary as tmwserv refreshs the
+        // this should no longer be necessary as manaserv refreshs the
         // item storage on startup!
 
         $db =& $this->CI->db;

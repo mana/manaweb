@@ -136,7 +136,7 @@ class Membershipprovider
         $db = $this->CI->db;
         $expiration = $this->CI->config->item('mana_change_password_expiration');
 
-        // do the update in a single transaction, to not disturb tmwserv
+        // do the update in a single transaction, to not disturb manaserv
         $db->trans_start();
         $db->where('username', $username);
         // TODO: use database table constants
@@ -162,7 +162,7 @@ class Membershipprovider
         // the server the second.
         $pwd = hash('sha256', hash('sha256', $username . $password));
         
-        // do the update in a single transaction, to not disturb tmwserv
+        // do the update in a single transaction, to not disturb manaserv
         $db = $this->CI->db;
         
         $db->trans_start();
@@ -193,7 +193,7 @@ class Membershipprovider
     {
         $mail = hash('sha256', $username . $mailaddress);
 
-        // do the update in a single transaction, to not disturb tmwserv
+        // do the update in a single transaction, to not disturb manaserv
         $db = $this->CI->db;
 
         $db->trans_start();

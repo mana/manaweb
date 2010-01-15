@@ -167,7 +167,7 @@
         
         
         if (!check_file_exists('system/application/config/database.php',
-        	"This configuration file determines which database system you are using for tmwserv and/or the account manager and ".
+        	"This configuration file determines which database system you are using for manaserv and/or the account manager and ".
         	"how we can connect to this database. You can find a template for the configuation file called <tt>database.default.php</tt> ".
         	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>database.php</tt> and ".
         	"make your modifications.")) return;

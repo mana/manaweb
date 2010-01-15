@@ -37,7 +37,7 @@
 $active_group = "default";
 $active_record = TRUE;
 
-// configure access to your existing tmwserv database!
+// configure access to your existing manaserv database!
 
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "";

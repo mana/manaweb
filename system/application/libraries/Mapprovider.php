@@ -24,7 +24,7 @@ require_once(APPPATH.'models/map'.EXT);
  
 /**
  * The mapprovider is responsible for all actions according to maps in the 
- * tmwserv module. It reads the XML_MAPS_FILE file, and delivers informations about
+ * manaserv module. It reads the XML_MAPS_FILE file, and delivers informations about
  * maps to the user.
  * 
  * @ingroup libraries
@@ -109,7 +109,7 @@ class Mapprovider
      */
     public function load_maps_file()
     {
-        log_message('debug', 'Reloading '. XML_MAPS_FILE .' file from tmwserv');
+        log_message('debug', 'Reloading '. XML_MAPS_FILE .' file from manaserv');
         
         // load the configured path and filename from config file
         $this->maps_file = $this->CI->config->item('tmwserv-data_path') . XML_MAPS_FILE;

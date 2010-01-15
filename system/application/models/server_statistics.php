@@ -71,7 +71,7 @@ class Server_statistics extends Model {
     
     
     /**
-     * This function gathers all global statistics from the tmw server and 
+     * This function gathers all global statistics from the manaserv server and 
      * summarizes them in an array.
      * 
      * @return Array with server statistics
@@ -97,7 +97,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all registered accounts.
      * 
-     * @return (int) Number of accounts registered at the tmw server.
+     * @return (int) Number of accounts registered at the manaserv.
      */
     private function getPlayerCount()
     {
@@ -109,7 +109,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all created characters.
      * 
-     * @return (int) Number of created characters on the tmw server.
+     * @return (int) Number of created characters on the manaserv.
      */
     private function getCharacterCount()
     {
@@ -120,7 +120,7 @@ class Server_statistics extends Model {
     /** 
      * This function counts all created guilds.
      * 
-     * @return (int) Number of created guilds on the tmw server.
+     * @return (int) Number of created guilds on the manaserv.
      */
     private function getGuildCount()
     {

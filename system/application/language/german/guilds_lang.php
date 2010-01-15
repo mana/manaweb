@@ -19,9 +19,9 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-$lang['guild_id']         = 'Id';
+$lang['guild_id']         = 'ID';
 $lang['guild_name']       = 'Name';
 $lang['guild_members']    = 'Mitglieder';
 
-$lang['guild_details_header']  = 'Guild: %s';
+$lang['guild_details_header']  = 'Gilde: %s';
 ?>

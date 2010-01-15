@@ -38,7 +38,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 
 /*
- * load tmw specific constants
+ * load mana specific constants
  */
 require_once 'mana_constants.php';
 

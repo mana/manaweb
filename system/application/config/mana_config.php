@@ -24,29 +24,29 @@
 | Base Site URL
 |--------------------------------------------------------------------------
 |
-| URL to your TMWWEB root. Typically this will be your base URL,
+| URL to your manaweb root. Typically this will be your base URL,
 | WITH a trailing slash:
 |
 |   http://example.com/
 |
 */
-$config['base_url'] = "http://example.com/tmwweb/";
+$config['base_url'] = "http://example.com/manaweb/";
 
 
 /*
 |--------------------------------------------------------------------------
-| tmwdata path
+| manadata path
 |--------------------------------------------------------------------------
-| TMWWEB needs a local copy of the clients data directory.
+| manaweb needs a local copy of the clients data directory.
 | Don't forget the trailing /
 */
-$config['tmwdata_path'] = 'tmwdata/';
+$config['tmwdata_path'] = 'manadata/';
 
 /*
 |--------------------------------------------------------------------------
-| tmwserv-data path
+| manaserv-data path
 |--------------------------------------------------------------------------
-| TMWWEB needs a local copy of the account servers data directory.
+| manaweb needs a local copy of the account servers data directory.
 | Don't forget the trailing /
 */
 $config['tmwserv-data_path'] = 'tmwserv-data/';
@@ -58,8 +58,8 @@ $config['tmwserv-data_path'] = 'tmwserv-data/';
 |
 | Some images defined in the items.xml file are stored as greyscaled images
 | to be able to colorize them in different colors. As the GD library shipped
-| with PHP has some problems with non-true-color images, tmwweb needs an 
-| external tool that dyes the images for tmwweb. You can find this tool 
+| with PHP has some problems with non-true-color images, manaweb needs an 
+| external tool that dyes the images for manaweb. You can find this tool 
 | called dyecmd in version controll under tmw\trunk\tools\dyecmd.
 |
 */
@@ -71,7 +71,7 @@ $config['tmwserv_dyecmd']        = '/path/to/your/dyecmd/tool';
 | Plugins and extensions
 |--------------------------------------------------------------------------
 |
-| tmwweb uses some extensions or plugins that are not shipped together with
+| manaweb uses some extensions or plugins that are not shipped together with
 | the main distribution of CodeIgniter. All these extensions will be installed
 | under ./ext directory. Normally you don't have to configure anything...
 |
@@ -141,7 +141,7 @@ $config['mana_enable_profiler'] = false;
 | A gm would have permissions of 11 (AL_PLAYER | AL_TESTER | AL_GM)
 | A admin would have permissions of 255 (*)
 |
-| see tmwserv/src/defines.h
+| see manaweb/src/defines.h
 |    AL_BANNED =   0,     < This user is currently banned.
 |    AL_PLAYER =   1,     < User has regular rights.
 |    AL_TESTER =   2,     < User can perform testing tasks.
@@ -208,7 +208,7 @@ $config['manaweb_admin_permissions'] = array(
 |--------------------------------------------------------------------------
 | 
 | When a user losts his password and requests to change it, we will send him a 
-| mail with a link where he can change it. The link should point to your tmwweb
+| mail with a link where he can change it. The link should point to your manaweb
 | installation. The url should contain two paramters in sprintf syntax:
 |   %s (string) the username
 |   %s (string) a generic key stored in the database to validate the mailbox
@@ -221,7 +221,7 @@ $config['mana_change_password_link'] = "http://example.com/index.php".
 /*
 | Define the subject of the mail that should be sent to the user.
 */    
-$config['mana_change_password_subject'] = "TMW: Your password change request";
+$config['mana_change_password_subject'] = "Mana: Your password change request";
 
 
 /*

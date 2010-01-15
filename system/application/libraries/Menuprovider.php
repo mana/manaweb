@@ -111,7 +111,7 @@ class Menuprovider
     
     
     /** 
-     * This function is called by the \a TMW_Output library to find out if 
+     * This function is called by the \a Mana_Output library to find out if 
      * we should display the menu for characers or not.
      *
      * @return (Bool) \c true, if we look at character details, otherwise

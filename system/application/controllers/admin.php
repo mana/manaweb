@@ -352,7 +352,7 @@ class Admin extends Controller {
     }
     
     /**
-     * This function tries to reload the XML_MAPS_FILE from tmwserv and updates the
+     * This function tries to reload the XML_MAPS_FILE from manaserv and updates the
      * local cache.
      * @param[in,out] params (Array) Parameter that should be send to the view
      */
@@ -363,7 +363,7 @@ class Admin extends Controller {
     }
 
     /**
-     * This function tries to reload the XML_SKILLS_FILE from tmwserv and updates the
+     * This function tries to reload the XML_SKILLS_FILE from manaserv and updates the
      * local cache.
      * @param[in,out] params (Array) Parameter that should be send to the view
      */
@@ -374,7 +374,7 @@ class Admin extends Controller {
     }
     
     /**
-     * This function tries to reload the items.xml from tmwserv and updates the
+     * This function tries to reload the items.xml from manaserv and updates the
      * database table.
      * @param[in,out] params (Array) Parameter that should be send to the view
      */

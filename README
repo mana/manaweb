@@ -61,7 +61,7 @@ has write access to the ./system/logs, the ./images/items and ./data directory.
     chmod 777 ./data
     chmod 777 ./images/items
     
-Manaweb tries to store cached data read from other modules like tmwserv in the
+Manaweb tries to store cached data read from other modules like manaserv in the
 data directory for faster access. Therefore you should allow the webserver to 
 create files there. The logs directory is used for logging as you can think.
 
@@ -125,11 +125,11 @@ To start with a new language there are two simple steps to do:
 
 The intention of manaweb is to be a slim, administrative frontend for manaserv.
 Therfore it is natural to use as much as data, information and configuration we
-can get from tmwserv. Because tmwserv makes extensive use of xml configuration
+can get from manaserv. Because manaserv makes extensive use of xml configuration
 files, which would be too expensive to parse on every page request, manaweb uses
 different methods to cache those informations for faster access.
 
-From time to time, if the data in tmwserv was modified, a admin user has to
+From time to time, if the data in manaserv was modified, a admin user has to
 refresh the caches of manaweb. Therefor you can find a menuoption "maintance"
 when logged in with an administrative account. This page shows you all caches
 and allows you to refresh them with a single click.
@@ -144,9 +144,9 @@ under the DOCUMENT_ROOT of your webserver. To keep all things together, we
 decided to store them under ./images/items. When refreshing the items database,
 manaweb looks in that directory and compares the images located there to all
 items in the database. If a image is missing, manaweb tries to copy this image
-from your tmwdata path, you can configure in mana_config.php (see chapter 2).
+from your manadata path, you can configure in mana_config.php (see chapter 2).
 To copy those images, the webserver needs write permission to the images/items
-directory. If manaweb can't find the image in the tmwdata directory is is not
+directory. If manaweb can't find the image in the manadata directory is is not
 allowed to write to the ./images/items directory, the refresh procedure will 
 show you a list with all missing images. Then you will have to copy those 
 images yourself.
