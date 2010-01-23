@@ -18,7 +18,7 @@ foreach ($skillprovider->getSkillsets() as $skillset)
                     if ($skill->hasIcon()) {
                         echo "
                         <img src=\"".
-                            $imageprovider->getImage($skill->getIcon(), Imageprovider::TMWDATA_DIRECTORY)
+                            $imageprovider->getImage($skill->getIcon(), Imageprovider::MANADATA_DIRECTORY)
                     ."\">";
                     }
                     echo "

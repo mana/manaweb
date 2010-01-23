@@ -59,8 +59,8 @@ class Dalprovider
         // therefore we cannot access $this->config
         $this->CI =& get_instance();
         
-        $this->items_file = $this->CI->config->item('tmwdata_path') . 'items.xml';
-        $this->images_dir = $this->CI->config->item('tmwdata_path') . 'graphics/items/';
+        $this->items_file = $this->CI->config->item('manadata_path') . 'items.xml';
+        $this->images_dir = $this->CI->config->item('manadata_path') . 'graphics/items/';
     }
     
 

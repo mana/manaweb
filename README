@@ -106,14 +106,14 @@ To start with a new language there are two simple steps to do:
        Ensure to double quote '' inside of your strings if necessary.
        
    b.) At least you have to add your new language to the config file
-       manaweb/system/application/conf/tmw_conf.php
-       Just add your language to the array $_tmw_languages like shown below.
+       manaweb/system/application/conf/mana_conf.php
+       Just add your language to the array $_mana_languages like shown below.
        The parameter 'dir' has to be the name of your added directory, maybe
        'german'. 'name' is the displayed string during login. This should be
        the native name of the language, like 'deutsch'.
        Don't forget a comma to separate language arrays.
        
-       $_tmw_languages = array( 
+       $_mana_languages = array( 
           array('dir'=>'english', 'name'=>'english'),
           array('dir'=>'german', 'name'=>'deutsch')
        );

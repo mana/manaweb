@@ -12,44 +12,44 @@
     </tr>
     <? } ?>
     
-    <? $attributes = array('name'=>'searchAccount', 'id'=>'TMWsearchAccount');
+    <? $attributes = array('name'=>'searchAccount', 'id'=>'ManasearchAccount');
         echo form_open('admin/search_account', $attributes); ?>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWusername">search Account: </label>
+            <label for="Manausername">search Account: </label>
         </td>
         <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="1" value="" id="TMWusername" 
-                title="Enter an account name" name="TMWusername">
+            <input type="text" size="30" tabindex="1" value="" id="Manausername" 
+                title="Enter an account name" name="Manausername">
         </td>
         <td style="border-width: 0px;">  
             <input type="submit" tabindex="2" value="Search" 
-                id="TMWsubmit" title="Search" name="TMWsearch">
+                id="Manasubmit" title="Search" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
     
-    <? $attributes = array('name'=>'searchCharacter', 'id'=>'TMWsearchCharacter');
+    <? $attributes = array('name'=>'searchCharacter', 'id'=>'ManasearchCharacter');
         echo form_open('admin/search_character', $attributes); ?>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWusername">search Character: </label>
+            <label for="Manausername">search Character: </label>
         </td>
         <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="3" value="" id="TMWcharacter" 
-                title="Enter a character name" name="TMWcharacter">
+            <input type="text" size="30" tabindex="3" value="" id="Manacharacter" 
+                title="Enter a character name" name="Manacharacter">
         </td>
         <td style="border-width: 0px;">  
             <input type="submit" tabindex="4" value="Search" 
-                id="TMWsubmit" title="Search" name="TMWsearch">
+                id="Manasubmit" title="Search" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
     
 </table>
 
-<div class="autocomplete" id="TMWusernameList" style="display:none"></div>
-<div class="autocomplete" id="TMWcharacterList" style="display:none"></div>
+<div class="autocomplete" id="ManausernameList" style="display:none"></div>
+<div class="autocomplete" id="ManacharacterList" style="display:none"></div>
 </p>
 
 <?php if (isset($result_account) || isset($result_character)) { ?>
@@ -159,9 +159,9 @@
 
 
 <script type="text/javascript">
-    new Ajax.Autocompleter('TMWusername', 'TMWusernameList', 
+    new Ajax.Autocompleter('Manausername', 'ManausernameList', 
         '<?php echo site_url() . "/admin/search_account_ajax" ?>', { });
-    new Ajax.Autocompleter('TMWcharacter', 'TMWcharacterList',
+    new Ajax.Autocompleter('Manacharacter', 'ManacharacterList',
         '<?php echo site_url() . "/admin/search_character_ajax" ?>', { });
     new Draggable('user_info', {});
 </script>

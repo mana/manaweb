@@ -247,11 +247,11 @@
         }
         
 
-        if (!try_read_dir($config['tmwdata_path'],
+        if (!try_read_dir($config['manadata_path'],
                 'Manaweb needs a local copy of the clients data directory.'
                 )) return;
 
-        if (!try_read_dir($config['tmwserv-data_path'],
+        if (!try_read_dir($config['manaserv-data_path'],
                 'Manaweb needs a local copy of the servers data directory.'
                 )) return;
 

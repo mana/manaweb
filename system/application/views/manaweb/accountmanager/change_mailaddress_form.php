@@ -9,7 +9,7 @@
     <p><?= lang('settings_change_mail_descr') ?></p>
 
     <?php
-    $attributes = array('name'=>'changeEmail', 'id'=>'TMWChangeEmail');
+    $attributes = array('name'=>'changeEmail', 'id'=>'ManaChangeEmail');
     echo form_open('accountmanager/changemailaddress', $attributes); ?>
 
     <table style="border-width: 0px; margin-bottom: 0px;">
@@ -34,41 +34,41 @@
 
         <tr>
             <td style="border-width: 0px;">
-                <label for="TMW_current_password">
+                <label for="Mana_current_password">
                     <?= lang('settings_current_password') ?>:
                 </label>
             </td>
             <td style="border-width: 0px;">
                 <input type="password" size="30" tabindex="1" value=""
-                       id="TMW_current_password"
+                       id="Mana_current_password"
                        title="<?= lang('settings_enter_current_password') ?>"
-                       name="TMW_current_password" />
+                       name="Mana_current_password" />
             </td>
         </tr>
         <tr>
             <td style="border-width: 0px;">
-                <label for="TMW_new_mailaddress">
+                <label for="Mana_new_mailaddress">
                     <?= lang('settings_new_mailaddress') ?>:
                 </label>
             </td>
             <td style="border-width: 0px;">
                 <input type="text" size="40" tabindex="2" value=""
-                       id="TMW_new_mailaddress"
+                       id="Mana_new_mailaddress"
                        title="<?= lang('settings_enter_new_mailaddress') ?>"
-                       name="TMW_new_mailaddress" />
+                       name="Mana_new_mailaddress" />
             </td>
         </tr>
         <tr>
             <td style="border-width: 0px;">
-                <label for="TMW_retype_mailaddress">
+                <label for="Mana_retype_mailaddress">
                     <?= lang('settings_retype_mailaddress') ?>:
                 </label>
             </td>
             <td style="border-width: 0px;">
                 <input type="text" size="40" tabindex="3" value=""
-                       id="TMW_retype_mailaddress"
+                       id="Mana_retype_mailaddress"
                        title="<?= lang('settings_enter_retype_mailaddress') ?>"
-                       name="TMW_retype_mailaddress" />
+                       name="Mana_retype_mailaddress" />
             </td>
         </tr>
         <tr>
@@ -77,13 +77,13 @@
                 <input type="submit" tabindex="4"
                        value="<?= lang('settings_change_mailaddress') ?>!"
                        title="<?= lang('settings_change_mailaddress') ?>!"
-                       id="TMWsubmitMailddress"
-                       name="TMWsubmitMailddress" />
+                       id="ManasubmitMailddress"
+                       name="ManasubmitMailddress" />
                 <input type="reset" tabindex="5"
                        value="<?= lang('cancel')?>"
-                       id="TMWcancelMailaddress"
+                       id="ManacancelMailaddress"
                        title="<?= lang('cancel')?>"
-                       name="TMWcancelMailaddress" />
+                       name="ManacancelMailaddress" />
             </td>
         </tr>
         <? } ?>

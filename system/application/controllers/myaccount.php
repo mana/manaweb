@@ -80,8 +80,8 @@ class Myaccount extends Controller {
         }
         
         // define rules that must be met in the login form
-        $rules['TMWusername']  = "required|min_length[4]|max_length[30]";
-        $rules['TMWpassword']  = "required|min_length[4]|max_length[30]";
+        $rules['Manausername']  = "required|min_length[4]|max_length[30]";
+        $rules['Manapassword']  = "required|min_length[4]|max_length[30]";
         $this->validation->set_rules($rules);
         
         // validate userinput against rules
@@ -95,9 +95,9 @@ class Myaccount extends Controller {
         {
             // validation passed, now check credentials
             // get username and password from post variables
-            $user = $this->input->post('TMWusername');
-            $pwd  = $this->input->post('TMWpassword');
-            $lang = $this->input->post('TMWlanguage');
+            $user = $this->input->post('Manausername');
+            $pwd  = $this->input->post('Manapassword');
+            $lang = $this->input->post('Manalanguage');
             
             // try to authenticate user with membership provider
             $res = $this->user->authenticate($user, $pwd);
@@ -116,8 +116,8 @@ class Myaccount extends Controller {
                 // set language preferences 
                 $this->translationprovider->setLanguage($lang);            
                 // show the account homepage of the user
-                $this->themeprovider->setTheme( $this->input->post('TMWstyle'));
-                $this->session->set_userdata('theme', $this->input->post('TMWstyle'));
+                $this->themeprovider->setTheme( $this->input->post('Manastyle'));
+                $this->session->set_userdata('theme', $this->input->post('Manastyle'));
 
                 $this->_show_user_account();
                 
@@ -164,8 +164,8 @@ class Myaccount extends Controller {
     public function resetpassword()
     {
         // define rules that must be met in the login form
-        $rules['TMWusername'] = "required|min_length[4]|max_length[30]";
-        $rules['TMWMail'] = "required|valid_email";
+        $rules['Manausername'] = "required|min_length[4]|max_length[30]";
+        $rules['ManaMail'] = "required|valid_email";
         $this->validation->set_rules($rules);
         
         // validate userinput against rules
@@ -178,7 +178,7 @@ class Myaccount extends Controller {
         else
         {
             // simple checks are ok, so extend the rules and recheck
-            $rules['TMWusername'] = "callback__username_check"; 
+            $rules['Manausername'] = "callback__username_check"; 
             $this->validation->set_rules($rules);
             
             // validate again userinput against rules
@@ -190,8 +190,8 @@ class Myaccount extends Controller {
             }
             else
             {
-                $username = $this->input->post('TMWusername');
-                $email = $this->input->post('TMWMail');
+                $username = $this->input->post('Manausername');
+                $email = $this->input->post('ManaMail');
                 
                 // generate a key, store the key, send it to the user
                 $this->_send_passwort_change_request($username, $email);
@@ -241,16 +241,16 @@ class Myaccount extends Controller {
      */
     public function setnewpassword()
     {
-        $username = $this->input->post('TMWUsername');
-        $key = $this->input->post('TMWActivationKey');
+        $username = $this->input->post('ManaUsername');
+        $key = $this->input->post('ManaActivationKey');
         
         // check if a combination of username and key exist in db,
         // may happen if the user fakes the form/hidden fields
         if ($this->membershipprovider->validateKeyForUser($username, $key))
         {
             // define rules for the new password
-            $rules['TMWpassword'] = "required|callback__password_strength";
-            $rules['TMWpassword2'] = "required|matches[TMWpassword]";
+            $rules['Manapassword'] = "required|callback__password_strength";
+            $rules['Manapassword2'] = "required|matches[Manapassword]";
             $rules['PasswordStrength'] = "";
             $this->validation->set_rules($rules);
             
@@ -273,7 +273,7 @@ class Myaccount extends Controller {
                 // the user to the login form
                 $this->membershipprovider->setPasswordForUser(
                     $username, 
-                    $this->input->post('TMWpassword'));
+                    $this->input->post('Manapassword'));
                     
                 $this->output->showPage(lang('manaweb_title'),
                     'manaweb/login_form',
@@ -301,7 +301,7 @@ class Myaccount extends Controller {
      */
     public function _password_strength($pwd)
     {
-        $username = $this->input->post('TMWUsername');
+        $username = $this->input->post('ManaUsername');
         $ret = Membershipprovider::validatePassword($pwd, $username);
         switch($ret)
         {
@@ -335,7 +335,7 @@ class Myaccount extends Controller {
     public function _username_check($username)
     {
         // get mail from post and hash it 
-        $mail  = $this->input->post('TMWMail');
+        $mail  = $this->input->post('ManaMail');
         $hmail = hash('sha256', $mail);
 
         // TODO: use constant for database table name

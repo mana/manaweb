@@ -40,7 +40,7 @@ $config['base_url'] = "http://example.com/manaweb/";
 | manaweb needs a local copy of the clients data directory.
 | Don't forget the trailing /
 */
-$config['tmwdata_path'] = 'manadata/';
+$config['manadata_path'] = 'manadata/';
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ $config['tmwdata_path'] = 'manadata/';
 | manaweb needs a local copy of the account servers data directory.
 | Don't forget the trailing /
 */
-$config['tmwserv-data_path'] = 'tmwserv-data/';
+$config['manaserv-data_path'] = 'manaserv-data/';
 
 /*
 |--------------------------------------------------------------------------
@@ -60,11 +60,11 @@ $config['tmwserv-data_path'] = 'tmwserv-data/';
 | to be able to colorize them in different colors. As the GD library shipped
 | with PHP has some problems with non-true-color images, manaweb needs an 
 | external tool that dyes the images for manaweb. You can find this tool 
-| called dyecmd in version controll under tmw\trunk\tools\dyecmd.
+| called dyecmd in version controll under mana\trunk\tools\dyecmd.
 |
 */
-$config['tmwserv_enable_dyecmd'] = false;
-$config['tmwserv_dyecmd']        = '/path/to/your/dyecmd/tool';
+$config['manaserv_enable_dyecmd'] = false;
+$config['manaserv_dyecmd']        = '/path/to/your/dyecmd/tool';
 
 /*
 |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ $config['mana_account_levels'] = $_mana_levels;
 */
 
 /* 
-| "tmwadmin_level" defines the minimum level to have access to the tmwweb admin
+| "manaadmin_level" defines the minimum level to have access to the manaweb admin
 | interface. It just enables the link in the menu and gives no other rights.
 */
 $config['manaweb_admin_permissions'] = array(

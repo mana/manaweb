@@ -7,7 +7,7 @@
    </p>
    
    
-<?  $attributes = array('name' => 'lostPassword', 'id' => 'TMWResetPassword');
+<?  $attributes = array('name' => 'lostPassword', 'id' => 'ManaResetPassword');
     echo form_open('myaccount/resetpassword', $attributes); ?>
     
     <table style="border-width: 0px; margin-bottom: 0px;">
@@ -22,28 +22,28 @@
     <? } ?>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWusername">Username: </label>
+            <label for="Manausername">Username: </label>
         </td>
         <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="1" value="" id="TMWusername" 
-                title="Enter your username" name="TMWusername">
+            <input type="text" size="30" tabindex="1" value="" id="Manausername" 
+                title="Enter your username" name="Manausername">
         </td>
     </tr>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWMail">Email-Address: </label>
+            <label for="ManaMail">Email-Address: </label>
         </td>
         <td style="border-width: 0px;">  
-            <input type="text" size="50" tabindex="2" value="" id="TMWMail" 
-                title="Enter your mailaddress" name="TMWMail">
+            <input type="text" size="50" tabindex="2" value="" id="ManaMail" 
+                title="Enter your mailaddress" name="ManaMail">
         </td>
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
             <input type="submit" tabindex="3" value="Change password!" 
-                id="TMWsubmit" title="Login" name="TMWsubmit">
+                id="Manasubmit" title="Login" name="Manasubmit">
             <input type="reset" tabindex="4" value="Cancel" 
-                id="TMWcancel" title="Cancel" name="TMWcancel">
+                id="Manacancel" title="Cancel" name="Manacancel">
         </td>
     </tr>    
     </table>
@@ -53,7 +53,7 @@
 <script type="text/javascript">
 <!--
     // set the focus to the username field
-    document.lostPassword.TMWusername.focus();
+    document.lostPassword.Manausername.focus();
 //-->
 </script>
 

@@ -190,7 +190,7 @@ class Admin extends Controller {
         }
 
         // the searchfield has to contain at least one character        
-        $rules['TMWusername']  = "required|min_length[1]";
+        $rules['Manausername']  = "required|min_length[1]";
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
@@ -201,7 +201,7 @@ class Admin extends Controller {
         // search for the given account name
         // even if active record has a method ->like we write the code on our
         // own due to a bug which does wrong quoting in the searchstring... :(
-        $search = '%' . $this->input->post('TMWusername') . '%';
+        $search = '%' . $this->input->post('Manausername') . '%';
         
         $this->db->where('username LIKE \'' . $search . '\'');
         $this->db->order_by('username');
@@ -216,7 +216,7 @@ class Admin extends Controller {
             }
             $param = array(
                 'result_account' => $accounts,
-                'searchstring'   => $this->input->post('TMWusername')
+                'searchstring'   => $this->input->post('Manausername')
             );
         }
         else
@@ -241,13 +241,13 @@ class Admin extends Controller {
             return;
         }
         
-        if (strlen($this->input->post('TMWusername')) < 1)
+        if (strlen($this->input->post('Manausername')) < 1)
         {
             echo "<ul></ul>";
             return;
         }
 
-        $search = $this->input->post('TMWusername') . '%';
+        $search = $this->input->post('Manausername') . '%';
         $this->db->where('username LIKE \'' . $search . '\'');
         $res = $this->db->get(Account::ACCOUNT_TBL);
 
@@ -274,7 +274,7 @@ class Admin extends Controller {
         }
         
         // the searchfield has to contain at least one character        
-        $rules['TMWcharacter']  = "required|min_length[1]";
+        $rules['Manacharacter']  = "required|min_length[1]";
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
@@ -285,7 +285,7 @@ class Admin extends Controller {
         // search for the given character name
         // due to another bug in pdo that wraps parenthesis around the table
         // but not araound the join part, sqlite returns an error
-        $search = '%' . $this->input->post('TMWcharacter') . '%';
+        $search = '%' . $this->input->post('Manacharacter') . '%';
 
         $sql = "SELECT ".Character::CHARACTER_TBL.".*, "
              . "       ".Account::ACCOUNT_TBL.".username"
@@ -309,7 +309,7 @@ class Admin extends Controller {
             
             $param = array(
                 'result_character' => $result,
-                'searchstring'     => $this->input->post('TMWcharacter')
+                'searchstring'     => $this->input->post('Manacharacter')
             );
         }
         else
@@ -333,13 +333,13 @@ class Admin extends Controller {
             return;
         }
 
-        if (strlen($this->input->post('TMWcharacter')) < 1)
+        if (strlen($this->input->post('Manacharacter')) < 1)
         {
             echo "<ul></ul>";
             return;
         }
 
-        $search = $this->input->post('TMWcharacter') . '%';
+        $search = $this->input->post('Manacharacter') . '%';
         $this->db->where('name LIKE \'' . $search . '\'');
         $res = $this->db->get(Character::CHARACTER_TBL);
 

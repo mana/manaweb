@@ -36,7 +36,7 @@
             ?></p>
 
             <?php
-            $attributes = array('name'=>'changePassword', 'id'=>'TMWChangePassword');
+            $attributes = array('name'=>'changePassword', 'id'=>'ManaChangePassword');
             echo form_open('accountmanager/changepassword', $attributes); ?>
 
         <table style="border-width: 0px; margin-bottom: 0px;">
@@ -59,41 +59,41 @@
             <? } else { ?>
             <tr>
                 <td style="border-width: 0px;">
-                    <label for="TMW_old_password">
+                    <label for="Mana_old_password">
                         <?= lang('settings_old_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="1" value=""
-                           id="TMW_old_password"
+                           id="Mana_old_password"
                            title="<?= lang('settings_enter_old_password') ?>"
-                           name="TMW_old_password" />
+                           name="Mana_old_password" />
                 </td>
             </tr>
             <tr>
                 <td style="border-width: 0px;">
-                    <label for="TMW_new_password">
+                    <label for="Mana_new_password">
                         <?= lang('settings_new_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="2" value=""
-                           id="TMW_new_password"
+                           id="Mana_new_password"
                            title="<?= lang('settings_enter_new_password') ?>"
-                           name="TMW_new_password" />
+                           name="Mana_new_password" />
                 </td>
             </tr>
             <tr>
                 <td style="border-width: 0px;">
-                    <label for="TMW_retype_password">
+                    <label for="Mana_retype_password">
                         <?= lang('settings_retype_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="3" value=""
-                           id="TMW_retype_password"
+                           id="Mana_retype_password"
                            title="<?= lang('settings_retype_new_password') ?>"
-                           name="TMW_retype_password" />
+                           name="Mana_retype_password" />
                 </td>
             </tr>
             <tr>
@@ -102,13 +102,13 @@
                     <input type="submit" tabindex="4"
                            value="<?= lang('settings_change_password') ?>!"
                            title="<?= lang('settings_change_password') ?>!"
-                           id="TMWsubmitPassword"
-                           name="TMWsubmitPassword" />
+                           id="ManasubmitPassword"
+                           name="ManasubmitPassword" />
                     <input type="reset" tabindex="5"
                            value="<?= lang('cancel')?>"
-                           id="TMWcancelPassword"
+                           id="ManacancelPassword"
                            title="<?= lang('cancel')?>"
-                           name="TMWcancelPassword" />
+                           name="ManacancelPassword" />
                 </td>
             </tr>
             <? } ?>
@@ -124,12 +124,12 @@
         <p><?= lang('settings_delete_account_descr') ?></p>
         <p>
             <?php
-            $attributes = array('name' => 'deleteAccount', 'id' => 'TMWDeleteAccount');
+            $attributes = array('name' => 'deleteAccount', 'id' => 'ManaDeleteAccount');
             echo form_open('accountmanager/delete_account', $attributes); ?>
             <input type="submit" tabindex="6"
                    value="<?= lang('settings_delete_account') ?>"
-                   id="TMWsubmitDelete" title="<?= lang('settings_delete_account') ?>"
-                   name="TMWsubmit" />
+                   id="ManasubmitDelete" title="<?= lang('settings_delete_account') ?>"
+                   name="Manasubmit" />
             <?= form_close(); ?>
         </p>
     </div>

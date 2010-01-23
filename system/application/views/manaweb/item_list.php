@@ -1,6 +1,6 @@
 <h3>Item dictionary</h3>
 
-	<? $attributes = array('name'=>'TMWsearchItemForm', 'id'=>'TMWsearchItemForm');
+	<? $attributes = array('name'=>'ManasearchItemForm', 'id'=>'ManasearchItemForm');
     echo form_open('itemslist/search_item', $attributes); ?>
 
 	<table style="border-width: 0px; margin-bottom: 0px;">
@@ -22,12 +22,12 @@
 				<table style="border-width: 0px; margin-bottom: 0px;">
 					<tr>
 				        <td style="border-width: 0px;">  
-				            <input type="text" size="30" tabindex="1" value="" id="TMWSearchItem" 
-				                title="Enter a item name" name="TMWSearchItem" />
+				            <input type="text" size="30" tabindex="1" value="" id="ManaSearchItem" 
+				                title="Enter a item name" name="ManaSearchItem" />
 				        </td>
 				        <td style="border-width: 0px;">  
 				            <input type="submit" tabindex="2" value="Search" 
-				                id="TMWsubmit" title="Search" name="TMWsearch" />
+				                id="Manasubmit" title="Search" name="Manasearch" />
 				        </td>
 				    </tr>
 				</table>
@@ -80,7 +80,7 @@
 		</tr>
 	</table>
 	<?= form_close(); ?>
-    <div class="autocomplete" id="TMWSearchItemList" style="display:none"></div>
+    <div class="autocomplete" id="ManaSearchItemList" style="display:none"></div>
 
 <? if (isset($itemslist)) { ?>	
 <table class="datatable">
@@ -117,11 +117,11 @@
 
 <script type="text/javascript">
 <!--
-    new Ajax.Autocompleter('TMWSearchItem', 'TMWSearchItemList',
+    new Ajax.Autocompleter('ManaSearchItem', 'ManaSearchItemList',
         '<?php echo site_url() . "/itemslist/search_item_ajax" ?>', 
         {minChars:3});
 
     // set the focus to the search field
-    $('TMWSearchItem').focus();
+    $('ManaSearchItem').focus();
 //-->
 </script>

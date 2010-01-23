@@ -141,7 +141,7 @@ class Accountmanager extends Controller {
             return;
         }
         
-        if (strlen($this->input->post('TMWcancel')) > 0)
+        if (strlen($this->input->post('Manacancel')) > 0)
         {
             // don`t delete account
             $this->settings();
@@ -167,9 +167,9 @@ class Accountmanager extends Controller {
             return;
         }
         
-        $old_pwd  = $this->input->post('TMW_old_password');
-        $new_pwd  = $this->input->post('TMW_new_password');
-        $new2_pwd = $this->input->post('TMW_retype_password');
+        $old_pwd  = $this->input->post('Mana_old_password');
+        $new_pwd  = $this->input->post('Mana_new_password');
+        $new2_pwd = $this->input->post('Mana_retype_password');
         
         // define rules for the new password
         // you may wonder why those validation function have 2 underscores "__" 
@@ -177,14 +177,14 @@ class Accountmanager extends Controller {
         // start with "callback_" and to make the function itself private for 
         // CI, the function has to start with an underscore. 
 
-        $this->form_validation->set_rules('TMW_old_password',
+        $this->form_validation->set_rules('Mana_old_password',
             'lang:settings_old_password', "required|callback__validate_password" );
 
-        $this->form_validation->set_rules('TMW_new_password',
+        $this->form_validation->set_rules('Mana_new_password',
             lang('settings_new_password'), "required|callback__password_strength" );
 
-        $this->form_validation->set_rules('TMW_retype_password',
-            lang('settings_retype_password'), "required|matches[TMW_new_password]" );
+        $this->form_validation->set_rules('Mana_retype_password',
+            lang('settings_retype_password'), "required|matches[Mana_new_password]" );
 
         $this->translationprovider->loadLanguage('settings');
         
@@ -201,7 +201,7 @@ class Accountmanager extends Controller {
             // the new password is ok.
             $this->membershipprovider->setPasswordForUser(
                 $this->user->getUser()->getUsername(), 
-                $this->input->post('TMW_new_password'),
+                $this->input->post('Mana_new_password'),
                 false );
                     
             $param = array(
@@ -226,20 +226,20 @@ class Accountmanager extends Controller {
         $this->translationprovider->loadLanguage('settings');
         $params = array();
 
-        $rules['TMW_new_mailaddress']    = "required";
-        $rules['TMW_retype_mailaddress'] = "required";
+        $rules['Mana_new_mailaddress']    = "required";
+        $rules['Mana_retype_mailaddress'] = "required";
 
-        $this->form_validation->set_rules('TMW_current_password',
+        $this->form_validation->set_rules('Mana_current_password',
             'lang:settings_current_password' ,
             'required|callback__validate_password' );
 
-        $this->form_validation->set_rules('TMW_new_mailaddress',
+        $this->form_validation->set_rules('Mana_new_mailaddress',
             lang('settings_new_mailaddress') ,
             'required|valid_email' );
 
-        $this->form_validation->set_rules('TMW_retype_mailaddress',
+        $this->form_validation->set_rules('Mana_retype_mailaddress',
             lang('settings_retype_mailaddress') ,
-            'required|valid_email|matches[TMW_new_mailaddress]' );
+            'required|valid_email|matches[Mana_new_mailaddress]' );
 
         // validate userinput against rules
         if ($this->form_validation->run() == false)
@@ -251,7 +251,7 @@ class Accountmanager extends Controller {
         {
             $this->membershipprovider->setMailaddressForUser(
                 $this->user->getUser()->getUsername(),
-                $this->input->post('TMW_new_mailaddress')
+                $this->input->post('Mana_new_mailaddress')
             );
             $params['mailaddress_changed_message'] = lang('mailaddress_changed_message');
         }

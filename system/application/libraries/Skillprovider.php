@@ -121,7 +121,7 @@ class Skillprovider
         log_message('debug', 'Reloading '. XML_SKILLS_FILE .' file from manaserv');
 
         // load the configured path and filename from config file
-        $this->skills_file = $this->CI->config->item('tmwdata_path') . XML_SKILLS_FILE;
+        $this->skills_file = $this->CI->config->item('manadata_path') . XML_SKILLS_FILE;
 
         // check if the file really exists and is readable
         if (!file_exists($this->skills_file))

@@ -29,7 +29,7 @@ class Imageprovider
 {
 
     const ITEMS_DIRECTORY = 1;
-    const TMWDATA_DIRECTORY = 2;
+    const MANADATA_DIRECTORY = 2;
 
     /**
      * Reference to the CodeIgniter framework
@@ -60,10 +60,10 @@ class Imageprovider
         switch( $path )
         {
             case Imageprovider::ITEMS_DIRECTORY:
-                return base_url() . $this->CI->config->item('tmwdata_path') . 'graphics/items/' . $filename;
+                return base_url() . $this->CI->config->item('manadata_path') . 'graphics/items/' . $filename;
                 break;
-            case Imageprovider::TMWDATA_DIRECTORY:
-                return base_url() . $this->CI->config->item('tmwdata_path') . $filename;
+            case Imageprovider::MANADATA_DIRECTORY:
+                return base_url() . $this->CI->config->item('manadata_path') . $filename;
                 break;
         }
     }
@@ -81,7 +81,7 @@ class Imageprovider
      */
     public function getItemImage($itemid, $image, $dyestring="")
     {
-        $images_dir = $this->CI->config->item('tmwdata_path') . 'graphics/items/';
+        $images_dir = $this->CI->config->item('manadata_path') . 'graphics/items/';
 
 	    // the image has not to be dyed... just return the base image
 	    if ($dyestring == "")
@@ -94,7 +94,7 @@ class Imageprovider
         return base_url() . $images_dir . $image;
         
 	    // image dyeing is disabled, return the base image
-	    if (!$this->CI->config->item('tmwserv_enable_dyecmd'))
+	    if (!$this->CI->config->item('manaserv_enable_dyecmd'))
 	    {
 		    return base_url() . $images_dir . $image;
 	    }
@@ -137,7 +137,7 @@ class Imageprovider
 	 */
 	private function DyeImage($source, $target, $dyestring)
 	{
-		$cmd = $this->CI->config->item('tmwserv_dyecmd') . 
+		$cmd = $this->CI->config->item('manaserv_dyecmd') . 
 			" \"$source\" \"$target\" \"$dyestring\"";
 		exec( $cmd );
 	}

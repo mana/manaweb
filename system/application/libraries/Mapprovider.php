@@ -112,7 +112,7 @@ class Mapprovider
         log_message('debug', 'Reloading '. XML_MAPS_FILE .' file from manaserv');
         
         // load the configured path and filename from config file
-        $this->maps_file = $this->CI->config->item('tmwserv-data_path') . XML_MAPS_FILE;
+        $this->maps_file = $this->CI->config->item('manaserv-data_path') . XML_MAPS_FILE;
         
         // check if the file really exists and is readable
         if (!file_exists($this->maps_file))

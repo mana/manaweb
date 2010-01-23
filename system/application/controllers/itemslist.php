@@ -71,7 +71,7 @@ class Itemslist extends Controller
     public function search_item()
     {
         // the searchfield has to contain at least one character
-        $rules['TMWSearchItem']  = "required|min_length[1]";
+        $rules['ManaSearchItem']  = "required|min_length[1]";
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
@@ -82,7 +82,7 @@ class Itemslist extends Controller
         
         // even if active record has a method ->like we write the code on our
         // own due to a bug which does wrong quoting in the searchstring... :(
-        $search = '%' . $this->input->post('TMWSearchItem') . '%';
+        $search = '%' . $this->input->post('ManaSearchItem') . '%';
         
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');
@@ -93,7 +93,7 @@ class Itemslist extends Controller
             $param = array(
                 'result_items'   => true,
                 'itemslist'      => $res->result(),
-                'searchstring'   => $this->input->post('TMWSearchItem'),
+                'searchstring'   => $this->input->post('ManaSearchItem'),
                 'imageprovider'  => $this->imageprovider
             );
         }
@@ -114,7 +114,7 @@ class Itemslist extends Controller
     {
         // even if active record has a method ->like we write the code on our
         // own due to a bug which does wrong quoting in the searchstring... :(
-        $search = '%' . $this->input->post('TMWSearchItem') . '%';
+        $search = '%' . $this->input->post('ManaSearchItem') . '%';
 
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');

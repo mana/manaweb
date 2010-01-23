@@ -7,7 +7,7 @@
    
    
 <?php 
-    $attributes = array('name'=>'changePassword', 'id'=>'TMWChangePassword');
+    $attributes = array('name'=>'changePassword', 'id'=>'ManaChangePassword');
     echo form_open('myaccount/setnewpassword', $attributes); ?>
     
     <table style="border-width: 0px; margin-bottom: 0px;">
@@ -38,33 +38,33 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWpassword">Password: </label>
+            <label for="Manapassword">Password: </label>
         </td>
         <td style="border-width: 0px;">  
             <input type="password" size="30" tabindex="1" value="" 
-                id="TMWpassword" title="Enter your password" 
-                name="TMWpassword" />
+                id="Manapassword" title="Enter your password" 
+                name="Manapassword" />
         </td>
     </tr>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWpassword2">retype Password: </label>
+            <label for="Manapassword2">retype Password: </label>
         </td>
         <td style="border-width: 0px;">  
             <input type="password" size="30" tabindex="2" value="" 
-                id="TMWpassword2" title="Retype your password" 
-                name="TMWpassword2" />
+                id="Manapassword2" title="Retype your password" 
+                name="Manapassword2" />
         </td>
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
-            <input type="hidden" name="TMWUsername" value="<?= $username ?>" />
-            <input type="hidden" name="TMWActivationKey" value="<?= $key ?>" />
+            <input type="hidden" name="ManaUsername" value="<?= $username ?>" />
+            <input type="hidden" name="ManaActivationKey" value="<?= $key ?>" />
             
             <input type="submit" tabindex="3" value="Change password!" 
-                id="TMWsubmit" title="Login" name="TMWsubmit" />
+                id="Manasubmit" title="Login" name="Manasubmit" />
             <input type="reset" tabindex="4" value="Cancel" 
-                id="TMWcancel" title="Cancel" name="TMWcancel" />
+                id="Manacancel" title="Cancel" name="Manacancel" />
         </td>
     </tr>    
     </table>
@@ -81,7 +81,7 @@
 <script type="text/javascript">
 <!--
     // set the focus to the username field
-    document.changePassword.TMWpassword.focus();
+    document.changePassword.Manapassword.focus();
 //-->
 </script>
 

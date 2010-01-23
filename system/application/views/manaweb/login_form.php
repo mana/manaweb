@@ -1,6 +1,6 @@
     <h3>Login to The Mana Server Account Manager</h3>
 
-<?  $attributes = array('name' => 'loginForm', 'id' => 'TMWLoginForm');
+<?  $attributes = array('name' => 'loginForm', 'id' => 'ManaLoginForm');
     echo form_open('myaccount/login', $attributes); ?>
 
     <?php if (isset($message)) { ?>
@@ -23,28 +23,28 @@
     <? } ?>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWusername">Username: </label>
+            <label for="Manausername">Username: </label>
         </td>
         <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="1" value="" id="TMWusername" 
-                title="Enter your username" name="TMWusername" />
-        </td>
-    </tr>
-    <tr>
-        <td style="border-width: 0px;">  
-            <label for="TMWpassword">Password: </label>
-        </td>
-        <td style="border-width: 0px;">  
-            <input type="password" size="30" tabindex="2" value="" id="TMWpassword" 
-                title="Enter your password" name="TMWpassword" />
+            <input type="text" size="30" tabindex="1" value="" id="Manausername" 
+                title="Enter your username" name="Manausername" />
         </td>
     </tr>
     <tr>
         <td style="border-width: 0px;">  
-            <label for="TMWlanguage">Language: </label>
+            <label for="Manapassword">Password: </label>
         </td>
         <td style="border-width: 0px;">  
-            <select name="TMWlanguage" size="1" id="TMWlanguage" tabindex="3">
+            <input type="password" size="30" tabindex="2" value="" id="Manapassword" 
+                title="Enter your password" name="Manapassword" />
+        </td>
+    </tr>
+    <tr>
+        <td style="border-width: 0px;">  
+            <label for="Manalanguage">Language: </label>
+        </td>
+        <td style="border-width: 0px;">  
+            <select name="Manalanguage" size="1" id="Manalanguage" tabindex="3">
             <?php foreach ($this->translationprovider->getLanguages() as $lng) { ?>
                 <option value="<?= $lng['dir'] ?>"><?= $lng['name'] ?></option>
             <?php } ?>
@@ -53,10 +53,10 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <label for="TMWstyle">Style: </label>
+            <label for="Manastyle">Style: </label>
         </td>
         <td style="border-width: 0px;">
-            <select name="TMWstyle" size="1" id="TMWstyle" tabindex="4">
+            <select name="Manastyle" size="1" id="Manastyle" tabindex="4">
             <?php foreach ($themeprovider->getThemes(true) as $th) { ?>
                 <option value="<?= $th->getShortname() ?>"><?= $th->getName() ?></option>
             <?php } ?>
@@ -66,9 +66,9 @@
     <tr>
         <td colspan="2" style="text-align: center; border-width: 0px;">  
             <input type="submit" tabindex="4" value="Login" 
-                id="TMWsubmit" title="Login" name="TMWsubmit" />
+                id="Manasubmit" title="Login" name="Manasubmit" />
             <input type="reset" tabindex="5" value="Cancel" 
-                id="TMWcancel" title="Cancel" name="TMWcancel" />
+                id="Manacancel" title="Cancel" name="Manacancel" />
         </td>
     </tr>    
     <tr>
@@ -84,6 +84,6 @@
 <script type="text/javascript">
 <!--
     // set the focus to the username field
-    document.loginForm.TMWusername.focus();
+    document.loginForm.Manausername.focus();
 //-->
 </script>
