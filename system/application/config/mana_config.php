@@ -60,7 +60,7 @@ $config['manaserv-data_path'] = 'manaserv-data/';
 | to be able to colorize them in different colors. As the GD library shipped
 | with PHP has some problems with non-true-color images, manaweb needs an 
 | external tool that dyes the images for manaweb. You can find this tool 
-| called dyecmd in version controll under mana\trunk\tools\dyecmd.
+| called dyecmd in version control under mana/tools/dyecmd.
 |
 */
 $config['manaserv_enable_dyecmd'] = false;
