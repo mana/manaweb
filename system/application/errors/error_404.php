@@ -1,4 +1,3 @@
-<?php header("HTTP/1.1 404 Not Found"); ?>
 <html>
 <head>
 <title>404 Page Not Found</title>
@@ -7,7 +6,7 @@
 body {
 background-color:	#fff;
 margin:				40px;
-font-family:        "Lucida Grande", "Verdana", "Geneva", Sans-serif;
+font-family:		Lucida Grande, Verdana, Sans-serif;
 font-size:			12px;
 color:				#000;
 }

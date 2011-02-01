@@ -29,7 +29,7 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'smi'	=>	'application/smil',
 				'smil'	=>	'application/smil',
 				'mif'	=>	'application/vnd.mif',
-				'xls'	=>	array('application/excel', 'application/vnd.ms-excel'),
+				'xls'	=>	array('application/excel', 'application/vnd.ms-excel', 'application/msexcel'),
 				'ppt'	=>	array('application/powerpoint', 'application/vnd.ms-powerpoint'),
 				'wbxml'	=>	'application/wbxml',
 				'wmlc'	=>	'application/wmlc',
@@ -93,11 +93,12 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'avi'	=>	'video/x-msvideo',
 				'movie'	=>	'video/x-sgi-movie',
 				'doc'	=>	'application/msword',
+				'docx'	=>	'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+				'xlsx'	=>	'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
 				'eml'	=>	'message/rfc822'
 			);
-
 
 
 /* End of file mimes.php */
