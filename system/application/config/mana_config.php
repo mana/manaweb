@@ -77,7 +77,7 @@ $config['manaserv_dyecmd']        = '/path/to/your/dyecmd/tool';
 |
 */
 $config['mana_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
-                                 '/ext/jpgraph-2.3.3/src/';                
+                                 '/ext/jpgraph-3.0.7/src/';
 
 /*
 |--------------------------------------------------------------------------

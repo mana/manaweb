@@ -1,0 +1,9 @@
+# the following files and directories have been removed from distribution as
+# they are not needed by manaweb
+
+removed ./docportal
+removed ./src/Examples
+removed ./src/flags.dat
+removed ./src/flags_thumb35x35.dat
+removed ./src/flags_thumb60x60.dat
+removed ./src/flags_thumb100x100.dat
