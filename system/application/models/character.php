@@ -41,12 +41,13 @@ class Character {
     
     // character attributes ///////////////////////////////////////////////////
     
-    const CHAR_ATTR_STRENGTH     = "str";    /**< Constant for character attribute STRENGTH */
-    const CHAR_ATTR_AGILITY      = "agi";    /**< Constant for character attribute AGILITY */
-    const CHAR_ATTR_DEXTERITY    = "dex";    /**< Constant for character attribute DEXTERITY */
-    const CHAR_ATTR_VITALITY     = "vit";    /**< Constant for character attribute VITALITY */
-    const CHAR_ATTR_INTELLIGENCE = "int";    /**< Constant for character attribute INTELLIGENCE */
-    const CHAR_ATTR_WILLPOWER    = "will";   /**< Constant for character attribute WILLPOWER */
+    const CHAR_ATTR_STRENGTH     = "1";    /**< Constant for character attribute STRENGTH */
+    const CHAR_ATTR_AGILITY      = "2";    /**< Constant for character attribute AGILITY */
+    const CHAR_ATTR_DEXTERITY    = "3";    /**< Constant for character attribute DEXTERITY */
+    const CHAR_ATTR_VITALITY     = "4";    /**< Constant for character attribute VITALITY */
+    const CHAR_ATTR_INTELLIGENCE = "5";    /**< Constant for character attribute INTELLIGENCE */
+    const CHAR_ATTR_WILLPOWER    = "6";   /**< Constant for character attribute WILLPOWER */
+    const CHAR_ATTR_GP           = "18";   /**< Constant for character attribute GP */
 
     /** List of all online characters. */
     private static $onlinelist;
@@ -127,6 +128,7 @@ class Character {
         $this->inventory = null;
         $this->user = null;
         $this->skills = array();
+        $this->attributes = array();
 
         // characters need informations about maps so load the mapprovider
         if (!isset($this->CI->mapprovider))
@@ -166,7 +168,7 @@ class Character {
             // TODO: use constant for database table
             $query = $this->CI->db->get_where('mana_accounts',
                 array('id' => $this->char->user_id), 1);
-			$this->user = $query->result();
+            $this->user = $query->result();
             $this->user = $this->user[0];
         }
         return $this->user;
@@ -243,26 +245,6 @@ class Character {
             return $this->char->gender;
         }
     }
-    
-    /** 
-     * This functions returns the money of the character. 
-     *
-     * @param  format (String) 
-     *                If $format is \c 'int', the money is given as integer value.
-     *                If $format is \c 'string', the money is formated for display
-     * @return (Mixed) The money of the character
-     */
-    public function getMoney($format='int')
-    {
-        if ($format == 'string')
-        {
-            return number_format($this->char->money, 0, ".", ",");            
-        }
-        else
-        {
-            return intval($this->char->money);
-        }
-    }
         
     /** 
      * This function returns the map, the character is located on.
@@ -283,7 +265,26 @@ class Character {
      */
     public function getAttribute($attribute)
     {
-	    return $this->char->$attribute;
+        // attributes are not initialized yet, do it now!
+        if (sizeof($this->attributes) == 0)
+        {
+            $query = $this->CI->db->get_where('mana_char_attr',
+                array('char_id' => $this->char->id));
+
+            if ($query->num_rows() > 0)
+            {
+                foreach ($query->result() as $row)
+                {
+                    $this->attributes[$row->attr_id] = $row->attr_mod;
+                }
+            }
+        }
+
+        if (isset($this->attributes[$attribute]))
+        {
+            return $this->attributes[$attribute];
+        }
+        return 0;
     }
     
     /** 
@@ -294,29 +295,29 @@ class Character {
      * @return (int) Skill value.
      */    
     public function getSkill($skill)
-	{
-		// attributes are not initialized yet, do it now!
-		if (sizeof($this->skills) == 0)
-		{
+    {
+        // skills are not initialized yet, do it now!
+        if (sizeof($this->skills) == 0)
+        {
             // TODO: use database table constants
-			$query = $this->CI->db->get_where('mana_char_skills',
-			array('char_id' => $this->char->id));
+            $query = $this->CI->db->get_where('mana_char_skills',
+                array('char_id' => $this->char->id));
 
-			if ($query->num_rows() > 0)
-			{
-				foreach ($query->result() as $row)
-				{
-					$this->skills[$row->skill_id] = $row->skill_exp;
-				}
-			}
-		}
-	
-		if (isset($this->skills[$skill]))
-		{
-			return $this->skills[$skill];
-		}
-		return 0;
-	}
+            if ($query->num_rows() > 0)
+            {
+                foreach ($query->result() as $row)
+                {
+                    $this->skills[$row->skill_id] = $row->skill_exp;
+                }
+            }
+        }
+
+        if (isset($this->skills[$skill]))
+        {
+            return $this->skills[$skill];
+        }
+        return 0;
+    }
 
     /**
      * Gets the level for a given skill

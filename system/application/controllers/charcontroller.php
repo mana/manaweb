@@ -72,6 +72,7 @@ class Charcontroller extends Controller {
         $this->translationprovider->loadLanguage('character');
         $this->load->library('Mapprovider');
         $this->load->library('Skillprovider');
+        $this->load->library('Attributeprovider');
         $this->load->library('Imageprovider');
         
         // check if the user is the owner of this char

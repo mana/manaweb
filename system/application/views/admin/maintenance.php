@@ -82,6 +82,31 @@ stored data.</p>
             </span>
         </td>
     </tr>
+	<tr>
+        <td>
+            <span class="label"><?= XML_ATTRIBUTES_FILE ?></span>
+        </td>
+        <td>
+            The file <tt><?= XML_ATTRIBUTES_FILE ?></tt> contains all attributes a character can gain.
+            Manaweb uses this file to show descriptions of the attributes.
+        </td>
+        <td>
+            <span class="label">
+                <?= date(lang('date_time_format'), $attributes_file_age); ?>
+            </span>
+        </td>
+        <td>
+            <span class="label">
+                <a href="<?= site_url('admin/maintenance/reload_attributes.xml') ?>">
+                <img src="<?= base_url() ?>images/view-refresh.png"
+                    style="vertical-align: middle"
+                    title="Reload skills database"
+                    border="0">
+                </a>
+                &nbsp;
+            </span>
+        </td>
+    </tr>
     <tr>
         <td>  
             <span class="label">item graphics</span>

@@ -29,6 +29,8 @@ $lang['maps_file_reloaded']   = 'The '. XML_MAPS_FILE .' file has been reloaded.
 $lang['skills_file_reloaded'] = 'The '. XML_SKILLS_FILE .' file has been reloaded. Local '
                               . 'database is now up to date!';
 
+$lang['attributes_file_reloaded'] = 'The '. XML_ATTRIBUTES_FILE .' file has been reloaded. Local '
+                              . 'database is now up to date!';
 
 $lang['items_file_reloaded']  = 'All item graphics have been reloaded. Local '
                               . 'database is now up to date!';

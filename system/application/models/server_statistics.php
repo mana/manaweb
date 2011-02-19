@@ -21,6 +21,7 @@
 
 // load dependecies 
 require_once(APPPATH.'models/guild'.EXT);
+require_once(APPPATH.'models/character'.EXT);
 
  
 /**
@@ -135,9 +136,11 @@ class Server_statistics extends Model {
      */     
     private function getPurchasingPower()
     {
-        $this->db->select_sum('money');
-        $query = $this->db->get(Character::CHARACTER_TBL);
-        return $query->row()->money;
+        $this->db->select_sum('attr_base');
+        $query = $this->db->get_where( 'mana_char_attr',
+                    array('attr_id' => Character::CHAR_ATTR_GP));
+
+        return $query->row()->attr_base;
     }
     
     

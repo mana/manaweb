@@ -118,7 +118,7 @@
         <td><a href="<?= site_url(array("admin/show_account", $char->getOwnerId())) ?>"><?= $char->getUsername() ?></a></td>
         <td align="center"><?= $char->getGender('image') ?></td>
         <td align="right"><?= $char->getLevel() ?></td>
-        <td align="right"><?= $char->getMoney('string') ?></td>
+        <td align="right"><?= $char->getAttribute(Character::CHAR_ATTR_GP) ?></td>
         <td align="right"><?= $char->getMap()->getDescription() ?></td>
     </tr>
     <?php }}} ?>

@@ -131,7 +131,7 @@
             <span class="label"><?= lang('character_money') ?>: </span>
         </td>
         <td style="border-width: 0px;">  
-            <span class="input"><?= $char->getMoney('string') ?></span>
+            <span class="input"><?= $char->getAttribute(Character::CHAR_ATTR_GP) ?></span>
         </td>
         <td style="border-width: 0px;">  
             <span class="label"><?= lang('character_attr_vit') ?>: </span>

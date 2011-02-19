@@ -56,7 +56,7 @@ of one to see its details.</p>
         $char->getID()) ?>"><?= $char->getName() ?></a></td>
     <td align="right"><?= $char->getLevel() ?></td>
     <td align="center"><?= $char->getGender('image') ?></td>
-    <td align="right"><?= $char->getMoney('string') ?></td>
+    <td align="right"><?= $char->getAttribute(Character::CHAR_ATTR_GP) ?></td>
     <td><?= $char->getMap()->getDescription() ?></td>
 </tr>
 <? } ?>

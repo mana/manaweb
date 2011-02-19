@@ -26,6 +26,7 @@
 define ('MANAWEB_VERSION',      '1.0.0');
 define ('MANAWEB_VERSION_DATE', '2009-09-05');
 
+
 /*
 |--------------------------------------------------------------------------
 | Ranges to display user levels
@@ -58,6 +59,10 @@ define('AL_DEV',      4);
 define('AL_GM',       8);
 define('AL_ADMIN',  128 );
 
+# Default constants, such as game name and currency
+define ('MANAWEB_GAMENAME', 'ManaWeb');
+define ('MANAWEB_GPNAME', 'GP');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,5 +76,6 @@ define('AL_ADMIN',  128 );
 
 define('XML_MAPS_FILE',   'maps.xml');
 define('XML_SKILLS_FILE', 'mana-skills.xml');
+define('XML_ATTRIBUTES_FILE', 'attributes.xml');
 
 ?>
