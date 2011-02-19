@@ -92,7 +92,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
             $nb->addNavigationItem( new NavigationItem('navigation.mana.administration.index',
                 _("Admin Interface"),  site_url("admin" )) );
             $nb->addNavigationItem( new NavigationItem('navigation.mana.administration.maintenance',
-                _("Maintenance"),  site_url("'admin/maintenance" )) );
+                _("Maintenance"),  site_url("admin/maintenance" )) );
             $navigation->addNavbox($nb, 90);
         }
 
