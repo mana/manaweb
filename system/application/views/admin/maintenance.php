@@ -13,10 +13,10 @@ stored data.</p>
     For the following items, the image could not be found. Please update the
     <tt>./images/items</tt> directory of your manaweb installation.<br />
     <tt>
-        <? foreach ($missing_item_images as $img) { 
+        <? foreach ($missing_item_images as $img) {
                 echo $img . ", ";
            }
-        ?>        
+        ?>
     </tt>
     </span>
     <? } ?>
@@ -32,10 +32,10 @@ stored data.</p>
         <th>Actions</th>
     </tr>
     <tr>
-        <td>  
+        <td>
             <span class="label"><?= XML_MAPS_FILE ?></span>
         </td>
-        <td>  
+        <td>
             The file <tt><?= XML_MAPS_FILE ?></tt> contains all maps provided by the map
             server. Manaweb uses this file to show descriptions of the
             character locations.
@@ -43,20 +43,20 @@ stored data.</p>
         <td>
             <span class="label">
                 <?= date(lang('date_time_format'), $maps_file_age); ?>
-            </span>            
+            </span>
         </td>
-        <td>  
+        <td>
             <span class="label">
                 <a href="<?= site_url('admin/maintenance/reload_maps.xml') ?>">
-                <img src="<?= base_url() ?>images/view-refresh.png" 
+                <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
                     title="Reload maps database"
                     border="0">
                 </a>
                 &nbsp;
-            </span>    
+            </span>
         </td>
-    </tr>    
+    </tr>
     <tr>
         <td>
             <span class="label"><?= XML_SKILLS_FILE ?></span>
@@ -108,32 +108,32 @@ stored data.</p>
         </td>
     </tr>
     <tr>
-        <td>  
+        <td>
             <span class="label">item graphics</span>
         </td>
-        <td>  
+        <td>
             The database table <code>mana_items</code> contains all known items
             of The Mana Server. Use this function to copy all images provided
             by the client data to a directory accessible to the webserver.
         </td>
         <td></td>
-        <td>  
+        <td>
             <span class="label">
                 <a href="<?= site_url('admin/maintenance/reload_item_images') ?>">
-                <img src="<?= base_url() ?>images/view-refresh.png" 
+                <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
                     title="Reload item database"
                     border="0">
                 </a>
                 &nbsp;
-            </span>    
+            </span>
         </td>
     </tr>
     <tr>
         <td>
             <span class="label">Errorlogs</span>
         </td>
-        <td>  
+        <td>
             CodeIgniter writes errors into daily rotating logfiles in a separate
             directory. Here you can see how many logfiles have been written and
             view these logfiles or simply clean up the directory.
@@ -159,7 +159,7 @@ stored data.</p>
                     title="List logfiles"
                     border="0">
                 </a>
-                
+
             </span>
             <?php } ?>&nbsp;
         </td>
@@ -176,7 +176,7 @@ stored data.</p>
                     <th>Action</th>
                 </tr>
                 <?php foreach ($logfiles as $logfile) { ?>
-                <tr>                    
+                <tr>
                     <td><?= $logfile['filename'] ?></td>
                     <td align="right"><?= round( $logfile['filesize'] / 1024 ) ?> kB</td>
                     <td><?= date(lang('date_time_format'), $logfile['filedate'] ) ?></td>

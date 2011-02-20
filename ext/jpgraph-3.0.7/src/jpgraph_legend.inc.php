@@ -30,10 +30,10 @@ class Legend {
     private $xmargin=10,$ymargin=0,$shadow_width=2;
     private $xlmargin=4;
     private $ylinespacing=5;
-    
+
      // We need a separate margin since the baseline of the last text would coincide with the bottom otherwise
     private $ybottom_margin = 8;
-    
+
     private $xpos=0.05, $ypos=0.15, $xabspos=-1, $yabspos=-1;
     private $halign="right", $valign="top";
     private $font_color='black';
@@ -219,7 +219,7 @@ class Legend {
 
         // Make sure that the height is at least as high as mark size + ymargin
         $abs_height = max($abs_height,$this->mark_abs_vsize);
-        $abs_height += $this->ybottom_margin; 
+        $abs_height += $this->ybottom_margin;
 
         // Find out the maximum width in each column
         for( $i=$numcolumns; $i < $n; ++$i ) {
@@ -349,7 +349,7 @@ class Legend {
             //echo "<br>Mark #$i: marky=$marky<br>";
 
             $x1 += $this->mark_abs_hsize;
-    
+
             if ( !empty($p[2]) && $p[2]->GetType() > -1 ) {
 
 

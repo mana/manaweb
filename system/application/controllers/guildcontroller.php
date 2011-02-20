@@ -24,9 +24,9 @@
 /**
  * The Guildcontroller responsible for all actions according to guilds and
  * parties.
- * 
+ *
  * @ingroup controllers
- */ 
+ */
 class Guildcontroller extends Controller {
 
     /**
@@ -44,29 +44,29 @@ class Guildcontroller extends Controller {
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
-            $param = array('has_errors' => false); 
+            $param = array('has_errors' => false);
             $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'), 
+            $this->output->showPage(lang('account_login'),
                 'manaweb/login_form', $param);
         }
     }
-    
-    
+
+
     /**
-     * This function is called from the character overview page and 
+     * This function is called from the character overview page and
      * leeds to the character details with a given character id.
      * The function checks wheter the current user may see this details
      * and forwards to the details view.
      *
      * @param id      (int) Unique id of the guild
-     */ 
+     */
     public function index($id)
     {
         if (!$this->user->isAuthenticated())
         {
             return;
         }
-        
+
         if (!$this->user->isMemberOfGuild($id))
         {
             echo "forbidden";
@@ -79,6 +79,6 @@ class Guildcontroller extends Controller {
                 sprintf(lang('guild_details_header'),$guild->getName()),
                 'manaweb/guilds/show_guild', $param);
     }
-    
+
 } // class Guildcontroller
 ?>

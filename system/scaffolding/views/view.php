@@ -13,7 +13,7 @@
  <tr>
 	<td>&nbsp;<?php echo anchor(array($base_uri, 'edit', $row->$primary), $scaff_edit); ?>&nbsp;</td>
  	<td><?php echo anchor(array($base_uri, 'delete', $row->$primary), $scaff_delete); ?></td>
- 	<?php foreach($fields as $field): ?>	
+ 	<?php foreach($fields as $field): ?>
 	<td><?php echo form_prep($row->$field);?></td>
 	<?php endforeach; ?>
  </tr>
@@ -22,6 +22,6 @@
 
 <?php echo $paginate; ?>
 
-<?php $this->load->view('footer'); 
+<?php $this->load->view('footer');
 /* End of file view.php */
 /* Location: ./system/scaffolding/views/view.php */

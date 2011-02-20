@@ -1275,7 +1275,7 @@ class PieGraph extends Graph {
         foreach($this->plots as $p ) {
             $csim .= $p->GetCSIMareas();
         }
-        
+
         $csim.= $this->legend->GetCSIMareas();
         if (preg_match_all("/area shape=\"(\w+)\" coords=\"([0-9\, ]+)\"/", $csim, $coords)) {
             $this->img->SetColor($this->csimcolor);

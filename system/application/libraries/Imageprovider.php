@@ -18,13 +18,13 @@
  *  with The Mana Server; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
- 
+
 /**
  * The imageprovider is used to dye images and manage the image cache of dyed
  * images.
- * 
+ *
  * @ingroup libraries
- */ 
+ */
 class Imageprovider
 {
 
@@ -35,20 +35,20 @@ class Imageprovider
      * Reference to the CodeIgniter framework
      */
     private $CI;
-    
+
     /**
      * Initialize a new instance of the Menuprovider.
      */
     function __construct()
     {
         // get an instance of CI
-        // we have to do this, because we are not in an controller and 
+        // we have to do this, because we are not in an controller and
         // therefore we cannot access $this->config
         $this->CI =& get_instance();
-        
+
     } // __construct
-    
-    
+
+
     /**
      *
      * @param  (String) Filename of the image.
@@ -68,9 +68,9 @@ class Imageprovider
         }
     }
 
-    /** 
+    /**
      * This function returns the URL to the image of the given item.
-     * If the image is a dyed version of a grayscaled image, the function 
+     * If the image is a dyed version of a grayscaled image, the function
      * checks the image cache and if not present, dyes the image and caches the
      * result.
      *
@@ -92,27 +92,27 @@ class Imageprovider
 
         // TODO: reimplement support for dyed items
         return base_url() . $images_dir . $image;
-        
+
 	    // image dyeing is disabled, return the base image
 	    if (!$this->CI->config->item('manaserv_enable_dyecmd'))
 	    {
 		    return base_url() . $images_dir . $image;
 	    }
-	    
+
 	    // the image has to be dyed, so check the cache
 	    $cachename = $itemid . "_" . md5( $dyestring ) . ".png";
 	    if (!file_exists("./images/items/" . $cachename))
 	    {
 			// dye image
 			$this->DyeImage(
-				"./images/items/" . $image, 
-				"./images/items/" . $cachename, 
+				"./images/items/" . $image,
+				"./images/items/" . $cachename,
 				$dyestring);
-	    } 
-	    
+	    }
+
 	    return base_url() . "images/items/" . $cachename;
     }
-    
+
     /**
      * Converts a color defined as hexadecimal string into an array containing
      * rgb values.
@@ -121,12 +121,12 @@ class Imageprovider
      * @param hexstr hexadecimal representation of a color.
      * @return Array with r, g, b values
      */
-    private function HexToRgb($hexstr) 
+    private function HexToRgb($hexstr)
     {
     	$int = hexdec($hexstr);
     	return array("r" => 0xFF & ($int >> 0x10), "g" => 0xFF & ($int >> 0x8), "b" => 0xFF & $int);
 	}
-	
+
 	/**
 	 * This function takes in input image, dyes it according the dye string and
 	 * saves it at the target destination.
@@ -137,7 +137,7 @@ class Imageprovider
 	 */
 	private function DyeImage($source, $target, $dyestring)
 	{
-		$cmd = $this->CI->config->item('manaserv_dyecmd') . 
+		$cmd = $this->CI->config->item('manaserv_dyecmd') .
 			" \"$source\" \"$target\" \"$dyestring\"";
 		exec( $cmd );
 	}

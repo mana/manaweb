@@ -70,7 +70,7 @@ if ( ! function_exists('base_url'))
 /**
  * Current URL
  *
- * Returns the full URL (including segments) of the page where this 
+ * Returns the full URL (including segments) of the page where this
  * function is placed
  *
  * @access	public
@@ -320,7 +320,7 @@ if ( ! function_exists('safe_mailto'))
 				{
 					$count = ($ordinal < 224) ? 2 : 3;
 				}
-	
+
 				$temp[] = $ordinal;
 				if (count($temp) == $count)
 				{
@@ -381,7 +381,7 @@ if ( ! function_exists('auto_link'))
 			if (preg_match_all("#(^|\s|\()((http(s?)://)|(www\.))(\w+[^\s\)\<]+)#i", $str, $matches))
 			{
 				$pop = ($popup == TRUE) ? " target=\"_blank\" " : "";
-	
+
 				for ($i = 0; $i < count($matches['0']); $i++)
 				{
 					$period = '';
@@ -390,7 +390,7 @@ if ( ! function_exists('auto_link'))
 						$period = '.';
 						$matches['6'][$i] = substr($matches['6'][$i], 0, -1);
 					}
-		
+
 					$str = str_replace($matches['0'][$i],
 										$matches['1'][$i].'<a href="http'.
 										$matches['4'][$i].'://'.
@@ -416,7 +416,7 @@ if ( ! function_exists('auto_link'))
 						$period = '.';
 						$matches['3'][$i] = substr($matches['3'][$i], 0, -1);
 					}
-		
+
 					$str = str_replace($matches['0'][$i], safe_mailto($matches['1'][$i].'@'.$matches['2'][$i].'.'.$matches['3'][$i]).$period, $str);
 				}
 			}
@@ -506,7 +506,7 @@ if ( ! function_exists('url_title'))
 		{
 			$str = strtolower($str);
 		}
-		
+
 		return trim(stripslashes($str));
 	}
 }
@@ -533,7 +533,7 @@ if ( ! function_exists('redirect'))
 		{
 			$uri = site_url($uri);
 		}
-		
+
 		switch($method)
 		{
 			case 'refresh'	: header("Refresh:0;url=".$uri);

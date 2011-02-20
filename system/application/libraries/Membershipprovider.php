@@ -19,61 +19,61 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
- 
+
 /**
  * The Membershipprovider ist responsible for sessionhandling.
  *
  * @ingroup libraries
- */ 
+ */
 class Membershipprovider
 {
 
     // Constants used as return value from validatePassword function. /////////
-     
-    /** 
+
+    /**
      * The given password fulfills all requierments.
      */
     const PASSWORD_OK = -1;
-    /** 
+    /**
      * The given password is too short.
      */
     const PASSWORD_TO_SHORT = 1;
-    /** 
+    /**
      * The given password is to long.
      */
     const PASSWORD_TO_LONG = 2;
-    /** 
+    /**
      * The given password may not like your username.
      */
     const PASSWORD_SIMILAR_TO_USERNAME = 3;
-    
+
     // end of constants ///////////////////////////////////////////////////////
-    
+
     /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
 
-    
+
     /**
      * This static function returns a random hash string in the given length.
-     * 
+     *
      * @param length (int) Length of the requested hash string
      * @return (String) Random hash key
      */
     static function getRandomHashKey($length=24)
     {
         // define possible chars for the hash
-        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" . 
+        $chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" .
                  "abcdefghijklmnopqrstuvwxyz" .
                  "0123456789";
-        // split the charstring into array and shuffle it                 
+        // split the charstring into array and shuffle it
         $chararray = str_split($chars);
         shuffle( $chararray );
-        
+
         // build the key in a loop, even for long string that should not
         // be relevant for performance issues i hope
-        $key = "";                 
+        $key = "";
         for ($i=0; $i < $length; $i++)
         {
             // add a random char from the array
@@ -81,7 +81,7 @@ class Membershipprovider
         }
         return $key;
     }
-    
+
     /**
      * This function validates a passwort against the ample discussed password
      * policy of The Mana Server.
@@ -89,7 +89,7 @@ class Membershipprovider
      * @param   pwd      (String) The password to be validated
      * @param   username (String) The name of the user
      * @return  (int) Returns one of the PASSWORD_* constants.
-     */                  
+     */
     static function validatePassword($pwd, $username)
     {
         // a password should be at least 7 chars long
@@ -109,11 +109,11 @@ class Membershipprovider
         }
         return Membershipprovider::PASSWORD_OK;
     }
-    
-    
-    /** 
+
+
+    /**
      * Initializes a new instance of MembershipProvider
-     */    
+     */
     function __construct()
     {
         // get an instance of CI
@@ -121,14 +121,14 @@ class Membershipprovider
         // we cannot access $this->config
         $this->CI =& get_instance();
     }
-    
-    
+
+
     /**
      * This function updates a user record in the mana_accounts table and sets
-     * a key for a given username. 
+     * a key for a given username.
      *
      * @param username (String) Name of the user
-     * @param key      (String) Hash key to store in the column 
+     * @param key      (String) Hash key to store in the column
      *                 <tt>authorization</tt>
      */
     public function setKeyForUser($username, $key)
@@ -145,15 +145,15 @@ class Membershipprovider
                   'expiration'    => time() + intval($expiration) ));
         $db->trans_complete();
     }
-    
-    
+
+
     /**
      * This function sets a new password for a given username. If the third
      * paramter is true (default), the activation keyy will be set to null.
      *
      * @param username  (String) Name of the user to set the password
      * @param password  (String) The new password.
-     * @param reset_key (bool)   If true, set activation key to NULL, otherwise 
+     * @param reset_key (bool)   If true, set activation key to NULL, otherwise
      *                           leave it untouched.
      */
     public function setPasswordForUser($username, $password, $reset_key=true)
@@ -161,14 +161,14 @@ class Membershipprovider
         // Hash the password. Normally the client performs the first hash and
         // the server the second.
         $pwd = hash('sha256', hash('sha256', $username . $password));
-        
+
         // do the update in a single transaction, to not disturb manaserv
         $db = $this->CI->db;
-        
+
         $db->trans_start();
             $db->where('username', $username);
             $values = array('password'=>$pwd);
-        
+
             if ($reset_key)
             {
                 $values['authorization'] = null;
@@ -176,7 +176,7 @@ class Membershipprovider
             }
             // TODO: use database table constants
             $db->update('mana_accounts', $values);
-            
+
             log_message('info', sprintf('User [%s] has changed its password.',
                 $username ));
         $db->trans_complete();
@@ -185,7 +185,7 @@ class Membershipprovider
     /**
      * This function sets a new mailaddress for a given username. The mailaddress
      * will be stored as a sha256 hash with username as salt.
-     * 
+     *
      * @param (String) $username    Username of the user
      * @param (String) $mailaddress New mailaddress of the user
      */
@@ -206,8 +206,8 @@ class Membershipprovider
                 $username ));
         $db->trans_complete();
     }
-    
-    
+
+
     /**
      * Checks, wheter a user with the given key exists or not.
      *
@@ -224,7 +224,7 @@ class Membershipprovider
         $row = $query->row();
         // first validate expiration date of the key, no matter if it's correct
 
-        
+
         if (isset($row->expiration) && intval($row->expiration) < time())
         {
             // remove the expired key
@@ -246,7 +246,7 @@ class Membershipprovider
             return false;
         }
     }
-    
+
 } // class Membershipprovider
 
 ?>

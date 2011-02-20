@@ -22,12 +22,12 @@
 
 
 /**
- * The myaccount controller is responsible for account management like 
- * login, logout, regathering lost passwords and so on. Most of its functions 
+ * The myaccount controller is responsible for account management like
+ * login, logout, regathering lost passwords and so on. Most of its functions
  * can be called when not logged in.
- * 
+ *
  * @ingroup controllers
- */ 
+ */
 class Myaccount extends Controller {
 
     /**
@@ -44,11 +44,11 @@ class Myaccount extends Controller {
         $this->load->helper('form');
         $this->translationprovider->loadLanguage('account');
     }
-    
-    
-    /** 
+
+
+    /**
      * Default controller function. Shows either the login screen or the
-     * homepage of the user account, depending of the login status of the 
+     * homepage of the user account, depending of the login status of the
      * current user.
      */
     public function index()
@@ -60,13 +60,13 @@ class Myaccount extends Controller {
         }
         else
         {
-            $param = array('has_errors' => false); 
+            $param = array('has_errors' => false);
             $this->output->showPage(lang('manaweb_title'),
                 'manaweb/login_form', $param);
         }
     }
-    
-    
+
+
     /**
      * Function is called when the user tries to login via loginform.
      */
@@ -78,16 +78,16 @@ class Myaccount extends Controller {
             $this->_show_user_account();
             return;
         }
-        
+
         // define rules that must be met in the login form
         $rules['Manausername']  = "required|min_length[4]|max_length[30]";
         $rules['Manapassword']  = "required|min_length[4]|max_length[30]";
         $this->validation->set_rules($rules);
-        
+
         // validate userinput against rules
         if ($this->validation->run() == false)
         {
-            $param = array('has_errors' => true); 
+            $param = array('has_errors' => true);
             $this->output->showPage(lang('manaweb_title'),
                 'manaweb/login_form', $param);
         }
@@ -98,13 +98,13 @@ class Myaccount extends Controller {
             $user = $this->input->post('Manausername');
             $pwd  = $this->input->post('Manapassword');
             $lang = $this->input->post('Manalanguage');
-            
+
             // try to authenticate user with membership provider
             $res = $this->user->authenticate($user, $pwd);
-            
+
             if( $res === false )
             {
-                $this->validation->error_string = 
+                $this->validation->error_string =
                     'The given username or password is incorrect.';
                 $params = array('has_errors' => true);
                 $this->output->showPage(lang('manaweb_title'),
@@ -113,22 +113,22 @@ class Myaccount extends Controller {
             }
             else
             {
-                // set language preferences 
-                $this->translationprovider->setLanguage($lang);            
+                // set language preferences
+                $this->translationprovider->setLanguage($lang);
                 // show the account homepage of the user
                 $this->themeprovider->setTheme( $this->input->post('Manastyle'));
                 $this->session->set_userdata('theme', $this->input->post('Manastyle'));
 
                 $this->_show_user_account();
-                
-                
+
+
             } // $res == true
-            
+
         } // validation failed
-        
+
     } // funtion login()
-    
-    
+
+
     /**
      * This function is called from user menu, if the user wants to logout
      * from the account manager
@@ -136,28 +136,28 @@ class Myaccount extends Controller {
     public function logout()
     {
         $this->user->logout();
-        $params = array('has_errors' => false); 
+        $params = array('has_errors' => false);
         $this->output->showPage(lang('manaweb_title'),
             'manaweb/login_form', $params);
     }
-    
-    
-    /** 
-     * This function is called by the view if the users clicks the lost 
+
+
+    /**
+     * This function is called by the view if the users clicks the lost
      * password link. The controller then shows the view the lostpassword
-     * form. 
+     * form.
      */
     public function lostpassword()
     {
-        $params = array('has_errors' => false); 
+        $params = array('has_errors' => false);
         $this->output->showPage(lang('manaweb_title'),
             'manaweb/lost_password', $params);
     }
-    
-    
-    /** 
+
+
+    /**
      * This function is called by the view manaweb/lost_password if the user
-     * requests to change his password. The function validates the combination 
+     * requests to change his password. The function validates the combination
      * of username and mailaddress and sends a generic random key to the user.
      * With this link he can change his password.
      */
@@ -167,24 +167,24 @@ class Myaccount extends Controller {
         $rules['Manausername'] = "required|min_length[4]|max_length[30]";
         $rules['ManaMail'] = "required|valid_email";
         $this->validation->set_rules($rules);
-        
+
         // validate userinput against rules
         if ($this->validation->run() == false)
         {
-            $params = array('has_errors'=>true); 
+            $params = array('has_errors'=>true);
             $this->output->showPage(lang('manaweb_title'),
                 'manaweb/lost_password', $params);
         }
         else
         {
             // simple checks are ok, so extend the rules and recheck
-            $rules['Manausername'] = "callback__username_check"; 
+            $rules['Manausername'] = "callback__username_check";
             $this->validation->set_rules($rules);
-            
+
             // validate again userinput against rules
             if ($this->validation->run() == false)
             {
-                $params = array('has_errors'=>true); 
+                $params = array('has_errors'=>true);
                 $this->output->showPage(lang('manaweb_title'),
                     'manaweb/lost_password', $params);
             }
@@ -192,25 +192,25 @@ class Myaccount extends Controller {
             {
                 $username = $this->input->post('Manausername');
                 $email = $this->input->post('ManaMail');
-                
+
                 // generate a key, store the key, send it to the user
                 $this->_send_passwort_change_request($username, $email);
-                    
+
                 // forward to the success page
                 $this->output->showPage(lang('manaweb_title'),
                     'manaweb/lost_password_mailsent',
                     array('username'=>$username, 'email'=>$email));
             }
-        }        
+        }
     }
-    
-    
+
+
     /**
      * This function is called by users that want to change their password
-     * given a secret identifier via mail. This key has to match the key in 
-     * the database.    
-     * 
-     * @param username (String) Username of the user who wants to change 
+     * given a secret identifier via mail. This key has to match the key in
+     * the database.
+     *
+     * @param username (String) Username of the user who wants to change
      *                 his password
      * @param key      (String) Secret key sent to the user via email
      */
@@ -223,7 +223,7 @@ class Myaccount extends Controller {
             // show view for changing password
             $this->output->showPage(lang('manaweb_title'),
                 'manaweb/lost_password_change',
-                array('username'=>$username, 'key'=>$key, 
+                array('username'=>$username, 'key'=>$key,
                     'has_errors'=>false));
         }
         else
@@ -233,9 +233,9 @@ class Myaccount extends Controller {
                 'manaweb/lost_password_wrong_key');
         }
     }
-    
-    
-    /** 
+
+
+    /**
      * This function is called from the view lost_password_change and should
      * set a new password for the given user.
      */
@@ -243,7 +243,7 @@ class Myaccount extends Controller {
     {
         $username = $this->input->post('ManaUsername');
         $key = $this->input->post('ManaActivationKey');
-        
+
         // check if a combination of username and key exist in db,
         // may happen if the user fakes the form/hidden fields
         if ($this->membershipprovider->validateKeyForUser($username, $key))
@@ -253,7 +253,7 @@ class Myaccount extends Controller {
             $rules['Manapassword2'] = "required|matches[Manapassword]";
             $rules['PasswordStrength'] = "";
             $this->validation->set_rules($rules);
-            
+
             // validate again userinput against rules
             if ($this->validation->run() == false)
             {
@@ -262,8 +262,8 @@ class Myaccount extends Controller {
                     'has_errors'=>true,
                     'username'=>$username,
                     'key'=>$key
-                ); 
-                
+                );
+
                 $this->output->showPage(lang('manaweb_title'),
                     'manaweb/lost_password_change', $params);
             }
@@ -272,9 +272,9 @@ class Myaccount extends Controller {
                 // the new password is ok. Set it, delete the key and forward
                 // the user to the login form
                 $this->membershipprovider->setPasswordForUser(
-                    $username, 
+                    $username,
                     $this->input->post('Manapassword'));
-                    
+
                 $this->output->showPage(lang('manaweb_title'),
                     'manaweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
@@ -289,14 +289,14 @@ class Myaccount extends Controller {
                 'manaweb/lost_password_wrong_key');
         }
     }
-    
-    
-    /** 
+
+
+    /**
      * This is a callback function to validate the user given password against
      * password policy.
      *
      * @param pwd (String) Password to validate
-     * @return (Bool) \c true, if the password fulfills the policy, otherwise 
+     * @return (Bool) \c true, if the password fulfills the policy, otherwise
      *                \c false.
      */
     public function _password_strength($pwd)
@@ -308,22 +308,22 @@ class Myaccount extends Controller {
             case Membershipprovider::PASSWORD_OK:
                 return true;
             case Membershipprovider::PASSWORD_TO_SHORT:
-                $this->validation->set_message('_password_strength', 
+                $this->validation->set_message('_password_strength',
                 'The given password is to short.');
                 return false;
             case Membershipprovider::PASSWORD_TO_LONG:
-                $this->validation->set_message('_password_strength', 
+                $this->validation->set_message('_password_strength',
                 'The given password is to long.');
                 return false;
             case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
-                $this->validation->set_message('_password_strength', 
+                $this->validation->set_message('_password_strength',
                 'The password must be different then your username.');
                 return false;
         }
     }
-    
-    
-    /** 
+
+
+    /**
      * This is a callback function, called when the validation provider tries
      * to check the combination of username and mailaddress when requesting a
      * new password. The username is provided by the validation provider as
@@ -334,7 +334,7 @@ class Myaccount extends Controller {
      */
     public function _username_check($username)
     {
-        // get mail from post and hash it 
+        // get mail from post and hash it
         $mail  = $this->input->post('ManaMail');
         $hmail = hash('sha256', $mail);
 
@@ -350,13 +350,13 @@ class Myaccount extends Controller {
         }
         else
         {
-            $this->validation->set_message('_username_check', 
+            $this->validation->set_message('_username_check',
                 'A user with this mailaddress could not be found.');
             return false;
         }
-    } 
-    
-    
+    }
+
+
     /**
      * This function generates a unique hash and sends it via mail to the user.
      * The has is also stored in the mana_accounts table to verify it later.
@@ -368,50 +368,50 @@ class Myaccount extends Controller {
     {
         // generate a unique key
         $key = Membershipprovider::getRandomHashKey( 24 );
-        
+
         // build the link in the mail
         $pwdlink = sprintf( $this->config->item('mana_change_password_link'),
             $username, $key );
 
         // load the template parsing library and parse the mail template
         $this->load->library('parser');
-            
+
         $tpl = $this->parser->parse('mailtemplates/request_pwd_change',
             array('username'=>$username, 'password_link'=>$pwdlink),
             true ); // the third parameter true is used to return the template
             // and not to stream it into the output
-            
+
         // load the email library and configure it for usage
         $this->load->library('email');
         $this->email->from($this->config->item('mana_email_from_address'),
             $this->config->item('mana_email_from_name'));
-        
-        $this->email->to($mailaddress); 
+
+        $this->email->to($mailaddress);
         $this->email->subject($this->config->item('mana_change_password_subject'));
-        $this->email->message($tpl); 
-        
+        $this->email->message($tpl);
+
         // now store the key in the database related to the user
         $this->membershipprovider->setKeyForUser( $username, $key );
-     
+
         // todo: comment this out in production
         $this->email->send();
-        
+
         // log the sending...
         // todo: comment this out in production
         // log_message( 'info', $this->email->print_debugger());
     }
-    
-    
-    
+
+
+
     /**
      * This private function is used to show the account page of the user.
-     */    
+     */
     private function _show_user_account()
     {
         $this->translationprovider->loadLanguage('account');
         $this->output->showPage(lang('account_title'), 'manaweb/user_home',
             $this->user->getHomepageData() );
     }
-   
+
 } // class myaccount
 ?>

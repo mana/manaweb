@@ -24,11 +24,11 @@
 /*
 |
 | This is a custom email configuration script. It is loaded by the CodeIgniter
-| library 'email' automatically when trying to send mails. 
-| see http://codeigniter.com/user_guide/libraries/email.html for further 
+| library 'email' automatically when trying to send mails.
+| see http://codeigniter.com/user_guide/libraries/email.html for further
 | details.
 |
-| The following is a list of all the preferences that can be set when 
+| The following is a list of all the preferences that can be set when
 | sending email.
 */
 
@@ -66,8 +66,8 @@ $config['wordwrap'] = true;
 $config['wrapchars'] = 76;
 
 /*
-| Type of mail. If you send HTML email you must send it as a complete web page. 
-| Make sure you don't have any relative links or relative image paths otherwise 
+| Type of mail. If you send HTML email you must send it as a complete web page.
+| Make sure you don't have any relative links or relative image paths otherwise
 | they will not work.
 | possible values text or html
 */

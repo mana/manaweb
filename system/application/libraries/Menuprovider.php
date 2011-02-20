@@ -19,45 +19,45 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
- 
+
 /**
- * The menuprovider is responsible for generating the structure of the 
+ * The menuprovider is responsible for generating the structure of the
  * navigation menu. This includes static links, that are always visible and
  * links based on the authentication state of the current user.
  *
- * The menuprovider uses a custom configuration script located under 
+ * The menuprovider uses a custom configuration script located under
  * <tt>application/config</tt>. See this file for further options.
  *
  * @see Menuprovider::CONFIG_FILE_NAME
  *
  * @ingroup libraries
- */ 
+ */
 class Menuprovider
 {
     /**
-     * Defines the filename of the configuration file where the structure of 
+     * Defines the filename of the configuration file where the structure of
      * the custom menu is defined.
      */
     const CONFIG_FILE_NAME = 'menu';
-    
-    
+
+
     /**
      * Array of static links to show in the outer navigation bar
      */
     private $static_links;
-    
+
     /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
-    
+
     /**
      * Reference to the currently observed character if we should display
      * a character menu.
      */
     private $char;
-    
-    
+
+
     /**
      * Initialize a new instance of the Menuprovider.
      */
@@ -67,15 +67,15 @@ class Menuprovider
         // we have to this, because we are not in an controller and therefore
         // we cannot access $this->config
         $this->CI =& get_instance();
-        
-        // load custom configuration script with static links for the 
+
+        // load custom configuration script with static links for the
         // navigation menu
-        $this->CI->config->load( Menuprovider::CONFIG_FILE_NAME );    
+        $this->CI->config->load( Menuprovider::CONFIG_FILE_NAME );
         $this->static_links = $this->CI->config->config['mana_static_links'];
-        
+
         $this->char = null;
     }
-    
+
     /**
      * Returns an array with all configured static links
      * @return (Array) Returns an array with static links.
@@ -84,8 +84,8 @@ class Menuprovider
     {
         return $this->static_links;
     }
-    
-    
+
+
     /**
      * This function returns the structure of the user menu if the user has
      * authenticated.
@@ -97,8 +97,8 @@ class Menuprovider
     {
         if ($this->CI->user->isAuthenticated())
         {
-            return array( 
-                array('url' => site_url('accountmanager/settings'), 
+            return array(
+                array('url' => site_url('accountmanager/settings'),
                     'name' => 'Settings'),
                 array('url' => site_url('myaccount/logout'), 'name' => 'Logout')
             );
@@ -108,10 +108,10 @@ class Menuprovider
             return null;
         }
     }
-    
-    
-    /** 
-     * This function is called by the \a Mana_Output library to find out if 
+
+
+    /**
+     * This function is called by the \a Mana_Output library to find out if
      * we should display the menu for characers or not.
      *
      * @return (Bool) \c true, if we look at character details, otherwise
@@ -128,10 +128,10 @@ class Menuprovider
             return false;
         }
     }
-    
-    
+
+
     /**
-     * Sets the currently observed character and leads to displaying the 
+     * Sets the currently observed character and leads to displaying the
      * character menu at the right side.
      *
      * @param char (Object) Reference to the character object.
@@ -140,7 +140,7 @@ class Menuprovider
     {
         $this->char = $char;
     }
-    
+
 } // class Menuprovider
 
 ?>

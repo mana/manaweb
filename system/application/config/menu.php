@@ -26,7 +26,7 @@
 |--------------------------------------------------------------------------
 |
 | Define links and their description that should alway be visible in the
-| menu. Define each link as array with the properties 'url' and 'name', 
+| menu. Define each link as array with the properties 'url' and 'name',
 | e.g. array( 'name'=>'News', 'url'=>site_url('home'))
 | Your can use function site_url to link to a specific controller or one of
 | its functions.

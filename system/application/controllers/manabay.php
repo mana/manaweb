@@ -23,14 +23,14 @@
 require_once(APPPATH.'models/auction'.EXT);
 
 /**
- * The accountmanager controller is responsible for all actions a user can do 
+ * The accountmanager controller is responsible for all actions a user can do
  * with its account, beside the functions located in the myaccount controller.
  * Each functions in the accountmanager need an authorized user, so the
- * authentication is just done in the constructor, rather in every single 
+ * authentication is just done in the constructor, rather in every single
  * function.
- * 
+ *
  * @ingroup controllers
- */ 
+ */
 class Manabay extends Controller {
 
     /**
@@ -42,25 +42,25 @@ class Manabay extends Controller {
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
-        
+
         $this->load->library('Imageprovider');
 
-        /*    
+        /*
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
-            $param = array('has_errors' => false); 
+            $param = array('has_errors' => false);
             $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'), 
+            $this->output->showPage(lang('account_login'),
                 'manaweb/login_form', $param);
         }
         */
     }
-    
-    
-    /** 
+
+
+    /**
      * Default controller function. Shows either the login screen or the
-     * homepage of the user account, depending of the login status of the 
+     * homepage of the user account, depending of the login status of the
      * current user.
      */
     public function index()
@@ -69,13 +69,13 @@ class Manabay extends Controller {
 	    	'next_auctions' => Auction::getFinishingAuctions(),
 	    	'imageprovider' => $this->imageprovider
 	    );
-	    
-        $this->output->showPage('Welcome to the Manabay!', 
+
+        $this->output->showPage('Welcome to the Manabay!',
         	'manabay/auction_list',
         	$params);
     }
-    
-    
+
+
     /**
      * This function is called by the view manabay/auction_list if the user
      * requests a list of open auctions for a specific item category.
@@ -87,8 +87,8 @@ class Manabay extends Controller {
 	    //$this->output->showPage('Welcome to the Manabay!', 'manabay/auction_list');
 	    $this->index();
     }
-    
-    
+
+
     /**
      * This function is called by a view to show an auction with a specific id.
      * @param auction_id Unique id of an auction.
@@ -98,7 +98,7 @@ class Manabay extends Controller {
 	    //$this->output->showPage('Welcome to the Manabay!', 'manabay/auction_list');
 	    $this->index();
     }
-    
-    
+
+
 } // class Manabay
 ?>

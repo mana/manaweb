@@ -23,28 +23,28 @@
  * The Model repesents a map in The Mana Server.
  *
  * @ingroup models
- */ 
-class Map 
+ */
+class Map
 {
     /**
      * Unique Id of the map
      */
     private $id;
-    
+
     /**
      * Filename of the map
      */
     private $name;
-    
+
     /**
      * Human readable description of the map
      */
     private $description;
-    
-    
+
+
     /**
      * Creates a new map object. Id and name are required.
-     * 
+     *
      * @param id   (int)    Unique Id of the map
      * @param name (String) Filename of the map
      */
@@ -54,8 +54,8 @@ class Map
         $this->name = $name;
         $this->description = null;
     }
-    
-    
+
+
     /**
      * Returns the unique Id of the map.
      * @return (int) Unique Id of the map.
@@ -64,8 +64,8 @@ class Map
     {
         return $this->id;
     }
-    
-    
+
+
     /**
      * Returns the filename of the map.
      * @return (String) Filename of the map.
@@ -74,8 +74,8 @@ class Map
     {
         return $this->name;
     }
-        
-    
+
+
     /**
      * Returns the description of the map. As the description field is optional
      * this function returns the name, if no description is available.
@@ -91,9 +91,9 @@ class Map
         {
             return $this->getName();
         }
-    }    
-    
-    
+    }
+
+
     /**
      * Sets the description of the map.
      * @param desc (String) Description of the map.
@@ -102,7 +102,7 @@ class Map
     {
         $this->description = $desc;
     }
-    
-    
+
+
 } // class Map
 ?>

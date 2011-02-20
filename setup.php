@@ -31,7 +31,7 @@
                 <td>$state</td>
                 <td width=\"50\" class=\"$result\">" . strtoupper($result) . "</td>
             </tr>\n";
-            
+
         if (strlen($ann) > 0)
         {
 	        echo "
@@ -42,18 +42,18 @@
         }
         ob_flush();
         flush();
-    } 
-    
+    }
+
     function print_header($name)
     {
         echo "<tr><td colspan=\"4\" style=\"background-color: #dbbba4;\"><strong>$name</strong></td></tr>\n";
     }
-    
+
     function print_message($msg)
     {
         echo "<tr><td colspan=\"4\"><em>$msg</em></td></tr>\n";
     }
-    
+
     function check_file_exists($filename, $annotation="", $vital=true)
     {
         if (file_exists($filename))
@@ -71,8 +71,8 @@
             return false;
         }
     }
-    
-    
+
+
     function try_read_dir($directory, $annotation="")
     {
         if (!is_dir($directory))
@@ -92,8 +92,8 @@
             return false;
         }
     }
-    
-    
+
+
     function try_write_dir($directory, $annotation="")
     {
         if (!is_dir($directory))
@@ -114,7 +114,7 @@
             }
 
             @unlink($directory."/tempfile.tmp");
-            
+
             print_check( "Checking write permissions of directory <tt>$directory</tt>", "ok" );
             return true;
         } catch(Exception $e) {
@@ -122,10 +122,10 @@
             	"<strong>The webserver cannot write to directory <tt>$directory</tt>. Please check permissions!</strong><br />" . $annotation);
             return false;
         }
-            
+
     }
-    
-    
+
+
     function run_checks()
     {
         print_header("Checking technical prerequisits");
@@ -147,45 +147,45 @@
                 return;
             }
             else
-            { 
+            {
                 print_check( "checking version of PHP", "ok", ">= 5.1", PHP_VERSION );
             }
         }
-        
+
         // check existence of config files
         print_header("Checking existance of config files");
-        
+
         if (!check_file_exists('system/application/config/config.php',
         	"This configuration  file is the basic configuration of your Account Manager installation and is therefore ".
         	"vital for any further step. Something is really wrong if you don't have a copy of this file...")) return;
-        	
-        	
+
+
         // requiring config file
         define('BASEPATH', '.');
         require('./system/application/config/config.php');
         print_message("File ./system/application/config/config.php loaded.");
-        
-        
+
+
         if (!check_file_exists('system/application/config/database.php',
         	"This configuration file determines which database system you are using for manaserv and/or the account manager and ".
         	"how we can connect to this database. You can find a template for the configuation file called <tt>database.default.php</tt> ".
         	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>database.php</tt> and ".
         	"make your modifications.")) return;
-        
-        
+
+
         if (!check_file_exists('system/application/config/email.php',
         	"To be able to send emails to the user, you have to configure which method should be used. ".
         	"You can find a template for the configuation file called <tt>email.default.php</tt> ".
         	"in the directory <tt>system/application/config</tt>. Just copy and rename this file to <tt>email.php</tt> and ".
         	"make your modifications.")) return;
-        
 
-        	
+
+
         // try to write to directories
         print_header("Checking directory permissions");
         if (!try_write_dir("./data",
         	"This directory is used by manaweb to store cached item or map informations, so make sure it is writeable by the webserver.")) return;
-        	
+
         // checking wheter a custom logpath is set
         if (strlen($config['log_path']) > 0)
         {
@@ -195,11 +195,11 @@
         {
             $logdir = "./system/logs";
         }
-        
+
         if (!try_write_dir($logdir,
         	"According to your configured parameter <tt>log_threshold</tt> in the <tt>config.php</tt> file, manaweb will ".
         	"log debug or error messages to this directory.")) return;
-        	
+
         // checking wheter a custom cachepath is set
         if (strlen($config['cache_path']) > 0)
         {
@@ -209,11 +209,11 @@
         {
             $cachedir = "./system/cache";
         }
-        if (!try_write_dir($cachedir, 
+        if (!try_write_dir($cachedir,
         	"To increase performance of page rendering, manaweb is able to cache static content for faster access. The directory " .
         	"therefore needs to be writeable by the webserver to store caching information.")) return;
-        	
-       
+
+
         // checking mana_options
         print_header("Checking manaweb specific configuration.");
         require_once('./system/application/config/mana_config.php');
@@ -245,7 +245,7 @@
         {
             print_check( "parameter <tt>base_url</tt>", "ok" );
         }
-        
+
 
         if (!try_read_dir($config['manadata_path'],
                 'Manaweb needs a local copy of the clients data directory.'
@@ -257,7 +257,7 @@
 
         print_header("Checking database configuration and connection.");
         require_once('./system/application/config/database.php');
-        
+
         if ($db['default']['dbdriver'] != "pdo")
         {
             print_check( "Used database driver", "failed", $db['default']['dbdriver'], "pdo" );
@@ -266,7 +266,7 @@
         {
             print_check( "Used database driver", "ok", $db['default']['dbdriver'], "pdo" );
         }
-        
+
         if(substr($db['default']['database'], 0, 6) == "sqlite")
         {
             print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found sqlite as database backend...");
@@ -275,10 +275,10 @@
         {
             print_check( "Used database backend", "failed", $db['default']['database'], "sqlite" );
         }
-        
+
     }
-    
- 
+
+
 echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -320,7 +320,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
  <body>
   <a name="top"></a>
    <div id="page">
-   
+
    <div id="irc_info">
     <a href="irc://irc.freenode.net/themanaworld" title="IRC">
     #themanaworld<br />
@@ -331,7 +331,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
    <div id="title">
     <h1><span>The Mana Server</span></h1>
    </div>
-   
+
    <div id="main_topleft">
     <div id="main_rightrepeat">
      <div id="main_topright">
@@ -343,8 +343,8 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
         <div id="sidebar">
            <!-- This empty div fixes a rendering issue with IE 7 -->
            <div></div>
-       </div> <!-- /sidebar -->   
-       
+       </div> <!-- /sidebar -->
+
         <div id="contents_leftrepeat">
          <div id="contents_topleft">
           <div id="contents_bottomleft">
@@ -360,18 +360,18 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
                  </div>
                 </div>
                </div>
-                      
+
    <table class="datatable">
    <tr>
         <th>Action</th>
         <th>Required Value</th>
         <th>Your value</th>
         <th>Success</th>
-    </tr>                
+    </tr>
     <?php
         ob_start();
         run_checks();
-    ?> 
+    ?>
 
     </table>
 
@@ -390,7 +390,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
      </div>
     </div>
    </div>
-   
+
     <div id="footer">
     &copy; 2004-2008 The Mana Server Dev Team -
     [<a href="http://validator.w3.org/check?uri=referer">xhtml</a>] [<a href="http://jigsaw.w3.org/css-validator/check/referer">css</a>]
@@ -398,4 +398,4 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
   </div> <!-- /page -->
 
     </body>
-</html> 
+</html>

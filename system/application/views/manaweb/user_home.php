@@ -1,14 +1,14 @@
 <h3>Welcome <?= $user->getUsername() ?>!</h3>
 
 <p>From this page you can manage several options of your account. Also you can
-   get current statistics of you characters. Please choose one option 
+   get current statistics of you characters. Please choose one option
    below:
 
    <ul>
         <li>View your character stats</li>
         <li>Change your password</li>
         <li>Change your mailaddress</li>
-   </ul>   
+   </ul>
 </p>
 
 <p>
@@ -28,9 +28,9 @@
     echo "</ul>";
    }
 ?>
-This account is registered since <strong><?= date(lang('date_time_format'), 
-    $this->user->getRegistrationDate()) ?></strong>. Your last login was 
-    <strong><?= date(lang('date_time_format'), 
+This account is registered since <strong><?= date(lang('date_time_format'),
+    $this->user->getRegistrationDate()) ?></strong>. Your last login was
+    <strong><?= date(lang('date_time_format'),
     $this->user->getLastLogin()) ?></strong>.
 </p>
 
@@ -52,7 +52,7 @@ of one to see its details.</p>
 </tr>
 <?php foreach ($this->user->getCharacters() as $char){ ?>
 <tr>
-    <td><a href="<?= site_url('charcontroller/' . 
+    <td><a href="<?= site_url('charcontroller/' .
         $char->getID()) ?>"><?= $char->getName() ?></a></td>
     <td align="right"><?= $char->getLevel() ?></td>
     <td align="center"><?= $char->getGender('image') ?></td>
@@ -60,10 +60,10 @@ of one to see its details.</p>
     <td><?= $char->getMap()->getDescription() ?></td>
 </tr>
 <? } ?>
-</table>    
+</table>
 
 <?php } else {
-    // user has no characters 
+    // user has no characters
 ?>
     <p>You currently don't have any characters. This is is a little uncommon,
     but never mind: You can create one with the Mana client.</p>

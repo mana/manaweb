@@ -20,38 +20,38 @@
  *
  */
 
- 
+
 /**
  * The MANA_Config library extends the config library shipped with codeigniter
  * to support user defined config files. The library now loads the requested
  * config file and looks if there is a custom config file to override the
- * default settings. 
+ * default settings.
  * Custom files have to be in the same directory as the default and have to be
  * named like <tt>"configfile".user.php</tt>
  *
  * @ingroup libraries
- */ 
+ */
 class MANA_Config extends CI_Config
 {
-    
+
     /**
      * Defines the extension to identify custom config files that override
      * default settings
-     */ 
+     */
     const CUSTOM_FILE_EXT = ".user";
-    
+
     /**
      * Load Config File
      *
      * @param   file (string)  the config file name
-     * @param   use_sections (bool)  
+     * @param   use_sections (bool)
      * @param   fail_gracefully (bool)
      * @return  boolean if the file was loaded correctly
-     */ 
+     */
     public function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
     {
         parent::load($file, $use_sections, $fail_gracefully);
-        
+
         if (file_exists(APPPATH.'config/'. $file .
             MANA_Config::CUSTOM_FILE_EXT . EXT))
         {
@@ -59,6 +59,6 @@ class MANA_Config extends CI_Config
         }
     }
 
-    
+
 } // class MY_Config
 ?>

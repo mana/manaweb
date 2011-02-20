@@ -18,7 +18,7 @@
  *  with The Mana Server; if not, write to the  Free Software Foundation, Inc.,
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
- 
+
 $lang['admin_title']          = 'Admin Interface';
 $lang['maintenance_title']    = 'Maintenance tasks';
 $lang['administrative_tasks'] = "Administrative tasks";
@@ -34,5 +34,5 @@ $lang['attributes_file_reloaded'] = 'The '. XML_ATTRIBUTES_FILE .' file has been
 
 $lang['items_file_reloaded']  = 'All item graphics have been reloaded. Local '
                               . 'database is now up to date!';
-                              
+
 ?>

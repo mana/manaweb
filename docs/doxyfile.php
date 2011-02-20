@@ -21,7 +21,7 @@
  *  This file is used to add doxygen specific commands and description to the
  *  manaweb documentation.
  */
- 
+
 
 /**
  *  @defgroup models        Models
@@ -31,10 +31,10 @@
  *  @defgroup helpers       Helper functions that can be used in views
  */
 
- 
-/** 
+
+/**
  * @mainpage
  * @verbinclude README
  */
- 
+
 ?>

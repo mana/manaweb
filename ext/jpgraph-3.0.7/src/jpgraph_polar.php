@@ -613,7 +613,7 @@ class PolarScale extends LinearScale {
         $aRad = $aRad/$m*$w;
 
         $a = $aAngle/180 * M_PI;
-        if( $this->clockwise ) { 
+        if( $this->clockwise ) {
             $a = 2*M_PI-$a;
         }
 

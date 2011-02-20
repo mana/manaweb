@@ -28,18 +28,18 @@ require_once(APPPATH.'models/character'.EXT);
  * used as a simple data object.
  *
  * @ingroup models
- */ 
+ */
 class Account {
 
     const ACCOUNT_TBL      = 'mana_accounts';        /**< Name of the accounts table */
-    
+
     ///////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
-    
+
     /**
      * holds a reference to the database record.
      */
@@ -73,46 +73,46 @@ class Account {
 
     ///////////////////////////////////////////////////////////////////////////
 
-    
+
     /**
      * Constructor initializes a new instance of the Account model.
      * The constructor needs a database record as parameter.
      *
-     * @param record (Array) Database record to initialite values of the 
+     * @param record (Array) Database record to initialite values of the
      *                       Account.
      */
     public function __construct($record)
     {
         // get an instance of CI
-        // we have to do this, because we are not in an controller and 
+        // we have to do this, because we are not in an controller and
         // therefore we cannot access $this->config directly
         $this->CI =& get_instance();
         $this->account = $record;
     }
-    
+
     /**
      * This function returns the unique id of the account.
-     * 
+     *
      * @return (int) Unique id of the account.
      */
     public function getID()
     {
         return $this->account->id;
     }
-        
+
     /**
      * This function returns the username of the account.
-     * 
+     *
      * @return (String) Userame of the Account.
      */
     public function getUsername()
     {
         return $this->account->username;
     }
-    
+
     /**
      * This function returns the level of the character.
-     * 
+     *
      * @return (int) Level of the character
      */
     public function getLevel()
@@ -122,7 +122,7 @@ class Account {
 
     /**
      * This functions returns the timestamp until when the account is banned.
-     * 
+     *
      * @return (int) Unix-timestamp until when the account is banned.
      */
     public function getBanned()

@@ -10,7 +10,7 @@
     </tr>
     <? foreach ($guild->getMembers() as $member) {
             $char = $member['character'];
-        
+
             if ($char->getOwnerId() == $user->getId())
             {
                 $isOwn = true;
@@ -25,7 +25,7 @@
                 <? if ($isOwn) { ?><a href='<?= site_url(array('charcontroller',$char->getId() )) ?>'><? } ?>
                 <?= $char->getName() ?>
                 <? if ($isOwn) { ?></a><? } ?>
-                
+
                 <?= $char->isOnline('image') ?>
             </td>
             <td align="right"><?= $char->getLevel() ?></td>

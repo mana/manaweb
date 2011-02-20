@@ -36,7 +36,7 @@ class Navigationprovider
         $navbox->setOrderId( $orderId );
         $this->navboxes[$navbox->getId()] = $navbox;
     }
-    
+
     public function hasNavbox( $id )
     {
         return array_key_exists($id, $this->navboxes);

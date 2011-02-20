@@ -28,7 +28,7 @@
  */
 class CI_Router {
 
-	var $config;	
+	var $config;
 	var $routes 		= array();
 	var $error_routes	= array();
 	var $class			= '';
@@ -37,7 +37,7 @@ class CI_Router {
 	var $uri_protocol 	= 'auto';
 	var $default_controller;
 	var $scaffolding_request = FALSE; // Must be set to FALSE
-	
+
 	/**
 	 * Constructor
 	 *
@@ -50,9 +50,9 @@ class CI_Router {
 		$this->_set_routing();
 		log_message('debug', "Router Class Initialized");
 	}
-	
+
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Set the route mapping
 	 *
@@ -74,10 +74,10 @@ class CI_Router {
 			{
 				$this->set_method(trim($this->uri->_filter_uri($_GET[$this->config->item('function_trigger')])));
 			}
-			
+
 			return;
 		}
-		
+
 		// Load the routes.php file.
 		@include(APPPATH.'config/routes'.EXT);
 		$this->routes = ( ! isset($route) OR ! is_array($route)) ? array() : $route;
@@ -85,11 +85,11 @@ class CI_Router {
 
 		// Set the default controller so we can display it in the event
 		// the URI doesn't correlated to a valid controller.
-		$this->default_controller = ( ! isset($this->routes['default_controller']) OR $this->routes['default_controller'] == '') ? FALSE : strtolower($this->routes['default_controller']);	
-		
+		$this->default_controller = ( ! isset($this->routes['default_controller']) OR $this->routes['default_controller'] == '') ? FALSE : strtolower($this->routes['default_controller']);
+
 		// Fetch the complete URI string
 		$this->uri->_fetch_uri_string();
-	
+
 		// Is there a URI string? If not, the default controller specified in the "routes" file will be shown.
 		if ($this->uri->uri_string == '')
 		{
@@ -97,7 +97,7 @@ class CI_Router {
 			{
 				show_error("Unable to determine what should be displayed. A default route has not been specified in the routing file.");
 			}
-			
+
 			if (strpos($this->default_controller, '/') !== FALSE)
 			{
 				$x = explode('/', $this->default_controller);
@@ -115,27 +115,27 @@ class CI_Router {
 
 			// re-index the routed segments array so it starts with 1 rather than 0
 			$this->uri->_reindex_segments();
-			
+
 			log_message('debug', "No URI present. Default controller set.");
 			return;
 		}
 		unset($this->routes['default_controller']);
-		
+
 		// Do we need to remove the URL suffix?
 		$this->uri->_remove_url_suffix();
-		
+
 		// Compile the segments into an array
 		$this->uri->_explode_segments();
-		
+
 		// Parse any custom routing that may exist
-		$this->_parse_routes();		
-		
+		$this->_parse_routes();
+
 		// Re-index the segment array so that it starts with 1 rather than 0
 		$this->uri->_reindex_segments();
 	}
-	
+
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Set the Route
 	 *
@@ -150,14 +150,14 @@ class CI_Router {
 	function _set_request($segments = array())
 	{
 		$segments = $this->_validate_request($segments);
-		
+
 		if (count($segments) == 0)
 		{
 			return;
 		}
-						
+
 		$this->set_class($segments[0]);
-		
+
 		if (isset($segments[1]))
 		{
 			// A scaffolding request. No funny business with the URL
@@ -178,15 +178,15 @@ class CI_Router {
 			// index method is being used.
 			$segments[1] = 'index';
 		}
-		
+
 		// Update our "routed" segment array to contain the segments.
 		// Note: If there is no custom routing, this array will be
 		// identical to $this->uri->segments
 		$this->uri->rsegments = $segments;
 	}
-	
+
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Validates the supplied segments.  Attempts to determine the path to
 	 * the controller.
@@ -194,7 +194,7 @@ class CI_Router {
 	 * @access	private
 	 * @param	array
 	 * @return	array
-	 */	
+	 */
 	function _validate_request($segments)
 	{
 		// Does the requested controller exist in the root folder?
@@ -205,11 +205,11 @@ class CI_Router {
 
 		// Is the controller in a sub-folder?
 		if (is_dir(APPPATH.'controllers/'.$segments[0]))
-		{		
+		{
 			// Set the directory and remove it from the segment array
 			$this->set_directory($segments[0]);
 			$segments = array_slice($segments, 1);
-			
+
 			if (count($segments) > 0)
 			{
 				// Does the requested controller exist in the sub-folder?
@@ -222,14 +222,14 @@ class CI_Router {
 			{
 				$this->set_class($this->default_controller);
 				$this->set_method('index');
-			
+
 				// Does the default controller exist in the sub-folder?
 				if ( ! file_exists(APPPATH.'controllers/'.$this->fetch_directory().$this->default_controller.EXT))
 				{
 					$this->directory = '';
 					return array();
 				}
-			
+
 			}
 
 			return $segments;
@@ -267,26 +267,26 @@ class CI_Router {
 		// Is there a literal match?  If so we're done
 		if (isset($this->routes[$uri]))
 		{
-			$this->_set_request(explode('/', $this->routes[$uri]));		
+			$this->_set_request(explode('/', $this->routes[$uri]));
 			return;
 		}
-				
+
 		// Loop through the route array looking for wild-cards
 		foreach ($this->routes as $key => $val)
-		{						
+		{
 			// Convert wild-cards to RegEx
 			$key = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $key));
-			
+
 			// Does the RegEx match?
 			if (preg_match('#^'.$key.'$#', $uri))
-			{			
+			{
 				// Do we have a back-reference?
 				if (strpos($val, '$') !== FALSE AND strpos($key, '(') !== FALSE)
 				{
 					$val = preg_replace('#^'.$key.'$#', $val, $uri);
 				}
-			
-				$this->_set_request(explode('/', $val));		
+
+				$this->_set_request(explode('/', $val));
 				return;
 			}
 		}
@@ -297,54 +297,54 @@ class CI_Router {
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Set the class name
 	 *
 	 * @access	public
 	 * @param	string
 	 * @return	void
-	 */	
+	 */
 	function set_class($class)
 	{
 		$this->class = str_replace(array('/', '.'), '', $class);
 	}
-	
+
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Fetch the current class
 	 *
 	 * @access	public
 	 * @return	string
-	 */	
+	 */
 	function fetch_class()
 	{
 		return $this->class;
 	}
-	
+
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 *  Set the method name
 	 *
 	 * @access	public
 	 * @param	string
 	 * @return	void
-	 */	
+	 */
 	function set_method($method)
 	{
 		$this->method = $method;
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 *  Fetch the current method
 	 *
 	 * @access	public
 	 * @return	string
-	 */	
+	 */
 	function fetch_method()
 	{
 		if ($this->method == $this->fetch_class())
@@ -356,27 +356,27 @@ class CI_Router {
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 *  Set the directory name
 	 *
 	 * @access	public
 	 * @param	string
 	 * @return	void
-	 */	
+	 */
 	function set_directory($dir)
 	{
 		$this->directory = str_replace(array('/', '.'), '', $dir).'/';
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 *  Fetch the sub-directory (if any) that contains the requested controller class
 	 *
 	 * @access	public
 	 * @return	string
-	 */	
+	 */
 	function fetch_directory()
 	{
 		return $this->directory;

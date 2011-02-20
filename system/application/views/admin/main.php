@@ -11,41 +11,41 @@
         </td>
     </tr>
     <? } ?>
-    
+
     <? $attributes = array('name'=>'searchAccount', 'id'=>'ManasearchAccount');
         echo form_open('admin/search_account', $attributes); ?>
     <tr>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;">
             <label for="Manausername">search Account: </label>
         </td>
-        <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="1" value="" id="Manausername" 
+        <td style="border-width: 0px;">
+            <input type="text" size="30" tabindex="1" value="" id="Manausername"
                 title="Enter an account name" name="Manausername">
         </td>
-        <td style="border-width: 0px;">  
-            <input type="submit" tabindex="2" value="Search" 
+        <td style="border-width: 0px;">
+            <input type="submit" tabindex="2" value="Search"
                 id="Manasubmit" title="Search" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
-    
+
     <? $attributes = array('name'=>'searchCharacter', 'id'=>'ManasearchCharacter');
         echo form_open('admin/search_character', $attributes); ?>
     <tr>
-        <td style="border-width: 0px;">  
+        <td style="border-width: 0px;">
             <label for="Manausername">search Character: </label>
         </td>
-        <td style="border-width: 0px;">  
-            <input type="text" size="30" tabindex="3" value="" id="Manacharacter" 
+        <td style="border-width: 0px;">
+            <input type="text" size="30" tabindex="3" value="" id="Manacharacter"
                 title="Enter a character name" name="Manacharacter">
         </td>
-        <td style="border-width: 0px;">  
-            <input type="submit" tabindex="4" value="Search" 
+        <td style="border-width: 0px;">
+            <input type="submit" tabindex="4" value="Search"
                 id="Manasubmit" title="Search" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
-    
+
 </table>
 
 <div class="autocomplete" id="ManausernameList" style="display:none"></div>
@@ -59,8 +59,8 @@
 <p>
 <table class="datatable">
 
-    <?php if (isset($result_account)) { 
-              if ($result_account === false) {    
+    <?php if (isset($result_account)) {
+              if ($result_account === false) {
     ?>
     <tr>
         <th>Sorry, your search returns no rows.</th>
@@ -74,9 +74,9 @@
     <?php foreach ($result_account as $account) { ?>
     <tr>
         <td><a href="<?= site_url(array("admin/show_account", $account->getID() )) ?>"><?= $account->getID() ?></a></td>
-        <td><?= str_replace( 
-            $searchstring, 
-            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
+        <td><?= str_replace(
+            $searchstring,
+            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>',
             $account->getUsername() ) ?></td>
         <!--<td><a href="#" onclick="$('user_info').appear(); return false;">Test</a></td>-->
         <td><?
@@ -89,13 +89,13 @@
         </td>
     </tr>
     <?php }}} ?>
-    
-    <?php if (isset($result_character)) { 
+
+    <?php if (isset($result_character)) {
         if ($result_character === false) {  ?>
     <tr>
         <th>Sorry, your search returns no rows.</th>
     </tr>
-    <? } else { ?>        
+    <? } else { ?>
     <tr>
         <th>ID</th>
         <th>Character</th>
@@ -111,9 +111,9 @@
         <td><?= $char->isOnline('img') ?>
             <a href="<?= site_url(array("admin/show_character", $char->getId() )) ?>">
             <?= str_replace(
-            $searchstring, 
-            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>', 
-            $char->getName()) ?></a>        
+            $searchstring,
+            '<span style="font-weight:bold; color:red;">'.$searchstring.'</span>',
+            $char->getName()) ?></a>
         </td>
         <td><a href="<?= site_url(array("admin/show_account", $char->getOwnerId())) ?>"><?= $char->getUsername() ?></a></td>
         <td align="center"><?= $char->getGender('image') ?></td>
@@ -159,7 +159,7 @@
 
 
 <script type="text/javascript">
-    new Ajax.Autocompleter('Manausername', 'ManausernameList', 
+    new Ajax.Autocompleter('Manausername', 'ManausernameList',
         '<?php echo site_url() . "/admin/search_account_ajax" ?>', { });
     new Ajax.Autocompleter('Manacharacter', 'ManacharacterList',
         '<?php echo site_url() . "/admin/search_character_ajax" ?>', { });

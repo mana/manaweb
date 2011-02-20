@@ -375,7 +375,7 @@ class LinePlot extends Plot{
                 $img->SetColor($this->fill_color);
                 $img->FilledPolygon($cord);
             }
-            if( $this->weight > 0 ) { 
+            if( $this->weight > 0 ) {
                 $img->SetLineWeight($this->weight);
                 $img->SetColor($this->color);
                 // Remove first and last coordinate before drawing the line

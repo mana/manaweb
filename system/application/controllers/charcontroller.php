@@ -22,11 +22,11 @@
 
 
 /**
- * The CharController is responsible for all actions a user can do 
+ * The CharController is responsible for all actions a user can do
  * with its character.
- * 
+ *
  * @ingroup controllers
- */ 
+ */
 class Charcontroller extends Controller {
 
     /**
@@ -39,56 +39,56 @@ class Charcontroller extends Controller {
             $this->config->item('mana_enable_profiler')
         );
 
-        $this->load->library('validation');        
+        $this->load->library('validation');
         $this->load->helper('form');
-            
+
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
-            $param = array('has_errors' => false); 
+            $param = array('has_errors' => false);
             $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'), 
+            $this->output->showPage(lang('account_login'),
                 'manaweb/login_form', $param);
         }
     }
-    
-    
+
+
     /**
-     * This function is called from the character overview page and 
+     * This function is called from the character overview page and
      * leeds to the character details with a given character id.
      * The function checks wheter the current user may see this details
      * and forwards to the details view.
      *
      * @param id      (int) Unique id of the character
      * @param subpage (String) Subpage to show, e.g. skills or inventory
-     */ 
+     */
     public function index($id, $subpage="sheet")
     {
         if (!$this->user->isAuthenticated())
         {
             return;
         }
-        
+
         $this->translationprovider->loadLanguage('character');
         $this->load->library('Mapprovider');
         $this->load->library('Skillprovider');
         $this->load->library('Attributeprovider');
         $this->load->library('Imageprovider');
-        
+
         // check if the user is the owner of this char
         if (!$this->user->hasCharacter($id))
         {
            show_error(lang('character_view_forbidden'));
-        }        
-        
+        }
+
         $params = array();
         $char   = $this->user->getCharacter($id);
         $params['char'] = $char;
-        
+
         // enable character menu
         $this->menuprovider->setChar($char);
-        
-        
+
+
         switch ($subpage)
         {
             case 'admin':
@@ -112,10 +112,10 @@ class Charcontroller extends Controller {
                 $page = 'manaweb/character';
                 break;
         }
-        
-        $this->output->showPage(lang('character').': '. $char->getName(), 
+
+        $this->output->showPage(lang('character').': '. $char->getName(),
             $page, $params);
     }
-    
+
 } // class CharController
 ?>

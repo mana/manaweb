@@ -5,7 +5,7 @@
     $weight_all = $weight_inv +  $weight_equ;
     $weight_max = $char->getMaximumWeight();
     $weight_pct = intval(100/$weight_max*$weight_all);
-    
+
     // tiny checks
     if ($weight_pct < 0)
     {
@@ -17,7 +17,7 @@
     }
 ?>
 <div style="text-align: right;">
-    Your current load: <?= $weight_all ?> of <?= $weight_max ?>    
+    Your current load: <?= $weight_all ?> of <?= $weight_max ?>
 </div>
 
 <h3><?= lang('character_equipment') ?></h3>
@@ -34,7 +34,7 @@
         <th>Amount</th>
         <th>Weight</th>
     </tr>
-    
+
     <? foreach ($char->getInventory()->getInventory() as $item) { ?>
     <tr>
         <td width="35"><img src="<?= $imageprovider->getItemImage($item->id, $item->image, $item->dyestring) ?>" /></td>
@@ -45,17 +45,17 @@
         <td align="right"><?= intval($item->weight) * intval($item->amount) ?></td>
     </tr>
     <? } ?>
-    
+
     <tr>
-        <td colspan="5" style="border: 0px;" align="right">            
+        <td colspan="5" style="border: 0px;" align="right">
         </td>
         <td align="right" style="border-bottom: 0px; border-top: 1px dotted;">
             <strong><?= $weight_inv ?></strong>
         </td>
     </tr>
-    
+
     <tr>
-        <td colspan="5" style="border: 0px;" align="right">            
+        <td colspan="5" style="border: 0px;" align="right">
             <em>Weight of your equipped items: </em>
         </td>
         <td align="right" style="border-bottom: 0px;">
@@ -63,7 +63,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="5" style="border: 0px;" align="right">            
+        <td colspan="5" style="border: 0px;" align="right">
             <em>Total weight of all your items: </em>
         </td>
         <td align="right" style="border-bottom: 0px; border-top: 1px dotted;">
@@ -71,4 +71,3 @@
         </td>
     </tr>
 </table>
-   

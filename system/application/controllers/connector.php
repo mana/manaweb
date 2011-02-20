@@ -22,9 +22,9 @@
 
 /**
  * Controller working as connector for external applications.
- * 
+ *
  * @ingroup controllers
- */ 
+ */
 class Connector extends Controller {
 
     /**
@@ -67,8 +67,8 @@ class Connector extends Controller {
                 $this->load->view('connector/onlineuser_plain', $users);
                 break;
         }
-        
+
     }
-    
+
 } // class Statistics
 ?>

@@ -474,7 +474,7 @@ class Image {
 
                 $x -= $rect_width/2;
                 $x += sin($dir*M_PI/180)*$height;
-                $y += $rect_height/2;                
+                $y += $rect_height/2;
 
             } elseif( $dir >= 270 && $dir <= 360 ) {
 
@@ -723,7 +723,7 @@ class Image {
         // box is sometimes coinciding with the first pixel of the text
         //$bbox[0] -= 1;
         //$bbox[6] -= 1;
-        
+
         // For roatated text we need to add extra width for rotated
         // text since the kerning and stroking of the TTF is not the same as for
         // text at a 0 degree angle
@@ -876,7 +876,7 @@ class Image {
 
             if( $this->text_valign != 'basepoint' ) {
                 // Align x,y ot lower left corner of bbox
-                
+
 
                 if( $this->text_halign=='right' ) {
                     $x -= $width;
@@ -903,7 +903,7 @@ class Image {
                     // This is only support for text at 0 degree !!
                     // Do nothing the text is drawn at baseline by default
                 }
-            } 
+            }
             ImageTTFText ($this->img, $this->font_size, $dir, $x, $y,
                           $this->current_color,$this->font_file,$txt);
 

@@ -32,7 +32,7 @@
 
 /*
  * PHP versions prior to 5.0 don't support the E_STRICT constant
- * so we need to explicitly define it otherwise the Exception class 
+ * so we need to explicitly define it otherwise the Exception class
  * will generate errors when running under PHP 4
  *
  */
@@ -59,9 +59,9 @@ if ( ! function_exists('ctype_digit'))
 		{
 			return FALSE;
 		}
-		
+
 		return ! preg_match('/[^0-9]/', $str);
-	}	
+	}
 }
 
 // --------------------------------------------------------------------
@@ -84,9 +84,9 @@ if ( ! function_exists('ctype_alnum'))
 		{
 			return FALSE;
 		}
-		
+
 		return ! preg_match('/[^0-9a-z]/i', $str);
-	}	
+	}
 }
 
 /* End of file Compat.php */

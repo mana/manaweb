@@ -13,9 +13,9 @@
         <th>Bids</th>
         <th>Price</th>
     </tr>
-    
-    <? foreach ($next_auctions as $auction) 
-       { 
+
+    <? foreach ($next_auctions as $auction)
+       {
 			$duration = $auction->getDuration();
 			$item = $auction->getItem();
 	?>
@@ -45,45 +45,45 @@
 		<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
 			<strong>Weapons</strong><br />
 			<ul>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_ONEHAND)) ?>">one handed</a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_ONEHAND)) ?>">one handed</a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_TWOHAND)) ?>">two handed </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_TWOHAND)) ?>">two handed </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_AMMO)) ?>">ammunition </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_AMMO)) ?>">ammunition </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_SHIELD)) ?>">shields </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_SHIELD)) ?>">shields </a>
 				</li>
 			</ul>
 		</td>
 		<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
 			<strong>Clothes</strong><br />
 			<ul>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_ARMS)) ?>">arms </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_ARMS)) ?>">arms </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_FEET)) ?>">feet </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_FEET)) ?>">feet </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_HEAD)) ?>">head </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_HEAD)) ?>">head </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_LEGS)) ?>">legs </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_LEGS)) ?>">legs </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_TORSO)) ?>">torso </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_TORSO)) ?>">torso </a>
 				</li>
-			</ul>					
+			</ul>
 		</td>
 		<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
 			<strong>Others</strong><br />
 			<ul>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_RING)) ?>">rings </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_RING)) ?>">rings </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_GENERIC)) ?>">generics </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_GENERIC)) ?>">generics </a>
 				</li>
-				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_USABLE)) ?>">usable </a> 
+				<li><a href="<?= site_url(array("manabay", "show_by_category", Inventory::ITEM_TYPE_USABLE)) ?>">usable </a>
 				</li>
 			</ul>
 		</td>
 	</tr>
 </table>
-	
+
 
 <h3>ManaBay statistics</h3>
 

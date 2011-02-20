@@ -47,7 +47,7 @@ class CI_Config {
 		$this->config =& get_config();
 		log_message('debug', "Config Class Initialized");
 	}
-  	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -56,11 +56,11 @@ class CI_Config {
 	 * @access	public
 	 * @param	string	the config file name
 	 * @return	boolean	if the file was loaded correctly
-	 */	
+	 */
 	function load($file = '', $use_sections = FALSE, $fail_gracefully = FALSE)
 	{
 		$file = ($file == '') ? 'config' : str_replace(EXT, '', $file);
-	
+
 		if (in_array($file, $this->is_loaded, TRUE))
 		{
 			return TRUE;
@@ -74,7 +74,7 @@ class CI_Config {
 			}
 			show_error('The configuration file '.$file.EXT.' does not exist.');
 		}
-	
+
 		include(APPPATH.'config/'.$file.EXT);
 
 		if ( ! isset($config) OR ! is_array($config))
@@ -108,7 +108,7 @@ class CI_Config {
 		log_message('debug', 'Config file loaded: config/'.$file.EXT);
 		return TRUE;
 	}
-  	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -122,9 +122,9 @@ class CI_Config {
 	 * @return	string
 	 */
 	function item($item, $index = '')
-	{	
+	{
 		if ($index == '')
-		{	
+		{
 			if ( ! isset($this->config[$item]))
 			{
 				return FALSE;
@@ -149,7 +149,7 @@ class CI_Config {
 
 		return $pref;
 	}
-  	
+
   	// --------------------------------------------------------------------
 
 	/**
@@ -173,13 +173,13 @@ class CI_Config {
 		$pref = $this->config[$item];
 
 		if ($pref != '' && substr($pref, -1) != '/')
-		{	
+		{
 			$pref .= '/';
 		}
 
 		return $pref;
 	}
-  	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -203,10 +203,10 @@ class CI_Config {
 		else
 		{
 			$suffix = ($this->item('url_suffix') == FALSE) ? '' : $this->item('url_suffix');
-			return $this->slash_item('base_url').$this->slash_item('index_page').trim($uri, '/').$suffix; 
+			return $this->slash_item('base_url').$this->slash_item('index_page').trim($uri, '/').$suffix;
 		}
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -220,7 +220,7 @@ class CI_Config {
 		$x = explode("/", preg_replace("|/*(.+?)/*$|", "\\1", BASEPATH));
 		return $this->slash_item('base_url').end($x).'/';
 	}
-  	
+
 	// --------------------------------------------------------------------
 
 	/**

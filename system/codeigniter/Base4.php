@@ -45,7 +45,7 @@
 		// This allows syntax like $this->load->foo() to work
 		parent::CI_Loader();
 		$this->load =& $this;
-		
+
 		// This allows resources used within controller constructors to work
 		global $OBJ;
 		$OBJ = $this->load; // Do NOT use a reference.
@@ -55,12 +55,12 @@
 function &get_instance()
 {
 	global $CI, $OBJ;
-	
+
 	if (is_object($CI))
 	{
 		return $CI;
 	}
-	
+
 	return $OBJ->load;
 }
 

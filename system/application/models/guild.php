@@ -27,26 +27,26 @@
  * used as a simple data object.
  *
  * @ingroup manaweb models
- */ 
+ */
 class Guild {
 
     /**
      * Name of the guilds table
      */
     const GUILD_TBL        = 'mana_guilds';
-    
+
     /**
      * Name of the guild memberships table
      */
     const GUILD_MEMBER_TBL = 'mana_guild_members';
-    
-    
+
+
     //
     // Permissions defining rights of guild members.
-    // Those constants are derived from 
+    // Those constants are derived from
     // <tt>defines.h</tt>
     //
-     
+
     /**
      * Guild member permissions
      * Members with NONE cannot invite users or set permissions
@@ -60,20 +60,20 @@ class Guild {
     const GAL_INVITE       = 2;
     const GAL_KICK         = 4;
     const GAL_OWNER        = 255;
-    
+
     ///////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
-    
+
     /**
      * holds a reference to the database record.
      */
     private $guild;
-    
-    
+
+
     /**
      * Constructor initializes a new instance of the Character model.
      * The constructor needs a database record as parameter.
@@ -83,13 +83,13 @@ class Guild {
     public function __construct($record)
     {
         // get an instance of CI
-        // we have to do this, because we are not in an controller and 
+        // we have to do this, because we are not in an controller and
         // therefore we cannot access $this->config directly
         $this->CI =& get_instance();
         $this->guild = $record;
     }
-    
-    
+
+
     /**
      * This function retruns an instance of the guild with the given id.
      *
@@ -101,7 +101,7 @@ class Guild {
         $ci =& get_instance();
         $res = $ci->db->get_where( Guild::GUILD_TBL,
             array('id' => $id));
-            
+
         if ($res->num_rows() > 0)
         {
             return new Guild($res->row());
@@ -109,10 +109,10 @@ class Guild {
         else
         {
             return false;
-        }           
+        }
     }
-    
-    
+
+
     /**
      * This function returns the unique Id of the guild.
      * @return (int) Id of the guild
@@ -121,8 +121,8 @@ class Guild {
     {
         return intval($this->guild->id);
     }
-    
-    
+
+
     /**
      * This function returns the name of the guild.
      * @return (String) Name of the guild
@@ -131,11 +131,11 @@ class Guild {
     {
         return $this->guild->name;
     }
-    
-    
+
+
     /**
      * This function returns a list with all members of the guild.
-     * 
+     *
      * @return (Array) Returns Array with all members_ids of the guild and their
      *                 current rights.
      */
@@ -168,8 +168,8 @@ class Guild {
             array('guild_id' => $this->getId()));
         return $res->num_rows();
     }
-    
-        
+
+
 } // class Guild
 
 ?>

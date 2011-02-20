@@ -69,7 +69,7 @@ class Themeprovider
     public function getThemes($onlyValid = false)
     {
         $themelist = array();
-        
+
 
         foreach (scandir($this->basedir) as $dirname)
         {

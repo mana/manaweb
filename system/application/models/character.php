@@ -20,7 +20,7 @@
  *
  */
 
-// load dependecies 
+// load dependecies
 require_once(APPPATH.'models/inventory'.EXT);
 require_once(APPPATH.'models/guild'.EXT);
 
@@ -30,7 +30,7 @@ require_once(APPPATH.'models/guild'.EXT);
  * used as a simple data object.
  *
  * @ingroup models
- */ 
+ */
 class Character {
 
     const CHARACTER_TBL        = 'mana_characters';      /**< Name of the characters table */
@@ -38,9 +38,9 @@ class Character {
     const ONLINE_CHARS_TBL     = 'mana_v_online_chars';  /**< Name of the view displaying online characters */
     const GENDER_MALE   = 0;                            /**< Defines constant for male characters */
     const GENDER_FEMALE = 1;                            /**< Defines constant for female characters */
-    
+
     // character attributes ///////////////////////////////////////////////////
-    
+
     const CHAR_ATTR_STRENGTH     = "1";    /**< Constant for character attribute STRENGTH */
     const CHAR_ATTR_AGILITY      = "2";    /**< Constant for character attribute AGILITY */
     const CHAR_ATTR_DEXTERITY    = "3";    /**< Constant for character attribute DEXTERITY */
@@ -51,9 +51,9 @@ class Character {
 
     /** List of all online characters. */
     private static $onlinelist;
-    
+
     ///////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * This constant defines the exponent of the \a experienceForLevel function
      * to determine the needed experience points to level up.
@@ -64,24 +64,24 @@ class Character {
      * to determine the needed experience points to level up.
      */
     const EXPCURVE_FACTOR = 10;
-    
+
     ///////////////////////////////////////////////////////////////////////////
-    
+
     /**
      * Reference to the CodeIgniter framework
      */
     private $CI;
-    
+
     /**
      * holds a reference to the database record.
      */
     private $char;
-    
+
     /**
-     * Holds a reference to the \a Inventory model of the character. 
-     * This variable only gets initialized, when the method 
+     * Holds a reference to the \a Inventory model of the character.
+     * This variable only gets initialized, when the method
      * \a Character::getInventory is called.
-     */ 
+     */
     private $inventory;
 
     /**
@@ -90,38 +90,38 @@ class Character {
      * \a Character::getUsername() or \a Character::getOwner() is called.
      */
     private $user;
-    
+
     /**
      * Array storing all experiences of a character.
      */
     private $skills;
-    
-    
+
+
     /**
-     * This function returns the needed experience points for a character to 
-     * reach the given level. 
+     * This function returns the needed experience points for a character to
+     * reach the given level.
      *
      * @param level (int) Level the character wants to reach
      * @return (int) Experience points a character needs to level up.
      */
     static function experienceForLevel($level)
     {
-        return intval(pow($level, Character::EXPCURVE_EXPONENT) * 
+        return intval(pow($level, Character::EXPCURVE_EXPONENT) *
             Character::EXPCURVE_FACTOR);
     }
-    
-    
+
+
     /**
      * Constructor initializes a new instance of the Character model.
      * The constructor needs a database record as parameter.
      *
-     * @param record (Array) Database record to initialite values of the 
+     * @param record (Array) Database record to initialite values of the
      *                       Character.
      */
     public function __construct($record)
     {
         // get an instance of CI
-        // we have to do this, because we are not in an controller and 
+        // we have to do this, because we are not in an controller and
         // therefore we cannot access $this->config directly
         $this->CI =& get_instance();
         $this->char = $record;
@@ -136,27 +136,27 @@ class Character {
             $this->CI->load->library('mapprovider');
         }
     }
-    
+
     /**
      * This function returns the unique id of the character.
-     * 
+     *
      * @return (int) Unique id of the character
      */
     public function getID()
     {
         return $this->char->id;
     }
-        
+
     /**
      * This function returns the name of the character.
-     * 
+     *
      * @return (String) Name of the character
      */
     public function getName()
     {
         return $this->char->name;
     }
-    
+
     /**
      * Returns the owner of the character.
      * @return (object) Owner of the character.
@@ -202,25 +202,25 @@ class Character {
         {
             return $this->getOwner()->username;
         }
-    }    
-    
+    }
+
     /**
      * This function returns the level of the character.
-     * 
+     *
      * @return (int) Level of the character
      */
     public function getLevel()
     {
         return $this->char->level;
     }
-    
+
     /**
      * This function returns the gender of the character.
      * See constants GENDER_MALE and GENDER_FEMALE.
-     * 
-     * @param  format (String) 
+     *
+     * @param  format (String)
      *                If $format is \c 'int', the gender is given as id.
-     *                If $format is \c 'image', the gender is given as html 
+     *                If $format is \c 'image', the gender is given as html
      *                image tag.
      * @return (Mixed) Gender of the character
      */
@@ -245,8 +245,8 @@ class Character {
             return $this->char->gender;
         }
     }
-        
-    /** 
+
+    /**
      * This function returns the map, the character is located on.
      *
      * @return (Object) Map the character is located.
@@ -255,8 +255,8 @@ class Character {
     {
         return $this->CI->mapprovider->getMap($this->char->map_id);
     }
-        
-    /** 
+
+    /**
      * This function returns the attribute value of the character.
      * Use the constants Character::CHAR_ATTR_* as input of this function.
      *
@@ -286,14 +286,14 @@ class Character {
         }
         return 0;
     }
-    
-    /** 
+
+    /**
      * This function returns a skill value of the character.
      * Use the constants Character::CHAR_SKILL_* as input of this function.
      *
      * @param skill (String) Skill name.
      * @return (int) Skill value.
-     */    
+     */
     public function getSkill($skill)
     {
         // skills are not initialized yet, do it now!
@@ -356,7 +356,7 @@ class Character {
         $info['exp_max_delta'] = $info['level_exp_max'] - $info['level_exp_min'];
         return $info;
     }
-    
+
     /**
      * This function returns the inventory object of the character.
      *
@@ -370,11 +370,11 @@ class Character {
         }
         return $this->inventory;
     }
-        
-    /** 
+
+    /**
      * This function computes the maximum weight the character can carry.
      *
-     * @remarks This algorithm is taken from the 0.0.* branch, so maybe it 
+     * @remarks This algorithm is taken from the 0.0.* branch, so maybe it
      *          changes in later implementations of the 0.1.* branch.
      *
      * @return (int) Maximum weight the character can carry.
@@ -383,19 +383,19 @@ class Character {
     {
         return intval($this->getAttribute(Character::CHAR_ATTR_STRENGTH) * 100);
     }
-        
+
     /**
      * This functions is used to check wheter a character is member of at least
      * one guild.
      *
-     * @return (bool) \c true, if the character is member of a guild, 
+     * @return (bool) \c true, if the character is member of a guild,
                     otherwise \c false
      */
     public function isGuildMember()
     {
         $query = $this->CI->db->get_where(Guild::GUILD_MEMBER_TBL,
             array('member_id' => $this->char->id), 1);
-            
+
         if ($query->num_rows() > 0)
         {
             return true;
@@ -438,7 +438,7 @@ class Character {
     public function isOnline($format='bool')
     {
         $online = false;
-        
+
         if (!isset(self::$onlinelist))
         {
             // load list of online users

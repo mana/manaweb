@@ -16,7 +16,7 @@
               echo "<li><a href=\"" . site_url(array("admin/show_character",
                     $char->getId())) . "\">"  .
                     $char->getName() . "</a> (" .
-                    $char->isOnline('img') . 
+                    $char->isOnline('img') .
                     $char->getGender('image') . ")</li>";
             }
             ?>

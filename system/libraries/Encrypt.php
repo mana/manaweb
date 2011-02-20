@@ -117,7 +117,7 @@ class CI_Encrypt {
 	{
 		$key = $this->get_key($key);
 		$enc = $this->_xor_encode($string, $key);
-		
+
 		if ($this->_mcrypt_exists === TRUE)
 		{
 			$enc = $this->mcrypt_encode($enc, $key);
@@ -140,7 +140,7 @@ class CI_Encrypt {
 	function decode($string, $key = '')
 	{
 		$key = $this->get_key($key);
-		
+
 		if (preg_match('/[^a-zA-Z0-9\/\+=]/', $string))
 		{
 			return FALSE;
@@ -184,7 +184,7 @@ class CI_Encrypt {
 
 		$enc = '';
 		for ($i = 0; $i < strlen($string); $i++)
-		{			
+		{
 			$enc .= substr($rand, ($i % strlen($rand)), 1).(substr($rand, ($i % strlen($rand)), 1) ^ substr($string, $i, 1));
 		}
 
@@ -347,7 +347,7 @@ class CI_Encrypt {
 			{
 				$temp = $temp + 256;
 			}
-			
+
 			$str .= chr($temp);
 		}
 
@@ -355,7 +355,7 @@ class CI_Encrypt {
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Set the Mcrypt Cipher
 	 *
@@ -414,7 +414,7 @@ class CI_Encrypt {
 		{
 			$this->_mcrypt_mode = MCRYPT_MODE_ECB;
 		}
-		
+
 		return $this->_mcrypt_mode;
 	}
 
@@ -440,7 +440,7 @@ class CI_Encrypt {
 	 * @access	public
 	 * @param	string
 	 * @return	string
-	 */	
+	 */
 	function hash($str)
 	{
 		return ($this->_hash_type == 'sha1') ? $this->sha1($str) : md5($str);

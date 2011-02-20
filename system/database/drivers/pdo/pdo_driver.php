@@ -413,9 +413,9 @@ class CI_DB_pdo_driver extends CI_DB
 
         return $sql . "LIMIT " . $offset . $limit;
     }
-    
-    
-    
+
+
+
     // -----------------------------------------------------------------
     /**
      * Set client character set
@@ -431,8 +431,8 @@ class CI_DB_pdo_driver extends CI_DB
         return TRUE;
     }
 
-    // --------------------------------------------------------------------    
-    
+    // --------------------------------------------------------------------
+
     /**
      * Protect Identifiers
      *
@@ -455,7 +455,7 @@ class CI_DB_pdo_driver extends CI_DB
             }
 
             return $escaped_array;
-        }   
+        }
 
         // This function may get "item1 item2" as a string, and so
         // we may need "item1 item2" and not "item1 item2"
@@ -479,10 +479,10 @@ class CI_DB_pdo_driver extends CI_DB
         }
 
         $exceptions = array('AS', '/', '-', '%', '+', '*', 'OR', 'IS');
-        
+
         foreach ($exceptions as $exception)
         {
-        
+
             if (stristr($item, " {$exception} ") !== FALSE)
             {
                 $item = preg_replace('/ ('.preg_quote($exception).') /i', ' $1 ', $item);
@@ -490,9 +490,9 @@ class CI_DB_pdo_driver extends CI_DB
         }
         return $item;
     }
-            
+
     // --------------------------------------------------------------------
-    
+
     /**
      * From Tables
      *
@@ -509,18 +509,18 @@ class CI_DB_pdo_driver extends CI_DB
         {
             $tables = array($tables);
         }
-        
+
         return '('.implode(', ', $tables).')';
     }
 
     // --------------------------------------------------------------------
-    
+
     /**
      * Rollback Transaction
      *
      * @access  public
-     * @return  bool        
-     */ 
+     * @return  bool
+     */
     function trans_rollback()
     {
         if ( ! $this->trans_enabled)
@@ -537,20 +537,20 @@ class CI_DB_pdo_driver extends CI_DB
         $this->simple_query('ROLLBACK');
         return TRUE;
     }
-    
+
     /**
      * Begin Transaction
      *
      * @access  public
-     * @return  bool        
-     */ 
+     * @return  bool
+     */
     function trans_begin($test_mode = FALSE)
     {
         if ( ! $this->trans_enabled)
         {
             return TRUE;
         }
-        
+
         // When transactions are nested we only begin/commit/rollback the outermost ones
         if ($this->_trans_depth > 0)
         {
@@ -565,13 +565,13 @@ class CI_DB_pdo_driver extends CI_DB
         $this->simple_query('BEGIN TRANSACTION');
         return TRUE;
     }
-    
+
     /**
      * Commit Transaction
      *
      * @access  public
-     * @return  bool        
-     */ 
+     * @return  bool
+     */
     function trans_commit()
     {
         if ( ! $this->trans_enabled)
@@ -589,7 +589,7 @@ class CI_DB_pdo_driver extends CI_DB
         return TRUE;
     }
 
-    
+
     // --------------------------------------------------------------------
 
     /**
@@ -603,8 +603,8 @@ class CI_DB_pdo_driver extends CI_DB
     {
         return true;
     }
-    
-        
+
+
 }
 
 ?>

@@ -42,7 +42,7 @@ class CI_Hooks {
 		$this->_initialize();
 		log_message('debug', "Hooks Class Initialized");
 	}
-  
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -50,7 +50,7 @@ class CI_Hooks {
 	 *
 	 * @access	private
 	 * @return	void
-	 */  
+	 */
   	function _initialize()
   	{
 		$CFG =& load_class('Config');
@@ -76,7 +76,7 @@ class CI_Hooks {
 		$this->hooks =& $hook;
 		$this->enabled = TRUE;
   	}
-  
+
 	// --------------------------------------------------------------------
 
 	/**

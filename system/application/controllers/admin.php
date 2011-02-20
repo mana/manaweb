@@ -21,23 +21,23 @@
  */
 
 /**
- * The admin controller is responsible for all actions a admin or gm can do 
+ * The admin controller is responsible for all actions a admin or gm can do
  * to administrate manaweb.
- * Each functions in the admin controller need an authorized user with 
- * administrative rights, so the authentication is just done in the 
+ * Each functions in the admin controller need an authorized user with
+ * administrative rights, so the authentication is just done in the
  * constructor, rather in every single function.
- * 
+ *
  * @ingroup controllers
  */
 class Admin extends Controller {
 
     /**
      * This constant defines the format CodeIgniter writes its logfiles
-     * to the log_path directory. 
+     * to the log_path directory.
      */
     const LOGFILE_FORMAT = "/^log-\d{4}-\d{2}-\d{2}\.php$/";
-    
-    
+
+
     /**
      * Initializes the Home controller.
      */
@@ -47,24 +47,24 @@ class Admin extends Controller {
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
-        
+
         $this->load->helper('form');
         $this->load->library('validation');
-        $this->translationprovider->loadLanguage('admin');            
+        $this->translationprovider->loadLanguage('admin');
 
-        
+
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
         {
-            $param = array('has_errors' => false); 
+            $param = array('has_errors' => false);
             $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'), 
+            $this->output->showPage(lang('account_login'),
                 'manaweb/login_form', $param);
         }
     }
-    
-    
-    /** 
+
+
+    /**
      * Default controller function. Shows the main page of the admin interface.
      */
     public function index()
@@ -73,7 +73,7 @@ class Admin extends Controller {
         {
             return;
         }
-        
+
         $this->output->showPage(lang('admin_title'), 'admin/main');
     }
 
@@ -109,7 +109,7 @@ class Admin extends Controller {
         }
         $this->translationprovider->loadLanguage('character');
         $this->load->library('mapprovider');
-        
+
         $params = array();
         $char   = $this->user->getCharacter($id);
         $params['char'] = $char;
@@ -131,16 +131,16 @@ class Admin extends Controller {
         {
             return;
         }
-        
+
         $this->load->library('mapprovider');
         $this->load->library('skillprovider');
         $this->load->library('attributeprovider');
         $this->load->library('dalprovider');
-        
+
         // execute the requested action
         $retmsg = null;
         $params = array();
-        
+
         switch ($action)
         {
             case 'reload_item_images';
@@ -165,7 +165,7 @@ class Admin extends Controller {
                 $retmsg = $this->_delete_logfile($params, $param);
                 break;
         }
-        
+
         $params['maps_file_age'] = $this->mapprovider->getMapVersion();
         $params['skills_file_age'] = $this->skillprovider->getSkillsCacheVersion();
         $params['attributes_file_age'] = $this->attributeprovider->getAttributesCacheVersion();
@@ -175,12 +175,12 @@ class Admin extends Controller {
         {
             $params = array_merge($params, $this->_count_error_logs());
         }
-        
-        $this->output->showPage(lang('maintenance_title'), 
+
+        $this->output->showPage(lang('maintenance_title'),
             'admin/maintenance', $params);
     }
-    
-    
+
+
     /**
      * This function is called by the view admin/main if the user searches for
      * a account.
@@ -194,7 +194,7 @@ class Admin extends Controller {
             return;
         }
 
-        // the searchfield has to contain at least one character        
+        // the searchfield has to contain at least one character
         $rules['Manausername']  = "required|min_length[1]";
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
@@ -202,16 +202,16 @@ class Admin extends Controller {
             $this->output->showPage(lang('admin_title'), 'admin/main');
             return;
         }
-        
+
         // search for the given account name
         // even if active record has a method ->like we write the code on our
         // own due to a bug which does wrong quoting in the searchstring... :(
         $search = '%' . $this->input->post('Manausername') . '%';
-        
+
         $this->db->where('username LIKE \'' . $search . '\'');
         $this->db->order_by('username');
         $res = $this->db->get(Account::ACCOUNT_TBL);
-        
+
         if ($res->num_rows() > 0)
         {
             $accounts = array();
@@ -228,7 +228,7 @@ class Admin extends Controller {
         {
             $param = array('result_account' => false);
         }
-        
+
         $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     }
 
@@ -245,7 +245,7 @@ class Admin extends Controller {
             echo "<ul></ul>";
             return;
         }
-        
+
         if (strlen($this->input->post('Manausername')) < 1)
         {
             echo "<ul></ul>";
@@ -263,8 +263,8 @@ class Admin extends Controller {
         }
         echo "</ul>";
     }
-    
-    
+
+
     /**
      * This function is called by the view admin/main if the user searches for
      * a character.
@@ -277,8 +277,8 @@ class Admin extends Controller {
             $this->output->showPage(lang('admin_title'), 'admin/main', $param);
             return;
         }
-        
-        // the searchfield has to contain at least one character        
+
+        // the searchfield has to contain at least one character
         $rules['Manacharacter']  = "required|min_length[1]";
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
@@ -286,7 +286,7 @@ class Admin extends Controller {
             $this->output->showPage(lang('admin_title'), 'admin/main');
             return;
         }
-        
+
         // search for the given character name
         // due to another bug in pdo that wraps parenthesis around the table
         // but not araound the join part, sqlite returns an error
@@ -300,9 +300,9 @@ class Admin extends Controller {
                          Account::ACCOUNT_TBL.".id"
              . " WHERE ".Character::CHARACTER_TBL.".name LIKE '".$search."'"
              . " ORDER BY ".Character::CHARACTER_TBL.".name";
-             
+
         $res = $this->db->query($sql);
-        
+
         if ($res->num_rows() > 0)
         {
             // transform sql results to char objects
@@ -311,7 +311,7 @@ class Admin extends Controller {
             {
                 $result[] = new Character($row);
             }
-            
+
             $param = array(
                 'result_character' => $result,
                 'searchstring'     => $this->input->post('Manacharacter')
@@ -321,7 +321,7 @@ class Admin extends Controller {
         {
             $param = array('result_character' => false);
         }
-        
+
         $this->output->showPage(lang('admin_title'), 'admin/main', $param);
     } // function search_character()
 
@@ -355,7 +355,7 @@ class Admin extends Controller {
         }
         echo "</ul>";
     }
-    
+
     /**
      * This function tries to reload the XML_MAPS_FILE from manaserv and updates the
      * local cache.
@@ -388,7 +388,7 @@ class Admin extends Controller {
         $this->attributeprovider->loadAttributesFile();
         $params['action_result'] = lang('attributes_file_reloaded');
     }
-    
+
     /**
      * This function tries to reload the items.xml from manaserv and updates the
      * database table.
@@ -442,7 +442,7 @@ class Admin extends Controller {
         {
             $msg = "Error: The logfile <tt>" . $filename . "</tt> was not found.";
         }
-        
+
         $params['action_result'] = $msg;
     }
 
@@ -473,9 +473,9 @@ class Admin extends Controller {
         $params = array_merge($params, $this->_count_error_logs());
         $params['action_result'] = $msg;
     }
-    
-    /** 
-     * This function looks into the error log directory and counts the number 
+
+    /**
+     * This function looks into the error log directory and counts the number
      * and size of all error logs as well as the date of the first and the
      * last file.
      *
@@ -487,11 +487,11 @@ class Admin extends Controller {
         if (strlen($log_path) == 0)
         {
             $log_path = './system/logs';
-        } 
+        }
 
         $files = array();
         $retval = array(
-            'log_count'     => 0, 
+            'log_count'     => 0,
             'logfile_size'  => 0,
             'log_path'      => $log_path,
             'min_date'      => null,
@@ -506,7 +506,7 @@ class Admin extends Controller {
             {
                 continue;
             }
-                       
+
             // check if the file is a logfile e.g. "log-2008-09-03.php"
             if (preg_match(Admin::LOGFILE_FORMAT , $entry) > 0)
             {
@@ -536,6 +536,6 @@ class Admin extends Controller {
         $retval['logfiles'] = $files;
         return $retval;
     }
-    
+
 } // class Myaccount
 ?>

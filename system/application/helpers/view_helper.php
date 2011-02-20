@@ -19,11 +19,11 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
- 
+
 /**
  * This helper function generates a link "to the top" that enables the user to
  * jump to the beginning of each page.
- * 
+ *
  * @return (String) HTML code to use in views to link to the top of a page.
  * @ingroup helpers
  */

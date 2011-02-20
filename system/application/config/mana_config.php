@@ -58,8 +58,8 @@ $config['manaserv-data_path'] = 'manaserv-data/';
 |
 | Some images defined in the items.xml file are stored as greyscaled images
 | to be able to colorize them in different colors. As the GD library shipped
-| with PHP has some problems with non-true-color images, manaweb needs an 
-| external tool that dyes the images for manaweb. You can find this tool 
+| with PHP has some problems with non-true-color images, manaweb needs an
+| external tool that dyes the images for manaweb. You can find this tool
 | called dyecmd in version control under mana/tools/dyecmd.
 |
 */
@@ -84,7 +84,7 @@ $config['mana_plugins_jpgraph'] = pathinfo( FCPATH, PATHINFO_DIRNAME ) .
 | Available languages
 |--------------------------------------------------------------------------
 |
-| Provide a list with all available languages. The user can choose during 
+| Provide a list with all available languages. The user can choose during
 | login which language he prefers. The translations should be added under
 | system/application/language
 |
@@ -96,7 +96,7 @@ $_mana_languages = array(
 );
 
 $config['mana_languages'] = $_mana_languages;
- 
+
 
 /*
 |--------------------------------------------------------------------------
@@ -105,18 +105,18 @@ $config['mana_languages'] = $_mana_languages;
 */
 
 
-/* 
+/*
 | Set this option to true, if users should be able to delete one of their
-| character via the webinterface. Set this to false, if this option should be 
-| disabled. The only way to delete a character in this case is to use the 
+| character via the webinterface. Set this to false, if this option should be
+| disabled. The only way to delete a character in this case is to use the
 | client.
 |
 | possible values: true | false
 */
 $config['mana_allow_user_delete_character'] = true;
 
-/* 
-| Set this option to true, to enable the internal profiler shipped with 
+/*
+| Set this option to true, to enable the internal profiler shipped with
 | CodeIgniter. This should be disabled in production!!!
 |
 | possible values: true | false
@@ -173,7 +173,7 @@ $config['mana_account_levels'] = $_mana_levels;
 |
 */
 
-/* 
+/*
 | "manaadmin_level" defines the minimum level to have access to the manaweb admin
 | interface. It just enables the link in the menu and gives no other rights.
 */
@@ -181,22 +181,22 @@ $config['manaweb_admin_permissions'] = array(
 
     // needed level to see a list of all accounts
     'see_account_list'          => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to see a list of all characters
     'see_character_list'        => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to reset a password of an account
     'reset_account_password'    => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to ban an account for a given time
     'ban_account'               => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to unban an account for a given time
     'unban_account'             => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to modify the level of an account
     'modify_account_level'      => array( 'group' => AL_ADMIN ),
-    
+
     // needed level to delete an account
     'delete_account'            => array( 'group' => AL_ADMIN )
 );
@@ -204,23 +204,23 @@ $config['manaweb_admin_permissions'] = array(
 
 /*
 |--------------------------------------------------------------------------
-| Configuration for password change 
+| Configuration for password change
 |--------------------------------------------------------------------------
-| 
-| When a user losts his password and requests to change it, we will send him a 
+|
+| When a user losts his password and requests to change it, we will send him a
 | mail with a link where he can change it. The link should point to your manaweb
 | installation. The url should contain two paramters in sprintf syntax:
 |   %s (string) the username
 |   %s (string) a generic key stored in the database to validate the mailbox
 |
 */
-$config['mana_change_password_link'] = "http://example.com/index.php". 
+$config['mana_change_password_link'] = "http://example.com/index.php".
     "/myaccount/changepassword/%s/%s";
 
-    
+
 /*
 | Define the subject of the mail that should be sent to the user.
-*/    
+*/
 $config['mana_change_password_subject'] = "Mana: Your password change request";
 
 
@@ -230,11 +230,11 @@ $config['mana_change_password_subject'] = "Mana: Your password change request";
 */
 $config['mana_change_password_expiration'] = 86400;
 
-        
+
 /*
 | Define the mailaddress from which mails are sent to the user.
 | e.g. something like "noreply@manasource.org"
-*/    
+*/
 $config['mana_email_from_address'] = "noreply@example.com";
 
 /*

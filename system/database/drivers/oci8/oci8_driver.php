@@ -44,14 +44,14 @@
 class CI_DB_oci8_driver extends CI_DB {
 
 	var $dbdriver = 'oci8';
-	
+
 	// The character used for excaping
 	var $_escape_char = '"';
-	
+
 	// clause and character used for LIKE escape sequences
 	var $_like_escape_str = " escape '%s' ";
 	var $_like_escape_chr = '!';
-	
+
 	/**
 	 * The syntax to count rows is slightly different across different
 	 * database engines, so this string appears in each driver and is
@@ -141,7 +141,7 @@ class CI_DB_oci8_driver extends CI_DB {
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Version number query string
 	 *
@@ -248,7 +248,7 @@ class CI_DB_oci8_driver extends CI_DB {
 			}
 			return FALSE;
 		}
-		
+
 		// build the query string
 		$sql = "begin $package.$procedure(";
 
@@ -256,20 +256,20 @@ class CI_DB_oci8_driver extends CI_DB {
 		foreach($params as $param)
 		{
 			$sql .= $param['name'] . ",";
-			
+
 			if (array_key_exists('type', $param) && ($param['type'] == OCI_B_CURSOR))
 			{
 				$have_cursor = TRUE;
 			}
 		}
 		$sql = trim($sql, ",") . "); end;";
-				
+
 		$this->stmt_id = FALSE;
 		$this->_set_stmt_id($sql);
 		$this->_bind_params($params);
 		$this->query($sql, FALSE, $have_cursor);
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -284,7 +284,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		{
 			return;
 		}
-		
+
 		foreach ($params as $param)
 		{
  			foreach (array('name', 'value', 'type', 'length') as $val)
@@ -305,26 +305,26 @@ class CI_DB_oci8_driver extends CI_DB {
 	 * Begin Transaction
 	 *
 	 * @access	public
-	 * @return	bool		
-	 */	
+	 * @return	bool
+	 */
 	function trans_begin($test_mode = FALSE)
 	{
 		if ( ! $this->trans_enabled)
 		{
 			return TRUE;
 		}
-		
+
 		// When transactions are nested we only begin/commit/rollback the outermost ones
 		if ($this->_trans_depth > 0)
 		{
 			return TRUE;
 		}
-		
+
 		// Reset the transaction failure flag.
 		// If the $test_mode flag is set to TRUE transactions will be rolled back
 		// even if the queries produce a successful result.
 		$this->_trans_failure = ($test_mode === TRUE) ? TRUE : FALSE;
-		
+
 		$this->_commit = OCI_DEFAULT;
 		return TRUE;
 	}
@@ -335,8 +335,8 @@ class CI_DB_oci8_driver extends CI_DB {
 	 * Commit Transaction
 	 *
 	 * @access	public
-	 * @return	bool		
-	 */	
+	 * @return	bool
+	 */
 	function trans_commit()
 	{
 		if ( ! $this->trans_enabled)
@@ -361,8 +361,8 @@ class CI_DB_oci8_driver extends CI_DB {
 	 * Rollback Transaction
 	 *
 	 * @access	public
-	 * @return	bool		
-	 */	
+	 * @return	bool
+	 */
 	function trans_rollback()
 	{
 		if ( ! $this->trans_enabled)
@@ -399,7 +399,7 @@ class CI_DB_oci8_driver extends CI_DB {
 	   		{
 				$str[$key] = $this->escape_str($val, $like);
 	   		}
-   		
+
 	   		return $str;
 	   	}
 
@@ -407,7 +407,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		$CI =& get_instance();
 
 		$str = $CI->input->_remove_invisible_characters($str);
-		
+
 		// escape LIKE condition wildcards
 		if ($like === TRUE)
 		{
@@ -415,7 +415,7 @@ class CI_DB_oci8_driver extends CI_DB {
 								array($this->_like_escape_chr.'%', $this->_like_escape_chr.'_', $this->_like_escape_chr.$this->_like_escape_chr),
 								$str);
 		}
-		
+
 		return $str;
 	}
 
@@ -495,7 +495,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		{
 			$sql .= " WHERE TABLE_NAME LIKE '".$this->escape_like_str($this->dbprefix)."%' ".sprintf($this->_like_escape_str, $this->_like_escape_char);
 		}
-		
+
 		return $sql;
 	}
 
@@ -558,7 +558,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		$error = ocierror($this->conn_id);
 		return $error['code'];
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -581,26 +581,26 @@ class CI_DB_oci8_driver extends CI_DB {
 		{
 			if (strpos($item, '.'.$id) !== FALSE)
 			{
-				$str = $this->_escape_char. str_replace('.', $this->_escape_char.'.', $item);  
-				
+				$str = $this->_escape_char. str_replace('.', $this->_escape_char.'.', $item);
+
 				// remove duplicates if the user already included the escape
 				return preg_replace('/['.$this->_escape_char.']+/', $this->_escape_char, $str);
-			}		
+			}
 		}
-	
+
 		if (strpos($item, '.') !== FALSE)
 		{
-			$str = $this->_escape_char.str_replace('.', $this->_escape_char.'.'.$this->_escape_char, $item).$this->_escape_char;			
+			$str = $this->_escape_char.str_replace('.', $this->_escape_char.'.'.$this->_escape_char, $item).$this->_escape_char;
 		}
 		else
 		{
 			$str = $this->_escape_char.$item.$this->_escape_char;
 		}
-		
+
 		// remove duplicates if the user already included the escape
 		return preg_replace('/['.$this->_escape_char.']+/', $this->_escape_char, $str);
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -619,12 +619,12 @@ class CI_DB_oci8_driver extends CI_DB {
 		{
 			$tables = array($tables);
 		}
-		
+
 		return implode(', ', $tables);
 	}
 
 	// --------------------------------------------------------------------
-	
+
 	/**
 	 * Insert statement
 	 *
@@ -662,17 +662,17 @@ class CI_DB_oci8_driver extends CI_DB {
 		{
 			$valstr[] = $key." = ".$val;
 		}
-		
+
 		$limit = ( ! $limit) ? '' : ' LIMIT '.$limit;
-		
+
 		$orderby = (count($orderby) >= 1)?' ORDER BY '.implode(", ", $orderby):'';
-	
+
 		$sql = "UPDATE ".$table." SET ".implode(', ', $valstr);
 
 		$sql .= ($where != '' AND count($where) >=1) ? " WHERE ".implode(" ", $where) : '';
 
 		$sql .= $orderby.$limit;
-		
+
 		return $sql;
 	}
 
@@ -688,12 +688,12 @@ class CI_DB_oci8_driver extends CI_DB {
 	 * @access	public
 	 * @param	string	the table name
 	 * @return	string
-	 */	
+	 */
 	function _truncate($table)
 	{
 		return "TRUNCATE TABLE ".$table;
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -706,7 +706,7 @@ class CI_DB_oci8_driver extends CI_DB {
 	 * @param	array	the where clause
 	 * @param	string	the limit clause
 	 * @return	string
-	 */	
+	 */
 	function _delete($table, $where = array(), $like = array(), $limit = FALSE)
 	{
 		$conditions = '';
@@ -724,7 +724,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		}
 
 		$limit = ( ! $limit) ? '' : ' LIMIT '.$limit;
-	
+
 		return "DELETE FROM ".$table.$conditions.$limit;
 	}
 
@@ -755,7 +755,7 @@ class CI_DB_oci8_driver extends CI_DB {
 		$this->limit_used = TRUE;
 
 		return $newsql;
-	}	
+	}
 
 	// --------------------------------------------------------------------
 

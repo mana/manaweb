@@ -36,7 +36,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 	{
 		return @pg_num_rows($this->result_id);
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -67,7 +67,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 		{
 			$field_names[] = pg_field_name($this->result_id, $i);
 		}
-		
+
 		return $field_names;
 	}
 
@@ -95,7 +95,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 
 			$retval[] = $F;
 		}
-		
+
 		return $retval;
 	}
 
@@ -105,7 +105,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 	 * Free the result
 	 *
 	 * @return	null
-	 */		
+	 */
 	function free_result()
 	{
 		if (is_resource($this->result_id))
@@ -146,7 +146,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 	{
 		return pg_fetch_assoc($this->result_id);
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -161,7 +161,7 @@ class CI_DB_postgre_result extends CI_DB_result {
 	{
 		return pg_fetch_object($this->result_id);
 	}
-	
+
 }
 
 

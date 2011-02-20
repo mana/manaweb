@@ -1,7 +1,7 @@
 <h3><?= lang('character_guild_member') ?></h3>
-<?php 
+<?php
     if ($char->isGuildMember())
-    { // the char is member in at least one guild... 
+    { // the char is member in at least one guild...
 ?>
 
 <table class="datatable">
@@ -24,14 +24,14 @@
     <? } ?>
 </table>
 
-<?php 
-    } 
-    else 
-    {  // the char is not member in any guild... 
+<?php
+    }
+    else
+    {  // the char is not member in any guild...
 ?>
     <p>
         <?= lang('character_not_guild_member') ?>
     </p>
-<?php 
-    } 
+<?php
+    }
 ?>

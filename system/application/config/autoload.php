@@ -39,7 +39,7 @@
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array( 'database', 'session', 'menuprovider', 
+$autoload['libraries'] = array( 'database', 'session', 'menuprovider',
     'membershipprovider', 'translationprovider',
     'core/navigationprovider', 'core/themeprovider' );
 
@@ -92,7 +92,7 @@ $autoload['config'] = array( 'mana_config' );
 |
 |	$autoload['language'] = array('lang1', 'lang2');
 |
-| NOTE: Do not include the "_lang" part of your file.  For example 
+| NOTE: Do not include the "_lang" part of your file.  For example
 | "codeigniter_lang.php" would be referenced as array('codeigniter');
 |
 */

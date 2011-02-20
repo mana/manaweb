@@ -25,7 +25,7 @@
  * @link		http://codeigniter.com/user_guide/database/
  */
 class CI_DB_odbc_result extends CI_DB_result {
-	
+
 	/**
 	 * Number of rows in the result set
 	 *
@@ -36,7 +36,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 	{
 		return @odbc_num_rows($this->result_id);
 	}
-	
+
 	// --------------------------------------------------------------------
 
 	/**
@@ -67,7 +67,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 		{
 			$field_names[] 	= odbc_field_name($this->result_id, $i);
 		}
-		
+
 		return $field_names;
 	}
 
@@ -95,7 +95,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 
 			$retval[] = $F;
 		}
-		
+
 		return $retval;
 	}
 
@@ -105,7 +105,7 @@ class CI_DB_odbc_result extends CI_DB_result {
 	 * Free the result
 	 *
 	 * @return	null
-	 */		
+	 */
 	function free_result()
 	{
 		if (is_resource($this->result_id))

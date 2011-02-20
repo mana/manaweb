@@ -47,7 +47,7 @@ if ( ! function_exists('set_cookie'))
 	function set_cookie($name = '', $value = '', $expire = '', $domain = '', $path = '/', $prefix = '')
 	{
 		if (is_array($name))
-		{		
+		{
 			foreach (array('value', 'expire', 'domain', 'path', 'prefix', 'name') as $item)
 			{
 				if (isset($name[$item]))
@@ -56,10 +56,10 @@ if ( ! function_exists('set_cookie'))
 				}
 			}
 		}
-	
+
 		// Set the config file options
 		$CI =& get_instance();
-	
+
 		if ($prefix == '' AND $CI->config->item('cookie_prefix') != '')
 		{
 			$prefix = $CI->config->item('cookie_prefix');
@@ -72,7 +72,7 @@ if ( ! function_exists('set_cookie'))
 		{
 			$path = $CI->config->item('cookie_path');
 		}
-		
+
 		if ( ! is_numeric($expire))
 		{
 			$expire = time() - 86500;
@@ -88,11 +88,11 @@ if ( ! function_exists('set_cookie'))
 				$expire = 0;
 			}
 		}
-	
+
 		setcookie($prefix.$name, $value, $expire, $path, $domain, 0);
 	}
 }
-	
+
 // --------------------------------------------------------------------
 
 /**
@@ -108,14 +108,14 @@ if ( ! function_exists('get_cookie'))
 	function get_cookie($index = '', $xss_clean = FALSE)
 	{
 		$CI =& get_instance();
-		
+
 		$prefix = '';
-		
+
 		if ( ! isset($_COOKIE[$index]) && config_item('cookie_prefix') != '')
 		{
 			$prefix = config_item('cookie_prefix');
 		}
-		
+
 		return $CI->input->cookie($prefix.$index, $xss_clean);
 	}
 }

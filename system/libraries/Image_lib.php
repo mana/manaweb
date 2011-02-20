@@ -147,7 +147,7 @@ class CI_Image_lib {
 		if ($this->source_image == '')
 		{
 			$this->set_error('imglib_source_image_required');
-			return FALSE;	   
+			return FALSE;
 		}
 
 		/*
@@ -190,7 +190,7 @@ class CI_Image_lib {
 		// Set the Image Properties
 		if ( ! $this->get_image_properties($this->source_folder.$this->source_image))
 		{
-			return FALSE;	   
+			return FALSE;
 		}
 
 		/*
@@ -400,7 +400,7 @@ class CI_Image_lib {
 		if ($this->rotation_angle == '' OR ! in_array($this->rotation_angle, $degs))
 		{
 			$this->set_error('imglib_rotation_angle_required');
-			return FALSE;	   
+			return FALSE;
 		}
 
 		// Reassign the width and height
@@ -937,7 +937,7 @@ class CI_Image_lib {
 		if ($wm_img_type == 3 AND function_exists('imagealphablending'))
 		{
 			@imagealphablending($src_img, TRUE);
-		} 
+		}
 
 		// Set RGB values for text and shadow
 		$rgba = imagecolorat($wm_img, $this->wm_x_transp, $this->wm_y_transp);
@@ -1439,7 +1439,7 @@ class CI_Image_lib {
 	{
 		$ext = strrchr($source_image, '.');
 		$name = ($ext === FALSE) ? $source_image : substr($source_image, 0, -strlen($ext));
-		
+
 		return array('ext' => $ext, 'name' => $name);
 	}
 

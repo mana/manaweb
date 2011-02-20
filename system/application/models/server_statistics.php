@@ -19,21 +19,21 @@
  *  59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
  */
 
-// load dependecies 
+// load dependecies
 require_once(APPPATH.'models/guild'.EXT);
 require_once(APPPATH.'models/character'.EXT);
 
- 
+
 /**
- * The Server_statistics model deals with all global data according to a 
+ * The Server_statistics model deals with all global data according to a
  * server.
- * 
+ *
  * @ingroup models
- */ 
+ */
 class Server_statistics extends Model {
 
     //*************************************************************************
-    
+
     /**
      * Constant for statistic value of player count.
      */
@@ -58,10 +58,10 @@ class Server_statistics extends Model {
      * Constant for statistic value of guild topten list.
      */
     const GUILD_TOPTEN = 'guild_topten';
-    
+
     //*************************************************************************
-    
-    
+
+
     /**
      * Constructor initializes a new instalnce of the Server_statistics model.
      */
@@ -69,35 +69,35 @@ class Server_statistics extends Model {
     {
         parent::Model();
     }
-    
-    
+
+
     /**
-     * This function gathers all global statistics from the manaserv server and 
+     * This function gathers all global statistics from the manaserv server and
      * summarizes them in an array.
-     * 
+     *
      * @return Array with server statistics
      */
     public function getGlobalStats()
-    { 
+    {
         $stats = array();
-        
+
         // simple stats
         $stats[Server_statistics::PLAYER_COUNT] = $this->getPlayerCount();
         $stats[Server_statistics::CHARACTER_COUNT] = $this->getCharacterCount();
         $stats[Server_statistics::GUILD_COUNT] = $this->getGuildCount();
         $stats[Server_statistics::ECONOMY_PURCHASE_POW] = $this->getPurchasingPower();
-        
+
         // more complex stats
         $stats[Server_statistics::GUILD_TOPTEN] = $this->getGuildTopTen();
         $stats[Server_statistics::CHARACTER_TOPTEN] = $this->getCharacterTopTen();
-        
+
         return $stats;
     }
-    
-    
-    /** 
+
+
+    /**
      * This function counts all registered accounts.
-     * 
+     *
      * @return (int) Number of accounts registered at the manaserv.
      */
     private function getPlayerCount()
@@ -105,35 +105,35 @@ class Server_statistics extends Model {
         // TODO: use constants for database names
         return $this->db->count_all('mana_accounts');
     }
-    
-    
-    /** 
+
+
+    /**
      * This function counts all created characters.
-     * 
+     *
      * @return (int) Number of created characters on the manaserv.
      */
     private function getCharacterCount()
     {
         return $this->db->count_all('mana_characters');
     }
-    
-    
-    /** 
+
+
+    /**
      * This function counts all created guilds.
-     * 
+     *
      * @return (int) Number of created guilds on the manaserv.
      */
     private function getGuildCount()
     {
         return $this->db->count_all('mana_guilds');
     }
-    
-    
+
+
     /**
      * This function returns the amount of money all characters have together.
-     * 
+     *
      * @return (int) Purchasing power of The Mana Server population.
-     */     
+     */
     private function getPurchasingPower()
     {
         $this->db->select_sum('attr_base');
@@ -142,8 +142,8 @@ class Server_statistics extends Model {
 
         return $query->row()->attr_base;
     }
-    
-    
+
+
     /**
      * This function returns a top ten list of all registered guilds.
      * At the moment the top ten is computed, simply by counting the number of
@@ -154,7 +154,7 @@ class Server_statistics extends Model {
     private function getGuildTopTen()
     {
         // as the statements get more complex its easier and more efficient to
-        // write statements per dbsystem individually 
+        // write statements per dbsystem individually
         if (($this->db->dbdriver == 'pdo') ||
             ($this->db->dbdriver ==  'mysql' ))
         {
@@ -164,31 +164,31 @@ class Server_statistics extends Model {
                  . "        COUNT(m.GUILD_ID) AS MEMBERS "
                  . "  FROM " . Guild::GUILD_TBL . " g "
                  . " LEFT OUTER JOIN " . Guild::GUILD_MEMBER_TBL . " m "
-                 . "    ON g.ID = m.guild_id " 
+                 . "    ON g.ID = m.guild_id "
                  . " GROUP BY g.ID, g.NAME "
                  . " ORDER BY MEMBERS DESC, NAME "
                  . " LIMIT 10 ";
         }
         else
         {
-            log_message('error', 'models/server_statistics: requested statement ' . 
+            log_message('error', 'models/server_statistics: requested statement ' .
                 'for unknown database system. This need implementation!');
             show_error( "this feature is not implemented for your ".
              "database system!");
         }
-             
-        $res = $this->db->query($sql);    
-        
-        
+
+        $res = $this->db->query($sql);
+
+
         if ($res->num_rows() == 0)
         {
             return false;
         }
-        
+
         return $res->result();
     } // function getGuildTopTen()
-    
-    
+
+
     /**
      * This function returns a top ten list of all registered guilds.
      * At the moment the top ten is computed, simply by counting the number of
@@ -199,12 +199,12 @@ class Server_statistics extends Model {
     private function getCharacterTopTen()
     {
         // as the statements get more complex its easier and more efficient to
-        // write statements per dbsystem individually 
+        // write statements per dbsystem individually
         if (($this->db->dbdriver == 'pdo') ||
             ($this->db->dbdriver ==  'mysql' ))
         {
             // should work for mysql and sqlite
-            $sql = "SELECT c.ID AS ID, " 
+            $sql = "SELECT c.ID AS ID, "
                  . "       c.NAME as NAME, "
                  . "       c.LEVEL AS LEVEL, "
                  . "       u.username AS USERNAME "
@@ -216,22 +216,22 @@ class Server_statistics extends Model {
         }
         else
         {
-            log_message('error', 'models/server_statistics: requested statement ' . 
+            log_message('error', 'models/server_statistics: requested statement ' .
                 'for unknown database system. This need implementation!');
             show_error( "this feature is not implemented for your ".
              "database system!");
         }
-             
-        $res = $this->db->query($sql);    
-        
+
+        $res = $this->db->query($sql);
+
         if ($res->num_rows() == 0)
         {
             return false;
         }
-        
+
         return $res->result();
-        
+
     } // function getCharacterTopTen()
-    
+
 } // class Server Statistics
 ?>

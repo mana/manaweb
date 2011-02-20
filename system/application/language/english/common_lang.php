@@ -22,7 +22,7 @@
 
 
 $lang['manaweb_title']     = 'Account Manager';
- 
+
 $lang['cancel']           = 'Cancel';
 $lang['go_up']            = 'go up';
 

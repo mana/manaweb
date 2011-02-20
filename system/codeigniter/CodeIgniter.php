@@ -148,7 +148,7 @@ else
 load_class('Controller', FALSE);
 
 // Load the local application controller
-// Note: The Router class automatically validates the controller path.  If this include fails it 
+// Note: The Router class automatically validates the controller path.  If this include fails it
 // means that the default controller in the Routes.php file is not resolving to something valid.
 if ( ! file_exists(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().EXT))
 {
@@ -216,7 +216,7 @@ else
 	 * ------------------------------------------------------
 	 */
 	$EXT->_call_hook('post_controller_constructor');
-	
+
 	// Is there a "remap" function?
 	if (method_exists($CI, '_remap'))
 	{
