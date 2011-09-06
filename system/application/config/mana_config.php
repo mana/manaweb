@@ -30,7 +30,7 @@
 |   http://example.com/
 |
 */
-$config['base_url'] = "http://example.com/manaweb/";
+$config['base_url'] = "http://web.singularity.invertika.org";
 
 
 /*

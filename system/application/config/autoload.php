@@ -81,7 +81,7 @@ $autoload['plugin'] = array();
 |
 */
 
-$autoload['config'] = array( 'mana_config' );
+$autoload['config'] = array( 'mana_config', 'mana_database' );
 
 
 /*

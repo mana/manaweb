@@ -28,11 +28,22 @@
 class Connector extends Controller {
 
     /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
+    /**
      * Initializes the Home controller.
      */
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
@@ -51,7 +62,9 @@ class Connector extends Controller {
     public function onlineuser($format="plain")
     {
         $this->db->order_by('name');
-        $query = $this->db->get(Character::ONLINE_CHARS_TBL);
+        
+        $tblOnlineChars = $this->CI->config->item('tbl_name_online_chars');
+        $query = $this->db->get($tblOnlineChars);
         $users['users'] = $query->result_array();
 
         switch ($format)

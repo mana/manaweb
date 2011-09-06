@@ -30,18 +30,28 @@ require_once(APPPATH.'models/inventory'.EXT);
  */
 class Itemslist extends Controller
 {
-	/**
-	 * Array used to store category statistics.
-	 */
-	private $cat_stats;
+    /**
+     * Array used to store category statistics.
+     */
+    private $cat_stats;
 
-
+    /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+        
     /**
      * Initializes the Home controller.
      */
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
@@ -86,7 +96,9 @@ class Itemslist extends Controller
 
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');
-        $res = $this->db->get('mana_items');
+        
+        $tblItems = $this->CI->config->item('tbl_name_items');
+        $res = $this->db->get($tblItems);
 
         if ($res->num_rows() > 0)
         {
@@ -118,7 +130,9 @@ class Itemslist extends Controller
 
         $this->db->where('name LIKE \'' . $search . '\'');
         $this->db->order_by('name');
-        $res = $this->db->get('mana_items');
+        
+        $tblItems = $this->CI->config->item('tbl_name_items');
+        $res = $this->db->get($tblItems);
 
         echo "<ul>";
         foreach ($res->result() as $item)
@@ -137,7 +151,9 @@ class Itemslist extends Controller
     public function show($itemcategory)
     {
 	    $this->db->order_by('name');
-	    $query = $this->db->get_where('mana_items',
+            
+            $tblItems = $this->CI->config->item('tbl_name_items');
+	    $query = $this->db->get_where($tblItems,
 	    	array('itemtype' => $itemcategory));
 
 	    $items = array();
@@ -182,11 +198,12 @@ class Itemslist extends Controller
      */
     private function _initCategoryStats()
     {
+            $tblItems = $this->CI->config->item('tbl_name_items');
+        
 	    $this->cat_stats = array();
 
-        // TODO: replace hard coded table name with constant
 	    $sql = "SELECT itemtype, COUNT(*) AS amount \n".
-	           "FROM   mana_items \n".
+	           "FROM   " . $tblItems . "\n".
 	           "GROUP  BY itemtype";
 
 	    $query 	= $this->db->query($sql);

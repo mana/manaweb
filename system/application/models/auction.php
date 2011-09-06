@@ -56,7 +56,8 @@ class Auction
 	    $auctions = array();
 	    $db =& get_instance()->db;
 
-	    $query = $db->get('mana_auctions');
+            $tblAuctions = $this->CI->config->item('tbl_name_auctions');
+	    $query = $db->get($tblAuctions);
 	    foreach ($query->result() as $row)
 	    {
 		    $auctions[] = new Auction($row);
@@ -102,7 +103,9 @@ class Auction
 	    if (!isset($this->iteminfo))
 	    {
 		    $db =& $this->CI->db;
-		    $query = $db->get_where('mana_items',
+                    
+                    $tblItems = $this->CI->config->item('tbl_name_items');
+		    $query = $db->get_where($tblItems,
 		    	array('id'=>$this->data->itemclass_id));
 
 		    $row = $query->result();

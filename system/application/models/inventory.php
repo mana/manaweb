@@ -29,18 +29,6 @@
  */
 class Inventory
 {
-
-    /**
-     * Name of the inventories table
-     */
-    const INVENTORY_TBL = 'mana_inventories';
-
-    /**
-     * Name of the items table
-     */
-    const ITEMS_TBL = 'mana_items';
-
-
     /**
      * Reference to the CodeIgniter framework.
      */
@@ -195,12 +183,14 @@ class Inventory
         $this->items = array();
         $this->equipment = array();
 
-
+        $tblItems = $this->CI->config->item('tbl_name_items');
+        $tblInventory = $this->CI->config->item('tbl_name_inventories');
+        
         $sql = "SELECT items.*, "
              . "       inventory.amount as amount, "
              . "       inventory.slot as slot "
-             . "  FROM ".Inventory::INVENTORY_TBL." inventory "
-             . "  JOIN ".Inventory::ITEMS_TBL." items "
+             . "  FROM ".$tblInventory." inventory "
+             . "  JOIN ".$tblItems." items "
              . "    ON inventory.class_id = items.id "
              . " WHERE owner_id = " . $this->char_id
              . " ORDER BY itemtype, name ";

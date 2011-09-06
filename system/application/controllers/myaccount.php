@@ -31,11 +31,22 @@
 class Myaccount extends Controller {
 
     /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
+    /**
      * Initializes the Home controller.
      */
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
@@ -334,14 +345,14 @@ class Myaccount extends Controller {
      */
     public function _username_check($username)
     {
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');       
+        
         // get mail from post and hash it
         $mail  = $this->input->post('ManaMail');
         $hmail = hash('sha256', $mail);
 
-        // TODO: use constant for database table name
-
         // select user from db with given name and mailaddress
-        $query = $this->db->get_where('mana_accounts',
+        $query = $this->db->get_where($tblAccounts,
             array( 'username'=>$username, 'email'=>$hmail ));
 
         if ($query->num_rows == 1)

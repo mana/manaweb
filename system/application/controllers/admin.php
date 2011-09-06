@@ -37,6 +37,11 @@ class Admin extends Controller {
      */
     const LOGFILE_FORMAT = "/^log-\d{4}-\d{2}-\d{2}\.php$/";
 
+    /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+
 
     /**
      * Initializes the Home controller.
@@ -44,6 +49,12 @@ class Admin extends Controller {
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
@@ -210,7 +221,9 @@ class Admin extends Controller {
 
         $this->db->where('username LIKE \'' . $search . '\'');
         $this->db->order_by('username');
-        $res = $this->db->get(Account::ACCOUNT_TBL);
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $res = $this->db->get($tblAccounts);
 
         if ($res->num_rows() > 0)
         {
@@ -254,7 +267,9 @@ class Admin extends Controller {
 
         $search = $this->input->post('Manausername') . '%';
         $this->db->where('username LIKE \'' . $search . '\'');
-        $res = $this->db->get(Account::ACCOUNT_TBL);
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $res = $this->db->get($tblAccounts);
 
         echo "<ul>";
         foreach ($res->result() as $row)
@@ -286,20 +301,23 @@ class Admin extends Controller {
             $this->output->showPage(lang('admin_title'), 'admin/main');
             return;
         }
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
 
         // search for the given character name
         // due to another bug in pdo that wraps parenthesis around the table
         // but not araound the join part, sqlite returns an error
         $search = '%' . $this->input->post('Manacharacter') . '%';
 
-        $sql = "SELECT ".Character::CHARACTER_TBL.".*, "
-             . "       ".Account::ACCOUNT_TBL.".username"
-             . "  FROM ".Character::CHARACTER_TBL
-             . "  JOIN ".Account::ACCOUNT_TBL
-             . "    ON ".Character::CHARACTER_TBL.".user_id = ".
-                         Account::ACCOUNT_TBL.".id"
-             . " WHERE ".Character::CHARACTER_TBL.".name LIKE '".$search."'"
-             . " ORDER BY ".Character::CHARACTER_TBL.".name";
+        $sql = "SELECT ".$tblCharacters.".*, "
+             . "       ".$tblAccounts.".username"
+             . "  FROM ".$tblCharacters
+             . "  JOIN ".$tblAccounts
+             . "    ON ".$tblCharacters.".user_id = ".
+                         $tblAccounts.".id"
+             . " WHERE ".$tblCharacters.".name LIKE '".$search."'"
+             . " ORDER BY ".$tblCharacters.".name";
 
         $res = $this->db->query($sql);
 
@@ -346,7 +364,8 @@ class Admin extends Controller {
 
         $search = $this->input->post('Manacharacter') . '%';
         $this->db->where('name LIKE \'' . $search . '\'');
-        $res = $this->db->get(Character::CHARACTER_TBL);
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        $res = $this->db->get($tblCharacters);
 
         echo "<ul>";
         foreach ($res->result() as $row)

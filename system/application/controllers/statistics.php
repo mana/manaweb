@@ -29,11 +29,22 @@
 class Statistics extends Controller {
 
     /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
+    /**
      * Initializes the Home controller.
      */
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
@@ -62,12 +73,13 @@ class Statistics extends Controller {
      * JUST COMMITED BECAUSE ITS WEEKEND AND WE WORK ON A BRANCH YET ;-)
      */
     private function CreateChart()
-    {
+    {   
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        
         $g = $this->jpgraphwrapper->PieChart(400, 200, "testchar2.png", 1);
         $g->setFrame(true, '#E1D6CF', 0);
         $g->SetColor('#E1D6CF');
         $g->SetAntiAliasing();
-
 
         $g->legend->Hide(false);
 
@@ -75,10 +87,9 @@ class Statistics extends Controller {
         $g->title->Set("Ratio male chars to female");
         $g->title->SetFont(FF_FONT1,FS_BOLD);
 
-        // TODO: exchange hardcoded table name with constant
         $res = $this->db->query(
             "SELECT GENDER AS GENDER, COUNT(*) AS AMNT " .
-            "  FROM mana_characters " .
+            "  FROM ".$tblCharacters." " .
             " GROUP BY GENDER " .
             " ORDER BY GENDER " );
 

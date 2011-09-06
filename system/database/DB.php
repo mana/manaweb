@@ -140,7 +140,5 @@ function &DB($params = '', $active_record_override = FALSE)
 	return $DB;
 }
 
-
-
 /* End of file DB.php */
 /* Location: ./system/database/DB.php */

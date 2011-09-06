@@ -9,14 +9,14 @@ system/application/config/database.php
 system/application/config/email.php
 system/application/config/mana_config.user.php
 
-# logfiles created by tmwweb
+# logfiles created by manaweb
 system/logs/log-*.php
 
-# cache created by tmwweb
+# cache created by manaweb
 data/maps.php.db
 data/skills.php.db
 
-# directories used from tmwserv and tmw 
-tmwdata
-tmwserv-data
+# directories used from manaserv and mana 
+manadata
+manaserv-data
 
