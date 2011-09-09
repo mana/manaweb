@@ -1,11 +1,12 @@
+# , 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-10-26 22:24+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Andreas Habel <mail@exceptionfault.de>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2011-09-06 20:40+0200\n"
+"Last-Translator: \n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -14,11 +15,14 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: .\n"
+"Language: de\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: system/application/libraries/core/Navigationprovider.php:49
 #, php-format
 msgid "ERROR: Navbox %s not found!"
-msgstr "ERROR: Navigationsbox %s nicht gefunden!"
+msgstr "Fehler: Navigationsbox %s nicht gefunden!"
 
 #: system/application/views/layout/header.php:45
 msgid "Itemslist"
@@ -38,7 +42,7 @@ msgstr "Mein Account"
 
 #: system/application/views/layout/header.php:71
 msgid "Character sheet"
-msgstr "Character"
+msgstr "Charakterübersicht"
 
 #: system/application/views/layout/header.php:73
 msgid "Skills"
@@ -72,4 +76,5 @@ msgstr "Manabay"
 #: system/application/views/layout/header.php:99
 msgid "Auctions"
 msgstr "Auktionen"
+
 
