@@ -1,13 +1,11 @@
-<h3>Welcome <?= $user->getUsername() ?>!</h3>
+<h3><?= T_('Welcome')?> <?= $user->getUsername() ?>!</h3>
 
-<p>From this page you can manage several options of your account. Also you can
-   get current statistics of you characters. Please choose one option
-   below:
+<p><?= T_('stats_descr')?>
 
    <ul>
-        <li>View your character stats</li>
-        <li>Change your password</li>
-        <li>Change your mailaddress</li>
+        <li><?= T_('View your character stats')?></li>
+        <li><?= T_('Change your password')?></li>
+        <li><?= T_('Change your mailaddress')?></li>
    </ul>
 </p>
 
@@ -28,8 +26,8 @@
     echo "</ul>";
    }
 ?>
-This account is registered since <strong><?= date(T_('date_time_format'),
-    $this->user->getRegistrationDate()) ?></strong>. Your last login was
+<?= T_('This account is registered since')?> <strong><?= date(T_('date_time_format'),
+    $this->user->getRegistrationDate()) ?></strong>. <?= T_('Your last login was')?>
     <strong><?= date(T_('date_time_format'),
     $this->user->getLastLogin()) ?></strong>.
 </p>
@@ -64,8 +62,7 @@ This account is registered since <strong><?= date(T_('date_time_format'),
 <?php } else {
     // user has no characters
 ?>
-    <p>You currently don't have any characters. This is is a little uncommon,
-    but never mind: You can create one with the Mana client.</p>
+    <p><?= T_("user-has-no-chars") ?></p>
 
 <?php } ?>
 

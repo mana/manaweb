@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-13 18:09+0200\n"
+"POT-Creation-Date: 2011-09-13 19:45+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: \n"
@@ -74,18 +74,16 @@ msgid "cancel"
 msgstr "Cancel"
 
 #: system/application/views/manaweb/server_statistics.php:1
-#, fuzzy
 msgid "Server Statistics"
-msgstr "Statistics"
+msgstr "Server Statistics"
 
 #: system/application/views/manaweb/server_statistics.php:17
 msgid "Number of players:"
 msgstr "Number of players:"
 
 #: system/application/views/manaweb/server_statistics.php:30
-#, fuzzy
 msgid "Number of characters:"
-msgstr "Character"
+msgstr "Number of characters:"
 
 #: system/application/views/manaweb/server_statistics.php:40
 msgid "Number of guilds:"
@@ -108,7 +106,6 @@ msgid "The top 10 Characters"
 msgstr "The top 10 Characters"
 
 #: system/application/views/manaweb/server_statistics.php:83
-#, fuzzy
 msgid "Character"
 msgstr "Character"
 
@@ -117,7 +114,7 @@ msgid "Player"
 msgstr "Player"
 
 #: system/application/views/manaweb/server_statistics.php:85
-#: system/application/views/manaweb/user_home.php:47
+#: system/application/views/manaweb/user_home.php:45
 msgid "Level"
 msgstr "Level"
 
@@ -143,9 +140,8 @@ msgid "character_not_guild_member"
 msgstr ""
 
 #: system/application/views/manaweb/character_inventory.php:23
-#, fuzzy
 msgid "character_equipment"
-msgstr "Character"
+msgstr "Character Equipment"
 
 #: system/application/views/manaweb/character_inventory.php:27
 msgid "character_inventory"
@@ -153,27 +149,23 @@ msgstr ""
 
 #: system/application/views/manaweb/character.php:1
 #: system/application/views/admin/character.php:1
-#, fuzzy
 msgid "character_statistics"
-msgstr "Statistics"
+msgstr "Character Statistics"
 
 #: system/application/views/manaweb/character.php:5
 #: system/application/views/admin/character.php:5
-#, fuzzy
 msgid "character_name"
-msgstr "Character"
+msgstr "Character Name"
 
 #: system/application/views/manaweb/character.php:11
 #: system/application/views/admin/character.php:12
-#, fuzzy
 msgid "character_attr_str"
-msgstr "Character"
+msgstr "Character Attributes"
 
 #: system/application/views/manaweb/character.php:99
 #: system/application/views/admin/character.php:118
-#, fuzzy
 msgid "character_gender"
-msgstr "Character"
+msgstr "Character Gender"
 
 #: system/application/views/manaweb/character.php:105
 #: system/application/views/admin/character.php:108
@@ -182,9 +174,8 @@ msgstr ""
 
 #: system/application/views/manaweb/character.php:115
 #: system/application/views/admin/character.php:134
-#, fuzzy
 msgid "character_level"
-msgstr "Character"
+msgstr "Character Level"
 
 #: system/application/views/manaweb/character.php:121
 #: system/application/views/admin/character.php:124
@@ -193,9 +184,8 @@ msgstr ""
 
 #: system/application/views/manaweb/character.php:131
 #: system/application/views/admin/character.php:150
-#, fuzzy
 msgid "character_money"
-msgstr "Character"
+msgstr "Character Money"
 
 #: system/application/views/manaweb/character.php:137
 #: system/application/views/admin/character.php:140
@@ -218,9 +208,8 @@ msgid "character_attr_will"
 msgstr ""
 
 #: system/application/views/manaweb/character_administration.php:1
-#, fuzzy
 msgid "character_administration"
-msgstr "Administration"
+msgstr "Character Administration"
 
 #: system/application/views/manaweb/settings.php:2
 msgid "settings_descr"
@@ -294,9 +283,29 @@ msgstr "With this option you can delete your account including all your characte
 msgid "settings_delete_account"
 msgstr "Yes, delete my account!"
 
-#: system/application/views/manaweb/user_home.php:17
+#: system/application/views/manaweb/user_home.php:1
+msgid "Welcome"
+msgstr "Welcome"
+
+#: system/application/views/manaweb/user_home.php:3
+msgid "stats_descr"
+msgstr "On this page you have serveral options to modify your account settings. Maybe you would like to change your stored mailadress, or change your login password or even drop your complete account? Just select one of the options below."
+
+#: system/application/views/manaweb/user_home.php:6
+msgid "View your character stats"
+msgstr "View your character stats"
+
+#: system/application/views/manaweb/user_home.php:7
+msgid "Change your password"
+msgstr "Change your password"
+
+#: system/application/views/manaweb/user_home.php:8
+msgid "Change your mailaddress"
+msgstr "Change your mailaddress"
+
+#: system/application/views/manaweb/user_home.php:15
+#: system/application/views/manaweb/user_home.php:29
 #: system/application/views/manaweb/user_home.php:31
-#: system/application/views/manaweb/user_home.php:33
 #: system/application/views/admin/maintenance.php:45
 #: system/application/views/admin/maintenance.php:70
 #: system/application/views/admin/maintenance.php:95
@@ -307,34 +316,45 @@ msgstr "Yes, delete my account!"
 msgid "date_time_format"
 msgstr "d-m-Y H:i"
 
-#: system/application/views/manaweb/user_home.php:22
+#: system/application/views/manaweb/user_home.php:20
 msgid "You are a member of the following access groups:"
 msgstr "You are a member of the following access groups:"
 
-#: system/application/views/manaweb/user_home.php:38
-#, fuzzy
-msgid "Character overview"
-msgstr "Character"
+#: system/application/views/manaweb/user_home.php:29
+msgid "This account is registered since"
+msgstr "This account is registered since"
 
-#: system/application/views/manaweb/user_home.php:42
+#: system/application/views/manaweb/user_home.php:30
+msgid "Your last login was"
+msgstr "Your last login was"
+
+#: system/application/views/manaweb/user_home.php:36
+msgid "Character overview"
+msgstr "Character Overview"
+
+#: system/application/views/manaweb/user_home.php:40
 msgid "Here you see a summary of all your characters. Click on the name of one to see its details."
 msgstr "Here you see a summary of all your characters. Click on the name of one to see its details."
 
-#: system/application/views/manaweb/user_home.php:46
+#: system/application/views/manaweb/user_home.php:44
 msgid "Name"
 msgstr "Name"
 
-#: system/application/views/manaweb/user_home.php:48
+#: system/application/views/manaweb/user_home.php:46
 msgid "Gender"
 msgstr "Gender"
 
-#: system/application/views/manaweb/user_home.php:49
+#: system/application/views/manaweb/user_home.php:47
 msgid "Money"
 msgstr "Money"
 
-#: system/application/views/manaweb/user_home.php:50
+#: system/application/views/manaweb/user_home.php:48
 msgid "Map"
 msgstr "Map"
+
+#: system/application/views/manaweb/user_home.php:65
+msgid "user-has-no-chars"
+msgstr "You currently don't have any characters. This is is a little uncommon, but never mind: You can create one with the Mana client."
 
 #: system/application/views/layout/header.php:49
 msgid "Itemslist"
@@ -400,7 +420,6 @@ msgid "account_details"
 msgstr ""
 
 #: system/application/views/admin/account.php:6
-#, fuzzy
 msgid "account_id"
 msgstr "My Account"
 
@@ -439,14 +458,12 @@ msgstr ""
 
 #: system/application/views/admin/account.php:86
 #: system/application/views/admin/character.php:184
-#, fuzzy
 msgid "administrative_tasks"
 msgstr "Administration"
 
 #: system/application/views/admin/character.php:100
-#, fuzzy
 msgid "character_owner"
-msgstr "Character"
+msgstr "Character Owner"
 
 #: system/application/helpers/view_helper.php:36
 msgid "go_up"
@@ -470,7 +487,6 @@ msgstr ""
 
 #: system/application/controllers/charcontroller.php:113
 #: system/application/controllers/admin.php:127
-#, fuzzy
 msgid "character"
 msgstr "Character"
 
@@ -537,7 +553,6 @@ msgid "admin_title"
 msgstr ""
 
 #: system/application/controllers/admin.php:188
-#, fuzzy
 msgid "maintenance_title"
 msgstr "Maintenance"
 
