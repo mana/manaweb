@@ -109,7 +109,6 @@ class CI_Unit_test {
 		}
 
 		$CI =& get_instance();
-		$CI->load->language('unit_test');
 
 		$this->_parse_template();
 
@@ -121,13 +120,13 @@ class CI_Unit_test {
 			foreach ($res as $key => $val)
 			{
 
-				if ($key == $CI->lang->line('ut_result'))
+				if ($key == T_('ut_result'))
 				{
-					if ($val == $CI->lang->line('ut_passed'))
+					if ($val == T_('ut_passed'))
 					{
 						$val = '<span style="color: #0C0;">'.$val.'</span>';
 					}
-					elseif ($val == $CI->lang->line('ut_failed'))
+					elseif ($val == T_('ut_failed'))
 					{
 						$val = '<span style="color: #C00;">'.$val.'</span>';
 					}
@@ -207,20 +206,20 @@ class CI_Unit_test {
 				{
 					foreach ($val as $k => $v)
 					{
-						if (FALSE !== ($line = $CI->lang->line(strtolower('ut_'.$v))))
+						if (FALSE !== ($line = T_(strtolower('ut_'.$v))))
 						{
 							$v = $line;
 						}
-						$temp[$CI->lang->line('ut_'.$k)] = $v;
+						$temp[T_('ut_'.$k)] = $v;
 					}
 				}
 				else
 				{
-					if (FALSE !== ($line = $CI->lang->line(strtolower('ut_'.$val))))
+					if (FALSE !== ($line = T_(strtolower('ut_'.$val))))
 					{
 						$val = $line;
 					}
-					$temp[$CI->lang->line('ut_'.$key)] = $val;
+					$temp[T_('ut_'.$key)] = $val;
 				}
 			}
 

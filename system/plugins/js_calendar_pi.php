@@ -135,27 +135,27 @@ ob_start();
 var form_name	= "<?php echo $form_name; ?>";
 var format		= 'us'; // eu or us
 var days		= new Array(
-					'<?php echo $CI->lang->line('cal_su');?>', // Sunday, short name
-					'<?php echo $CI->lang->line('cal_mo');?>', // Monday, short name
-					'<?php echo $CI->lang->line('cal_tu');?>', // Tuesday, short name
-					'<?php echo $CI->lang->line('cal_wed');?>', // Wednesday, short name
-					'<?php echo $CI->lang->line('cal_thu');?>', // Thursday, short name
-					'<?php echo $CI->lang->line('cal_fri');?>', // Friday, short name
-					'<?php echo $CI->lang->line('cal_sat');?>' // Saturday, short name
+					'<?php echo T_('cal_su');?>', // Sunday, short name
+					'<?php echo T_('cal_mo');?>', // Monday, short name
+					'<?php echo T_('cal_tu');?>', // Tuesday, short name
+					'<?php echo T_('cal_wed');?>', // Wednesday, short name
+					'<?php echo T_('cal_thu');?>', // Thursday, short name
+					'<?php echo T_('cal_fri');?>', // Friday, short name
+					'<?php echo T_('cal_sat');?>' // Saturday, short name
 				);
 var months		= new Array(
-					'<?php echo $CI->lang->line('cal_january');?>',
-					'<?php echo $CI->lang->line('cal_february');?>',
-					'<?php echo $CI->lang->line('cal_march');?>',
-					'<?php echo $CI->lang->line('cal_april');?>',
-					'<?php echo $CI->lang->line('cal_mayl');?>',
-					'<?php echo $CI->lang->line('cal_june');?>',
-					'<?php echo $CI->lang->line('cal_july');?>',
-					'<?php echo $CI->lang->line('cal_august');?>',
-					'<?php echo $CI->lang->line('cal_september');?>',
-					'<?php echo $CI->lang->line('cal_october');?>',
-					'<?php echo $CI->lang->line('cal_november');?>',
-					'<?php echo $CI->lang->line('cal_december');?>'
+					'<?php echo T_('cal_january');?>',
+					'<?php echo T_('cal_february');?>',
+					'<?php echo T_('cal_march');?>',
+					'<?php echo T_('cal_april');?>',
+					'<?php echo T_('cal_mayl');?>',
+					'<?php echo T_('cal_june');?>',
+					'<?php echo T_('cal_july');?>',
+					'<?php echo T_('cal_august');?>',
+					'<?php echo T_('cal_september');?>',
+					'<?php echo T_('cal_october');?>',
+					'<?php echo T_('cal_november');?>',
+					'<?php echo T_('cal_december');?>'
 				);
 var last_click	= new Array();
 var current_month  = '';

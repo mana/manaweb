@@ -49,11 +49,6 @@ class CI_Calendar {
 	{
 		$this->CI =& get_instance();
 
-		if ( ! in_array('calendar_lang'.EXT, $this->CI->lang->is_loaded, TRUE))
-		{
-			$this->CI->lang->load('calendar');
-		}
-
 		$this->local_time = time();
 
 		if (count($config) > 0)
@@ -275,12 +270,12 @@ class CI_Calendar {
 
 		$month = $month_names[$month];
 
-		if ($this->CI->lang->line($month) === FALSE)
+		if (T_($month) === FALSE)
 		{
 			return ucfirst(str_replace('cal_', '', $month));
 		}
 
-		return $this->CI->lang->line($month);
+		return T_($month);
 	}
 
 	// --------------------------------------------------------------------
@@ -316,7 +311,7 @@ class CI_Calendar {
 		$days = array();
 		foreach ($day_names as $val)
 		{
-			$days[] = ($this->CI->lang->line('cal_'.$val) === FALSE) ? ucfirst($val) : $this->CI->lang->line('cal_'.$val);
+			$days[] = (T_('cal_'.$val) === FALSE) ? ucfirst($val) : T_('cal_'.$val);
 		}
 
 		return $days;

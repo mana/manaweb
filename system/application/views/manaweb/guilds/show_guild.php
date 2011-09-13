@@ -1,5 +1,5 @@
 
-<h3><?=lang('guild_members')?></h3>
+<h3><?=T_('guild_members')?></h3>
 <table class="datatable">
     <tr>
         <th>Character</th>

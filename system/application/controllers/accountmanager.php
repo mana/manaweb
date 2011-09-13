@@ -48,8 +48,7 @@ class Accountmanager extends Controller {
         if (!$this->user->isAuthenticated())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
     }
@@ -82,9 +81,8 @@ class Accountmanager extends Controller {
             return;
         }
 
-        $this->translationprovider->loadLanguage('settings');
         $params = array('has_errors' => false);
-        $this->output->showPage(lang('settings_title'),
+        $this->output->showPage(T_('settings_title'),
             'manaweb/settings', $params);
     }
 
@@ -99,11 +97,10 @@ class Accountmanager extends Controller {
             return;
         }
 
-        $this->translationprovider->loadLanguage('settings');
         switch ($name)
         {
             case "ChangeMailaddress":
-                $this->output->showPage(lang('settings_change_mail_head'),
+                $this->output->showPage(T_('settings_change_mail_head'),
                     'manaweb/accountmanager/change_mailaddress_form' );
                 break;
         }
@@ -122,8 +119,7 @@ class Accountmanager extends Controller {
             return;
         }
 
-        $this->translationprovider->loadLanguage('settings');
-        $this->output->showPage(lang('settings_title'),
+        $this->output->showPage(T_('settings_title'),
             'manaweb/delete_account');
     }
 
@@ -150,8 +146,7 @@ class Accountmanager extends Controller {
 
         $this->user->deleteCurrentUser();
 
-        $this->translationprovider->loadLanguage('settings');
-        $this->output->showPage(lang('settings_title'),
+        $this->output->showPage(T_('settings_title'),
             'manaweb/delete_account_done');
     }
 
@@ -181,19 +176,17 @@ class Accountmanager extends Controller {
             'lang:settings_old_password', "required|callback__validate_password" );
 
         $this->form_validation->set_rules('Mana_new_password',
-            lang('settings_new_password'), "required|callback__password_strength" );
+            T_('settings_new_password'), "required|callback__password_strength" );
 
         $this->form_validation->set_rules('Mana_retype_password',
-            lang('settings_retype_password'), "required|matches[Mana_new_password]" );
-
-        $this->translationprovider->loadLanguage('settings');
+            T_('settings_retype_password'), "required|matches[Mana_new_password]" );
 
         // validate userinput against rules
         if ($this->form_validation->run() == false)
         {
             // validation fails, prepare params for change form
             $param = array('has_errors' => true);
-            $this->output->showPage(lang('settings_title'),
+            $this->output->showPage(T_('settings_title'),
                 'manaweb/settings', $param);
         }
         else
@@ -206,9 +199,9 @@ class Accountmanager extends Controller {
 
             $param = array(
                 'has_errors' => false,
-                'pwd_changed_message' => lang('settings_change_password_ok')
+                'pwd_changed_message' => T_('settings_change_password_ok')
             );
-            $this->output->showPage(lang('settings_title'),
+            $this->output->showPage(T_('settings_title'),
                 'manaweb/settings', $param);
         }
     }
@@ -223,7 +216,6 @@ class Accountmanager extends Controller {
         {
             return;
         }
-        $this->translationprovider->loadLanguage('settings');
         $params = array();
 
         $rules['Mana_new_mailaddress']    = "required";
@@ -234,11 +226,11 @@ class Accountmanager extends Controller {
             'required|callback__validate_password' );
 
         $this->form_validation->set_rules('Mana_new_mailaddress',
-            lang('settings_new_mailaddress') ,
+            T_('settings_new_mailaddress') ,
             'required|valid_email' );
 
         $this->form_validation->set_rules('Mana_retype_mailaddress',
-            lang('settings_retype_mailaddress') ,
+            T_('settings_retype_mailaddress') ,
             'required|valid_email|matches[Mana_new_mailaddress]' );
 
         // validate userinput against rules
@@ -253,10 +245,10 @@ class Accountmanager extends Controller {
                 $this->user->getUser()->getUsername(),
                 $this->input->post('Mana_new_mailaddress')
             );
-            $params['mailaddress_changed_message'] = lang('mailaddress_changed_message');
+            $params['mailaddress_changed_message'] = T_('mailaddress_changed_message');
         }
 
-        $this->output->showPage(lang('settings_change_mail_head'),
+        $this->output->showPage(T_('settings_change_mail_head'),
             'manaweb/accountmanager/change_mailaddress_form', $params );
 
 
@@ -280,15 +272,15 @@ class Accountmanager extends Controller {
                 return true;
             case Membershipprovider::PASSWORD_TO_SHORT:
                 $this->form_validation->set_message('_password_strength',
-                lang('settings_pwd_to_short'));
+                T_('settings_pwd_to_short'));
                 return false;
             case Membershipprovider::PASSWORD_TO_LONG:
                 $this->form_validation->set_message('_password_strength',
-                lang('settings_pwd_to_long'));
+                T_('settings_pwd_to_long'));
                 return false;
             case Membershipprovider::PASSWORD_SIMILAR_TO_USERNAME:
                 $this->form_validation->set_message('_password_strength',
-                lang('settings_pwd_eq_username'));
+                T_('settings_pwd_eq_username'));
                 return false;
         }
     }

@@ -53,7 +53,6 @@ class Myaccount extends Controller {
 
         $this->load->library('validation');
         $this->load->helper('form');
-        $this->translationprovider->loadLanguage('account');
     }
 
 
@@ -72,7 +71,7 @@ class Myaccount extends Controller {
         else
         {
             $param = array('has_errors' => false);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/login_form', $param);
         }
     }
@@ -99,7 +98,7 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $param = array('has_errors' => true);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/login_form', $param);
         }
         else
@@ -118,14 +117,12 @@ class Myaccount extends Controller {
                 $this->validation->error_string =
                     'The given username or password is incorrect.';
                 $params = array('has_errors' => true);
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/login_form', $params);
                 return;
             }
             else
             {
-                // set language preferences
-                $this->translationprovider->setLanguage($lang);
                 // show the account homepage of the user
                 $this->themeprovider->setTheme( $this->input->post('Manastyle'));
                 $this->session->set_userdata('theme', $this->input->post('Manastyle'));
@@ -148,7 +145,7 @@ class Myaccount extends Controller {
     {
         $this->user->logout();
         $params = array('has_errors' => false);
-        $this->output->showPage(lang('manaweb_title'),
+        $this->output->showPage(T_('manaweb_title'),
             'manaweb/login_form', $params);
     }
 
@@ -161,7 +158,7 @@ class Myaccount extends Controller {
     public function lostpassword()
     {
         $params = array('has_errors' => false);
-        $this->output->showPage(lang('manaweb_title'),
+        $this->output->showPage(T_('manaweb_title'),
             'manaweb/lost_password', $params);
     }
 
@@ -183,7 +180,7 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $params = array('has_errors'=>true);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password', $params);
         }
         else
@@ -196,7 +193,7 @@ class Myaccount extends Controller {
             if ($this->validation->run() == false)
             {
                 $params = array('has_errors'=>true);
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password', $params);
             }
             else
@@ -208,7 +205,7 @@ class Myaccount extends Controller {
                 $this->_send_passwort_change_request($username, $email);
 
                 // forward to the success page
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password_mailsent',
                     array('username'=>$username, 'email'=>$email));
             }
@@ -232,7 +229,7 @@ class Myaccount extends Controller {
             $this->membershipprovider->validateKeyForUser($username, $key))
         {
             // show view for changing password
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_change',
                 array('username'=>$username, 'key'=>$key,
                     'has_errors'=>false));
@@ -240,7 +237,7 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_wrong_key');
         }
     }
@@ -275,7 +272,7 @@ class Myaccount extends Controller {
                     'key'=>$key
                 );
 
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password_change', $params);
             }
             else
@@ -286,7 +283,7 @@ class Myaccount extends Controller {
                     $username,
                     $this->input->post('Manapassword'));
 
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
                     ' now login with your new credentials.',
@@ -296,7 +293,7 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_wrong_key');
         }
     }
@@ -419,8 +416,7 @@ class Myaccount extends Controller {
      */
     private function _show_user_account()
     {
-        $this->translationprovider->loadLanguage('account');
-        $this->output->showPage(lang('account_title'), 'manaweb/user_home',
+        $this->output->showPage(T_('account_title'), 'manaweb/user_home',
             $this->user->getHomepageData() );
     }
 

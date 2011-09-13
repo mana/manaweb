@@ -43,7 +43,7 @@ class Auction
      * Returns an array of the next 10 auctions that will finish.
      * @return Array with next 10 auctions to finish.
      */
-    public static function getFinishingAuctions()
+    public function getFinishingAuctions()
     {
 	    /*
 	    SELECT *
@@ -56,7 +56,7 @@ class Auction
 	    $auctions = array();
 	    $db =& get_instance()->db;
 
-            $tblAuctions = $this->CI->config->item('tbl_name_auctions');
+            $tblAuctions = $this->config->item('tbl_name_auctions');
 	    $query = $db->get($tblAuctions);
 	    foreach ($query->result() as $row)
 	    {

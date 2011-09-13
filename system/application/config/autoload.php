@@ -40,7 +40,7 @@
 */
 
 $autoload['libraries'] = array( 'database', 'session', 'menuprovider',
-    'membershipprovider', 'translationprovider',
+    'membershipprovider', 
     'core/navigationprovider', 'core/themeprovider' );
 
 
@@ -53,7 +53,7 @@ $autoload['libraries'] = array( 'database', 'session', 'menuprovider',
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array( 'url', 'language', 'view_helper' );
+$autoload['helper'] = array( 'url', 'view_helper' );
 
 
 /*

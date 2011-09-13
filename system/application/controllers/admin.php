@@ -61,15 +61,13 @@ class Admin extends Controller {
 
         $this->load->helper('form');
         $this->load->library('validation');
-        $this->translationprovider->loadLanguage('admin');
 
 
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
     }
@@ -85,7 +83,7 @@ class Admin extends Controller {
             return;
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main');
+        $this->output->showPage(T_('admin_title'), 'admin/main');
     }
 
     /**
@@ -98,13 +96,13 @@ class Admin extends Controller {
         {
             return;
         }
-        $this->translationprovider->loadLanguage('account');
+        
         $params = array();
         $acc = Account::getAccount($id);
         $params['account'] = $acc;
         $page = 'admin/account';
 
-        $this->output->showPage(lang('account_username').': '. $acc->getUsername(),
+        $this->output->showPage(T_('account_username').': '. $acc->getUsername(),
             $page, $params);
     }
 
@@ -118,7 +116,7 @@ class Admin extends Controller {
         {
             return;
         }
-        $this->translationprovider->loadLanguage('character');
+
         $this->load->library('mapprovider');
 
         $params = array();
@@ -126,7 +124,7 @@ class Admin extends Controller {
         $params['char'] = $char;
         $page = 'admin/character';
 
-        $this->output->showPage(lang('character').': '. $char->getName(),
+        $this->output->showPage(T_('character').': '. $char->getName(),
             $page, $params);
     }
 
@@ -187,7 +185,7 @@ class Admin extends Controller {
             $params = array_merge($params, $this->_count_error_logs());
         }
 
-        $this->output->showPage(lang('maintenance_title'),
+        $this->output->showPage(T_('maintenance_title'),
             'admin/maintenance', $params);
     }
 
@@ -201,7 +199,7 @@ class Admin extends Controller {
         if (!$this->user->hasRight('see_account_list'))
         {
             $param = array('error' => 'You are not allowed to see account list');
-            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+            $this->output->showPage(T_('admin_title'), 'admin/main', $param);
             return;
         }
 
@@ -210,7 +208,7 @@ class Admin extends Controller {
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-            $this->output->showPage(lang('admin_title'), 'admin/main');
+            $this->output->showPage(T_('admin_title'), 'admin/main');
             return;
         }
 
@@ -242,7 +240,7 @@ class Admin extends Controller {
             $param = array('result_account' => false);
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+        $this->output->showPage(T_('admin_title'), 'admin/main', $param);
     }
 
 
@@ -289,7 +287,7 @@ class Admin extends Controller {
         if (!$this->user->hasRight('see_character_list'))
         {
             $param = array('error' => 'You are not allowed to see character list');
-            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+            $this->output->showPage(T_('admin_title'), 'admin/main', $param);
             return;
         }
 
@@ -298,7 +296,7 @@ class Admin extends Controller {
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-            $this->output->showPage(lang('admin_title'), 'admin/main');
+            $this->output->showPage(T_('admin_title'), 'admin/main');
             return;
         }
         
@@ -340,7 +338,7 @@ class Admin extends Controller {
             $param = array('result_character' => false);
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+        $this->output->showPage(T_('admin_title'), 'admin/main', $param);
     } // function search_character()
 
     /**
@@ -383,7 +381,7 @@ class Admin extends Controller {
     private function _reload_maps_file(& $params)
     {
         $this->mapprovider->load_maps_file();
-        $params['action_result'] = lang('maps_file_reloaded');
+        $params['action_result'] = T_('maps_file_reloaded');
     }
 
     /**
@@ -394,7 +392,7 @@ class Admin extends Controller {
     private function _reload_skills_file(& $params)
     {
         $this->skillprovider->loadSkillsFile();
-        $params['action_result'] = lang('skills_file_reloaded');
+        $params['action_result'] = T_('skills_file_reloaded');
     }
 
     /**
@@ -405,7 +403,7 @@ class Admin extends Controller {
     private function _reload_attributes_file(& $params)
     {
         $this->attributeprovider->loadAttributesFile();
-        $params['action_result'] = lang('attributes_file_reloaded');
+        $params['action_result'] = T_('attributes_file_reloaded');
     }
 
     /**
@@ -416,7 +414,7 @@ class Admin extends Controller {
     private function _reload_items_file(& $params)
     {
         $retval = $this->dalprovider->refreshStorage();
-        $params['action_result']       = lang('items_file_reloaded');
+        $params['action_result']       = T_('items_file_reloaded');
         $params['missing_item_images'] = $retval;
     }
 

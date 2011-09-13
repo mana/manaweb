@@ -1,23 +1,23 @@
 <p>
-    <?= lang('settings_descr') ?>
-    <?= lang('settings_selection') ?>
+    <?= T_('settings_descr') ?>
+    <?= T_('settings_selection') ?>
 
     <ul>
         <li>
             <a href="#"
                onclick="showPanel('form_change_password'); return false;">
-                <?= lang('settings_select_password') ?>
+                <?= T_('settings_select_password') ?>
             </a>
         </li>
         <li>
             <a href="<?= site_url('accountmanager/showForm/ChangeMailaddress') ?>">
-                <?= lang('settings_select_mail') ?>
+                <?= T_('settings_select_mail') ?>
             </a>
         </li>
         <li>
             <a href="#"
                onclick="showPanel('form_delete_account'); return false;">
-                <?= lang('settings_select_delete_account') ?>
+                <?= T_('settings_select_delete_account') ?>
             </a>
         </li>
     </ul>
@@ -26,12 +26,12 @@
 <!-- ####################  change password #################### -->
 <div id="form_change_password" style="display:none;">
     <div>
-        <h3><?= lang('settings_change_pwd_head') ?></h3>
+        <h3><?= T_('settings_change_pwd_head') ?></h3>
         <p><?php
             if (!isset($pwd_changed_message))
             {
                 // output description
-                echo lang('settings_change_pwd_descr');
+                echo T_('settings_change_pwd_descr');
             }
             ?></p>
 
@@ -60,39 +60,39 @@
             <tr>
                 <td style="border-width: 0px;">
                     <label for="Mana_old_password">
-                        <?= lang('settings_old_password') ?>:
+                        <?= T_('settings_old_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="1" value=""
                            id="Mana_old_password"
-                           title="<?= lang('settings_enter_old_password') ?>"
+                           title="<?= T_('settings_enter_old_password') ?>"
                            name="Mana_old_password" />
                 </td>
             </tr>
             <tr>
                 <td style="border-width: 0px;">
                     <label for="Mana_new_password">
-                        <?= lang('settings_new_password') ?>:
+                        <?= T_('settings_new_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="2" value=""
                            id="Mana_new_password"
-                           title="<?= lang('settings_enter_new_password') ?>"
+                           title="<?= T_('settings_enter_new_password') ?>"
                            name="Mana_new_password" />
                 </td>
             </tr>
             <tr>
                 <td style="border-width: 0px;">
                     <label for="Mana_retype_password">
-                        <?= lang('settings_retype_password') ?>:
+                        <?= T_('settings_retype_password') ?>:
                     </label>
                 </td>
                 <td style="border-width: 0px;">
                     <input type="password" size="30" tabindex="3" value=""
                            id="Mana_retype_password"
-                           title="<?= lang('settings_retype_new_password') ?>"
+                           title="<?= T_('settings_retype_new_password') ?>"
                            name="Mana_retype_password" />
                 </td>
             </tr>
@@ -100,14 +100,14 @@
                 <td colspan="2" style="text-align: center; border-width: 0px;">
 
                     <input type="submit" tabindex="4"
-                           value="<?= lang('settings_change_password') ?>!"
-                           title="<?= lang('settings_change_password') ?>!"
+                           value="<?= T_('settings_change_password') ?>!"
+                           title="<?= T_('settings_change_password') ?>!"
                            id="ManasubmitPassword"
                            name="ManasubmitPassword" />
                     <input type="reset" tabindex="5"
-                           value="<?= lang('cancel')?>"
+                           value="<?= T_('cancel')?>"
                            id="ManacancelPassword"
-                           title="<?= lang('cancel')?>"
+                           title="<?= T_('cancel')?>"
                            name="ManacancelPassword" />
                 </td>
             </tr>
@@ -120,15 +120,15 @@
 <!-- ####################  delete account form #################### -->
 <div id="form_delete_account" style="display:none;">
     <div>
-        <h3><?= lang('settings_delete_account_head') ?></h3>
-        <p><?= lang('settings_delete_account_descr') ?></p>
+        <h3><?= T_('settings_delete_account_head') ?></h3>
+        <p><?= T_('settings_delete_account_descr') ?></p>
         <p>
             <?php
             $attributes = array('name' => 'deleteAccount', 'id' => 'ManaDeleteAccount');
             echo form_open('accountmanager/delete_account', $attributes); ?>
             <input type="submit" tabindex="6"
-                   value="<?= lang('settings_delete_account') ?>"
-                   id="ManasubmitDelete" title="<?= lang('settings_delete_account') ?>"
+                   value="<?= T_('settings_delete_account') ?>"
+                   id="ManasubmitDelete" title="<?= T_('settings_delete_account') ?>"
                    name="Manasubmit" />
             <?= form_close(); ?>
         </p>

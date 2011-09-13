@@ -61,9 +61,8 @@ class Statistics extends Controller {
         $this->load->model('server_statistics');
         $this->CreateChart();
 
-
-        $this->output->showPage( 'Server Statistics', 'manaweb/server_statistics',
-            array('stats' => $this->server_statistics->getGlobalStats()));
+        $this->output->showPage(T_('Statistics'), 'manaweb/server_statistics',
+        array('stats' => $this->server_statistics->getGlobalStats()));
     }
 
 

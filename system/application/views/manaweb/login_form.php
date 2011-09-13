@@ -41,18 +41,6 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <label for="Manalanguage">Language: </label>
-        </td>
-        <td style="border-width: 0px;">
-            <select name="Manalanguage" size="1" id="Manalanguage" tabindex="3">
-            <?php foreach ($this->translationprovider->getLanguages() as $lng) { ?>
-                <option value="<?= $lng['dir'] ?>"><?= $lng['name'] ?></option>
-            <?php } ?>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td style="border-width: 0px;">
             <label for="Manastyle">Style: </label>
         </td>
         <td style="border-width: 0px;">

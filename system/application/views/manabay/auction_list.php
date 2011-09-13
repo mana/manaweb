@@ -26,7 +26,7 @@
         	<br /><em><?= $item->description ?></em>
         </td>
         <td><?= $auction->getSeller()->getName(); ?></td>
-        <td><?= date( lang('date_time_format_sec'), $auction->getEndtime()); ?><br />
+        <td><?= date( T_('date_time_format_sec'), $auction->getEndtime()); ?><br />
         <?= sprintf( "%dd, %dh, %dm, %ds", $duration['d'], $duration['h'],
         	$duration['m'], $duration['s'] ); ?>
         </td>

@@ -46,9 +46,9 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
         $nb = new NavigationBox( 'navigation.mana.main', '' );
 
         $nb->addNavigationItem( new NavigationItem('navigation.mana.main.itemslist',
-            _("Itemslist"), site_url('itemslist') ) );
+            T_("Itemslist"), site_url('itemslist') ) );
         $nb->addNavigationItem( new NavigationItem('navigation.mana.main.serverstats',
-            _("Statistics"), site_url('statistics') ) );
+            T_("Statistics"), site_url('statistics') ) );
 
         $navigation->addNavbox($nb, 10);
 

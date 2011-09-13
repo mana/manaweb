@@ -1919,9 +1919,8 @@ class CI_Email {
 	function _set_error_message($msg, $val = '')
 	{
 		$CI =& get_instance();
-		$CI->lang->load('email');
 
-		if (FALSE === ($line = $CI->lang->line($msg)))
+		if (FALSE === ($line = T_($msg)))
 		{
 			$this->_debug_msg[] = str_replace('%s', $val, $msg)."<br />";
 		}

@@ -14,13 +14,13 @@
 <p>
 <? if ($this->user->isBanned())
    {
-       echo "Your account is banned until ". date(lang('date_time_format') .". ",
+       echo "Your account is banned until ". date(T_('date_time_format') .". ",
         $this->user->isBanned());
    }
    else
    {
-    echo "You are a member of the following access groups:
-    <ul>";
+    echo T_("You are a member of the following access groups:");
+    echo "<ul>";
         foreach ($groups as $group)
         {
             echo "<li>$group</li>";
@@ -28,27 +28,26 @@
     echo "</ul>";
    }
 ?>
-This account is registered since <strong><?= date(lang('date_time_format'),
+This account is registered since <strong><?= date(T_('date_time_format'),
     $this->user->getRegistrationDate()) ?></strong>. Your last login was
-    <strong><?= date(lang('date_time_format'),
+    <strong><?= date(T_('date_time_format'),
     $this->user->getLastLogin()) ?></strong>.
 </p>
 
 
-<h3>Character overview</h3>
+<h3><?= T_('Character overview')?></h3>
 
 <?php if ($this->user->hasCharacters()){ ?>
 
-<p>Here you see a summary of all your characters. Click on the name
-of one to see its details.</p>
+<p><?= T_('Here you see a summary of all your characters. Click on the name of one to see its details.')?></p>
 
 <table class="datatable">
 <tr>
-    <th>Name</th>
-    <th width="20">Level</th>
-    <th width="20">Gender</th>
-    <th>Money</th>
-    <th>Map</th>
+    <th><?= T_('Name')?></th>
+    <th width="20"><?= T_('Level')?></th>
+    <th width="20"><?= T_('Gender')?></th>
+    <th><?= T_('Money')?></th>
+    <th><?= T_('Map')?></th>
 </tr>
 <?php foreach ($this->user->getCharacters() as $char){ ?>
 <tr>

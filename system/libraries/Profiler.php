@@ -37,7 +37,6 @@ class CI_Profiler {
  	function CI_Profiler()
  	{
  		$this->CI =& get_instance();
- 		$this->CI->load->language('profiler');
  	}
 
 	// --------------------------------------------------------------------
@@ -76,7 +75,7 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #990000;padding:6px 10px 10px 10px;margin:0 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#990000;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_benchmarks').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#990000;">&nbsp;&nbsp;'.T_('profiler_benchmarks').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 		$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
 
@@ -118,10 +117,10 @@ class CI_Profiler {
 			$output  = "\n\n";
 			$output .= '<fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 			$output .= "\n";
-			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_queries').'&nbsp;&nbsp;</legend>';
+			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.T_('profiler_queries').'&nbsp;&nbsp;</legend>';
 			$output .= "\n";
 			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
-			$output .="<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".$this->CI->lang->line('profiler_no_db')."</td></tr>\n";
+			$output .="<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".T_('profiler_no_db')."</td></tr>\n";
 			$output .= "</table>\n";
 			$output .= "</fieldset>";
 
@@ -140,13 +139,13 @@ class CI_Profiler {
 		{
 			$output .= '<fieldset style="border:1px solid #0000FF;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 			$output .= "\n";
-			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_database').':&nbsp; '.$db->database.'&nbsp;&nbsp;&nbsp;'.$this->CI->lang->line('profiler_queries').': '.count($this->CI->db->queries).'&nbsp;&nbsp;&nbsp;</legend>';
+			$output .= '<legend style="color:#0000FF;">&nbsp;&nbsp;'.T_('profiler_database').':&nbsp; '.$db->database.'&nbsp;&nbsp;&nbsp;'.T_('profiler_queries').': '.count($this->CI->db->queries).'&nbsp;&nbsp;&nbsp;</legend>';
 			$output .= "\n";
 			$output .= "\n\n<table cellpadding='4' cellspacing='1' border='0' width='100%'>\n";
 
 			if (count($db->queries) == 0)
 			{
-				$output .= "<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".$this->CI->lang->line('profiler_no_queries')."</td></tr>\n";
+				$output .= "<tr><td width='100%' style='color:#0000FF;font-weight:normal;background-color:#eee;'>".T_('profiler_no_queries')."</td></tr>\n";
 			}
 			else
 			{
@@ -187,12 +186,12 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #cd6e00;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#cd6e00;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_get_data').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#cd6e00;">&nbsp;&nbsp;'.T_('profiler_get_data').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
 		if (count($_GET) == 0)
 		{
-			$output .= "<div style='color:#cd6e00;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_get')."</div>";
+			$output .= "<div style='color:#cd6e00;font-weight:normal;padding:4px 0 4px 0'>".T_('profiler_no_get')."</div>";
 		}
 		else
 		{
@@ -237,12 +236,12 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #009900;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#009900;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_post_data').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#009900;">&nbsp;&nbsp;'.T_('profiler_post_data').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
 		if (count($_POST) == 0)
 		{
-			$output .= "<div style='color:#009900;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_post')."</div>";
+			$output .= "<div style='color:#009900;font-weight:normal;padding:4px 0 4px 0'>".T_('profiler_no_post')."</div>";
 		}
 		else
 		{
@@ -287,12 +286,12 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #000;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#000;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_uri_string').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#000;">&nbsp;&nbsp;'.T_('profiler_uri_string').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
 		if ($this->CI->uri->uri_string == '')
 		{
-			$output .= "<div style='color:#000;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_uri')."</div>";
+			$output .= "<div style='color:#000;font-weight:normal;padding:4px 0 4px 0'>".T_('profiler_no_uri')."</div>";
 		}
 		else
 		{
@@ -317,7 +316,7 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #995300;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#995300;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_controller_info').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#995300;">&nbsp;&nbsp;'.T_('profiler_controller_info').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
 		$output .= "<div style='color:#995300;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->router->fetch_class()."/".$this->CI->router->fetch_method()."</div>";
@@ -342,7 +341,7 @@ class CI_Profiler {
 		$output  = "\n\n";
 		$output .= '<fieldset style="border:1px solid #5a0099;padding:6px 10px 10px 10px;margin:20px 0 20px 0;background-color:#eee">';
 		$output .= "\n";
-		$output .= '<legend style="color:#5a0099;">&nbsp;&nbsp;'.$this->CI->lang->line('profiler_memory_usage').'&nbsp;&nbsp;</legend>';
+		$output .= '<legend style="color:#5a0099;">&nbsp;&nbsp;'.T_('profiler_memory_usage').'&nbsp;&nbsp;</legend>';
 		$output .= "\n";
 
 		if (function_exists('memory_get_usage') && ($usage = memory_get_usage()) != '')
@@ -351,7 +350,7 @@ class CI_Profiler {
 		}
 		else
 		{
-			$output .= "<div style='color:#5a0099;font-weight:normal;padding:4px 0 4px 0'>".$this->CI->lang->line('profiler_no_memory_usage')."</div>";
+			$output .= "<div style='color:#5a0099;font-weight:normal;padding:4px 0 4px 0'>".T_('profiler_no_memory_usage')."</div>";
 		}
 
 		$output .= "</fieldset>";

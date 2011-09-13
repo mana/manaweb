@@ -191,9 +191,6 @@ class CI_Validation {
 			return FALSE;
 		}
 
-		// Load the language file containing error messages
-		$this->CI->lang->load('validation');
-
 		// Cycle through the rules and test for errors
 		foreach ($this->_rules as $field => $rules)
 		{
@@ -224,7 +221,7 @@ class CI_Validation {
 				{
 					if ( ! isset($this->_error_messages['isset']))
 					{
-						if (FALSE === ($line = $this->CI->lang->line('isset')))
+						if (FALSE === ($line = T_('isset')))
 						{
 							$line = 'The field was not set';
 						}
@@ -322,7 +319,7 @@ class CI_Validation {
 				{
 					if ( ! isset($this->_error_messages[$rule]))
 					{
-						if (FALSE === ($line = $this->CI->lang->line($rule)))
+						if (FALSE === ($line = T_($rule)))
 						{
 							$line = 'Unable to access an error message corresponding to your field name.';
 						}

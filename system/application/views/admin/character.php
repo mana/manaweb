@@ -1,15 +1,15 @@
-<h3><?= lang('character_statistics') ?></h3>
+<h3><?= T_('character_statistics') ?></h3>
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_name') ?>: </span>
+            <span class="label"><?= T_('character_name') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $char->getName() ?>
             <?= $char->isOnline('img') ?></span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_str') ?>: </span>
+            <span class="label"><?= T_('character_attr_str') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -97,7 +97,7 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_owner') ?>: </span>
+            <span class="label"><?= T_('character_owner') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><a href="<?= site_url(array("admin/show_account", $char->getOwnerId() )) ?>">
@@ -105,7 +105,7 @@
             </span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_agi') ?>: </span>
+            <span class="label"><?= T_('character_attr_agi') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -115,13 +115,13 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_gender') ?>: </span>
+            <span class="label"><?= T_('character_gender') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $char->getGender('image') ?></span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_dex') ?>: </span>
+            <span class="label"><?= T_('character_attr_dex') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -131,13 +131,13 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_level') ?>: </span>
+            <span class="label"><?= T_('character_level') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $char->getLevel() ?></span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_vit') ?>: </span>
+            <span class="label"><?= T_('character_attr_vit') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -147,13 +147,13 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_money') ?>: </span>
+            <span class="label"><?= T_('character_money') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $char->getAttribute(Character::CHAR_ATTR_GP) ?></span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_int') ?>: </span>
+            <span class="label"><?= T_('character_attr_int') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -163,7 +163,7 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_map') ?>: </span>
+            <span class="label"><?= T_('character_map') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input">
@@ -171,7 +171,7 @@
             </span>
         </td>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('character_attr_will') ?>: </span>
+            <span class="label"><?= T_('character_attr_will') ?>: </span>
         </td>
         <td style="border-width: 0px;" align="right">
             <span class="input">
@@ -181,5 +181,5 @@
     </tr>
 </table>
 
-<h3><?= lang('administrative_tasks') ?></h3>
+<h3><?= T_('administrative_tasks') ?></h3>
 

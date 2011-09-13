@@ -33,7 +33,7 @@ function to_the_top()
          . "<div style=\"text-align: right;\">\n"
          . "<a href=\"#top\">"
          . "<img src=\"".base_url()."images/go-up.png\" "
-         . "border=\"0\" style=\"vertical-align: middle;\"> " . lang('go_up')
+         . "border=\"0\" style=\"vertical-align: middle;\"> " . T_('go_up')
          . "</a>\n"
          . "</div>\n\n";
 }

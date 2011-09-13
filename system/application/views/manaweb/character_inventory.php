@@ -20,11 +20,11 @@
     Your current load: <?= $weight_all ?> of <?= $weight_max ?>
 </div>
 
-<h3><?= lang('character_equipment') ?></h3>
+<h3><?= T_('character_equipment') ?></h3>
 
 <p>Sorry, this feature is not yet supported.</p>
 
-<h3><?= lang('character_inventory') ?></h3>
+<h3><?= T_('character_inventory') ?></h3>
 
 <table class="datatable">
     <tr>

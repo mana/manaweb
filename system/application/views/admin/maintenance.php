@@ -42,7 +42,7 @@ stored data.</p>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $maps_file_age); ?>
+                <?= date(T_('date_time_format'), $maps_file_age); ?>
             </span>
         </td>
         <td>
@@ -67,7 +67,7 @@ stored data.</p>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $skills_file_age); ?>
+                <?= date(T_('date_time_format'), $skills_file_age); ?>
             </span>
         </td>
         <td>
@@ -92,7 +92,7 @@ stored data.</p>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $attributes_file_age); ?>
+                <?= date(T_('date_time_format'), $attributes_file_age); ?>
             </span>
         </td>
         <td>
@@ -146,8 +146,8 @@ stored data.</p>
             <!-- size in kilobytes of logfiles -->
             Size: <?= round( $logfile_size / 1024 ) ?> kB<br />
             <!-- daterange -->
-            Oldest log: <?= date(lang('date_format'), $min_date) ?> <br />
-            Latest log: <?= date(lang('date_format'), $max_date) ?>
+            Oldest log: <?= date(T_('date_format'), $min_date) ?> <br />
+            Latest log: <?= date(T_('date_format'), $max_date) ?>
             <?php } ?>
         </td>
         <td>
@@ -179,7 +179,7 @@ stored data.</p>
                 <tr>
                     <td><?= $logfile['filename'] ?></td>
                     <td align="right"><?= round( $logfile['filesize'] / 1024 ) ?> kB</td>
-                    <td><?= date(lang('date_time_format'), $logfile['filedate'] ) ?></td>
+                    <td><?= date(T_('date_time_format'), $logfile['filedate'] ) ?></td>
                     <td><a href="<?= site_url("admin/maintenance/delete_log/" . $logfile['filename']) ?>">
                             <img src="<?= base_url() ?>images/edit-delete.png"
                                  style="vertical-align: middle"

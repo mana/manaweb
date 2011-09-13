@@ -1,15 +1,15 @@
-<h3><?= lang('account_details') ?></h3>
+<h3><?= T_('account_details') ?></h3>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_id') ?>: </span>
+            <span class="label"><?= T_('account_id') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $account->getID() ?></span>
         </td>
         <td rowspan="6" valign="top">
-            <h3><?= lang('account_characters'); ?></h3>
+            <h3><?= T_('account_characters'); ?></h3>
             <ul>
             <? foreach ($account->getCharacters("name") as $char)
             {
@@ -25,7 +25,7 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_username') ?>: </span>
+            <span class="label"><?= T_('account_username') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?= $account->getUsername() ?></span>
@@ -33,7 +33,7 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_groups') ?>: </span>
+            <span class="label"><?= T_('account_groups') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input"><?php
@@ -47,19 +47,19 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_status') ?>: </span>
+            <span class="label"><?= T_('account_status') ?>: </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input">
             <?php
                 if ($account->isBanned())
                 {
-                    echo lang('account_status_banned') . " " .
-                    date(lang('date_time_format'), $account->getBanned());
+                    echo T_('account_status_banned') . " " .
+                    date(T_('date_time_format'), $account->getBanned());
                 }
                 else
                 {
-                    echo lang('account_status_active');
+                    echo T_('account_status_active');
                 }
             ?>
             </span>
@@ -67,20 +67,20 @@
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_registration') ?>: </span>
+            <span class="label"><?= T_('account_registration') ?>: </span>
         </td>
         <td style="border-width: 0px;">
-            <span class="input"><?= date(lang('date_time_format'), $account->getRegistration()) ?></span>
+            <span class="input"><?= date(T_('date_time_format'), $account->getRegistration()) ?></span>
         </td>
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label"><?= lang('account_lastlogin') ?>: </span>
+            <span class="label"><?= T_('account_lastlogin') ?>: </span>
         </td>
         <td style="border-width: 0px;">
-            <span class="input"><?= date(lang('date_time_format'), $account->getLastLogin()) ?></span>
+            <span class="input"><?= date(T_('date_time_format'), $account->getLastLogin()) ?></span>
         </td>
     </tr>
 </table>
 
-<h3><?= lang('administrative_tasks') ?></h3>
+<h3><?= T_('administrative_tasks') ?></h3>

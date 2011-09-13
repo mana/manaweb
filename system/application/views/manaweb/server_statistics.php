@@ -1,4 +1,4 @@
-<h3>Server Statistics</h3>
+<h3><?= T_('Server Statistics')?></h3>
 <p>
 Currently there are <?= $stats[Server_statistics::CHARACTER_COUNT] ?>
 individual Characters on <?= MANAWEB_GAMENAME ?>, played by
@@ -14,7 +14,7 @@ All characters form a purchasing power of
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
         <td style="border-width: 0px;">
-            <span class="label">Number of players: </span>
+            <span class="label"><?= T_('Number of players:')?></span>
         </td>
         <td style="border-width: 0px;">
             <span class="input">
@@ -27,7 +27,7 @@ All characters form a purchasing power of
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label">Number of characters: </span>
+            <span class="label"><?= T_('Number of characters:')?> </span>
         </td>
         <td style="border-width: 0px;">
             <span class="input">
@@ -37,7 +37,7 @@ All characters form a purchasing power of
     </tr>
     <tr>
         <td style="border-width: 0px;">
-            <span class="label">Number of guilds: </span>
+            <span class="label"><?= T_('Number of guilds:')?></span>
         </td>
         <td style="border-width: 0px;">
             <span class="input">
@@ -50,15 +50,15 @@ All characters form a purchasing power of
     </tr>
 </table>
 
-<h3>The top 10 Guilds</h3>
+<h3><?= T_('The top 10 Guilds')?></h3>
 <? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
     <p>Sorry, there are currently no guilds founded.</p>
 <? } else { ?>
 <table class="datatable">
     <tr>
         <th></th>
-        <th>Guild</th>
-        <th>Members</th>
+        <th><?= T_('Guild')?></th>
+        <th><?= T_('Members')?></th>
     </tr>
     <?  $i = 1;
         foreach ($stats[Server_statistics::GUILD_TOPTEN] as $guild) { ?>
@@ -73,16 +73,16 @@ All characters form a purchasing power of
 
 
 
-<h3>The top 10 Characters</h3>
+<h3><?= T_('The top 10 Characters')?></h3>
 <? if ($stats[Server_statistics::CHARACTER_TOPTEN] === false ) { ?>
     <p>Sorry, there are currently no characters alive.</p>
 <? } else { ?>
 <table class="datatable">
     <tr>
         <th></th>
-        <th>Character</th>
-        <th>Player</th>
-        <th>Level</th>
+        <th><?= T_('Character')?></th>
+        <th><?= T_('Player')?></th>
+        <th><?= T_('Level')?></th>
     </tr>
     <?  $i = 1;
         foreach ($stats[Server_statistics::CHARACTER_TOPTEN] as $char) { ?>
