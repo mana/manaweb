@@ -32,30 +32,30 @@ class CI_Language {
 	 */
 	function CI_Language()
 	{               
-                //grab the config file
-		@include(APPPATH.'config/config'.EXT);
-            
-		log_message('debug', "Language Class Initialized");
-                
-                //Init Gettext
-                $locale = $config['language'];   // set language to default value
-                $domain = 'default'; // set gettext domain
-                $encoding = 'UTF-8'; // set character encoding
-                
-                //include gettext
-                require_once('./ext/php-gettext/gettext.inc');
+            //grab the config file
+            @include(APPPATH.'config/config'.EXT);
 
-                //set locale
-                T_setlocale(LC_MESSAGES, $locale);
+            log_message('debug', "Language Class Initialized");
 
-                //set locale path
-                T_bindtextdomain($domain, './locale/');
+            //Init Gettext
+            $locale = $config['language'];   // set language to default value
+            $domain = 'default'; // set gettext domain
+            $encoding = 'UTF-8'; // set character encoding
 
-                //set character encoding
-                T_bind_textdomain_codeset($domain, $encoding);
+            //include gettext
+            require_once('./ext/php-gettext/gettext.inc');
 
-                //set domain
-                T_textdomain($domain);
+            //set locale
+            T_setlocale(LC_MESSAGES, $locale);
+
+            //set locale path
+            T_bindtextdomain($domain, './locale/');
+
+            //set character encoding
+            T_bind_textdomain_codeset($domain, $encoding);
+
+            //set domain
+            T_textdomain($domain);
 	}
 }
 // END Language Class
