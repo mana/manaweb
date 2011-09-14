@@ -1,14 +1,19 @@
 <h3><?= T_('Server Statistics')?></h3>
 <p>
-Currently there are <?= $stats[Server_statistics::CHARACTER_COUNT] ?>
-individual Characters on <?= MANAWEB_GAMENAME ?>, played by
-<?= $stats[Server_statistics::PLAYER_COUNT] ?> players.
-The characters founded
-<?= $stats[Server_statistics::GUILD_COUNT] ?> guilds.<br />
-All characters form a purchasing power of
-<?=
-  number_format($stats[Server_statistics::ECONOMY_PURCHASE_POW], 0, ".", ",");
-?> <?= MANAWEB_GPNAME ?>.
+<?
+$format = T_('Currently there are %d individual Characters on %s , played by %d players.');
+printf($format, $stats[Server_statistics::CHARACTER_COUNT], MANAWEB_GAMENAME, $stats[Server_statistics::PLAYER_COUNT]);
+?>
+<br/>
+<?
+$format = T_('The characters founded %d guilds.');
+printf($format, $stats[Server_statistics::GUILD_COUNT]);
+?>
+<br/>
+<?
+$format = T_('All characters form a purchasing power of %d %s.');
+printf($format, $stats[Server_statistics::ECONOMY_PURCHASE_POW], MANAWEB_GPNAME);
+?>
 </p>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
@@ -52,7 +57,7 @@ All characters form a purchasing power of
 
 <h3><?= T_('The top 10 Guilds')?></h3>
 <? if ($stats[Server_statistics::GUILD_TOPTEN] === false ) { ?>
-    <p>Sorry, there are currently no guilds founded.</p>
+    <p><?= T_('Sorry, there are currently no guilds founded.')?></p>
 <? } else { ?>
 <table class="datatable">
     <tr>

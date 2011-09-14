@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-13 19:45+0200\n"
-"PO-Revision-Date: 2011-09-13 21:07+0100\n"
+"POT-Creation-Date: 2011-09-14 20:28+0200\n"
+"PO-Revision-Date: 2011-09-14 20:31+0100\n"
 "Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -19,9 +19,116 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: .\n"
 
+#: system/application/views/manabay/auction_list.php:1
+msgid "Next 10 auctions to finish"
+msgstr "Nächste 10 Auktionen welche bald enden"
+
+#: system/application/views/manabay/auction_list.php:4
+msgid "Currently, there are no open auctions."
+msgstr "Zurzeit sind keine Auktionen am laufen."
+
+#: system/application/views/manabay/auction_list.php:10
+msgid "Item"
+msgstr "Item"
+
+#: system/application/views/manabay/auction_list.php:11
+msgid "Seller"
+msgstr "Verkäufer"
+
+#: system/application/views/manabay/auction_list.php:12
+msgid "Endtime"
+msgstr "Endzeit"
+
+#: system/application/views/manabay/auction_list.php:13
+msgid "Bids"
+msgstr "Gebote"
+
+#: system/application/views/manabay/auction_list.php:14
+msgid "Price"
+msgstr "Preis"
+
 #: system/application/views/manabay/auction_list.php:29
 msgid "date_time_format_sec"
 msgstr "d-m-Y H:i:s"
+
+#: system/application/views/manabay/auction_list.php:41
+msgid "Search auctions by category"
+msgstr "Suche Auktionen nach Kategorie"
+
+#: system/application/views/manabay/auction_list.php:46
+#: system/application/views/manaweb/item_list.php:42
+msgid "Weapons"
+msgstr "Waffen"
+
+#: system/application/views/manabay/auction_list.php:48
+#: system/application/views/manaweb/item_list.php:44
+msgid "one handed"
+msgstr "einhändig"
+
+#: system/application/views/manabay/auction_list.php:50
+#: system/application/views/manaweb/item_list.php:46
+msgid "two handed"
+msgstr "zweihändig"
+
+#: system/application/views/manabay/auction_list.php:52
+#: system/application/views/manaweb/item_list.php:48
+msgid "ammunition"
+msgstr "Munition"
+
+#: system/application/views/manabay/auction_list.php:54
+#: system/application/views/manaweb/item_list.php:50
+msgid "shields"
+msgstr "Schilde"
+
+#: system/application/views/manabay/auction_list.php:59
+#: system/application/views/manaweb/item_list.php:55
+msgid "Clothes"
+msgstr "Kleidung"
+
+#: system/application/views/manabay/auction_list.php:61
+#: system/application/views/manaweb/item_list.php:57
+msgid "arms"
+msgstr "Arme"
+
+#: system/application/views/manabay/auction_list.php:63
+#: system/application/views/manaweb/item_list.php:59
+msgid "feet"
+msgstr "Füße"
+
+#: system/application/views/manabay/auction_list.php:65
+#: system/application/views/manaweb/item_list.php:61
+msgid "head"
+msgstr "Kopf"
+
+#: system/application/views/manabay/auction_list.php:67
+#: system/application/views/manaweb/item_list.php:63
+msgid "legs"
+msgstr "Beine"
+
+#: system/application/views/manabay/auction_list.php:69
+#: system/application/views/manaweb/item_list.php:65
+msgid "torso"
+msgstr "Torso"
+
+#: system/application/views/manabay/auction_list.php:74
+#: system/application/views/manaweb/item_list.php:70
+msgid "Others"
+msgstr "Anderes"
+
+#: system/application/views/manabay/auction_list.php:76
+#: system/application/views/manaweb/item_list.php:72
+msgid "rings"
+msgstr "Ringe"
+
+#: system/application/views/manabay/auction_list.php:78
+#: system/application/views/manaweb/item_list.php:74
+msgid "generics"
+msgstr "generisch"
+
+#: system/application/views/manabay/auction_list.php:80
+#: system/application/views/manaweb/item_list.php:76
+msgid "usable"
+msgstr "nutzbar"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:3
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:4
@@ -80,44 +187,66 @@ msgstr "Abbrechen"
 msgid "Server Statistics"
 msgstr "Server Statistiken"
 
-#: system/application/views/manaweb/server_statistics.php:17
+#: system/application/views/manaweb/server_statistics.php:4
+#, php-format
+msgid "Currently there are %d individual Characters on %s , played by %d players."
+msgstr "Zurzeit gibt es %d individuelle Charaktere in %s, welche von %d Spielern stammen."
+
+#: system/application/views/manaweb/server_statistics.php:9
+#, php-format
+msgid "The characters founded %d guilds."
+msgstr "Die Charaktere haben %d Gilden gegründet."
+
+#: system/application/views/manaweb/server_statistics.php:14
+#, php-format
+msgid "All characters form a purchasing power of %d %s."
+msgstr "Alle Charaktere haben insgesamt eine Kaufkraft von %d %s."
+
+#: system/application/views/manaweb/server_statistics.php:22
 msgid "Number of players:"
 msgstr "Anzahl der Spieler:"
 
-#: system/application/views/manaweb/server_statistics.php:30
+#: system/application/views/manaweb/server_statistics.php:35
 msgid "Number of characters:"
 msgstr "Anzahl der Charaktere"
 
-#: system/application/views/manaweb/server_statistics.php:40
+#: system/application/views/manaweb/server_statistics.php:45
 msgid "Number of guilds:"
 msgstr "Anzahl der Gilden:"
 
-#: system/application/views/manaweb/server_statistics.php:53
+#: system/application/views/manaweb/server_statistics.php:58
 msgid "The top 10 Guilds"
 msgstr "Die Top 10 Gilden"
 
 #: system/application/views/manaweb/server_statistics.php:60
+msgid "Sorry, there are currently no guilds founded."
+msgstr "Es wurden keine Gilden gefunden."
+
+#: system/application/views/manaweb/server_statistics.php:65
 msgid "Guild"
 msgstr "Gilden"
 
-#: system/application/views/manaweb/server_statistics.php:61
+#: system/application/views/manaweb/server_statistics.php:66
 msgid "Members"
 msgstr "Mitglieder"
 
-#: system/application/views/manaweb/server_statistics.php:76
+#: system/application/views/manaweb/server_statistics.php:81
 msgid "The top 10 Characters"
 msgstr "Die Top 10 Charaktere"
 
-#: system/application/views/manaweb/server_statistics.php:83
+#: system/application/views/manaweb/server_statistics.php:88
+#: system/application/views/admin/main.php:101
 msgid "Character"
 msgstr "Charakter"
 
-#: system/application/views/manaweb/server_statistics.php:84
+#: system/application/views/manaweb/server_statistics.php:89
+#: system/application/config/mana_config.php:156
 msgid "Player"
 msgstr "Spieler"
 
-#: system/application/views/manaweb/server_statistics.php:85
+#: system/application/views/manaweb/server_statistics.php:90
 #: system/application/views/manaweb/user_home.php:45
+#: system/application/views/admin/main.php:104
 msgid "Level"
 msgstr "Level"
 
@@ -209,6 +338,37 @@ msgstr ""
 #: system/application/views/admin/character.php:174
 msgid "character_attr_will"
 msgstr ""
+
+#: system/application/views/manaweb/item_list.php:1
+msgid "Item dictionary"
+msgstr "Item Wörterbuch"
+
+#: system/application/views/manaweb/item_list.php:8
+msgid "You can search an item by its name..."
+msgstr "Du kannst die Items nach dem Namen suchen..."
+
+#: system/application/views/manaweb/item_list.php:16
+#: system/application/views/admin/main.php:66
+#: system/application/views/admin/main.php:96
+msgid "Sorry, your search returns no rows."
+msgstr "Diese Suche lieferte leider keine Resultate."
+
+#: system/application/views/manaweb/item_list.php:38
+msgid "... or by its category"
+msgstr "... oder nach Kategorie"
+
+#: system/application/views/manaweb/item_list.php:88
+#: system/application/views/manaweb/user_home.php:44
+msgid "Name"
+msgstr "Name"
+
+#: system/application/views/manaweb/item_list.php:89
+msgid "Weight"
+msgstr "Gewicht"
+
+#: system/application/views/manaweb/item_list.php:90
+msgid "Effect"
+msgstr "Effekt"
 
 #: system/application/views/manaweb/character_administration.php:1
 msgid "character_administration"
@@ -339,19 +499,18 @@ msgstr "Charakterübersicht"
 msgid "Here you see a summary of all your characters. Click on the name of one to see its details."
 msgstr "Hier siehst du eine Übersicht über alle deine Charaktere. Klicke auf einen Namen um weitere Details zu sehen."
 
-#: system/application/views/manaweb/user_home.php:44
-msgid "Name"
-msgstr "Name"
-
 #: system/application/views/manaweb/user_home.php:46
+#: system/application/views/admin/main.php:103
 msgid "Gender"
 msgstr "Geschlecht"
 
 #: system/application/views/manaweb/user_home.php:47
+#: system/application/views/admin/main.php:105
 msgid "Money"
 msgstr "Geld"
 
 #: system/application/views/manaweb/user_home.php:48
+#: system/application/views/admin/main.php:106
 msgid "Map"
 msgstr "Karte"
 
@@ -399,7 +558,7 @@ msgstr "Administration"
 #: system/application/views/layout/header.php:91
 #: system/application/views/layout/header.php:93
 msgid "Admin Interface"
-msgstr "Admin Men&uuml;"
+msgstr "Administratives"
 
 #: system/application/views/layout/header.php:95
 msgid "Maintenance"
@@ -464,6 +623,39 @@ msgstr ""
 msgid "administrative_tasks"
 msgstr "Administration"
 
+#: system/application/views/admin/main.php:1
+msgid "Quick search"
+msgstr "Schnellsuche"
+
+#: system/application/views/admin/main.php:19
+msgid "search Account"
+msgstr "suche Account"
+
+#: system/application/views/admin/main.php:23
+msgid "Enter an account name"
+msgstr "Gib einen Accountnamen ein"
+
+#: system/application/views/admin/main.php:36
+msgid "search Character"
+msgstr "such Charakter"
+
+#: system/application/views/admin/main.php:40
+msgid "Enter a character name"
+msgstr "Gib einen Charakternamen ein"
+
+#: system/application/views/admin/main.php:43
+#: system/application/views/admin/main.php:44
+msgid "Search"
+msgstr "Suche"
+
+#: system/application/views/admin/main.php:100
+msgid "ID"
+msgstr "ID"
+
+#: system/application/views/admin/main.php:102
+msgid "Username"
+msgstr "Nutzername"
+
 #: system/application/views/admin/character.php:100
 msgid "character_owner"
 msgstr "Charaktereigentümer"
@@ -476,6 +668,34 @@ msgstr ""
 #, php-format
 msgid "ERROR: Navbox %s not found!"
 msgstr "Fehler: Navigationsbox %s nicht gefunden!"
+
+#: system/application/libraries/Menuprovider.php:102
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: system/application/libraries/Menuprovider.php:104
+msgid "Logout"
+msgstr ""
+
+#: system/application/config/mana_config.php:155
+msgid "Banned User"
+msgstr "Gesperrter Spieler"
+
+#: system/application/config/mana_config.php:157
+msgid "Tester"
+msgstr "Tester"
+
+#: system/application/config/mana_config.php:158
+msgid "Developer"
+msgstr "Entwickler"
+
+#: system/application/config/mana_config.php:159
+msgid "GM"
+msgstr "Gamemaster"
+
+#: system/application/config/mana_config.php:160
+msgid "Administrator"
+msgstr "Administrator"
 
 #: system/application/controllers/charcontroller.php:49
 #: system/application/controllers/guildcontroller.php:46
@@ -553,7 +773,7 @@ msgstr "Mein Account"
 #: system/application/controllers/admin.php:299
 #: system/application/controllers/admin.php:341
 msgid "admin_title"
-msgstr ""
+msgstr "Administratives"
 
 #: system/application/controllers/admin.php:188
 msgid "maintenance_title"
@@ -574,6 +794,18 @@ msgstr ""
 #: system/application/controllers/admin.php:417
 msgid "items_file_reloaded"
 msgstr ""
+
+#: system/application/controllers/statistics.php:86
+msgid "Ratio male chars to female"
+msgstr ""
+
+#: system/application/controllers/statistics.php:118
+msgid "male"
+msgstr "männlich"
+
+#: system/application/controllers/statistics.php:118
+msgid "female"
+msgstr "weiblich"
 
 #: system/helpers/number_helper.php:46
 msgid "terabyte_abbr"

@@ -1,11 +1,11 @@
-<h3>Item dictionary</h3>
+<h3><?= T_('Item dictionary')?></h3>
 
 	<? $attributes = array('name'=>'ManasearchItemForm', 'id'=>'ManasearchItemForm');
     echo form_open('itemslist/search_item', $attributes); ?>
 
 	<table style="border-width: 0px; margin-bottom: 0px;">
 		<tr>
-			<td colspan="3">You can search an item by its name... </td>
+			<td colspan="3"><?= T_('You can search an item by its name...')?> </td>
 		</tr>
 
 	    <?php if (isset($result_items)) {
@@ -13,7 +13,7 @@
 	    <tr>
 	        <td colspan="3" style="border: 1px solid #660000; font-weight: bold;
 	            color: #660000;">
-	            Sorry, your search returns no rows.
+	            <?= T_('Sorry, your search returns no rows.')?>
 	        </td>
 	    </tr>
 	    <? }} ?>
@@ -35,45 +35,45 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">... or by its category: </td>
+			<td colspan="3"><?= T_('... or by its category')?>: </td>
 		</tr>
 		<tr>
 			<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
-				<strong>Weapons</strong><br />
+				<strong><?= T_('Weapons')?></strong><br />
 				<ul>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_ONEHAND)) ?>">one handed</a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_ONEHAND)) ?>"><?= T_('one handed')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_ONEHAND ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_TWOHAND)) ?>">two handed </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_TWOHAND)) ?>"><?= T_('two handed')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_TWOHAND ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_AMMO)) ?>">ammunition </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_AMMO)) ?>"><?= T_('ammunition')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_AMMO ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_SHIELD)) ?>">shields </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_SHIELD)) ?>"><?= T_('shields')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_SHIELD ) ?>)</li>
 				</ul>
 			</td>
 			<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
-				<strong>Clothes</strong><br />
+				<strong><?= T_('Clothes')?></strong><br />
 				<ul>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_ARMS)) ?>">arms </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_ARMS)) ?>"><?= T_('arms')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_ARMS ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_FEET)) ?>">feet </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_FEET)) ?>"><?= T_('feet')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_FEET ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_HEAD)) ?>">head </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_HEAD)) ?>"><?= T_('head')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_HEAD ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_LEGS)) ?>">legs </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_LEGS)) ?>"><?= T_('legs')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_LEGS ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_TORSO)) ?>">torso </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_TORSO)) ?>"><?= T_('torso')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_TORSO ) ?>)</li>
 				</ul>
 			</td>
 			<td valign="top" style="border-width: 0px; margin-bottom: 0px;">
-				<strong>Others</strong><br />
+				<strong><?= T_('Others')?></strong><br />
 				<ul>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_RING)) ?>">rings </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_RING)) ?>"><?= T_('rings')?> </a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_RING ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_GENERIC)) ?>">generics </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_GENERIC)) ?>"><?= T_('generics')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_GENERIC ) ?>)</li>
-					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_USABLE)) ?>">usable </a>
+					<li><a href="<?= site_url(array("itemslist", "show", Inventory::ITEM_TYPE_USABLE)) ?>"><?= T_('usable')?></a>
 					(<?= $ctrl->getItemsPerCat( Inventory::ITEM_TYPE_USABLE ) ?>)</li>
 				</ul>
 			</td>
@@ -85,9 +85,9 @@
 <? if (isset($itemslist)) { ?>
 <table class="datatable">
     <tr>
-        <th colspan="2">Name</th>
-        <th>Weight</th>
-        <th>Effect</th>
+        <th colspan="2"><?= T_('Name') ?></th>
+        <th><?= T_('Weight') ?></th>
+        <th><?= T_('Effect') ?></th>
     </tr>
 
     <? foreach ($itemslist as $item) { ?>

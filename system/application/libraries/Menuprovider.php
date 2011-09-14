@@ -99,8 +99,9 @@ class Menuprovider
         {
             return array(
                 array('url' => site_url('accountmanager/settings'),
-                    'name' => 'Settings'),
-                array('url' => site_url('myaccount/logout'), 'name' => 'Logout')
+                    'name' => T_('Settings')),
+                array('url' => site_url('myaccount/logout'),
+                    'name' => T_('Logout'))
             );
         }
         else

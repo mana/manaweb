@@ -83,7 +83,7 @@ class Statistics extends Controller {
         $g->legend->Hide(false);
 
         // Title setup
-        $g->title->Set("Ratio male chars to female");
+        $g->title->Set(T_("Ratio male chars to female"));
         $g->title->SetFont(FF_FONT1,FS_BOLD);
 
         $res = $this->db->query(
@@ -115,7 +115,7 @@ class Statistics extends Controller {
         $p1->value->SetFont(FF_FONT1,FS_BOLD);
         $p1->value->SetColor("black");
         $p1->SetLabelPos(0.3);
-        $p1->SetLegends(array('male', 'female'));
+        $p1->SetLegends(array(T_('male'), T_('female')));
 
         $imagename = 'data/gendergraph.png';
         $g->Add($p1);
