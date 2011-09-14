@@ -22,7 +22,7 @@ All characters form a purchasing power of
             </span>
         </td>
         <td rowspan="4" align="right" style="border-width: 0px;">
-            <img src="<?= base_url() ?>/data/testchar2.png">
+            <img src="<?= base_url() ?>/data/gendergraph.png">
         </td>
     </tr>
     <tr>

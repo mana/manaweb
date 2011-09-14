@@ -33,7 +33,7 @@ class CI_Language {
 	function CI_Language()
 	{               
                 //grab the config file
-                @include(APPPATH.'config/config'.EXT);
+		@include(APPPATH.'config/config'.EXT);
             
 		log_message('debug', "Language Class Initialized");
                 

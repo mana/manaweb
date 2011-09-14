@@ -74,10 +74,10 @@ class Statistics extends Controller {
     private function CreateChart()
     {   
         $tblCharacters = $this->CI->config->item('tbl_name_characters');
-        
-        $g = $this->jpgraphwrapper->PieChart(400, 200, "testchar2.png", 1);
+
+        $g = $this->jpgraphwrapper->PieChart(450, 200, "", 1);
         $g->setFrame(true, '#E1D6CF', 0);
-        $g->SetColor('#E1D6CF');
+        $g->SetColor('#fffcf2');
         $g->SetAntiAliasing();
 
         $g->legend->Hide(false);
@@ -117,9 +117,15 @@ class Statistics extends Controller {
         $p1->SetLabelPos(0.3);
         $p1->SetLegends(array('male', 'female'));
 
+        $imagename = 'data/gendergraph.png';
         $g->Add($p1);
 
-        $g->Stroke();
+        // delete image if exist, to avoid jgraph error
+        if (file_exists($imagename))
+        {
+           unlink($imagename);
+        }
+        $g->Stroke($imagename);
     }
 
 
