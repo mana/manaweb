@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#write alle php files in file
+#write all php files in file
 (find ./data -name "*.php" && find ./system -name "*.php") > update-translations.txt
 
 #call xgettext to create pot file
