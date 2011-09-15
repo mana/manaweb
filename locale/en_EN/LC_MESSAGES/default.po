@@ -25,9 +25,8 @@ msgid "Currently, there are no open auctions."
 msgstr "Currently, there are no open auctions."
 
 #: system/application/views/manabay/auction_list.php:10
-#, fuzzy
 msgid "Item"
-msgstr "Items"
+msgstr "Item"
 
 #: system/application/views/manabay/auction_list.php:11
 msgid "Seller"
@@ -668,9 +667,8 @@ msgid "ERROR: Navbox %s not found!"
 msgstr "ERROR: Navbox %s not found!"
 
 #: system/application/libraries/Menuprovider.php:102
-#, fuzzy
 msgid "Settings"
-msgstr "On this page you have serveral options to modify your account settings. Maybe you would like to change your stored mailadress, or change your login password or even drop your complete account? Just select one of the options below."
+msgstr "Settings"
 
 #: system/application/libraries/Menuprovider.php:104
 msgid "Logout"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-14 20:28+0200\n"
-"PO-Revision-Date: 2011-09-14 20:31+0100\n"
+"PO-Revision-Date: 2011-09-15 19:38+0100\n"
 "Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: system/application/views/manabay/auction_list.php:1
 msgid "Next 10 auctions to finish"
-msgstr "Nächste 10 Auktionen welche bald enden"
+msgstr "Bald endende Auktionen"
 
 #: system/application/views/manabay/auction_list.php:4
 msgid "Currently, there are no open auctions."
-msgstr "Zurzeit sind keine Auktionen am laufen."
+msgstr "Zurzeit sind keine Auktionen am Laufen."
 
 #: system/application/views/manabay/auction_list.php:10
 msgid "Item"
@@ -208,7 +208,7 @@ msgstr "Anzahl der Spieler:"
 
 #: system/application/views/manaweb/server_statistics.php:35
 msgid "Number of characters:"
-msgstr "Anzahl der Charaktere"
+msgstr "Anzahl der Charaktere:"
 
 #: system/application/views/manaweb/server_statistics.php:45
 msgid "Number of guilds:"
@@ -345,7 +345,7 @@ msgstr "Item Wörterbuch"
 
 #: system/application/views/manaweb/item_list.php:8
 msgid "You can search an item by its name..."
-msgstr "Du kannst die Items nach dem Namen suchen..."
+msgstr "Du kannst die Items anhand ihres Namens suchen..."
 
 #: system/application/views/manaweb/item_list.php:16
 #: system/application/views/admin/main.php:66
@@ -637,7 +637,7 @@ msgstr "Gib einen Accountnamen ein"
 
 #: system/application/views/admin/main.php:36
 msgid "search Character"
-msgstr "such Charakter"
+msgstr "suche Charakter"
 
 #: system/application/views/admin/main.php:40
 msgid "Enter a character name"
