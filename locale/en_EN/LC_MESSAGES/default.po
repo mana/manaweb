@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-14 20:28+0200\n"
+"POT-Creation-Date: 2011-09-15 20:10+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: \n"
@@ -127,6 +127,10 @@ msgstr "generics"
 msgid "usable"
 msgstr "usable"
 
+#: system/application/views/manabay/auction_list.php:88
+msgid "ManaBay statistics"
+msgstr "ManaBay statistics"
+
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:3
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:4
 msgid "back_to_settings"
@@ -141,6 +145,10 @@ msgstr "Change your mailadress"
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:9
 msgid "settings_change_mail_descr"
 msgstr ""
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:20
+msgid "Something was wrong with your new mailaddress:"
+msgstr "Something was wrong with your new mailaddress:"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:38
 msgid "settings_current_password"
@@ -171,7 +179,7 @@ msgstr ""
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:78
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:79
 msgid "settings_change_mailaddress"
-msgstr ""
+msgstr "Change mailadress!"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:83
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:85
@@ -443,6 +451,38 @@ msgstr "With this option you can delete your account including all your characte
 msgid "settings_delete_account"
 msgstr "Yes, delete my account!"
 
+#: system/application/views/manaweb/login_form.php:1
+msgid "Login to The Mana Server Account Manager"
+msgstr "Login to The Mana Server Account Manager"
+
+#: system/application/views/manaweb/login_form.php:19
+msgid "Something was wrong with your login:"
+msgstr "Something was wrong with your login:"
+
+#: system/application/views/manaweb/login_form.php:26
+msgid "Username:"
+msgstr "Username:"
+
+#: system/application/views/manaweb/login_form.php:30
+msgid "Enter your username"
+msgstr "Enter your username"
+
+#: system/application/views/manaweb/login_form.php:39
+msgid "Enter your password"
+msgstr "Enter your password"
+
+#: system/application/views/manaweb/login_form.php:57
+msgid "Login"
+msgstr "Login"
+
+#: system/application/views/manaweb/login_form.php:59
+msgid "Cancel"
+msgstr "Cancel"
+
+#: system/application/views/manaweb/login_form.php:64
+msgid "Lost your password?"
+msgstr "Lost your password?"
+
 #: system/application/views/manaweb/user_home.php:1
 msgid "Welcome"
 msgstr "Welcome"
@@ -466,10 +506,10 @@ msgstr "Change your mailaddress"
 #: system/application/views/manaweb/user_home.php:15
 #: system/application/views/manaweb/user_home.php:29
 #: system/application/views/manaweb/user_home.php:31
-#: system/application/views/admin/maintenance.php:45
-#: system/application/views/admin/maintenance.php:70
-#: system/application/views/admin/maintenance.php:95
-#: system/application/views/admin/maintenance.php:182
+#: system/application/views/admin/maintenance.php:43
+#: system/application/views/admin/maintenance.php:68
+#: system/application/views/admin/maintenance.php:93
+#: system/application/views/admin/maintenance.php:180
 #: system/application/views/admin/account.php:58
 #: system/application/views/admin/account.php:73
 #: system/application/views/admin/account.php:81
@@ -569,8 +609,45 @@ msgstr "Manabay"
 msgid "Auctions"
 msgstr "Auctions"
 
-#: system/application/views/admin/maintenance.php:149
-#: system/application/views/admin/maintenance.php:150
+#: system/application/views/admin/maintenance.php:1
+msgid "Cached data"
+msgstr "Cached data"
+
+#: system/application/views/admin/maintenance.php:2
+msgid "cached_data_descr"
+msgstr "Manaweb stores some temporary data like the provided maps in its own datadirectory for fast and reliable access. If you made modifications to theoriginal data (maybe in manaserv), it is necessary to have manaweb to refresh itsstored data."
+
+#: system/application/views/admin/maintenance.php:26
+msgid "Subject"
+msgstr "Subject"
+
+#: system/application/views/admin/maintenance.php:27
+msgid "Description"
+msgstr "Description"
+
+#: system/application/views/admin/maintenance.php:28
+msgid "Value"
+msgstr "Value"
+
+#: system/application/views/admin/maintenance.php:29
+msgid "Actions"
+msgstr "Actions"
+
+#: system/application/views/admin/maintenance.php:37
+#, php-format
+msgid "The file <tt>%s</tt> contains all maps provided by the map server. Manaweb uses this file to show descriptions of the character locations."
+msgstr "The file <tt>%s</tt> contains all maps provided by the map server. Manaweb uses this file to show descriptions of the character locations."
+
+#: system/application/views/admin/maintenance.php:51
+msgid "Reload maps database"
+msgstr "Reload maps database"
+
+#: system/application/views/admin/maintenance.php:76
+msgid "Reload skills database"
+msgstr "Reload skills database"
+
+#: system/application/views/admin/maintenance.php:147
+#: system/application/views/admin/maintenance.php:148
 msgid "date_format"
 msgstr "d-m-Y"
 
@@ -632,6 +709,12 @@ msgstr "search Account"
 msgid "Enter an account name"
 msgstr "Enter an account name"
 
+#: system/application/views/admin/main.php:26
+#: system/application/views/admin/main.php:43
+#: system/application/views/admin/main.php:44
+msgid "Search"
+msgstr "Search"
+
 #: system/application/views/admin/main.php:36
 msgid "search Character"
 msgstr "search Character"
@@ -639,11 +722,6 @@ msgstr "search Character"
 #: system/application/views/admin/main.php:40
 msgid "Enter a character name"
 msgstr "Enter a character name"
-
-#: system/application/views/admin/main.php:43
-#: system/application/views/admin/main.php:44
-msgid "Search"
-msgstr "Search"
 
 #: system/application/views/admin/main.php:100
 msgid "ID"

@@ -1,8 +1,5 @@
-<h3>Cached data</h3>
-<p>Manaweb stores some temporary data like the provided maps in its own data
-directory for fast and reliable access. If you made modifications to the
-original data (maybe in manaserv), it is necessary to have manaweb to refresh its
-stored data.</p>
+<h3><?= T_('Cached data') ?></h3>
+<p><?= T_('cached_data_descr') ?></p>
 
 <? if (isset($action_result) && strlen($action_result) > 0 ) { ?>
 <p style="border: 1px solid black; padding:10px;">
@@ -26,19 +23,20 @@ stored data.</p>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
-        <th>Subject</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>Actions</th>
+        <th><?= T_('Subject') ?></th>
+        <th><?= T_('Description') ?></th>
+        <th><?= T_('Value') ?></th>
+        <th><?= T_('Actions') ?></th>
     </tr>
     <tr>
         <td>
             <span class="label"><?= XML_MAPS_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_MAPS_FILE ?></tt> contains all maps provided by the map
-            server. Manaweb uses this file to show descriptions of the
-            character locations.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all maps provided by the map server. Manaweb uses this file to show descriptions of the character locations.');
+            printf($format, XML_MAPS_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
@@ -50,7 +48,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_maps.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload maps database"
+                    title="<?= T_('Reload maps database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -75,7 +73,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_skills.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload skills database"
+                    title="<?= T_('Reload skills database') ?>"
                     border="0">
                 </a>
                 &nbsp;

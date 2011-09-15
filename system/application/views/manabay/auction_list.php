@@ -85,5 +85,5 @@
 </table>
 
 
-<h3>ManaBay statistics</h3>
+<h3><?= T_('ManaBay statistics')?></h3>
 

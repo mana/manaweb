@@ -17,7 +17,7 @@
         <tr>
             <td colspan="2" style="border: 1px solid #660000; font-weight: bold;
                 color: #660000;">
-                Something was wrong with your new mailaddress: <br />
+                <?= T_('Something was wrong with your new mailaddress:')?><br />
                 <?= validation_errors(); ?>
             </td>
         </tr>
