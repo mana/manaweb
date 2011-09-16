@@ -20,7 +20,7 @@
         </td>
         <td style="border-width: 0px;">
             <input type="text" size="30" tabindex="1" value="" id="Manausername"
-                title="<?= T_('Enter an account name')?> name="Manausername">
+                title="<?= T_('Enter an account name')?>" name="Manausername">
         </td>
         <td style="border-width: 0px;">
             <input type="submit" tabindex="2" value=<?= T_('Search')?>
@@ -37,11 +37,11 @@
         </td>
         <td style="border-width: 0px;">
             <input type="text" size="30" tabindex="3" value="" id="Manacharacter"
-                title="<?= T_('Enter a character name')?> name="Manacharacter">
+                title="<?= T_('Enter a character name')?>" name="Manacharacter">
         </td>
         <td style="border-width: 0px;">
             <input type="submit" tabindex="4" value=<?= T_('Search')?>
-                id="Manasubmit" title=<?= T_('Search')?> name="Manasearch">
+                id="Manasubmit" title="<?= T_('Search')?>" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
