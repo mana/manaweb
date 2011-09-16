@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-15 20:10+0200\n"
+"POT-Creation-Date: 2011-09-16 16:37+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: \n"
@@ -25,6 +25,7 @@ msgid "Currently, there are no open auctions."
 msgstr "Currently, there are no open auctions."
 
 #: system/application/views/manabay/auction_list.php:10
+#: system/application/views/manaweb/character_inventory.php:31
 msgid "Item"
 msgstr "Item"
 
@@ -262,7 +263,7 @@ msgstr ""
 
 #: system/application/views/manaweb/character_guilds.php:1
 msgid "character_guild_member"
-msgstr ""
+msgstr "Member in guilds"
 
 #: system/application/views/manaweb/character_guilds.php:9
 msgid "guild_id"
@@ -274,75 +275,107 @@ msgstr ""
 
 #: system/application/views/manaweb/character_guilds.php:33
 msgid "character_not_guild_member"
-msgstr ""
+msgstr "Charakter is not member of any guild."
 
 #: system/application/views/manaweb/character_inventory.php:23
 msgid "character_equipment"
-msgstr "Character Equipment"
+msgstr "Equipment"
+
+#: system/application/views/manaweb/character_inventory.php:25
+#: system/application/views/manaweb/character_administration.php:3
+msgid "Sorry, this feature is not yet supported."
+msgstr "Sorry, this feature is not yet supported."
 
 #: system/application/views/manaweb/character_inventory.php:27
 msgid "character_inventory"
-msgstr ""
+msgstr "Inventory"
+
+#: system/application/views/manaweb/character_inventory.php:32
+#: system/application/views/admin/maintenance.php:27
+msgid "Description"
+msgstr "Description"
+
+#: system/application/views/manaweb/character_inventory.php:33
+#: system/application/views/manaweb/item_list.php:90
+msgid "Effect"
+msgstr "Effect"
+
+#: system/application/views/manaweb/character_inventory.php:34
+msgid "Amount"
+msgstr "Amount"
+
+#: system/application/views/manaweb/character_inventory.php:35
+#: system/application/views/manaweb/item_list.php:89
+msgid "Weight"
+msgstr "Weight"
+
+#: system/application/views/manaweb/character_inventory.php:59
+msgid "Weight of your equipped items:"
+msgstr "Weight of your equipped items:"
+
+#: system/application/views/manaweb/character_inventory.php:67
+msgid "Total weight of all your items:"
+msgstr "Total weight of all your items:"
 
 #: system/application/views/manaweb/character.php:1
 #: system/application/views/admin/character.php:1
 msgid "character_statistics"
-msgstr "Character Statistics"
+msgstr "Statistics"
 
 #: system/application/views/manaweb/character.php:5
 #: system/application/views/admin/character.php:5
 msgid "character_name"
-msgstr "Character Name"
+msgstr "Name"
 
 #: system/application/views/manaweb/character.php:11
 #: system/application/views/admin/character.php:12
 msgid "character_attr_str"
-msgstr "Character Attributes"
+msgstr "Strength"
 
 #: system/application/views/manaweb/character.php:99
 #: system/application/views/admin/character.php:118
 msgid "character_gender"
-msgstr "Character Gender"
+msgstr "Gender"
 
 #: system/application/views/manaweb/character.php:105
 #: system/application/views/admin/character.php:108
 msgid "character_attr_agi"
-msgstr ""
+msgstr "Agility"
 
 #: system/application/views/manaweb/character.php:115
 #: system/application/views/admin/character.php:134
 msgid "character_level"
-msgstr "Character Level"
+msgstr "Level"
 
 #: system/application/views/manaweb/character.php:121
 #: system/application/views/admin/character.php:124
 msgid "character_attr_dex"
-msgstr ""
+msgstr "Dexterity"
 
 #: system/application/views/manaweb/character.php:131
 #: system/application/views/admin/character.php:150
 msgid "character_money"
-msgstr "Character Money"
+msgstr "Money"
 
 #: system/application/views/manaweb/character.php:137
 #: system/application/views/admin/character.php:140
 msgid "character_attr_vit"
-msgstr ""
+msgstr "Vitality"
 
 #: system/application/views/manaweb/character.php:147
 #: system/application/views/admin/character.php:166
 msgid "character_map"
-msgstr ""
+msgstr "Karte"
 
 #: system/application/views/manaweb/character.php:155
 #: system/application/views/admin/character.php:156
 msgid "character_attr_int"
-msgstr ""
+msgstr "Intelligence"
 
 #: system/application/views/manaweb/character.php:168
 #: system/application/views/admin/character.php:174
 msgid "character_attr_will"
-msgstr ""
+msgstr "Willpower"
 
 #: system/application/views/manaweb/item_list.php:1
 msgid "Item dictionary"
@@ -367,17 +400,9 @@ msgstr "... or by its category"
 msgid "Name"
 msgstr "Name"
 
-#: system/application/views/manaweb/item_list.php:89
-msgid "Weight"
-msgstr "Weight"
-
-#: system/application/views/manaweb/item_list.php:90
-msgid "Effect"
-msgstr "Effect"
-
 #: system/application/views/manaweb/character_administration.php:1
 msgid "character_administration"
-msgstr "Character Administration"
+msgstr "Administration"
 
 #: system/application/views/manaweb/settings.php:2
 msgid "settings_descr"
@@ -530,7 +555,7 @@ msgstr "Your last login was"
 
 #: system/application/views/manaweb/user_home.php:36
 msgid "Character overview"
-msgstr "Character Overview"
+msgstr "Overview"
 
 #: system/application/views/manaweb/user_home.php:40
 msgid "Here you see a summary of all your characters. Click on the name of one to see its details."
@@ -574,7 +599,7 @@ msgstr "My Account"
 
 #: system/application/views/layout/header.php:75
 msgid "Character sheet"
-msgstr "Character"
+msgstr "Overview"
 
 #: system/application/views/layout/header.php:77
 msgid "Skills"
@@ -621,10 +646,6 @@ msgstr "Manaweb stores some temporary data like the provided maps in its own dat
 msgid "Subject"
 msgstr "Subject"
 
-#: system/application/views/admin/maintenance.php:27
-msgid "Description"
-msgstr "Description"
-
 #: system/application/views/admin/maintenance.php:28
 msgid "Value"
 msgstr "Value"
@@ -653,44 +674,44 @@ msgstr "d-m-Y"
 
 #: system/application/views/admin/account.php:1
 msgid "account_details"
-msgstr ""
+msgstr "Details"
 
 #: system/application/views/admin/account.php:6
 msgid "account_id"
-msgstr "My Account"
+msgstr "ID"
 
 #: system/application/views/admin/account.php:12
 msgid "account_characters"
-msgstr ""
+msgstr "Characters"
 
 #: system/application/views/admin/account.php:28
 #: system/application/controllers/admin.php:105
 msgid "account_username"
-msgstr ""
+msgstr "Username"
 
 #: system/application/views/admin/account.php:36
 msgid "account_groups"
-msgstr ""
+msgstr "Groups"
 
 #: system/application/views/admin/account.php:50
 msgid "account_status"
-msgstr ""
+msgstr "Status"
 
 #: system/application/views/admin/account.php:57
 msgid "account_status_banned"
-msgstr ""
+msgstr "bannend"
 
 #: system/application/views/admin/account.php:62
 msgid "account_status_active"
-msgstr ""
+msgstr "active"
 
 #: system/application/views/admin/account.php:70
 msgid "account_registration"
-msgstr ""
+msgstr "Registration"
 
 #: system/application/views/admin/account.php:78
 msgid "account_lastlogin"
-msgstr ""
+msgstr "Last login"
 
 #: system/application/views/admin/account.php:86
 #: system/application/views/admin/character.php:184
@@ -710,6 +731,7 @@ msgid "Enter an account name"
 msgstr "Enter an account name"
 
 #: system/application/views/admin/main.php:26
+#: system/application/views/admin/main.php:27
 #: system/application/views/admin/main.php:43
 #: system/application/views/admin/main.php:44
 msgid "Search"
@@ -722,6 +744,10 @@ msgstr "search Character"
 #: system/application/views/admin/main.php:40
 msgid "Enter a character name"
 msgstr "Enter a character name"
+
+#: system/application/views/admin/main.php:58
+msgid "Search result"
+msgstr "Search result"
 
 #: system/application/views/admin/main.php:100
 msgid "ID"
@@ -984,6 +1010,10 @@ msgstr ""
 #: system/libraries/Profiler.php:353
 msgid "profiler_no_memory_usage"
 msgstr ""
+
+#: system/codeigniter/Common.php:238
+msgid "An Error Was Encountered"
+msgstr "An Error Was Encountered"
 
 #: system/plugins/js_calendar_pi.php:138
 msgid "cal_su"

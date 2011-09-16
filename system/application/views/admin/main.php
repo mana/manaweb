@@ -24,7 +24,7 @@
         </td>
         <td style="border-width: 0px;">
             <input type="submit" tabindex="2" value=<?= T_('Search')?>
-                id="Manasubmit" title="Search" name="Manasearch">
+                id="Manasubmit" title="<?= T_('Search')?>" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
@@ -55,7 +55,7 @@
 <?php if (isset($result_account) || isset($result_character)) { ?>
 
 <!-- search results -->
-<h3>Search result</h3>
+<h3><?= T_('Search result')?></h3>
 <p>
 <table class="datatable">
 
@@ -128,7 +128,6 @@
 </p>
 <!-- end of search results ------------------------------------------------ -->
 <?php } ?>
-
 
 
 <!-- papaer scroll to display additional stuff ---------------------------- -->

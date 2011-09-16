@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-15 20:10+0200\n"
-"PO-Revision-Date: 2011-09-16 09:10+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2011-09-16 16:37+0200\n"
+"PO-Revision-Date: 2011-09-16 16:40+0100\n"
+"Last-Translator: seeseekey <seeseekey@googlemail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -28,6 +28,7 @@ msgid "Currently, there are no open auctions."
 msgstr "Zurzeit sind keine Auktionen am Laufen."
 
 #: system/application/views/manabay/auction_list.php:10
+#: system/application/views/manaweb/character_inventory.php:31
 msgid "Item"
 msgstr "Item"
 
@@ -265,7 +266,7 @@ msgstr ""
 
 #: system/application/views/manaweb/character_guilds.php:1
 msgid "character_guild_member"
-msgstr ""
+msgstr "Mitgliedschaft in Gilden"
 
 #: system/application/views/manaweb/character_guilds.php:9
 msgid "guild_id"
@@ -277,75 +278,107 @@ msgstr ""
 
 #: system/application/views/manaweb/character_guilds.php:33
 msgid "character_not_guild_member"
-msgstr ""
+msgstr "Dieser Charakter ist in keiner Gilde."
 
 #: system/application/views/manaweb/character_inventory.php:23
 msgid "character_equipment"
-msgstr "Charaktererausrüstung"
+msgstr "Ausrüstung"
+
+#: system/application/views/manaweb/character_inventory.php:25
+#: system/application/views/manaweb/character_administration.php:3
+msgid "Sorry, this feature is not yet supported."
+msgstr "Entschuldigung, dieses Feature ist zur Zeit noch nicht verfügbar."
 
 #: system/application/views/manaweb/character_inventory.php:27
 msgid "character_inventory"
-msgstr ""
+msgstr "Inventar"
+
+#: system/application/views/manaweb/character_inventory.php:32
+#: system/application/views/admin/maintenance.php:27
+msgid "Description"
+msgstr "Beschreibung"
+
+#: system/application/views/manaweb/character_inventory.php:33
+#: system/application/views/manaweb/item_list.php:90
+msgid "Effect"
+msgstr "Effekt"
+
+#: system/application/views/manaweb/character_inventory.php:34
+msgid "Amount"
+msgstr "Menge"
+
+#: system/application/views/manaweb/character_inventory.php:35
+#: system/application/views/manaweb/item_list.php:89
+msgid "Weight"
+msgstr "Gewicht"
+
+#: system/application/views/manaweb/character_inventory.php:59
+msgid "Weight of your equipped items:"
+msgstr "Gewicht aller ausgerüsteten Items:"
+
+#: system/application/views/manaweb/character_inventory.php:67
+msgid "Total weight of all your items:"
+msgstr "Gewicht aller Items:"
 
 #: system/application/views/manaweb/character.php:1
 #: system/application/views/admin/character.php:1
 msgid "character_statistics"
-msgstr "Charakterstatistiken"
+msgstr "Statistiken"
 
 #: system/application/views/manaweb/character.php:5
 #: system/application/views/admin/character.php:5
 msgid "character_name"
-msgstr "Charaktername"
+msgstr "Name"
 
 #: system/application/views/manaweb/character.php:11
 #: system/application/views/admin/character.php:12
 msgid "character_attr_str"
-msgstr "Charakterattribute"
+msgstr "Stärke"
 
 #: system/application/views/manaweb/character.php:99
 #: system/application/views/admin/character.php:118
 msgid "character_gender"
-msgstr "Charaktergeschlecht"
+msgstr "Geschlecht"
 
 #: system/application/views/manaweb/character.php:105
 #: system/application/views/admin/character.php:108
 msgid "character_attr_agi"
-msgstr ""
+msgstr "Beweglichkeit"
 
 #: system/application/views/manaweb/character.php:115
 #: system/application/views/admin/character.php:134
 msgid "character_level"
-msgstr "Charakterlevel"
+msgstr "Level"
 
 #: system/application/views/manaweb/character.php:121
 #: system/application/views/admin/character.php:124
 msgid "character_attr_dex"
-msgstr ""
+msgstr "Geschicklichkeit"
 
 #: system/application/views/manaweb/character.php:131
 #: system/application/views/admin/character.php:150
 msgid "character_money"
-msgstr "Charaktergeld"
+msgstr "Vermögen"
 
 #: system/application/views/manaweb/character.php:137
 #: system/application/views/admin/character.php:140
 msgid "character_attr_vit"
-msgstr ""
+msgstr "Gesundheit"
 
 #: system/application/views/manaweb/character.php:147
 #: system/application/views/admin/character.php:166
 msgid "character_map"
-msgstr ""
+msgstr "Karte"
 
 #: system/application/views/manaweb/character.php:155
 #: system/application/views/admin/character.php:156
 msgid "character_attr_int"
-msgstr ""
+msgstr "Intelligenz"
 
 #: system/application/views/manaweb/character.php:168
 #: system/application/views/admin/character.php:174
 msgid "character_attr_will"
-msgstr ""
+msgstr "Willenskraft"
 
 #: system/application/views/manaweb/item_list.php:1
 msgid "Item dictionary"
@@ -370,17 +403,9 @@ msgstr "... oder nach Kategorie"
 msgid "Name"
 msgstr "Name"
 
-#: system/application/views/manaweb/item_list.php:89
-msgid "Weight"
-msgstr "Gewicht"
-
-#: system/application/views/manaweb/item_list.php:90
-msgid "Effect"
-msgstr "Effekt"
-
 #: system/application/views/manaweb/character_administration.php:1
 msgid "character_administration"
-msgstr "Charakteradministration"
+msgstr "Administration"
 
 #: system/application/views/manaweb/settings.php:2
 msgid "settings_descr"
@@ -533,7 +558,7 @@ msgstr "Dein letzter Login war am"
 
 #: system/application/views/manaweb/user_home.php:36
 msgid "Character overview"
-msgstr "Charakterübersicht"
+msgstr "Übersicht"
 
 #: system/application/views/manaweb/user_home.php:40
 msgid "Here you see a summary of all your characters. Click on the name of one to see its details."
@@ -547,7 +572,7 @@ msgstr "Geschlecht"
 #: system/application/views/manaweb/user_home.php:47
 #: system/application/views/admin/main.php:105
 msgid "Money"
-msgstr "Geld"
+msgstr "Vermögen"
 
 #: system/application/views/manaweb/user_home.php:48
 #: system/application/views/admin/main.php:106
@@ -577,7 +602,7 @@ msgstr "Mein Account"
 
 #: system/application/views/layout/header.php:75
 msgid "Character sheet"
-msgstr "Charakterübersicht"
+msgstr "Übersicht"
 
 #: system/application/views/layout/header.php:77
 msgid "Skills"
@@ -624,10 +649,6 @@ msgstr "Manaweb speichert einige temporäre Daten wie die mitgelieferte Karten i
 msgid "Subject"
 msgstr "Subjekt"
 
-#: system/application/views/admin/maintenance.php:27
-msgid "Description"
-msgstr "Beschreibung"
-
 #: system/application/views/admin/maintenance.php:28
 msgid "Value"
 msgstr "Wert"
@@ -656,44 +677,44 @@ msgstr "d.m.Y"
 
 #: system/application/views/admin/account.php:1
 msgid "account_details"
-msgstr ""
+msgstr "Details"
 
 #: system/application/views/admin/account.php:6
 msgid "account_id"
-msgstr "Mein Account"
+msgstr "ID"
 
 #: system/application/views/admin/account.php:12
 msgid "account_characters"
-msgstr ""
+msgstr "Charaktere"
 
 #: system/application/views/admin/account.php:28
 #: system/application/controllers/admin.php:105
 msgid "account_username"
-msgstr ""
+msgstr "Nutzername"
 
 #: system/application/views/admin/account.php:36
 msgid "account_groups"
-msgstr ""
+msgstr "Gruppen"
 
 #: system/application/views/admin/account.php:50
 msgid "account_status"
-msgstr ""
+msgstr "Status"
 
 #: system/application/views/admin/account.php:57
 msgid "account_status_banned"
-msgstr ""
+msgstr "gespeert"
 
 #: system/application/views/admin/account.php:62
 msgid "account_status_active"
-msgstr ""
+msgstr "aktiv"
 
 #: system/application/views/admin/account.php:70
 msgid "account_registration"
-msgstr ""
+msgstr "Registiert am"
 
 #: system/application/views/admin/account.php:78
 msgid "account_lastlogin"
-msgstr ""
+msgstr "Letzter Login"
 
 #: system/application/views/admin/account.php:86
 #: system/application/views/admin/character.php:184
@@ -713,6 +734,7 @@ msgid "Enter an account name"
 msgstr "Gib einen Accountnamen ein"
 
 #: system/application/views/admin/main.php:26
+#: system/application/views/admin/main.php:27
 #: system/application/views/admin/main.php:43
 #: system/application/views/admin/main.php:44
 msgid "Search"
@@ -725,6 +747,10 @@ msgstr "suche Charakter"
 #: system/application/views/admin/main.php:40
 msgid "Enter a character name"
 msgstr "Gib einen Charakternamen ein"
+
+#: system/application/views/admin/main.php:58
+msgid "Search result"
+msgstr "Suchresultat"
 
 #: system/application/views/admin/main.php:100
 msgid "ID"
@@ -875,7 +901,7 @@ msgstr ""
 
 #: system/application/controllers/statistics.php:86
 msgid "Ratio male chars to female"
-msgstr ""
+msgstr "Verhältnis männlich zu weiblich"
 
 #: system/application/controllers/statistics.php:118
 msgid "male"
@@ -987,6 +1013,10 @@ msgstr ""
 #: system/libraries/Profiler.php:353
 msgid "profiler_no_memory_usage"
 msgstr ""
+
+#: system/codeigniter/Common.php:238
+msgid "An Error Was Encountered"
+msgstr "Ein Fehler ist aufgetreten"
 
 #: system/plugins/js_calendar_pi.php:138
 msgid "cal_su"

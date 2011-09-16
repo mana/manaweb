@@ -52,7 +52,7 @@ class Account {
     public static function getAccount($id)
     {
         $ci =& get_instance();
-        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $tblAccounts =$ci->config->item('tbl_name_accounts');
         $query = $ci->db->get_where($tblAccounts,
             array('id' => $id));
 

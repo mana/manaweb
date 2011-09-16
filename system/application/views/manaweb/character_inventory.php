@@ -22,17 +22,17 @@
 
 <h3><?= T_('character_equipment') ?></h3>
 
-<p>Sorry, this feature is not yet supported.</p>
+<p><?= T_('Sorry, this feature is not yet supported.') ?></p>
 
 <h3><?= T_('character_inventory') ?></h3>
 
 <table class="datatable">
     <tr>
-        <th colspan="2">Item</th>
-        <th>Description</th>
-        <th>Effect</th>
-        <th>Amount</th>
-        <th>Weight</th>
+        <th colspan="2"><?= T_('Item') ?></th>
+        <th><?= T_('Description') ?></th>
+        <th><?= T_('Effect') ?></th>
+        <th><?= T_('Amount') ?></th>
+        <th><?= T_('Weight') ?></th>
     </tr>
 
     <? foreach ($char->getInventory()->getInventory() as $item) { ?>
@@ -56,7 +56,7 @@
 
     <tr>
         <td colspan="5" style="border: 0px;" align="right">
-            <em>Weight of your equipped items: </em>
+            <em><?= T_('Weight of your equipped items:') ?></em>
         </td>
         <td align="right" style="border-bottom: 0px;">
             <strong>+ <?= $weight_equ ?></strong>
@@ -64,7 +64,7 @@
     </tr>
     <tr>
         <td colspan="5" style="border: 0px;" align="right">
-            <em>Total weight of all your items: </em>
+            <em><?= T_('Total weight of all your items:') ?></em>
         </td>
         <td align="right" style="border-bottom: 0px; border-top: 1px dotted;">
             <strong><?= $weight_all ?></strong>
