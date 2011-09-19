@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 15:42+0200\n"
-"PO-Revision-Date: 2011-09-19 16:41+0100\n"
+"PO-Revision-Date: 2011-09-19 16:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -542,7 +542,7 @@ msgstr "Server Statistiken"
 #: system/application/views/manaweb/server_statistics.php:4
 #, php-format
 msgid "Currently there are %d individual Characters on %s , played by %d players."
-msgstr "Zurzeit gibt es %d individuelle Charaktere in %s, welche von %d Spielern stammen."
+msgstr "Zurzeit gibt es %d verschiedene Charaktere in %s, welche von %d Spielern stammen."
 
 #: system/application/views/manaweb/server_statistics.php:9
 #, php-format
