@@ -60,8 +60,10 @@
             <span class="label"><?= XML_SKILLS_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_SKILLS_FILE ?></tt> contains all skills a character can gain.
-            Manaweb uses this file to show descriptions of the skills.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all skills a character can gain. Manaweb uses this file to show descriptions of the skills.');
+            printf($format, XML_SKILLS_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
@@ -85,8 +87,10 @@
             <span class="label"><?= XML_ATTRIBUTES_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_ATTRIBUTES_FILE ?></tt> contains all attributes a character can gain.
-            Manaweb uses this file to show descriptions of the attributes.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all attributes a character can gain. Manaweb uses this file to show descriptions of the attributes.');
+            printf($format, XML_ATTRIBUTES_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
@@ -98,7 +102,7 @@
                 <a href="<?= site_url('admin/maintenance/reload_attributes.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload skills database"
+                    title="<?= T_('Reload attributes database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -107,12 +111,15 @@
     </tr>
     <tr>
         <td>
-            <span class="label">item graphics</span>
+            <span class="label"><?= T_('Item graphics') ?></span>
         </td>
         <td>
-            The database table <code>mana_items</code> contains all known items
-            of The Mana Server. Use this function to copy all images provided
-            by the client data to a directory accessible to the webserver.
+            <?
+            $format = T_('The database table %s contains all known items of The Mana Server. Use this function to copy all images provided by the client data to a directory accessible to the webserver.');
+            $ci =& get_instance();
+            $tblItems =$ci->config->item('tbl_name_items');
+            printf($format, "<code>" . $tblItems . "</code>");
+            ?>
         </td>
         <td></td>
         <td>
@@ -120,7 +127,7 @@
                 <a href="<?= site_url('admin/maintenance/reload_item_images') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload item database"
+                    title="<?= T_('Reload item database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -129,23 +136,21 @@
     </tr>
     <tr>
         <td>
-            <span class="label">Errorlogs</span>
+            <span class="label"><?= T_('Errorlogs') ?></span>
         </td>
         <td>
-            CodeIgniter writes errors into daily rotating logfiles in a separate
-            directory. Here you can see how many logfiles have been written and
-            view these logfiles or simply clean up the directory.
+            <?= T_('CodeIgniter writes errors into daily rotating logfiles in a separate directory. Here you can see how many logfiles have been written and view these logfiles or simply clean up the directory.') ?>
         </td>
         <td nowrap>
             <!-- number of logfiles -->
-            Files: <?= $log_count ?>
+            <?= T_('Files:') ?> <?= $log_count ?>
             <?php if ($log_count > 0) { ?>
             <br />
             <!-- size in kilobytes of logfiles -->
-            Size: <?= round( $logfile_size / 1024 ) ?> kB<br />
+            <?= T_('Size:') ?> <?= round( $logfile_size / 1024 ) ?> <?= T_('kiB') ?><br />
             <!-- daterange -->
-            Oldest log: <?= date(T_('date_format'), $min_date) ?> <br />
-            Latest log: <?= date(T_('date_format'), $max_date) ?>
+            <?= T_('Oldest log:') ?> <?= date(T_('date_format'), $min_date) ?> <br />
+            <?= T_('Latest log:') ?> <?= date(T_('date_format'), $max_date) ?>
             <?php } ?>
         </td>
         <td>
@@ -154,7 +159,7 @@
                 <a href="<?= site_url('admin/maintenance/list_logfiles#loglist') ?>">
                 <img src="<?= base_url() ?>images/ico-src.png"
                     style="vertical-align: middle"
-                    title="List logfiles"
+                    title="<?= T_('List logfiles') ?>"
                     border="0">
                 </a>
 
@@ -168,10 +173,10 @@
             <a name="loglist"></a>
             <table class="datatable">
                 <tr>
-                    <th>Logfile</th>
-                    <th>Size</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th><?= T_('Logfile') ?></th>
+                    <th><?= T_('Size') ?></th>
+                    <th><?= T_('Date') ?></th>
+                    <th><?= T_('Action') ?></th>
                 </tr>
                 <?php foreach ($logfiles as $logfile) { ?>
                 <tr>
@@ -181,13 +186,13 @@
                     <td><a href="<?= site_url("admin/maintenance/delete_log/" . $logfile['filename']) ?>">
                             <img src="<?= base_url() ?>images/edit-delete.png"
                                  style="vertical-align: middle"
-                                 title="delete logfile"
+                                 title="<?= T_('Delete logfile') ?>"
                                  border="0">
                         </a>
                         <a href="<?= site_url("admin/maintenance/show_log/" . $logfile['filename']) ?>">
                             <img src="<?= base_url() ?>images/edit-find.png"
                                  style="vertical-align: middle"
-                                 title="show logfile"
+                                 title="<?= T_('Show logfile') ?>"
                                  border="0">
                         </a>
                     </td>
