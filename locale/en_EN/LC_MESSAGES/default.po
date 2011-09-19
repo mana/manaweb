@@ -330,7 +330,7 @@ msgstr "Character"
 
 #: system/application/controllers/guildcontroller.php:76
 msgid "guild_details_header"
-msgstr "Deteils"
+msgstr "Details"
 
 #: system/application/controllers/myaccount.php:74
 #: system/application/controllers/myaccount.php:101
@@ -494,7 +494,7 @@ msgstr "Name"
 #: system/application/views/manaweb/character_guilds.php:11
 #: system/application/views/manaweb/guilds/show_guild.php:2
 msgid "guild_members"
-msgstr "Mitglieder"
+msgstr "Members"
 
 #: system/application/views/manaweb/character_guilds.php:33
 msgid "character_not_guild_member"
@@ -643,19 +643,19 @@ msgstr "Something was wrong with your new mailaddress:"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:38
 msgid "settings_current_password"
-msgstr "current password"
+msgstr "Current password"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:44
 msgid "settings_enter_current_password"
-msgstr "Gib aktuelles Passwort ein"
+msgstr "Enter current password"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:57
 msgid "settings_enter_new_mailaddress"
-msgstr "Gib eine neue Mailadresse eine"
+msgstr "Enter new mail adress"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:70
 msgid "settings_enter_retype_mailaddress"
-msgstr "Bestätige deine Mailadresse"
+msgstr "Retype mail adress"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:78
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:79
@@ -852,19 +852,19 @@ msgstr "To change your password, please type in your current password, a new pas
 
 #: system/application/views/manaweb/settings.php:63
 msgid "settings_old_password"
-msgstr "old password"
+msgstr "Old password"
 
 #: system/application/views/manaweb/settings.php:69
 msgid "settings_enter_old_password"
-msgstr "Gib dein altes Password ein"
+msgstr "Enter old password"
 
 #: system/application/views/manaweb/settings.php:82
 msgid "settings_enter_new_password"
-msgstr "Gib dein neues Passwort ein"
+msgstr "Enter new password"
 
 #: system/application/views/manaweb/settings.php:95
 msgid "settings_retype_new_password"
-msgstr "Bestätigt dein neues Passwort"
+msgstr "Retype new password"
 
 #: system/application/views/manaweb/settings.php:103
 #: system/application/views/manaweb/settings.php:104

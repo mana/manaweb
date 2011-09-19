@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-19 15:42+0200\n"
-"PO-Revision-Date: 2011-09-19 16:45+0100\n"
+"PO-Revision-Date: 2011-09-19 17:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -650,7 +650,7 @@ msgstr "Aktuelles Passwort"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:44
 msgid "settings_enter_current_password"
-msgstr "Enter current password"
+msgstr "Aktuelles Passwort eingeben"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:57
 msgid "settings_enter_new_mailaddress"
@@ -658,7 +658,7 @@ msgstr "Neue Mailadresse (Bestätigung)"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:70
 msgid "settings_enter_retype_mailaddress"
-msgstr "Retype mailadress"
+msgstr "Bestätige deine Mailadresse"
 
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:78
 #: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:79
@@ -859,7 +859,7 @@ msgstr "Altes Passwort"
 
 #: system/application/views/manaweb/settings.php:69
 msgid "settings_enter_old_password"
-msgstr "Enter old password"
+msgstr "Altes Passwort eingeben"
 
 #: system/application/views/manaweb/settings.php:82
 msgid "settings_enter_new_password"
@@ -867,7 +867,7 @@ msgstr "Enter new password"
 
 #: system/application/views/manaweb/settings.php:95
 msgid "settings_retype_new_password"
-msgstr "Retype new password"
+msgstr "Neues Passwort bestätigen"
 
 #: system/application/views/manaweb/settings.php:103
 #: system/application/views/manaweb/settings.php:104
