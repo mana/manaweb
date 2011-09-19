@@ -57,7 +57,7 @@ $config['url_suffix'] = "";
 | $config['language']	= "en_EN";
 |
 */
-$config['language']	= "de_DE";
+$config['language']	= "en_EN";
 
 /*
 |--------------------------------------------------------------------------
