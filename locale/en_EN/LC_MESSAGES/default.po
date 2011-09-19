@@ -201,7 +201,7 @@ msgstr "An Error Was Encountered"
 
 #: system/application/helpers/view_helper.php:36
 msgid "go_up"
-msgstr "nach oben"
+msgstr "go up"
 
 #: system/application/libraries/core/Navigationprovider.php:49
 #, php-format
