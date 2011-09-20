@@ -40,7 +40,6 @@ $config['tbl_name_auctions']="mana_auctions";
 $config['tbl_name_auction_bids']="mana_auction_bids";
 $config['tbl_name_online_list']="mana_online_list";
 $config['tbl_name_transactions']="mana_transactions";
-$config['tbl_name_map_items']="mana_item_persistence";
 $config['tbl_name_online_chars']="mana_v_online_chars";
 
 ?>
