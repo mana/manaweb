@@ -502,44 +502,6 @@ class CI_Loader {
 	// --------------------------------------------------------------------
 
 	/**
-	 * Loads a language file
-	 *
-	 * @access	public
-	 * @param	array
-	 * @param	string
-	 * @return	void
-	 */
-	function language($file = array(), $lang = '')
-	{
-		$CI =& get_instance();
-
-		if ( ! is_array($file))
-		{
-			$file = array($file);
-		}
-
-		foreach ($file as $langfile)
-		{
-			$CI->lang->load($langfile, $lang);
-		}
-	}
-
-	/**
-	 * Loads language files for scaffolding
-	 *
-	 * @access	public
-	 * @param	string
-	 * @return	arra
-	 */
-	function scaffold_language($file = '', $lang = '', $return = FALSE)
-	{
-		$CI =& get_instance();
-		return $CI->lang->load($file, $lang, $return);
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
 	 * Loads a config file
 	 *
 	 * @access	public
@@ -960,8 +922,8 @@ class CI_Loader {
 			}
 		}
 
-		// Autoload plugins, helpers and languages
-		foreach (array('helper', 'plugin', 'language') as $type)
+		// Autoload plugins, helpers
+		foreach (array('helper', 'plugin') as $type)
 		{
 			if (isset($autoload[$type]) AND count($autoload[$type]) > 0)
 			{

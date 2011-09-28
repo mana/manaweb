@@ -30,7 +30,7 @@
 |   http://example.com/
 |
 */
-$config['base_url'] = "http://example.com/manaweb/";
+$config['base_url'] = "http://manaweb.example.org";
 
 
 /*
@@ -152,12 +152,12 @@ $config['mana_enable_profiler'] = false;
 */
 
 $_mana_levels = array(
-    array( 'byte'=> AL_BANNED, 'name'=>'banned User'   ),
-    array( 'byte'=> AL_PLAYER, 'name'=>'Player'        ),
-    array( 'byte'=> AL_TESTER, 'name'=>'Tester'        ),
-    array( 'byte'=> AL_DEV,    'name'=>'Developer'     ),
-    array( 'byte'=> AL_GM,     'name'=>'GM'            ),
-    array( 'byte'=> AL_ADMIN,  'name'=>'Administrator' )
+    array( 'byte'=> AL_BANNED, 'name'=>T_('Banned User')   ),
+    array( 'byte'=> AL_PLAYER, 'name'=>T_('Player')        ),
+    array( 'byte'=> AL_TESTER, 'name'=>T_('Tester')        ),
+    array( 'byte'=> AL_DEV,    'name'=>T_('Developer')     ),
+    array( 'byte'=> AL_GM,     'name'=>T_('GM')            ),
+    array( 'byte'=> AL_ADMIN,  'name'=>T_('Administrator') )
 );
 
 $config['mana_account_levels'] = $_mana_levels;

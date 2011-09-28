@@ -235,7 +235,7 @@ function config_item($item)
 function show_error($message, $status_code = 500)
 {
 	$error =& load_class('Exceptions');
-	echo $error->show_error('An Error Was Encountered', $message, 'error_general', $status_code);
+	echo $error->show_error(T_('An Error Was Encountered'), $message, 'error_general', $status_code);
 	exit;
 }
 

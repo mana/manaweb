@@ -1,75 +1,1179 @@
+# , 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Manaweb 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-26 22:24+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: Andreas Habel <mail@exceptionfault.de>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2011-09-19 15:42+0200\n"
+"PO-Revision-Date: 2011-09-19 17:04+0100\n"
+"Last-Translator: \n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "X-Poedit-Basepath: ~/dev/mana/manaweb\n"
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SearchPath-0: .\n"
+
+#: system/helpers/number_helper.php:46
+msgid "terabyte_abbr"
+msgstr "TiB"
+
+#: system/helpers/number_helper.php:51
+msgid "gigabyte_abbr"
+msgstr "GiB"
+
+#: system/helpers/number_helper.php:56
+msgid "megabyte_abbr"
+msgstr "MiB"
+
+#: system/helpers/number_helper.php:61
+msgid "kilobyte_abbr"
+msgstr "KiB"
+
+#: system/helpers/number_helper.php:65
+msgid "bytes"
+msgstr "Bytes"
+
+#: system/libraries/Validation.php:224
+msgid "isset"
+msgstr "Das Feld %s benötigt einen Wert."
+
+#: system/libraries/Profiler.php:78
+msgid "profiler_benchmarks"
+msgstr "BENCHMARKS"
+
+#: system/libraries/Profiler.php:120
+#: system/libraries/Profiler.php:142
+msgid "profiler_queries"
+msgstr "QUERIES"
+
+#: system/libraries/Profiler.php:123
+msgid "profiler_no_db"
+msgstr "Datenbanktreiber ist zur Zeit nicht geladen"
+
+#: system/libraries/Profiler.php:142
+msgid "profiler_database"
+msgstr "DATABASE"
+
+#: system/libraries/Profiler.php:148
+msgid "profiler_no_queries"
+msgstr "Keine Abfragen welche ausgeführt werden könnten vorhanden"
+
+#: system/libraries/Profiler.php:189
+msgid "profiler_get_data"
+msgstr "GET DATA"
+
+#: system/libraries/Profiler.php:194
+msgid "profiler_no_get"
+msgstr "Keine GET Daten vorhanden"
+
+#: system/libraries/Profiler.php:239
+msgid "profiler_post_data"
+msgstr "POST DATA"
+
+#: system/libraries/Profiler.php:244
+msgid "profiler_no_post"
+msgstr "Keine POST Daten vorhanden"
+
+#: system/libraries/Profiler.php:289
+msgid "profiler_uri_string"
+msgstr "URI STRING"
+
+#: system/libraries/Profiler.php:294
+msgid "profiler_no_uri"
+msgstr "Keine URI Daten vorhanden"
+
+#: system/libraries/Profiler.php:319
+msgid "profiler_controller_info"
+msgstr "CLASS/METHOD"
+
+#: system/libraries/Profiler.php:344
+msgid "profiler_memory_usage"
+msgstr "MEMORY USAGE"
+
+#: system/libraries/Profiler.php:353
+msgid "profiler_no_memory_usage"
+msgstr "Speicherauslastung nicht verfügbar"
+
+#: system/libraries/Calendar.php:314
+#, fuzzy
+msgid "cal_"
+msgstr "Son"
+
+#: system/libraries/Unit_test.php:123
+msgid "ut_result"
+msgstr "Resultat"
+
+#: system/libraries/Unit_test.php:125
+msgid "ut_passed"
+msgstr "Erfolgreich"
+
+#: system/libraries/Unit_test.php:129
+msgid "ut_failed"
+msgstr "Fehlgeschlagen"
+
+#: system/libraries/Unit_test.php:213
+#: system/libraries/Unit_test.php:222
+msgid "ut_"
+msgstr ""
+
+#: system/plugins/js_calendar_pi.php:138
+msgid "cal_su"
+msgstr "Son"
+
+#: system/plugins/js_calendar_pi.php:139
+msgid "cal_mo"
+msgstr "Mon"
+
+#: system/plugins/js_calendar_pi.php:140
+msgid "cal_tu"
+msgstr "Die"
+
+#: system/plugins/js_calendar_pi.php:141
+msgid "cal_wed"
+msgstr "Mit"
+
+#: system/plugins/js_calendar_pi.php:142
+msgid "cal_thu"
+msgstr "Don"
+
+#: system/plugins/js_calendar_pi.php:143
+msgid "cal_fri"
+msgstr "Fre"
+
+#: system/plugins/js_calendar_pi.php:144
+msgid "cal_sat"
+msgstr "Sam"
+
+#: system/plugins/js_calendar_pi.php:147
+msgid "cal_january"
+msgstr "Januar"
+
+#: system/plugins/js_calendar_pi.php:148
+msgid "cal_february"
+msgstr "Februar"
+
+#: system/plugins/js_calendar_pi.php:149
+msgid "cal_march"
+msgstr "März"
+
+#: system/plugins/js_calendar_pi.php:150
+msgid "cal_april"
+msgstr "April"
+
+#: system/plugins/js_calendar_pi.php:151
+msgid "cal_mayl"
+msgstr "Mai"
+
+#: system/plugins/js_calendar_pi.php:152
+msgid "cal_june"
+msgstr "Juni"
+
+#: system/plugins/js_calendar_pi.php:153
+msgid "cal_july"
+msgstr "Juli"
+
+#: system/plugins/js_calendar_pi.php:154
+msgid "cal_august"
+msgstr "August"
+
+#: system/plugins/js_calendar_pi.php:155
+msgid "cal_september"
+msgstr "September"
+
+#: system/plugins/js_calendar_pi.php:156
+msgid "cal_october"
+msgstr "Oktober"
+
+#: system/plugins/js_calendar_pi.php:157
+msgid "cal_november"
+msgstr "November"
+
+#: system/plugins/js_calendar_pi.php:158
+msgid "cal_december"
+msgstr "Dezember"
+
+#: system/codeigniter/Common.php:238
+msgid "An Error Was Encountered"
+msgstr "Ein Fehler ist aufgetreten"
+
+#: system/application/helpers/view_helper.php:36
+msgid "go_up"
+msgstr "nach oben"
 
 #: system/application/libraries/core/Navigationprovider.php:49
 #, php-format
 msgid "ERROR: Navbox %s not found!"
-msgstr "ERROR: Navigationsbox %s nicht gefunden!"
+msgstr "Fehler: Navigationsbox %s nicht gefunden!"
 
-#: system/application/views/layout/header.php:45
-msgid "Itemslist"
-msgstr "Items"
+#: system/application/libraries/Menuprovider.php:102
+msgid "Settings"
+msgstr "Einstellungen"
 
-#: system/application/views/layout/header.php:47
+#: system/application/libraries/Menuprovider.php:104
+msgid "Logout"
+msgstr "Logout"
+
+#: system/application/config/mana_config.php:155
+msgid "Banned User"
+msgstr "Gesperrter Spieler"
+
+#: system/application/config/mana_config.php:156
+#: system/application/views/manaweb/server_statistics.php:89
+msgid "Player"
+msgstr "Spieler"
+
+#: system/application/config/mana_config.php:157
+msgid "Tester"
+msgstr "Tester"
+
+#: system/application/config/mana_config.php:158
+msgid "Developer"
+msgstr "Entwickler"
+
+#: system/application/config/mana_config.php:159
+msgid "GM"
+msgstr "Gamemaster"
+
+#: system/application/config/mana_config.php:160
+msgid "Administrator"
+msgstr "Administrator"
+
+#: system/application/controllers/statistics.php:64
+#: system/application/views/layout/header.php:51
 msgid "Statistics"
 msgstr "Statistiken"
 
-#: system/application/views/layout/header.php:52
+#: system/application/controllers/statistics.php:86
+msgid "Ratio male chars to female"
+msgstr "Verhältnis männlich zu weiblich"
+
+#: system/application/controllers/statistics.php:118
+msgid "male"
+msgstr "männlich"
+
+#: system/application/controllers/statistics.php:118
+msgid "female"
+msgstr "weiblich"
+
+#: system/application/controllers/accountmanager.php:51
+#: system/application/controllers/charcontroller.php:49
+#: system/application/controllers/guildcontroller.php:46
+#: system/application/controllers/admin.php:70
+msgid "account_login"
+msgstr "Login"
+
+#: system/application/controllers/accountmanager.php:85
+#: system/application/controllers/accountmanager.php:122
+#: system/application/controllers/accountmanager.php:149
+#: system/application/controllers/accountmanager.php:189
+#: system/application/controllers/accountmanager.php:204
+msgid "settings_title"
+msgstr "Accounteinstellungen"
+
+#: system/application/controllers/accountmanager.php:103
+#: system/application/controllers/accountmanager.php:251
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:8
+msgid "settings_change_mail_head"
+msgstr "Mailadresse ändern"
+
+#: system/application/controllers/accountmanager.php:179
+#: system/application/views/manaweb/settings.php:76
+msgid "settings_new_password"
+msgstr "Neues Passwort"
+
+#: system/application/controllers/accountmanager.php:182
+#: system/application/views/manaweb/settings.php:89
+msgid "settings_retype_password"
+msgstr "Neues Passwort (Bestätigung)"
+
+#: system/application/controllers/accountmanager.php:202
+msgid "settings_change_password_ok"
+msgstr "Passwort konnte geändert werden."
+
+#: system/application/controllers/accountmanager.php:229
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:51
+msgid "settings_new_mailaddress"
+msgstr "Neue Mailadresse"
+
+#: system/application/controllers/accountmanager.php:233
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:64
+msgid "settings_retype_mailaddress"
+msgstr "Neue Mailadresse (Bestätigung)"
+
+#: system/application/controllers/accountmanager.php:248
+msgid "mailaddress_changed_message"
+msgstr "Mailadresse konnte geändert werden."
+
+#: system/application/controllers/accountmanager.php:275
+msgid "settings_pwd_to_short"
+msgstr "Passwort ist zu kurz."
+
+#: system/application/controllers/accountmanager.php:279
+msgid "settings_pwd_to_long"
+msgstr "Passwort ist zu lang."
+
+#: system/application/controllers/accountmanager.php:283
+msgid "settings_pwd_eq_username"
+msgstr "Passwort ist zum Nutzernamen identisch."
+
+#: system/application/controllers/charcontroller.php:79
+msgid "character_view_forbidden"
+msgstr "Dieses Charakter darfst du dir nicht anschauen."
+
+#: system/application/controllers/charcontroller.php:113
+#: system/application/controllers/admin.php:127
+msgid "character"
+msgstr "Charakter"
+
+#: system/application/controllers/guildcontroller.php:76
+msgid "guild_details_header"
+msgstr "Details"
+
+#: system/application/controllers/myaccount.php:74
+#: system/application/controllers/myaccount.php:101
+#: system/application/controllers/myaccount.php:120
+#: system/application/controllers/myaccount.php:148
+#: system/application/controllers/myaccount.php:161
+#: system/application/controllers/myaccount.php:183
+#: system/application/controllers/myaccount.php:196
+#: system/application/controllers/myaccount.php:208
+#: system/application/controllers/myaccount.php:232
+#: system/application/controllers/myaccount.php:240
+#: system/application/controllers/myaccount.php:275
+#: system/application/controllers/myaccount.php:286
+#: system/application/controllers/myaccount.php:296
+msgid "manaweb_title"
+msgstr "ManaWeb"
+
+#: system/application/controllers/myaccount.php:419
+msgid "account_title"
+msgstr "Mein Account"
+
+#: system/application/controllers/admin.php:86
+#: system/application/controllers/admin.php:202
+#: system/application/controllers/admin.php:211
+#: system/application/controllers/admin.php:243
+#: system/application/controllers/admin.php:290
+#: system/application/controllers/admin.php:299
+#: system/application/controllers/admin.php:341
+msgid "admin_title"
+msgstr "Administratives"
+
+#: system/application/controllers/admin.php:105
+#: system/application/views/admin/account.php:28
+msgid "account_username"
+msgstr "Nutzername"
+
+#: system/application/controllers/admin.php:188
+msgid "maintenance_title"
+msgstr "Wartung"
+
+#: system/application/controllers/admin.php:384
+msgid "maps_file_reloaded"
+msgstr "Kartendateien wurden neugeladen."
+
+#: system/application/controllers/admin.php:395
+msgid "skills_file_reloaded"
+msgstr "Skilldatei wurde neugeladen."
+
+#: system/application/controllers/admin.php:406
+msgid "attributes_file_reloaded"
+msgstr "Attributdatei wurde neu geladen."
+
+#: system/application/controllers/admin.php:417
+msgid "items_file_reloaded"
+msgstr "Itemdatei wurde neugeladen."
+
+#: system/application/views/manaweb/character_administration.php:1
+msgid "character_administration"
+msgstr "Administration"
+
+#: system/application/views/manaweb/character_administration.php:3
+#: system/application/views/manaweb/character_inventory.php:25
+msgid "Sorry, this feature is not yet supported."
+msgstr "Entschuldigung, dieses Feature ist zur Zeit noch nicht verfügbar."
+
+#: system/application/views/manaweb/user_home.php:1
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: system/application/views/manaweb/user_home.php:3
+msgid "stats_descr"
+msgstr "Auf dieser Seite haben gibt es verschiedene Optionen, um Ihr Konto zu ändern. Vielleicht möchten Sie Ihre gespeicherte Mailadresse ändern, oder ihr Login-Passwort oder sogar den Account löschen? Wählen Sie einfach eines der unten aufgeführten Optionen."
+
+#: system/application/views/manaweb/user_home.php:6
+msgid "View your character stats"
+msgstr "Charakterstatistiken anzeigen"
+
+#: system/application/views/manaweb/user_home.php:7
+msgid "Change your password"
+msgstr "Ändere dein Passwort"
+
+#: system/application/views/manaweb/user_home.php:8
+msgid "Change your mailaddress"
+msgstr "Ändere deine Mailadresse"
+
+#: system/application/views/manaweb/user_home.php:15
+#: system/application/views/manaweb/user_home.php:29
+#: system/application/views/manaweb/user_home.php:31
+#: system/application/views/admin/maintenance.php:43
+#: system/application/views/admin/maintenance.php:70
+#: system/application/views/admin/maintenance.php:97
+#: system/application/views/admin/maintenance.php:185
+#: system/application/views/admin/account.php:58
+#: system/application/views/admin/account.php:73
+#: system/application/views/admin/account.php:81
+msgid "date_time_format"
+msgstr "d.m.Y H:i"
+
+#: system/application/views/manaweb/user_home.php:20
+msgid "You are a member of the following access groups:"
+msgstr "Du bist Mitglied der folgenden Zugriffsgruppen:"
+
+#: system/application/views/manaweb/user_home.php:29
+msgid "This account is registered since"
+msgstr "Dein Account ist registriert seit dem"
+
+#: system/application/views/manaweb/user_home.php:30
+msgid "Your last login was"
+msgstr "Dein letzter Login war am"
+
+#: system/application/views/manaweb/user_home.php:36
+msgid "Character overview"
+msgstr "Übersicht"
+
+#: system/application/views/manaweb/user_home.php:40
+msgid "Here you see a summary of all your characters. Click on the name of one to see its details."
+msgstr "Hier siehst du eine Übersicht über alle deine Charaktere. Klicke auf einen Namen um weitere Details zu sehen."
+
+#: system/application/views/manaweb/user_home.php:44
+#: system/application/views/manaweb/item_list.php:88
+msgid "Name"
+msgstr "Name"
+
+#: system/application/views/manaweb/user_home.php:45
+#: system/application/views/manaweb/server_statistics.php:90
+#: system/application/views/admin/main.php:104
+msgid "Level"
+msgstr "Level"
+
+#: system/application/views/manaweb/user_home.php:46
+#: system/application/views/admin/main.php:103
+msgid "Gender"
+msgstr "Geschlecht"
+
+#: system/application/views/manaweb/user_home.php:47
+#: system/application/views/admin/main.php:105
+msgid "Money"
+msgstr "Vermögen"
+
+#: system/application/views/manaweb/user_home.php:48
+#: system/application/views/admin/main.php:106
+msgid "Map"
+msgstr "Karte"
+
+#: system/application/views/manaweb/user_home.php:65
+msgid "user-has-no-chars"
+msgstr "Zur Zeit hast du keine Charakter. Dies ist etwas ungewöhnlich, macht aber nichts. Nutze den Client um einen Charakter zu erzeugen."
+
+#: system/application/views/manaweb/character_guilds.php:1
+msgid "character_guild_member"
+msgstr "Mitgliedschaft in Gilden"
+
+#: system/application/views/manaweb/character_guilds.php:9
+msgid "guild_id"
+msgstr "ID"
+
+#: system/application/views/manaweb/character_guilds.php:10
+msgid "guild_name"
+msgstr "Name"
+
+#: system/application/views/manaweb/character_guilds.php:11
+#: system/application/views/manaweb/guilds/show_guild.php:2
+msgid "guild_members"
+msgstr "Mitglieder"
+
+#: system/application/views/manaweb/character_guilds.php:33
+msgid "character_not_guild_member"
+msgstr "Dieser Charakter ist in keiner Gilde."
+
+#: system/application/views/manaweb/login_form.php:1
+msgid "Login to The Mana Server Account Manager"
+msgstr "Login am Mana Server Account Manager"
+
+#: system/application/views/manaweb/login_form.php:19
+msgid "Something was wrong with your login:"
+msgstr "Irgendetwas ist falsch mit deinem Login:"
+
+#: system/application/views/manaweb/login_form.php:26
+msgid "Username:"
+msgstr "Nutzername:"
+
+#: system/application/views/manaweb/login_form.php:30
+msgid "Enter your username"
+msgstr "Gib einen Nutzernamen ein"
+
+#: system/application/views/manaweb/login_form.php:39
+msgid "Enter your password"
+msgstr "Gib dein Passwort ein"
+
+#: system/application/views/manaweb/login_form.php:57
+msgid "Login"
+msgstr "Login"
+
+#: system/application/views/manaweb/login_form.php:59
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: system/application/views/manaweb/login_form.php:64
+msgid "Lost your password?"
+msgstr "Passwort vergessen?"
+
+#: system/application/views/manaweb/server_statistics.php:1
+msgid "Server Statistics"
+msgstr "Server Statistiken"
+
+#: system/application/views/manaweb/server_statistics.php:4
+#, php-format
+msgid "Currently there are %d individual Characters on %s , played by %d players."
+msgstr "Zurzeit gibt es %d verschiedene Charaktere in %s, welche von %d Spielern stammen."
+
+#: system/application/views/manaweb/server_statistics.php:9
+#, php-format
+msgid "The characters founded %d guilds."
+msgstr "Die Charaktere haben %d Gilden gegründet."
+
+#: system/application/views/manaweb/server_statistics.php:14
+#, php-format
+msgid "All characters form a purchasing power of %d %s."
+msgstr "Alle Charaktere haben insgesamt eine Kaufkraft von %d %s."
+
+#: system/application/views/manaweb/server_statistics.php:22
+msgid "Number of players:"
+msgstr "Anzahl der Spieler:"
+
+#: system/application/views/manaweb/server_statistics.php:35
+msgid "Number of characters:"
+msgstr "Anzahl der Charaktere:"
+
+#: system/application/views/manaweb/server_statistics.php:45
+msgid "Number of guilds:"
+msgstr "Anzahl der Gilden:"
+
+#: system/application/views/manaweb/server_statistics.php:58
+msgid "The top 10 Guilds"
+msgstr "Die Top 10 Gilden"
+
+#: system/application/views/manaweb/server_statistics.php:60
+msgid "Sorry, there are currently no guilds founded."
+msgstr "Es wurden keine Gilden gefunden."
+
+#: system/application/views/manaweb/server_statistics.php:65
+msgid "Guild"
+msgstr "Gilden"
+
+#: system/application/views/manaweb/server_statistics.php:66
+msgid "Members"
+msgstr "Mitglieder"
+
+#: system/application/views/manaweb/server_statistics.php:81
+msgid "The top 10 Characters"
+msgstr "Die Top 10 Charaktere"
+
+#: system/application/views/manaweb/server_statistics.php:88
+#: system/application/views/admin/main.php:101
+msgid "Character"
+msgstr "Charakter"
+
+#: system/application/views/manaweb/character_inventory.php:23
+msgid "character_equipment"
+msgstr "Ausrüstung"
+
+#: system/application/views/manaweb/character_inventory.php:27
+msgid "character_inventory"
+msgstr "Inventar"
+
+#: system/application/views/manaweb/character_inventory.php:31
+#: system/application/views/manabay/auction_list.php:10
+msgid "Item"
+msgstr "Item"
+
+#: system/application/views/manaweb/character_inventory.php:32
+#: system/application/views/admin/maintenance.php:27
+msgid "Description"
+msgstr "Beschreibung"
+
+#: system/application/views/manaweb/character_inventory.php:33
+#: system/application/views/manaweb/item_list.php:90
+msgid "Effect"
+msgstr "Effekt"
+
+#: system/application/views/manaweb/character_inventory.php:34
+msgid "Amount"
+msgstr "Menge"
+
+#: system/application/views/manaweb/character_inventory.php:35
+#: system/application/views/manaweb/item_list.php:89
+msgid "Weight"
+msgstr "Gewicht"
+
+#: system/application/views/manaweb/character_inventory.php:59
+msgid "Weight of your equipped items:"
+msgstr "Gewicht aller ausgerüsteter Items:"
+
+#: system/application/views/manaweb/character_inventory.php:67
+msgid "Total weight of all your items:"
+msgstr "Gewicht aller Items:"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:3
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:4
+msgid "back_to_settings"
+msgstr "Zurück zu den Accounteinstellungen"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:9
+msgid "settings_change_mail_descr"
+msgstr "Mit diesem Formular kannst du deine Mailadresse ändern. Bitte gibt dein aktuelles Passwort sowie die neue Mailadresse ein. Die Mailadresse wird dabei gehasht, kann also nicht dazu benutzt werden die Spam zu schicken."
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:20
+msgid "Something was wrong with your new mailaddress:"
+msgstr "Irgendetwas stimmt mit deiner neuen Mailadresse nicht:"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:38
+msgid "settings_current_password"
+msgstr "Aktuelles Passwort"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:44
+msgid "settings_enter_current_password"
+msgstr "Aktuelles Passwort eingeben"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:57
+msgid "settings_enter_new_mailaddress"
+msgstr "Neue Mailadresse (Bestätigung)"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:70
+msgid "settings_enter_retype_mailaddress"
+msgstr "Bestätige deine Mailadresse"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:78
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:79
+msgid "settings_change_mailaddress"
+msgstr "Mailadresse ändern!"
+
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:83
+#: system/application/views/manaweb/accountmanager/change_mailaddress_form.php:85
+#: system/application/views/manaweb/settings.php:108
+#: system/application/views/manaweb/settings.php:110
+msgid "cancel"
+msgstr "Abbrechen"
+
+#: system/application/views/manaweb/item_list.php:1
+msgid "Item dictionary"
+msgstr "Item Wörterbuch"
+
+#: system/application/views/manaweb/item_list.php:8
+msgid "You can search an item by its name..."
+msgstr "Du kannst die Items anhand ihres Namens suchen..."
+
+#: system/application/views/manaweb/item_list.php:16
+#: system/application/views/admin/main.php:66
+#: system/application/views/admin/main.php:96
+msgid "Sorry, your search returns no rows."
+msgstr "Diese Suche lieferte leider keine Resultate."
+
+#: system/application/views/manaweb/item_list.php:38
+msgid "... or by its category"
+msgstr "... oder nach Kategorie"
+
+#: system/application/views/manaweb/item_list.php:42
+#: system/application/views/manabay/auction_list.php:46
+msgid "Weapons"
+msgstr "Waffen"
+
+#: system/application/views/manaweb/item_list.php:44
+#: system/application/views/manabay/auction_list.php:48
+msgid "one handed"
+msgstr "einhändig"
+
+#: system/application/views/manaweb/item_list.php:46
+#: system/application/views/manabay/auction_list.php:50
+msgid "two handed"
+msgstr "zweihändig"
+
+#: system/application/views/manaweb/item_list.php:48
+#: system/application/views/manabay/auction_list.php:52
+msgid "ammunition"
+msgstr "Munition"
+
+#: system/application/views/manaweb/item_list.php:50
+#: system/application/views/manabay/auction_list.php:54
+msgid "shields"
+msgstr "Schilde"
+
+#: system/application/views/manaweb/item_list.php:55
+#: system/application/views/manabay/auction_list.php:59
+msgid "Clothes"
+msgstr "Kleidung"
+
+#: system/application/views/manaweb/item_list.php:57
+#: system/application/views/manabay/auction_list.php:61
+msgid "arms"
+msgstr "Arme"
+
+#: system/application/views/manaweb/item_list.php:59
+#: system/application/views/manabay/auction_list.php:63
+msgid "feet"
+msgstr "Füße"
+
+#: system/application/views/manaweb/item_list.php:61
+#: system/application/views/manabay/auction_list.php:65
+msgid "head"
+msgstr "Kopf"
+
+#: system/application/views/manaweb/item_list.php:63
+#: system/application/views/manabay/auction_list.php:67
+msgid "legs"
+msgstr "Beine"
+
+#: system/application/views/manaweb/item_list.php:65
+#: system/application/views/manabay/auction_list.php:69
+msgid "torso"
+msgstr "Torso"
+
+#: system/application/views/manaweb/item_list.php:70
+#: system/application/views/manabay/auction_list.php:74
+msgid "Others"
+msgstr "Anderes"
+
+#: system/application/views/manaweb/item_list.php:72
+#: system/application/views/manabay/auction_list.php:76
+msgid "rings"
+msgstr "Ringe"
+
+#: system/application/views/manaweb/item_list.php:74
+#: system/application/views/manabay/auction_list.php:78
+msgid "generics"
+msgstr "generisch"
+
+#: system/application/views/manaweb/item_list.php:76
+#: system/application/views/manabay/auction_list.php:80
+msgid "usable"
+msgstr "nutzbar"
+
+#: system/application/views/manaweb/character.php:1
+#: system/application/views/admin/character.php:1
+msgid "character_statistics"
+msgstr "Statistiken"
+
+#: system/application/views/manaweb/character.php:5
+#: system/application/views/admin/character.php:5
+msgid "character_name"
+msgstr "Name"
+
+#: system/application/views/manaweb/character.php:11
+#: system/application/views/admin/character.php:12
+msgid "character_attr_str"
+msgstr "Stärke"
+
+#: system/application/views/manaweb/character.php:99
+#: system/application/views/admin/character.php:118
+msgid "character_gender"
+msgstr "Geschlecht"
+
+#: system/application/views/manaweb/character.php:105
+#: system/application/views/admin/character.php:108
+msgid "character_attr_agi"
+msgstr "Beweglichkeit"
+
+#: system/application/views/manaweb/character.php:115
+#: system/application/views/admin/character.php:134
+msgid "character_level"
+msgstr "Level"
+
+#: system/application/views/manaweb/character.php:121
+#: system/application/views/admin/character.php:124
+msgid "character_attr_dex"
+msgstr "Geschicklichkeit"
+
+#: system/application/views/manaweb/character.php:131
+#: system/application/views/admin/character.php:150
+msgid "character_money"
+msgstr "Vermögen"
+
+#: system/application/views/manaweb/character.php:137
+#: system/application/views/admin/character.php:140
+msgid "character_attr_vit"
+msgstr "Gesundheit"
+
+#: system/application/views/manaweb/character.php:147
+#: system/application/views/admin/character.php:166
+msgid "character_map"
+msgstr "Karte"
+
+#: system/application/views/manaweb/character.php:155
+#: system/application/views/admin/character.php:156
+msgid "character_attr_int"
+msgstr "Intelligenz"
+
+#: system/application/views/manaweb/character.php:168
+#: system/application/views/admin/character.php:174
+msgid "character_attr_will"
+msgstr "Willenskraft"
+
+#: system/application/views/manaweb/settings.php:2
+msgid "settings_descr"
+msgstr "Auf dieser Seite gibt es verschiedene Optionen, um dein Konto zu ändern. Vielleicht möchtest du deine gespeicherte Mailadresse ändern, oder dein Login-Passwort oder sogar den Account löschen? Wähle einfach eine der unten aufgeführten Optionen."
+
+#: system/application/views/manaweb/settings.php:3
+msgid "settings_selection"
+msgstr "Ich möchte..."
+
+#: system/application/views/manaweb/settings.php:9
+msgid "settings_select_password"
+msgstr "...mein Passwort ändern."
+
+#: system/application/views/manaweb/settings.php:14
+msgid "settings_select_mail"
+msgstr "...meine Mailadresse ändern."
+
+#: system/application/views/manaweb/settings.php:20
+msgid "settings_select_delete_account"
+msgstr "...meinen Account löschen."
+
+#: system/application/views/manaweb/settings.php:29
+msgid "settings_change_pwd_head"
+msgstr "Passwort ändern"
+
+#: system/application/views/manaweb/settings.php:34
+msgid "settings_change_pwd_descr"
+msgstr "Um das Passwort zu ändern gib bitte dein aktuelles Passwort, sowie das neue Passwort und dessen Bestätigung ein, so das du sicher sein kannst keine Rechtschreibfehler im Passwort zu haben."
+
+#: system/application/views/manaweb/settings.php:63
+msgid "settings_old_password"
+msgstr "Altes Passwort"
+
+#: system/application/views/manaweb/settings.php:69
+msgid "settings_enter_old_password"
+msgstr "Altes Passwort eingeben"
+
+#: system/application/views/manaweb/settings.php:82
+msgid "settings_enter_new_password"
+msgstr "Enter new password"
+
+#: system/application/views/manaweb/settings.php:95
+msgid "settings_retype_new_password"
+msgstr "Neues Passwort bestätigen"
+
+#: system/application/views/manaweb/settings.php:103
+#: system/application/views/manaweb/settings.php:104
+msgid "settings_change_password"
+msgstr "Ändere Passwort!"
+
+#: system/application/views/manaweb/settings.php:123
+msgid "settings_delete_account_head"
+msgstr "Account löschen"
+
+#: system/application/views/manaweb/settings.php:124
+msgid "settings_delete_account_descr"
+msgstr "Mit dieser Option könnt Ihr Konto einschließlich aller eurer Charaktere zu löschen. Diese Operation kann dabei nicht rückgängig gemacht werden. Außerdem wäre es schön wenn ihr im Forum eine Nachricht hinterlasst warum ihr euren Account löscht."
+
+#: system/application/views/manaweb/settings.php:130
+#: system/application/views/manaweb/settings.php:131
+msgid "settings_delete_account"
+msgstr "Ja, meinen Account löschen!"
+
+#: system/application/views/layout/header.php:49
+msgid "Itemslist"
+msgstr "Items"
+
+#: system/application/views/layout/header.php:56
 msgid "User menu"
 msgstr "Benutzermen&uuml;"
 
-#: system/application/views/layout/header.php:54
+#: system/application/views/layout/header.php:58
 msgid "My Account"
 msgstr "Mein Account"
 
-#: system/application/views/layout/header.php:71
+#: system/application/views/layout/header.php:75
 msgid "Character sheet"
-msgstr "Character"
+msgstr "Übersicht"
 
-#: system/application/views/layout/header.php:73
+#: system/application/views/layout/header.php:77
 msgid "Skills"
 msgstr "Fertigkeiten"
 
-#: system/application/views/layout/header.php:75
+#: system/application/views/layout/header.php:79
 msgid "Inventory"
 msgstr "Inventar"
 
-#: system/application/views/layout/header.php:77
+#: system/application/views/layout/header.php:81
 msgid "Parties &amp; Guilds"
 msgstr "Parties &amp; Gilden"
 
-#: system/application/views/layout/header.php:79
+#: system/application/views/layout/header.php:83
 msgid "Administration"
 msgstr "Administration"
 
-#: system/application/views/layout/header.php:87
-#: system/application/views/layout/header.php:89
-msgid "Admin Interface"
-msgstr "Admin Men&uuml;"
-
 #: system/application/views/layout/header.php:91
+#: system/application/views/layout/header.php:93
+msgid "Admin Interface"
+msgstr "Administratives"
+
+#: system/application/views/layout/header.php:95
 msgid "Maintenance"
 msgstr "Wartung"
 
-#: system/application/views/layout/header.php:97
+#: system/application/views/layout/header.php:101
 msgid "Manabay"
 msgstr "Manabay"
 
-#: system/application/views/layout/header.php:99
+#: system/application/views/layout/header.php:103
 msgid "Auctions"
 msgstr "Auktionen"
+
+#: system/application/views/manabay/auction_list.php:1
+msgid "Next 10 auctions to finish"
+msgstr "Bald endende Auktionen"
+
+#: system/application/views/manabay/auction_list.php:4
+msgid "Currently, there are no open auctions."
+msgstr "Zurzeit sind keine Auktionen am Laufen."
+
+#: system/application/views/manabay/auction_list.php:11
+msgid "Seller"
+msgstr "Verkäufer"
+
+#: system/application/views/manabay/auction_list.php:12
+msgid "Endtime"
+msgstr "Endzeit"
+
+#: system/application/views/manabay/auction_list.php:13
+msgid "Bids"
+msgstr "Gebote"
+
+#: system/application/views/manabay/auction_list.php:14
+msgid "Price"
+msgstr "Preis"
+
+#: system/application/views/manabay/auction_list.php:29
+msgid "date_time_format_sec"
+msgstr "d-m-Y H:i:s"
+
+#: system/application/views/manabay/auction_list.php:41
+msgid "Search auctions by category"
+msgstr "Suche Auktionen nach Kategorie"
+
+#: system/application/views/manabay/auction_list.php:88
+msgid "ManaBay statistics"
+msgstr "ManaBay Statistiken"
+
+#: system/application/views/admin/maintenance.php:1
+msgid "Cached data"
+msgstr "Gecachte Daten"
+
+#: system/application/views/admin/maintenance.php:2
+msgid "cached_data_descr"
+msgstr "Manaweb speichert einige temporäre Daten wie die mitgelieferte Karten in seinem eigenen Datenverzeichnis für schnellen und zuverlässigen Zugriff. Sobald Änderungen an den Originaldaten vorgenommen wurden, müssen diese auch in Manaweb aktualisiert werden."
+
+#: system/application/views/admin/maintenance.php:26
+msgid "Subject"
+msgstr "Subjekt"
+
+#: system/application/views/admin/maintenance.php:28
+msgid "Value"
+msgstr "Wert"
+
+#: system/application/views/admin/maintenance.php:29
+msgid "Actions"
+msgstr "Aktionen"
+
+#: system/application/views/admin/maintenance.php:37
+#, php-format
+msgid "The file <tt>%s</tt> contains all maps provided by the map server. Manaweb uses this file to show descriptions of the character locations."
+msgstr "Die Datei <tt>%s</tt> enthält alle Maps welche vom Mapserver bereitgestellt werden. Manaweb nutzt diese für die Beschreibung der Standort der Charaktere."
+
+#: system/application/views/admin/maintenance.php:51
+msgid "Reload maps database"
+msgstr "Aktualisiere Kartendatenbank"
+
+#: system/application/views/admin/maintenance.php:64
+#, php-format
+msgid "The file <tt>%s</tt> contains all skills a character can gain. Manaweb uses this file to show descriptions of the skills."
+msgstr "Die Datei <tt>%s</tt> alle Skills welche ein Charakter haben kann. Manaweb nutzt diese für die Beschreibung der Skills."
+
+#: system/application/views/admin/maintenance.php:78
+msgid "Reload skills database"
+msgstr "Aktualisiere Skilldatenbank"
+
+#: system/application/views/admin/maintenance.php:91
+#, php-format
+msgid "The file <tt>%s</tt> contains all attributes a character can gain. Manaweb uses this file to show descriptions of the attributes."
+msgstr "Die Datei <tt>%s</tt> enthält alle Attribute welche ein Charakter haben kann. Manaweb nutzt diese für die Beschreibung der Attribute."
+
+#: system/application/views/admin/maintenance.php:105
+msgid "Reload attributes database"
+msgstr "Aktualisiere Attributedatenbank"
+
+#: system/application/views/admin/maintenance.php:114
+msgid "Item graphics"
+msgstr "Itemgrafiken"
+
+#: system/application/views/admin/maintenance.php:118
+#, php-format
+msgid "The database table %s contains all known items of The Mana Server. Use this function to copy all images provided by the client data to a directory accessible to the webserver."
+msgstr "Die Datenbanktabelle %s enthält alle bekannten Items des Servers. Diese Funktion kann dazu benutzt werden alle Bilder welche vom Client bereitgestellt werden, in ein vom Webserver erreichbares Verzeichnis zu kopieren."
+
+#: system/application/views/admin/maintenance.php:130
+msgid "Reload item database"
+msgstr "Aktualisiere Itemdatenbank"
+
+#: system/application/views/admin/maintenance.php:139
+msgid "Errorlogs"
+msgstr "Fehlerlogs"
+
+#: system/application/views/admin/maintenance.php:142
+msgid "CodeIgniter writes errors into daily rotating logfiles in a separate directory. Here you can see how many logfiles have been written and view these logfiles or simply clean up the directory."
+msgstr "CodeIgniter schreibt Fehler in ein täglich rotierende Logdateien in einem extra Verzeichnis. Hier kannst du sehen wie viele Logdateien geschrieben wurden und diese Dateien bei Bedarf bereinigen."
+
+#: system/application/views/admin/maintenance.php:146
+msgid "Files:"
+msgstr "Dateien:"
+
+#: system/application/views/admin/maintenance.php:150
+msgid "Size:"
+msgstr "Größe:"
+
+#: system/application/views/admin/maintenance.php:150
+msgid "kiB"
+msgstr "kiB"
+
+#: system/application/views/admin/maintenance.php:152
+msgid "Oldest log:"
+msgstr "Ältester Log:"
+
+#: system/application/views/admin/maintenance.php:152
+#: system/application/views/admin/maintenance.php:153
+msgid "date_format"
+msgstr "d.m.Y"
+
+#: system/application/views/admin/maintenance.php:153
+msgid "Latest log:"
+msgstr "Neuster Log:"
+
+#: system/application/views/admin/maintenance.php:162
+msgid "List logfiles"
+msgstr "Liste Logdateien"
+
+#: system/application/views/admin/maintenance.php:176
+msgid "Logfile"
+msgstr "Logdatei"
+
+#: system/application/views/admin/maintenance.php:177
+msgid "Size"
+msgstr "Größe"
+
+#: system/application/views/admin/maintenance.php:178
+msgid "Date"
+msgstr "Datum"
+
+#: system/application/views/admin/maintenance.php:179
+msgid "Action"
+msgstr "Aktion"
+
+#: system/application/views/admin/maintenance.php:189
+msgid "Delete logfile"
+msgstr "Lösche Logdatei"
+
+#: system/application/views/admin/maintenance.php:195
+msgid "Show logfile"
+msgstr "Zeige Logdatei"
+
+#: system/application/views/admin/character.php:100
+msgid "character_owner"
+msgstr "Charaktereigentümer"
+
+#: system/application/views/admin/character.php:184
+#: system/application/views/admin/account.php:86
+msgid "administrative_tasks"
+msgstr "Administration"
+
+#: system/application/views/admin/account.php:1
+msgid "account_details"
+msgstr "Details"
+
+#: system/application/views/admin/account.php:6
+msgid "account_id"
+msgstr "ID"
+
+#: system/application/views/admin/account.php:12
+msgid "account_characters"
+msgstr "Charaktere"
+
+#: system/application/views/admin/account.php:36
+msgid "account_groups"
+msgstr "Gruppen"
+
+#: system/application/views/admin/account.php:50
+msgid "account_status"
+msgstr "Status"
+
+#: system/application/views/admin/account.php:57
+msgid "account_status_banned"
+msgstr "gesperrt"
+
+#: system/application/views/admin/account.php:62
+msgid "account_status_active"
+msgstr "aktiv"
+
+#: system/application/views/admin/account.php:70
+msgid "account_registration"
+msgstr "Registiert am"
+
+#: system/application/views/admin/account.php:78
+msgid "account_lastlogin"
+msgstr "Letzter Login"
+
+#: system/application/views/admin/main.php:1
+msgid "Quick search"
+msgstr "Schnellsuche"
+
+#: system/application/views/admin/main.php:19
+msgid "search Account"
+msgstr "suche Account"
+
+#: system/application/views/admin/main.php:23
+msgid "Enter an account name"
+msgstr "Gib einen Accountnamen ein"
+
+#: system/application/views/admin/main.php:26
+#: system/application/views/admin/main.php:27
+#: system/application/views/admin/main.php:43
+#: system/application/views/admin/main.php:44
+msgid "Search"
+msgstr "Suche"
+
+#: system/application/views/admin/main.php:36
+msgid "search Character"
+msgstr "suche Charakter"
+
+#: system/application/views/admin/main.php:40
+msgid "Enter a character name"
+msgstr "Gib einen Charakternamen ein"
+
+#: system/application/views/admin/main.php:58
+msgid "Search result"
+msgstr "Suchresultat"
+
+#: system/application/views/admin/main.php:100
+msgid "ID"
+msgstr "ID"
+
+#: system/application/views/admin/main.php:102
+msgid "Username"
+msgstr "Nutzername"
 

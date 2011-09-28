@@ -1,8 +1,5 @@
-<h3>Cached data</h3>
-<p>Manaweb stores some temporary data like the provided maps in its own data
-directory for fast and reliable access. If you made modifications to the
-original data (maybe in manaserv), it is necessary to have manaweb to refresh its
-stored data.</p>
+<h3><?= T_('Cached data') ?></h3>
+<p><?= T_('cached_data_descr') ?></p>
 
 <? if (isset($action_result) && strlen($action_result) > 0 ) { ?>
 <p style="border: 1px solid black; padding:10px;">
@@ -26,23 +23,24 @@ stored data.</p>
 
 <table style="border-width: 0px; margin-bottom: 0px;">
     <tr>
-        <th>Subject</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>Actions</th>
+        <th><?= T_('Subject') ?></th>
+        <th><?= T_('Description') ?></th>
+        <th><?= T_('Value') ?></th>
+        <th><?= T_('Actions') ?></th>
     </tr>
     <tr>
         <td>
             <span class="label"><?= XML_MAPS_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_MAPS_FILE ?></tt> contains all maps provided by the map
-            server. Manaweb uses this file to show descriptions of the
-            character locations.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all maps provided by the map server. Manaweb uses this file to show descriptions of the character locations.');
+            printf($format, XML_MAPS_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $maps_file_age); ?>
+                <?= date(T_('date_time_format'), $maps_file_age); ?>
             </span>
         </td>
         <td>
@@ -50,7 +48,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_maps.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload maps database"
+                    title="<?= T_('Reload maps database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -62,12 +60,14 @@ stored data.</p>
             <span class="label"><?= XML_SKILLS_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_SKILLS_FILE ?></tt> contains all skills a character can gain.
-            Manaweb uses this file to show descriptions of the skills.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all skills a character can gain. Manaweb uses this file to show descriptions of the skills.');
+            printf($format, XML_SKILLS_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $skills_file_age); ?>
+                <?= date(T_('date_time_format'), $skills_file_age); ?>
             </span>
         </td>
         <td>
@@ -75,7 +75,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_skills.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload skills database"
+                    title="<?= T_('Reload skills database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -87,12 +87,14 @@ stored data.</p>
             <span class="label"><?= XML_ATTRIBUTES_FILE ?></span>
         </td>
         <td>
-            The file <tt><?= XML_ATTRIBUTES_FILE ?></tt> contains all attributes a character can gain.
-            Manaweb uses this file to show descriptions of the attributes.
+            <?
+            $format = T_('The file <tt>%s</tt> contains all attributes a character can gain. Manaweb uses this file to show descriptions of the attributes.');
+            printf($format, XML_ATTRIBUTES_FILE);
+            ?>
         </td>
         <td>
             <span class="label">
-                <?= date(lang('date_time_format'), $attributes_file_age); ?>
+                <?= date(T_('date_time_format'), $attributes_file_age); ?>
             </span>
         </td>
         <td>
@@ -100,7 +102,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_attributes.xml') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload skills database"
+                    title="<?= T_('Reload attributes database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -109,12 +111,15 @@ stored data.</p>
     </tr>
     <tr>
         <td>
-            <span class="label">item graphics</span>
+            <span class="label"><?= T_('Item graphics') ?></span>
         </td>
         <td>
-            The database table <code>mana_items</code> contains all known items
-            of The Mana Server. Use this function to copy all images provided
-            by the client data to a directory accessible to the webserver.
+            <?
+            $format = T_('The database table %s contains all known items of The Mana Server. Use this function to copy all images provided by the client data to a directory accessible to the webserver.');
+            $ci =& get_instance();
+            $tblItems =$ci->config->item('tbl_name_items');
+            printf($format, "<code>" . $tblItems . "</code>");
+            ?>
         </td>
         <td></td>
         <td>
@@ -122,7 +127,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/reload_item_images') ?>">
                 <img src="<?= base_url() ?>images/view-refresh.png"
                     style="vertical-align: middle"
-                    title="Reload item database"
+                    title="<?= T_('Reload item database') ?>"
                     border="0">
                 </a>
                 &nbsp;
@@ -131,23 +136,21 @@ stored data.</p>
     </tr>
     <tr>
         <td>
-            <span class="label">Errorlogs</span>
+            <span class="label"><?= T_('Errorlogs') ?></span>
         </td>
         <td>
-            CodeIgniter writes errors into daily rotating logfiles in a separate
-            directory. Here you can see how many logfiles have been written and
-            view these logfiles or simply clean up the directory.
+            <?= T_('CodeIgniter writes errors into daily rotating logfiles in a separate directory. Here you can see how many logfiles have been written and view these logfiles or simply clean up the directory.') ?>
         </td>
         <td nowrap>
             <!-- number of logfiles -->
-            Files: <?= $log_count ?>
+            <?= T_('Files:') ?> <?= $log_count ?>
             <?php if ($log_count > 0) { ?>
             <br />
             <!-- size in kilobytes of logfiles -->
-            Size: <?= round( $logfile_size / 1024 ) ?> kB<br />
+            <?= T_('Size:') ?> <?= round( $logfile_size / 1024 ) ?> <?= T_('kiB') ?><br />
             <!-- daterange -->
-            Oldest log: <?= date(lang('date_format'), $min_date) ?> <br />
-            Latest log: <?= date(lang('date_format'), $max_date) ?>
+            <?= T_('Oldest log:') ?> <?= date(T_('date_format'), $min_date) ?> <br />
+            <?= T_('Latest log:') ?> <?= date(T_('date_format'), $max_date) ?>
             <?php } ?>
         </td>
         <td>
@@ -156,7 +159,7 @@ stored data.</p>
                 <a href="<?= site_url('admin/maintenance/list_logfiles#loglist') ?>">
                 <img src="<?= base_url() ?>images/ico-src.png"
                     style="vertical-align: middle"
-                    title="List logfiles"
+                    title="<?= T_('List logfiles') ?>"
                     border="0">
                 </a>
 
@@ -170,26 +173,26 @@ stored data.</p>
             <a name="loglist"></a>
             <table class="datatable">
                 <tr>
-                    <th>Logfile</th>
-                    <th>Size</th>
-                    <th>Date</th>
-                    <th>Action</th>
+                    <th><?= T_('Logfile') ?></th>
+                    <th><?= T_('Size') ?></th>
+                    <th><?= T_('Date') ?></th>
+                    <th><?= T_('Action') ?></th>
                 </tr>
                 <?php foreach ($logfiles as $logfile) { ?>
                 <tr>
                     <td><?= $logfile['filename'] ?></td>
                     <td align="right"><?= round( $logfile['filesize'] / 1024 ) ?> kB</td>
-                    <td><?= date(lang('date_time_format'), $logfile['filedate'] ) ?></td>
+                    <td><?= date(T_('date_time_format'), $logfile['filedate'] ) ?></td>
                     <td><a href="<?= site_url("admin/maintenance/delete_log/" . $logfile['filename']) ?>">
                             <img src="<?= base_url() ?>images/edit-delete.png"
                                  style="vertical-align: middle"
-                                 title="delete logfile"
+                                 title="<?= T_('Delete logfile') ?>"
                                  border="0">
                         </a>
                         <a href="<?= site_url("admin/maintenance/show_log/" . $logfile['filename']) ?>">
                             <img src="<?= base_url() ?>images/edit-find.png"
                                  style="vertical-align: middle"
-                                 title="show logfile"
+                                 title="<?= T_('Show logfile') ?>"
                                  border="0">
                         </a>
                     </td>

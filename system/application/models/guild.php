@@ -29,18 +29,6 @@
  * @ingroup manaweb models
  */
 class Guild {
-
-    /**
-     * Name of the guilds table
-     */
-    const GUILD_TBL        = 'mana_guilds';
-
-    /**
-     * Name of the guild memberships table
-     */
-    const GUILD_MEMBER_TBL = 'mana_guild_members';
-
-
     //
     // Permissions defining rights of guild members.
     // Those constants are derived from
@@ -98,8 +86,10 @@ class Guild {
      */
     static function getGuild($id)
     {
-        $ci =& get_instance();
-        $res = $ci->db->get_where( Guild::GUILD_TBL,
+        $ci =& get_instance(); //makes this sense? CI is defined in class
+        
+        $tblGuilds = $this->CI->config->item('tbl_name_guilds');
+        $res = $ci->db->get_where($tblGuilds,
             array('id' => $id));
 
         if ($res->num_rows() > 0)
@@ -141,7 +131,9 @@ class Guild {
      */
     public function getMembers()
     {
-        $res = $this->CI->db->get_where( Guild::GUILD_MEMBER_TBL,
+        $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+        
+        $res = $this->CI->db->get_where( $tblGuildMember,
             array('guild_id' => $this->getId()));
 
         $members = array();
@@ -164,7 +156,9 @@ class Guild {
      */
     public function countMembers()
     {
-        $res = $this->CI->db->get_where( Guild::GUILD_MEMBER_TBL,
+        $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+        
+        $res = $this->CI->db->get_where($tblGuildMember,
             array('guild_id' => $this->getId()));
         return $res->num_rows();
     }

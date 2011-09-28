@@ -46,8 +46,7 @@ class Charcontroller extends Controller {
         if (!$this->user->isAuthenticated())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
     }
@@ -69,7 +68,6 @@ class Charcontroller extends Controller {
             return;
         }
 
-        $this->translationprovider->loadLanguage('character');
         $this->load->library('Mapprovider');
         $this->load->library('Skillprovider');
         $this->load->library('Attributeprovider');
@@ -78,7 +76,7 @@ class Charcontroller extends Controller {
         // check if the user is the owner of this char
         if (!$this->user->hasCharacter($id))
         {
-           show_error(lang('character_view_forbidden'));
+           show_error(T_('character_view_forbidden'));
         }
 
         $params = array();
@@ -99,7 +97,6 @@ class Charcontroller extends Controller {
                 $params['imageprovider']  = $this->imageprovider;
                 break;
             case 'guilds':
-                $this->translationprovider->loadLanguage('guilds');
                 $page = 'manaweb/character_guilds';
                 break;
             case 'skills':
@@ -113,7 +110,7 @@ class Charcontroller extends Controller {
                 break;
         }
 
-        $this->output->showPage(lang('character').': '. $char->getName(),
+        $this->output->showPage(T_('character').': '. $char->getName(),
             $page, $params);
     }
 

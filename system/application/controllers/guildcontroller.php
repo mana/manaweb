@@ -39,14 +39,11 @@ class Guildcontroller extends Controller {
             $this->config->item('mana_enable_profiler')
         );
 
-        $this->translationprovider->loadLanguage('guilds');
-
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
     }
@@ -76,7 +73,7 @@ class Guildcontroller extends Controller {
         $guild = Guild::getGuild($id);
         $param = array('guild' => $guild, 'user' => $this->user->getuser());
         $this->output->showPage(
-                sprintf(lang('guild_details_header'),$guild->getName()),
+                sprintf(T_('guild_details_header'),$guild->getName()),
                 'manaweb/guilds/show_guild', $param);
     }
 

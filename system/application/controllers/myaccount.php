@@ -31,18 +31,28 @@
 class Myaccount extends Controller {
 
     /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
+    /**
      * Initializes the Home controller.
      */
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
 
         $this->load->library('validation');
         $this->load->helper('form');
-        $this->translationprovider->loadLanguage('account');
     }
 
 
@@ -61,7 +71,7 @@ class Myaccount extends Controller {
         else
         {
             $param = array('has_errors' => false);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/login_form', $param);
         }
     }
@@ -88,7 +98,7 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $param = array('has_errors' => true);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/login_form', $param);
         }
         else
@@ -107,14 +117,12 @@ class Myaccount extends Controller {
                 $this->validation->error_string =
                     'The given username or password is incorrect.';
                 $params = array('has_errors' => true);
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/login_form', $params);
                 return;
             }
             else
             {
-                // set language preferences
-                $this->translationprovider->setLanguage($lang);
                 // show the account homepage of the user
                 $this->themeprovider->setTheme( $this->input->post('Manastyle'));
                 $this->session->set_userdata('theme', $this->input->post('Manastyle'));
@@ -137,7 +145,7 @@ class Myaccount extends Controller {
     {
         $this->user->logout();
         $params = array('has_errors' => false);
-        $this->output->showPage(lang('manaweb_title'),
+        $this->output->showPage(T_('manaweb_title'),
             'manaweb/login_form', $params);
     }
 
@@ -150,7 +158,7 @@ class Myaccount extends Controller {
     public function lostpassword()
     {
         $params = array('has_errors' => false);
-        $this->output->showPage(lang('manaweb_title'),
+        $this->output->showPage(T_('manaweb_title'),
             'manaweb/lost_password', $params);
     }
 
@@ -172,7 +180,7 @@ class Myaccount extends Controller {
         if ($this->validation->run() == false)
         {
             $params = array('has_errors'=>true);
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password', $params);
         }
         else
@@ -185,7 +193,7 @@ class Myaccount extends Controller {
             if ($this->validation->run() == false)
             {
                 $params = array('has_errors'=>true);
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password', $params);
             }
             else
@@ -197,7 +205,7 @@ class Myaccount extends Controller {
                 $this->_send_passwort_change_request($username, $email);
 
                 // forward to the success page
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password_mailsent',
                     array('username'=>$username, 'email'=>$email));
             }
@@ -221,7 +229,7 @@ class Myaccount extends Controller {
             $this->membershipprovider->validateKeyForUser($username, $key))
         {
             // show view for changing password
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_change',
                 array('username'=>$username, 'key'=>$key,
                     'has_errors'=>false));
@@ -229,7 +237,7 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_wrong_key');
         }
     }
@@ -264,7 +272,7 @@ class Myaccount extends Controller {
                     'key'=>$key
                 );
 
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/lost_password_change', $params);
             }
             else
@@ -275,7 +283,7 @@ class Myaccount extends Controller {
                     $username,
                     $this->input->post('Manapassword'));
 
-                $this->output->showPage(lang('manaweb_title'),
+                $this->output->showPage(T_('manaweb_title'),
                     'manaweb/login_form',
                     array('message'=>'Your new password has been set. You can'.
                     ' now login with your new credentials.',
@@ -285,7 +293,7 @@ class Myaccount extends Controller {
         else
         {
             // show error page
-            $this->output->showPage(lang('manaweb_title'),
+            $this->output->showPage(T_('manaweb_title'),
                 'manaweb/lost_password_wrong_key');
         }
     }
@@ -334,14 +342,14 @@ class Myaccount extends Controller {
      */
     public function _username_check($username)
     {
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');       
+        
         // get mail from post and hash it
         $mail  = $this->input->post('ManaMail');
         $hmail = hash('sha256', $mail);
 
-        // TODO: use constant for database table name
-
         // select user from db with given name and mailaddress
-        $query = $this->db->get_where('mana_accounts',
+        $query = $this->db->get_where($tblAccounts,
             array( 'username'=>$username, 'email'=>$hmail ));
 
         if ($query->num_rows == 1)
@@ -408,8 +416,7 @@ class Myaccount extends Controller {
      */
     private function _show_user_account()
     {
-        $this->translationprovider->loadLanguage('account');
-        $this->output->showPage(lang('account_title'), 'manaweb/user_home',
+        $this->output->showPage(T_('account_title'), 'manaweb/user_home',
             $this->user->getHomepageData() );
     }
 

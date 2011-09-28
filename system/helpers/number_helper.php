@@ -39,31 +39,30 @@ if ( ! function_exists('byte_format'))
 	function byte_format($num)
 	{
 		$CI =& get_instance();
-		$CI->lang->load('number');
 
 		if ($num >= 1000000000000)
 		{
 			$num = round($num / 1099511627776, 1);
-			$unit = $CI->lang->line('terabyte_abbr');
+			$unit = T_('terabyte_abbr');
 		}
 		elseif ($num >= 1000000000)
 		{
 			$num = round($num / 1073741824, 1);
-			$unit = $CI->lang->line('gigabyte_abbr');
+			$unit = T_('gigabyte_abbr');
 		}
 		elseif ($num >= 1000000)
 		{
 			$num = round($num / 1048576, 1);
-			$unit = $CI->lang->line('megabyte_abbr');
+			$unit = T_('megabyte_abbr');
 		}
 		elseif ($num >= 1000)
 		{
 			$num = round($num / 1024, 1);
-			$unit = $CI->lang->line('kilobyte_abbr');
+			$unit = T_('kilobyte_abbr');
 		}
 		else
 		{
-			$unit = $CI->lang->line('bytes');
+			$unit = T_('bytes');
 			return number_format($num).' '.$unit;
 		}
 

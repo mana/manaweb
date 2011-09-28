@@ -1,4 +1,4 @@
-<h3>Quick search</h3>
+<h3><?= T_('Quick search')?></h3>
 <p>
 <table style="border-width: 0px; margin-bottom: 0px;">
 
@@ -16,15 +16,15 @@
         echo form_open('admin/search_account', $attributes); ?>
     <tr>
         <td style="border-width: 0px;">
-            <label for="Manausername">search Account: </label>
+            <label for="Manausername"><?= T_('search Account')?>: </label>
         </td>
         <td style="border-width: 0px;">
             <input type="text" size="30" tabindex="1" value="" id="Manausername"
-                title="Enter an account name" name="Manausername">
+                title="<?= T_('Enter an account name')?>" name="Manausername">
         </td>
         <td style="border-width: 0px;">
-            <input type="submit" tabindex="2" value="Search"
-                id="Manasubmit" title="Search" name="Manasearch">
+            <input type="submit" tabindex="2" value=<?= T_('Search')?>
+                id="Manasubmit" title="<?= T_('Search')?>" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
@@ -33,15 +33,15 @@
         echo form_open('admin/search_character', $attributes); ?>
     <tr>
         <td style="border-width: 0px;">
-            <label for="Manausername">search Character: </label>
+            <label for="Manausername"><?= T_('search Character')?>: </label>
         </td>
         <td style="border-width: 0px;">
             <input type="text" size="30" tabindex="3" value="" id="Manacharacter"
-                title="Enter a character name" name="Manacharacter">
+                title="<?= T_('Enter a character name')?>" name="Manacharacter">
         </td>
         <td style="border-width: 0px;">
-            <input type="submit" tabindex="4" value="Search"
-                id="Manasubmit" title="Search" name="Manasearch">
+            <input type="submit" tabindex="4" value=<?= T_('Search')?>
+                id="Manasubmit" title="<?= T_('Search')?>" name="Manasearch">
         </td>
     </tr>
     <?= form_close(); ?>
@@ -55,7 +55,7 @@
 <?php if (isset($result_account) || isset($result_character)) { ?>
 
 <!-- search results -->
-<h3>Search result</h3>
+<h3><?= T_('Search result')?></h3>
 <p>
 <table class="datatable">
 
@@ -63,7 +63,7 @@
               if ($result_account === false) {
     ?>
     <tr>
-        <th>Sorry, your search returns no rows.</th>
+        <th><?= T_('Sorry, your search returns no rows.')?></th>
     </tr>
     <? } else { ?>
     <tr>
@@ -93,17 +93,17 @@
     <?php if (isset($result_character)) {
         if ($result_character === false) {  ?>
     <tr>
-        <th>Sorry, your search returns no rows.</th>
+        <th><?= T_('Sorry, your search returns no rows.')?></th>
     </tr>
     <? } else { ?>
     <tr>
-        <th>ID</th>
-        <th>Character</th>
-        <th>Username</th>
-        <th>Gender</th>
-        <th>Level</th>
-        <th>Money</th>
-        <th>Map</th>
+        <th><?= T_('ID')?></th>
+        <th><?= T_('Character')?></th>
+        <th><?= T_('Username')?></th>
+        <th><?= T_('Gender')?></th>
+        <th><?= T_('Level')?></th>
+        <th><?= T_('Money')?></th>
+        <th><?= T_('Map')?></th>
     </tr>
     <?php foreach ($result_character as $char) { ?>
     <tr>
@@ -128,7 +128,6 @@
 </p>
 <!-- end of search results ------------------------------------------------ -->
 <?php } ?>
-
 
 
 <!-- papaer scroll to display additional stuff ---------------------------- -->

@@ -75,7 +75,7 @@ define ('MANAWEB_GPNAME', 'GP');
 */
 
 define('XML_MAPS_FILE',   'maps.xml');
-define('XML_SKILLS_FILE', 'mana-skills.xml');
+define('XML_SKILLS_FILE', 'skills.xml');
 define('XML_ATTRIBUTES_FILE', 'attributes.xml');
 
 ?>

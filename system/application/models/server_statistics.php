@@ -61,6 +61,11 @@ class Server_statistics extends Model {
 
     //*************************************************************************
 
+    /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
 
     /**
      * Constructor initializes a new instalnce of the Server_statistics model.
@@ -68,6 +73,11 @@ class Server_statistics extends Model {
     public function __construct()
     {
         parent::Model();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
     }
 
 
@@ -102,8 +112,8 @@ class Server_statistics extends Model {
      */
     private function getPlayerCount()
     {
-        // TODO: use constants for database names
-        return $this->db->count_all('mana_accounts');
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        return $this->db->count_all($tblAccounts);
     }
 
 
@@ -114,7 +124,8 @@ class Server_statistics extends Model {
      */
     private function getCharacterCount()
     {
-        return $this->db->count_all('mana_characters');
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        return $this->db->count_all($tblCharacters);
     }
 
 
@@ -125,7 +136,8 @@ class Server_statistics extends Model {
      */
     private function getGuildCount()
     {
-        return $this->db->count_all('mana_guilds');
+        $tblGuilds = $this->CI->config->item('tbl_name_guilds');
+        return $this->db->count_all($tblGuilds);
     }
 
 
@@ -137,7 +149,9 @@ class Server_statistics extends Model {
     private function getPurchasingPower()
     {
         $this->db->select_sum('attr_base');
-        $query = $this->db->get_where( 'mana_char_attr',
+        
+        $tblCharAttr = $this->CI->config->item('tbl_name_char_attr');
+        $query = $this->db->get_where($tblCharAttr,
                     array('attr_id' => Character::CHAR_ATTR_GP));
 
         return $query->row()->attr_base;
@@ -159,11 +173,14 @@ class Server_statistics extends Model {
             ($this->db->dbdriver ==  'mysql' ))
         {
             // should work for mysql and sqlite
+            $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+            $tblGuilds = $this->CI->config->item('tbl_name_guilds');
+            
             $sql = "SELECT g.ID AS ID, "
                  . "        g.NAME AS NAME, "
                  . "        COUNT(m.GUILD_ID) AS MEMBERS "
-                 . "  FROM " . Guild::GUILD_TBL . " g "
-                 . " LEFT OUTER JOIN " . Guild::GUILD_MEMBER_TBL . " m "
+                 . "  FROM " . $tblGuilds . " g "
+                 . " LEFT OUTER JOIN " . $tblGuildMember . " m "
                  . "    ON g.ID = m.guild_id "
                  . " GROUP BY g.ID, g.NAME "
                  . " ORDER BY MEMBERS DESC, NAME "
@@ -203,13 +220,16 @@ class Server_statistics extends Model {
         if (($this->db->dbdriver == 'pdo') ||
             ($this->db->dbdriver ==  'mysql' ))
         {
+            $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+            $tblCharacters = $this->CI->config->item('tbl_name_characters');
+            
             // should work for mysql and sqlite
             $sql = "SELECT c.ID AS ID, "
                  . "       c.NAME as NAME, "
                  . "       c.LEVEL AS LEVEL, "
                  . "       u.username AS USERNAME "
-                 . "  FROM " . Character::CHARACTER_TBL . " c "
-                 . "  JOIN " . Account::ACCOUNT_TBL . " u "
+                 . "  FROM " . $tblCharacters . " c "
+                 . "  JOIN " . $tblAccounts . " u "
                  . "    ON c.user_id = u.id "
                  . " ORDER BY c.LEVEL DESC, NAME DESC "
                  . " LIMIT 10 ";

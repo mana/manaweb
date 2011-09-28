@@ -24,98 +24,39 @@
  * @author		ExpressionEngine Dev Team
  * @link		http://codeigniter.com/user_guide/libraries/language.html
  */
-class CI_Language {
-
-	var $language	= array();
-	var $is_loaded	= array();
-
+class CI_Language {      
 	/**
 	 * Constructor
 	 *
 	 * @access	public
 	 */
 	function CI_Language()
-	{
-		log_message('debug', "Language Class Initialized");
+	{               
+            //grab the config file
+            @include(APPPATH.'config/config'.EXT);
+
+            log_message('debug', "Language Class Initialized");
+
+            //Init Gettext
+            $locale = $config['language'];   // set language to default value
+            $domain = 'default'; // set gettext domain
+            $encoding = 'UTF-8'; // set character encoding
+
+            //include gettext
+            require_once('./ext/php-gettext/gettext.inc');
+
+            //set locale
+            T_setlocale(LC_MESSAGES, $locale);
+
+            //set locale path
+            T_bindtextdomain($domain, './locale/');
+
+            //set character encoding
+            T_bind_textdomain_codeset($domain, $encoding);
+
+            //set domain
+            T_textdomain($domain);
 	}
-
-	// --------------------------------------------------------------------
-
-	/**
-	 * Load a language file
-	 *
-	 * @access	public
-	 * @param	mixed	the name of the language file to be loaded. Can be an array
-	 * @param	string	the language (english, etc.)
-	 * @return	mixed
-	 */
-	function load($langfile = '', $idiom = '', $return = FALSE)
-	{
-		$langfile = str_replace(EXT, '', str_replace('_lang.', '', $langfile)).'_lang'.EXT;
-
-		if (in_array($langfile, $this->is_loaded, TRUE))
-		{
-			return;
-		}
-
-		if ($idiom == '')
-		{
-			$CI =& get_instance();
-			$deft_lang = $CI->config->item('language');
-			$idiom = ($deft_lang == '') ? 'english' : $deft_lang;
-		}
-
-		// Determine where the language file is and load it
-		if (file_exists(APPPATH.'language/'.$idiom.'/'.$langfile))
-		{
-			include(APPPATH.'language/'.$idiom.'/'.$langfile);
-		}
-		else
-		{
-			if (file_exists(BASEPATH.'language/'.$idiom.'/'.$langfile))
-			{
-				include(BASEPATH.'language/'.$idiom.'/'.$langfile);
-			}
-			else
-			{
-				show_error('Unable to load the requested language file: language/'.$idiom.'/'.$langfile);
-			}
-		}
-
-		if ( ! isset($lang))
-		{
-			log_message('error', 'Language file contains no data: language/'.$idiom.'/'.$langfile);
-			return;
-		}
-
-		if ($return == TRUE)
-		{
-			return $lang;
-		}
-
-		$this->is_loaded[] = $langfile;
-		$this->language = array_merge($this->language, $lang);
-		unset($lang);
-
-		log_message('debug', 'Language file loaded: language/'.$idiom.'/'.$langfile);
-		return TRUE;
-	}
-
-	// --------------------------------------------------------------------
-
-	/**
-	 * Fetch a single line of text from the language array
-	 *
-	 * @access	public
-	 * @param	string	$line 	the language line
-	 * @return	string
-	 */
-	function line($line = '')
-	{
-		$line = ($line == '' OR ! isset($this->language[$line])) ? FALSE : $this->language[$line];
-		return $line;
-	}
-
 }
 // END Language Class
 

@@ -50,8 +50,7 @@ class Manabay extends Controller {
         if (!$this->user->isAuthenticated())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
         */

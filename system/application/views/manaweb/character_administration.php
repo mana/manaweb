@@ -1,3 +1,3 @@
-<h3><?= lang('character_administration') ?></h3>
+<h3><?= T_('character_administration') ?></h3>
 
-<p>Sorry, this feature is not yet supported.</p>
+<p><?= T_('Sorry, this feature is not yet supported.') ?></p>

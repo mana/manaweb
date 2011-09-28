@@ -9,7 +9,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
   <title>The Mana Source Account Manager</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15"/>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css"/>
   <meta http-equiv="Content-Language" content="en"/>
 
@@ -46,9 +46,9 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
         $nb = new NavigationBox( 'navigation.mana.main', '' );
 
         $nb->addNavigationItem( new NavigationItem('navigation.mana.main.itemslist',
-            _("Itemslist"), site_url('itemslist') ) );
+            T_("Itemslist"), site_url('itemslist') ) );
         $nb->addNavigationItem( new NavigationItem('navigation.mana.main.serverstats',
-            _("Statistics"), site_url('statistics') ) );
+            T_("Statistics"), site_url('statistics') ) );
 
         $navigation->addNavbox($nb, 10);
 

@@ -48,6 +48,11 @@ class User extends Model {
      */
     private $is_admin;
 
+    /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+    
 
     /**
      * Constructor initializes a new instalnce of the User model.
@@ -57,6 +62,11 @@ class User extends Model {
     public function __construct()
     {
         parent::Model();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
 
         // set defaults
         $this->is_authenticated = false;
@@ -85,7 +95,9 @@ class User extends Model {
             if ($this->session->userdata('logged_in'))
             {
                 $user_id = $this->session->userdata('user_id');
-                $query = $this->db->get_where( Account::ACCOUNT_TBL,
+                
+                $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+                $query = $this->db->get_where( $tblAccounts,
                     array('id' => $user_id));
 
                 if ($query->num_rows == 1)
@@ -212,7 +224,8 @@ class User extends Model {
         $pwd = hash('sha256', hash('sha256', $username . $password));
 
         // select user from db with given name and password
-        $query = $this->db->get_where( Account::ACCOUNT_TBL,
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $query = $this->db->get_where( $tblAccounts,
             array( 'username' => $username, 'password' => $pwd ));
 
         if ($query->num_rows == 1)
@@ -278,45 +291,46 @@ class User extends Model {
         // delete data from all tables containing user data
 
         // first delete records from child tables via subselects
-
-        // TODO: remove hardcoded table names and use constants instead...
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
 
         // delete quest states of characters
         $this->db->query( 'delete from mana_quests ' .
             'where owner_id in ( ' .
-            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
+            '   select id from ' . $tblCharacters . ' where user_id = ' . $userid
             . ' )' );
 
         // delete guild memberships
         $this->db->query( 'delete from mana_guild_members ' .
             'where member_name in ( ' .
-            '   select name from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
+            '   select name from ' . $tblCharacters . ' where user_id = ' . $userid
             . ' )' );
 
         // delete inventory of characters
         $this->db->query( 'delete from mana_inventories ' .
             'where owner_id in ( ' .
-            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
+            '   select id from ' . $tblCharacters . ' where user_id = ' . $userid
             . ' )' );
 
         // delete inventory of characters
         $this->db->query( 'delete from mana_char_skills ' .
             'where char_id in ( ' .
-            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
+            '   select id from ' . $tblCharacters . ' where user_id = ' . $userid
             . ' )' );
 
         // delete auctions started by the player
         $this->db->query( 'delete from mana_auctions ' .
             'where char_id in ( ' .
-            '   select id from ' . Character::CHARACTER_TBL . ' where user_id = ' . $userid
+            '   select id from ' . $tblCharacters . ' where user_id = ' . $userid
             . ' )' );
         // bug: delete bids on deleted auctions
 
         // delete characters
-        $this->db->delete(Character::CHARACTER_TBL,  array('user_id' => $userid));
+        $this->db->delete($tblCharacters,  array('user_id' => $userid));
 
         // lastly delete account
-        $this->db->delete(Account::ACCOUNT_TBL, array('id' => $userid));
+        $this->db->delete($tblAccounts, array('id' => $userid));
 
         // commit
         $this->db->trans_complete();
@@ -436,7 +450,9 @@ class User extends Model {
      */
     public function hasCharacter($id)
     {
-        $query = $this->db->get_where(Character::CHARACTER_TBL,
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        
+        $query = $this->db->get_where($tblCharacters,
             array(
                 'id'      => $id,
                 'user_id' => $this->getUser()->getID()
@@ -483,7 +499,9 @@ class User extends Model {
      */
     public function getCharacter($id)
     {
-        $query = $this->db->get_where(Character::CHARACTER_TBL,
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        
+        $query = $this->db->get_where($tblCharacters,
             array('id' => $id));
 
         if ($query->num_rows() > 0)
@@ -529,9 +547,12 @@ class User extends Model {
      */
     public function isMemberOfGuild($id)
     {
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+        
         $this->db->select('g.guild_id');
-        $this->db->from(Character::CHARACTER_TBL);
-        $this->db->join(Guild::GUILD_MEMBER_TBL.' g', 'id = g.member_id');
+        $this->db->from($tblCharacters);
+        $this->db->join($tblGuildMember.' g', 'id = g.member_id');
         $this->db->where(
             array('user_id' => $this->getUser()->getID(),
                 'g.guild_id' => $id

@@ -312,9 +312,6 @@ class CI_Form_validation {
 			}
 		}
 
-		// Load the language file containing error messages
-		$this->CI->lang->load('form_validation');
-
 		// Cycle through the rules for each field, match the
 		// corresponding $_POST item and test for errors
 		foreach ($this->_field_data as $field => $row)
@@ -507,7 +504,7 @@ class CI_Form_validation {
 
 				if ( ! isset($this->_error_messages[$type]))
 				{
-					if (FALSE === ($line = $this->CI->lang->line($type)))
+					if (FALSE === ($line = T_($type)))
 					{
 						$line = 'The field was not set';
 					}
@@ -644,7 +641,7 @@ class CI_Form_validation {
 			{
 				if ( ! isset($this->_error_messages[$rule]))
 				{
-					if (FALSE === ($line = $this->CI->lang->line($rule)))
+					if (FALSE === ($line = T_($rule)))
 					{
 						$line = 'Unable to access an error message corresponding to your field name.';
 					}
@@ -696,7 +693,7 @@ class CI_Form_validation {
 			$line = substr($fieldname, 5);
 
 			// Were we able to translate the field name?  If not we use $line
-			if (FALSE === ($fieldname = $this->CI->lang->line($line)))
+			if (FALSE === ($fieldname = T_($line)))
 			{
 				return $line;
 			}

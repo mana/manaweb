@@ -33,9 +33,6 @@ require_once(APPPATH.'models/guild'.EXT);
  */
 class Character {
 
-    const CHARACTER_TBL        = 'mana_characters';      /**< Name of the characters table */
-    const CHARACTER_ONLINE_TBL = 'mana_online_list';     /**< Name of the online list table */
-    const ONLINE_CHARS_TBL     = 'mana_v_online_chars';  /**< Name of the view displaying online characters */
     const GENDER_MALE   = 0;                            /**< Defines constant for male characters */
     const GENDER_FEMALE = 1;                            /**< Defines constant for female characters */
 
@@ -165,8 +162,9 @@ class Character {
     {
         if (!isset($this->user))
         {
-            // TODO: use constant for database table
-            $query = $this->CI->db->get_where('mana_accounts',
+            $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+            
+            $query = $this->CI->db->get_where($tblAccounts,
                 array('id' => $this->char->user_id), 1);
             $this->user = $query->result();
             $this->user = $this->user[0];
@@ -268,7 +266,8 @@ class Character {
         // attributes are not initialized yet, do it now!
         if (sizeof($this->attributes) == 0)
         {
-            $query = $this->CI->db->get_where('mana_char_attr',
+            $tblCharAttr = $this->CI->config->item('tbl_name_char_attr');
+            $query = $this->CI->db->get_where($tblCharAttr,
                 array('char_id' => $this->char->id));
 
             if ($query->num_rows() > 0)
@@ -299,8 +298,9 @@ class Character {
         // skills are not initialized yet, do it now!
         if (sizeof($this->skills) == 0)
         {
-            // TODO: use database table constants
-            $query = $this->CI->db->get_where('mana_char_skills',
+            $tblCharSkills = $this->CI->config->item('tbl_name_char_skills');
+
+            $query = $this->CI->db->get_where($tblCharSkills,
                 array('char_id' => $this->char->id));
 
             if ($query->num_rows() > 0)
@@ -393,7 +393,8 @@ class Character {
      */
     public function isGuildMember()
     {
-        $query = $this->CI->db->get_where(Guild::GUILD_MEMBER_TBL,
+        $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+        $query = $this->CI->db->get_where($tblGuildMember,
             array('member_id' => $this->char->id), 1);
 
         if ($query->num_rows() > 0)
@@ -414,9 +415,12 @@ class Character {
     {
         $db =& $this->CI->db;
 
-        $db->from( Guild::GUILD_TBL.' g' );
-        $db->join ( Guild::GUILD_MEMBER_TBL, 'id = '.Guild::GUILD_MEMBER_TBL.'.guild_id' );
-        $db->where(Guild::GUILD_MEMBER_TBL.'.member_id', $this->char->id);
+        $tblGuildMember = $this->CI->config->item('tbl_name_guild_members');
+        $tblGuilds = $this->CI->config->item('tbl_name_guilds');
+        
+        $db->from($tblGuilds.' g' );
+        $db->join($tblGuildMember, 'id = '.$tblGuildMember.'.guild_id' );
+        $db->where($tblGuildMember.'.member_id', $this->char->id);
         $query = $db->get();
 
         $guilds = array();
@@ -442,7 +446,8 @@ class Character {
         if (!isset(self::$onlinelist))
         {
             // load list of online users
-            $query = $this->CI->db->get(Character::CHARACTER_ONLINE_TBL);
+            $tblOnlineList = $this->CI->config->item('tbl_name_online_list');
+            $query = $this->CI->db->get($tblOnlineList);
             foreach ($query->result() as $char)
             {
                 self::$onlinelist[$char->char_id] = $char;

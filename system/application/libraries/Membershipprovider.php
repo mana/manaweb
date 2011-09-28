@@ -110,7 +110,6 @@ class Membershipprovider
         return Membershipprovider::PASSWORD_OK;
     }
 
-
     /**
      * Initializes a new instance of MembershipProvider
      */
@@ -121,7 +120,6 @@ class Membershipprovider
         // we cannot access $this->config
         $this->CI =& get_instance();
     }
-
 
     /**
      * This function updates a user record in the mana_accounts table and sets
@@ -135,12 +133,13 @@ class Membershipprovider
     {
         $db = $this->CI->db;
         $expiration = $this->CI->config->item('mana_change_password_expiration');
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
 
         // do the update in a single transaction, to not disturb manaserv
         $db->trans_start();
         $db->where('username', $username);
-        // TODO: use database table constants
-        $db->update('mana_accounts',
+
+        $db->update($tblAccounts,
             array('authorization' => $key,
                   'expiration'    => time() + intval($expiration) ));
         $db->trans_complete();
@@ -164,6 +163,7 @@ class Membershipprovider
 
         // do the update in a single transaction, to not disturb manaserv
         $db = $this->CI->db;
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
 
         $db->trans_start();
             $db->where('username', $username);
@@ -174,8 +174,8 @@ class Membershipprovider
                 $values['authorization'] = null;
                 $values['expiration']    = null;
             }
-            // TODO: use database table constants
-            $db->update('mana_accounts', $values);
+            
+            $db->update($tblAccounts, $values);
 
             log_message('info', sprintf('User [%s] has changed its password.',
                 $username ));
@@ -195,12 +195,13 @@ class Membershipprovider
 
         // do the update in a single transaction, to not disturb manaserv
         $db = $this->CI->db;
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
 
         $db->trans_start();
             $db->where('username', $username);
             $values = array('email' => $mail);
-            // TODO: use database table constants
-            $db->update('mana_accounts', $values);
+
+            $db->update($tblAccounts, $values);
 
             log_message('info', sprintf('User [%s] has changed its mailaddress.',
                 $username ));
@@ -219,8 +220,9 @@ class Membershipprovider
     public function validateKeyForUser($username, $key)
     {
         $db =& $this->CI->db;
-        // TODO: use database table constants
-        $query = $db->get_where( 'mana_accounts', array('username'=>$username));
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        
+        $query = $db->get_where($tblAccounts, array('username'=>$username));
         $row = $query->row();
         // first validate expiration date of the key, no matter if it's correct
 
@@ -231,8 +233,8 @@ class Membershipprovider
             $db->trans_start();
             $db->where('username', $username);
             $values = array('authorization'=>null, 'expiration'=>null );
-            // TODO: use database table constants
-            $db->update('mana_accounts', $values);
+            
+            $db->update($tblAccounts, $values);
             $db->trans_complete();
             return false;
         }

@@ -52,8 +52,12 @@ $config['url_suffix'] = "";
 | there is an available translation if you intend to use something other
 | than english.
 |
+| for example:
+| $config['language']	= "de_DE";
+| $config['language']	= "en_EN";
+|
 */
-$config['language']	= "english";
+$config['language']	= "en_EN";
 
 /*
 |--------------------------------------------------------------------------

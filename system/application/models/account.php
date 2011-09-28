@@ -31,10 +31,6 @@ require_once(APPPATH.'models/character'.EXT);
  */
 class Account {
 
-    const ACCOUNT_TBL      = 'mana_accounts';        /**< Name of the accounts table */
-
-    ///////////////////////////////////////////////////////////////////////////
-
     /**
      * Reference to the CodeIgniter framework
      */
@@ -56,7 +52,8 @@ class Account {
     public static function getAccount($id)
     {
         $ci =& get_instance();
-        $query = $ci->db->get_where(Account::ACCOUNT_TBL,
+        $tblAccounts =$ci->config->item('tbl_name_accounts');
+        $query = $ci->db->get_where($tblAccounts,
             array('id' => $id));
 
         if ($query->num_rows() > 0)
@@ -194,7 +191,8 @@ class Account {
      */
     public function hasCharacters()
     {
-        $query = $this->CI->db->get_where(Character::CHARACTER_TBL,
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        $query = $this->CI->db->get_where($tblCharacters,
             array('user_id' => $this->getID()), 1);
 
         if ($query->num_rows() > 0)
@@ -215,7 +213,8 @@ class Account {
      */
     public function getCharacterCount()
     {
-        $query = $this->CI->db->get_where(Character::CHARACTER_TBL,
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        $query = $this->CI->db->get_where($tblCharacters,
             array('user_id' => $this->getID()) );
 
         return $query->num_rows();
@@ -232,8 +231,9 @@ class Account {
     {
         $chars = array();
 
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
         $this->CI->db->order_by($order);
-        $query = $this->CI->db->get_where(Character::CHARACTER_TBL,
+        $query = $this->CI->db->get_where($tblCharacters,
             array('user_id' => $this->getID()));
 
         foreach ($query->result() as $char)

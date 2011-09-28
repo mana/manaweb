@@ -34,23 +34,38 @@
 | the active record class
 */
 
-$active_group = "default";
+$active_group = "mysql";
 $active_record = TRUE;
 
 // configure access to your existing manaserv database!
 
-$db['default']['hostname'] = "localhost";
-$db['default']['username'] = "";
-$db['default']['password'] = "";
-$db['default']['database'] = "sqlite:/link/to/your/database/mana.db";
-$db['default']['dbdriver'] = "pdo";
-$db['default']['dbprefix'] = "";
-$db['default']['pconnect'] = FALSE;
-$db['default']['db_debug'] = TRUE;
-$db['default']['cache_on'] = FALSE;
-$db['default']['cachedir'] = "";
-$db['default']['char_set'] = "utf8";
-$db['default']['dbcollat'] = "utf8_general_ci";
+//sqlite
+$db['sqlite']['hostname'] = "localhost";
+$db['sqlite']['username'] = "bob";
+$db['sqlite']['password'] = "secret";
+$db['sqlite']['database'] = "sqlite:/link/to/your/database/mana.db";
+$db['sqlite']['dbdriver'] = "pdo";
+$db['sqlite']['dbprefix'] = "";
+$db['sqlite']['pconnect'] = FALSE;
+$db['sqlite']['db_debug'] = TRUE;
+$db['sqlite']['cache_on'] = FALSE;
+$db['sqlite']['cachedir'] = "";
+$db['sqlite']['char_set'] = "utf8";
+$db['sqlite']['dbcollat'] = "utf8_general_ci";
+
+//mysql
+$db['mysql']['hostname'] = "localhost";
+$db['mysql']['username'] = "bob";
+$db['mysql']['password'] = "secret";
+$db['mysql']['database'] = "mysql:dbname=manawebdb";
+$db['mysql']['dbdriver'] = "pdo";
+$db['mysql']['dbprefix'] = "";
+$db['mysql']['pconnect'] = FALSE;
+$db['mysql']['db_debug'] = TRUE;
+$db['mysql']['cache_on'] = FALSE;
+$db['mysql']['cachedir'] = "";
+$db['mysql']['char_set'] = "utf8";
+$db['mysql']['dbcollat'] = "utf8_general_ci";
 
 
 /* End of file database.php */

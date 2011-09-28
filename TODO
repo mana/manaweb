@@ -2,4 +2,4 @@
   is not yet finished.
 * Implement a themes manager and the possibility to easy switch between 
   styles.
-* Add gettext support for translations.
+* replace table namens in maintenance.php

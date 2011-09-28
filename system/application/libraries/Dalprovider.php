@@ -63,8 +63,6 @@ class Dalprovider
         $this->images_dir = $this->CI->config->item('manadata_path') . 'graphics/items/';
     }
 
-
-
     /**
      * This function loads all known items \c form the mana_items table
      * and refreshs the locally stores item images
@@ -88,7 +86,9 @@ class Dalprovider
         // item storage on startup!
 
         $db =& $this->CI->db;
-        $query = $db->get("mana_items");
+        
+        $tblItems = $this->CI->config->item('tbl_name_items');
+        $query = $db->get($tblItems);
 
         foreach ($query->result() as $item)
         {
@@ -119,9 +119,6 @@ class Dalprovider
         }
 
         return $retval;
-
     } // public function refreshStorage()
-
 } // class DalProvider
-
 ?>

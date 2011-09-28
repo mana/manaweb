@@ -37,6 +37,11 @@ class Admin extends Controller {
      */
     const LOGFILE_FORMAT = "/^log-\d{4}-\d{2}-\d{2}\.php$/";
 
+    /**
+    * Reference to the CodeIgniter framework
+    */
+    private $CI;
+
 
     /**
      * Initializes the Home controller.
@@ -44,21 +49,25 @@ class Admin extends Controller {
     function __construct()
     {
         parent::Controller();
+        
+        // get an instance of CI
+        // we have to this, because we are not in an controller and therefore
+        // we cannot access $this->config
+        $this->CI =& get_instance();
+        
         $this->output->enable_profiler(
             $this->config->item('mana_enable_profiler')
         );
 
         $this->load->helper('form');
         $this->load->library('validation');
-        $this->translationprovider->loadLanguage('admin');
 
 
         // check if the user is currently logged in
         if (!$this->user->isAuthenticated() || !$this->user->isAdmin())
         {
             $param = array('has_errors' => false);
-            $this->translationprovider->loadLanguage('account');
-            $this->output->showPage(lang('account_login'),
+            $this->output->showPage(T_('account_login'),
                 'manaweb/login_form', $param);
         }
     }
@@ -74,7 +83,7 @@ class Admin extends Controller {
             return;
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main');
+        $this->output->showPage(T_('admin_title'), 'admin/main');
     }
 
     /**
@@ -87,13 +96,13 @@ class Admin extends Controller {
         {
             return;
         }
-        $this->translationprovider->loadLanguage('account');
+        
         $params = array();
         $acc = Account::getAccount($id);
         $params['account'] = $acc;
         $page = 'admin/account';
 
-        $this->output->showPage(lang('account_username').': '. $acc->getUsername(),
+        $this->output->showPage(T_('account_username').': '. $acc->getUsername(),
             $page, $params);
     }
 
@@ -107,7 +116,7 @@ class Admin extends Controller {
         {
             return;
         }
-        $this->translationprovider->loadLanguage('character');
+
         $this->load->library('mapprovider');
 
         $params = array();
@@ -115,7 +124,7 @@ class Admin extends Controller {
         $params['char'] = $char;
         $page = 'admin/character';
 
-        $this->output->showPage(lang('character').': '. $char->getName(),
+        $this->output->showPage(T_('character').': '. $char->getName(),
             $page, $params);
     }
 
@@ -176,7 +185,7 @@ class Admin extends Controller {
             $params = array_merge($params, $this->_count_error_logs());
         }
 
-        $this->output->showPage(lang('maintenance_title'),
+        $this->output->showPage(T_('maintenance_title'),
             'admin/maintenance', $params);
     }
 
@@ -190,7 +199,7 @@ class Admin extends Controller {
         if (!$this->user->hasRight('see_account_list'))
         {
             $param = array('error' => 'You are not allowed to see account list');
-            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+            $this->output->showPage(T_('admin_title'), 'admin/main', $param);
             return;
         }
 
@@ -199,7 +208,7 @@ class Admin extends Controller {
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-            $this->output->showPage(lang('admin_title'), 'admin/main');
+            $this->output->showPage(T_('admin_title'), 'admin/main');
             return;
         }
 
@@ -210,7 +219,9 @@ class Admin extends Controller {
 
         $this->db->where('username LIKE \'' . $search . '\'');
         $this->db->order_by('username');
-        $res = $this->db->get(Account::ACCOUNT_TBL);
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $res = $this->db->get($tblAccounts);
 
         if ($res->num_rows() > 0)
         {
@@ -229,7 +240,7 @@ class Admin extends Controller {
             $param = array('result_account' => false);
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+        $this->output->showPage(T_('admin_title'), 'admin/main', $param);
     }
 
 
@@ -254,7 +265,9 @@ class Admin extends Controller {
 
         $search = $this->input->post('Manausername') . '%';
         $this->db->where('username LIKE \'' . $search . '\'');
-        $res = $this->db->get(Account::ACCOUNT_TBL);
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $res = $this->db->get($tblAccounts);
 
         echo "<ul>";
         foreach ($res->result() as $row)
@@ -274,7 +287,7 @@ class Admin extends Controller {
         if (!$this->user->hasRight('see_character_list'))
         {
             $param = array('error' => 'You are not allowed to see character list');
-            $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+            $this->output->showPage(T_('admin_title'), 'admin/main', $param);
             return;
         }
 
@@ -283,23 +296,26 @@ class Admin extends Controller {
         $this->validation->set_rules($rules);
         if ($this->validation->run() == false)
         {
-            $this->output->showPage(lang('admin_title'), 'admin/main');
+            $this->output->showPage(T_('admin_title'), 'admin/main');
             return;
         }
+        
+        $tblAccounts = $this->CI->config->item('tbl_name_accounts');
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
 
         // search for the given character name
         // due to another bug in pdo that wraps parenthesis around the table
         // but not araound the join part, sqlite returns an error
         $search = '%' . $this->input->post('Manacharacter') . '%';
 
-        $sql = "SELECT ".Character::CHARACTER_TBL.".*, "
-             . "       ".Account::ACCOUNT_TBL.".username"
-             . "  FROM ".Character::CHARACTER_TBL
-             . "  JOIN ".Account::ACCOUNT_TBL
-             . "    ON ".Character::CHARACTER_TBL.".user_id = ".
-                         Account::ACCOUNT_TBL.".id"
-             . " WHERE ".Character::CHARACTER_TBL.".name LIKE '".$search."'"
-             . " ORDER BY ".Character::CHARACTER_TBL.".name";
+        $sql = "SELECT ".$tblCharacters.".*, "
+             . "       ".$tblAccounts.".username"
+             . "  FROM ".$tblCharacters
+             . "  JOIN ".$tblAccounts
+             . "    ON ".$tblCharacters.".user_id = ".
+                         $tblAccounts.".id"
+             . " WHERE ".$tblCharacters.".name LIKE '".$search."'"
+             . " ORDER BY ".$tblCharacters.".name";
 
         $res = $this->db->query($sql);
 
@@ -322,7 +338,7 @@ class Admin extends Controller {
             $param = array('result_character' => false);
         }
 
-        $this->output->showPage(lang('admin_title'), 'admin/main', $param);
+        $this->output->showPage(T_('admin_title'), 'admin/main', $param);
     } // function search_character()
 
     /**
@@ -346,7 +362,8 @@ class Admin extends Controller {
 
         $search = $this->input->post('Manacharacter') . '%';
         $this->db->where('name LIKE \'' . $search . '\'');
-        $res = $this->db->get(Character::CHARACTER_TBL);
+        $tblCharacters = $this->CI->config->item('tbl_name_characters');
+        $res = $this->db->get($tblCharacters);
 
         echo "<ul>";
         foreach ($res->result() as $row)
@@ -364,7 +381,7 @@ class Admin extends Controller {
     private function _reload_maps_file(& $params)
     {
         $this->mapprovider->load_maps_file();
-        $params['action_result'] = lang('maps_file_reloaded');
+        $params['action_result'] = T_('maps_file_reloaded');
     }
 
     /**
@@ -375,7 +392,7 @@ class Admin extends Controller {
     private function _reload_skills_file(& $params)
     {
         $this->skillprovider->loadSkillsFile();
-        $params['action_result'] = lang('skills_file_reloaded');
+        $params['action_result'] = T_('skills_file_reloaded');
     }
 
     /**
@@ -386,7 +403,7 @@ class Admin extends Controller {
     private function _reload_attributes_file(& $params)
     {
         $this->attributeprovider->loadAttributesFile();
-        $params['action_result'] = lang('attributes_file_reloaded');
+        $params['action_result'] = T_('attributes_file_reloaded');
     }
 
     /**
@@ -397,7 +414,7 @@ class Admin extends Controller {
     private function _reload_items_file(& $params)
     {
         $retval = $this->dalprovider->refreshStorage();
-        $params['action_result']       = lang('items_file_reloaded');
+        $params['action_result']       = T_('items_file_reloaded');
         $params['missing_item_images'] = $retval;
     }
 
