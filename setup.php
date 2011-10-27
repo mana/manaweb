@@ -22,6 +22,8 @@
 
     define('FCPATH', __FILE__);
 
+    require_once 'ext/php-gettext/gettext.inc';
+
     function print_check( $msg, $result, $required="", $state="", $ann="" )
     {
         echo "
@@ -297,7 +299,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
   <link rel="icon" href="./images/icon16.png" type="image/png"/>
 
   <style type="text/css">
-   @import url( "default.css");
+   @import url( "data/themes/default/default.css");
   </style>
   <style type="text/css">
     .ok {
@@ -319,6 +321,7 @@ echo "<?xml version=\"1.0\" encoding=\"ISO-8859-15\" ?>"; ?>
  </head>
  <body>
   <a name="top"></a>
+   <div id="logo"></div>
    <div id="page">
 
    <div id="irc_info">
