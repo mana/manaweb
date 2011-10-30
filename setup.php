@@ -287,7 +287,8 @@
 	if(file_exists('data/config_required'))
 	{
 	    @unlink('data/config_required');
-	    print_message( "Setup is now complete. <a href='/' title='Continue'>Continue</a> to your installation." );
+	    print_header( "Setup is complete." );
+	    print_message( "<a href='/' title='Continue'>Continue</a> to your installation." );
 	}
     }
 
