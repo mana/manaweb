@@ -267,7 +267,7 @@
         }
         else
         {
-            print_check( "Used database driver", "ok", $db['default']['dbdriver'], "pdo" );
+            print_check( "Used database driver", "ok", $db[$active_group]['dbdriver'], "pdo" );
         }
 
         if(substr($db[$active_group]['database'], 0, 6) == "sqlite")
@@ -290,7 +290,7 @@
 	}
 
 	print_header( "Setup is complete." );
-	print_message( "<a href='/' title='Continue'>Continue</a> to your installation." );
+	print_message( "<a href='#' onclick='document.location=document.location;return false;' title='Continue'>Continue</a> to your installation." );
     }
 
 
