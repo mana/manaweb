@@ -290,7 +290,7 @@
 	}
 
 	print_header( "Setup is complete." );
-	print_message( "<a href='#' onclick='document.location=document.location;return false;' title='Continue'>Continue</a> to your installation." );
+	print_message( "<a href='" . $config['base_url']  . "' title='Continue'>Continue</a> to your installation." );
     }
 
 
