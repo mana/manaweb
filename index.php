@@ -1,4 +1,11 @@
 <?php
+
+if(file_exists('data/config_required'))
+{
+    require 'setup.php';
+    exit;
+}
+
 /*
 |---------------------------------------------------------------
 | PHP ERROR REPORTING LEVEL

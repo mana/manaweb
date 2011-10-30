@@ -260,24 +260,35 @@
         print_header("Checking database configuration and connection.");
         require_once('./system/application/config/database.php');
 
-        if ($db['default']['dbdriver'] != "pdo")
+        if ($db[$active_group]['dbdriver'] != "pdo")
         {
-            print_check( "Used database driver", "failed", $db['default']['dbdriver'], "pdo" );
+            print_check( "Used database driver", "failed", $db[$active_group]['dbdriver'], "pdo" );
+	    return;
         }
         else
         {
             print_check( "Used database driver", "ok", $db['default']['dbdriver'], "pdo" );
         }
 
-        if(substr($db['default']['database'], 0, 6) == "sqlite")
+        if(substr($db[$active_group]['database'], 0, 6) == "sqlite")
         {
             print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found sqlite as database backend...");
         }
-        else
+        elseif(substr($db[$active_group]['database'], 0, 5) == "mysql")
+	{
+	    print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found mysql as database backend...");
+	}
+	else
         {
-            print_check( "Used database backend", "failed", $db['default']['database'], "sqlite" );
+            print_check( "Used database backend", "failed", $db[$active_group]['database'], "(sqlite|mysql)..." );
+	    return;
         }
 
+	if(file_exists('data/config_required'))
+	{
+	    @unlink('data/config_required');
+	    print_message( "Setup is now complete. <a href='/' title='Continue'>Continue</a> to your installation." );
+	}
     }
 
 
