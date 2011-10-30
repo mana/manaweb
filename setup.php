@@ -236,7 +236,7 @@
         }
 
 
-        if ($config['base_url'] == "http://example.com/manaweb/")
+        if ($config['base_url'] == "http://manaweb.example.org/")
         {
             print_check( "parameter <tt>base_url</tt>", "failed", "", "",
             	"This option is necessary to build correct internal links. Please set this parameter to the correct root of ".
