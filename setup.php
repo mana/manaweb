@@ -36,7 +36,7 @@
 
         if (strlen($ann) > 0)
         {
-	        echo "
+            echo "
             <tr>
                 <td colspan=\"3\" style=\"padding-left: 15px;\">$ann</td>
                 <td>&nbsp;</td>
@@ -191,7 +191,7 @@
         // checking wheter a custom logpath is set
         if (strlen($config['log_path']) > 0)
         {
-        	$logdir = $config['log_path'];
+            $logdir = $config['log_path'];
         }
         else
         {
@@ -263,7 +263,7 @@
         if ($db[$active_group]['dbdriver'] != "pdo")
         {
             print_check( "Used database driver", "failed", $db[$active_group]['dbdriver'], "pdo" );
-	    return;
+            return;
         }
         else
         {
@@ -275,22 +275,22 @@
             print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found sqlite as database backend...");
         }
         elseif(substr($db[$active_group]['database'], 0, 5) == "mysql")
-	{
-	    print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found mysql as database backend...");
-	}
-	else
+        {
+            print_message("&nbsp; &nbsp; &nbsp; &nbsp; Found mysql as database backend...");
+        }
+        else
         {
             print_check( "Used database backend", "failed", $db[$active_group]['database'], "(sqlite|mysql)..." );
-	    return;
+            return;
         }
 
-	if(file_exists('data/config_required'))
-	{
-	    @unlink('data/config_required');
-	}
+        if(file_exists('data/config_required'))
+        {
+            @unlink('data/config_required');
+        }
 
-	print_header( "Setup is complete." );
-	print_message( "<a href='" . $config['base_url']  . "' title='Continue'>Continue</a> to your installation." );
+        print_header( "Setup is complete." );
+        print_message( "<a href='" . $config['base_url']  . "' title='Continue'>Continue</a> to your installation." );
     }
 
 
